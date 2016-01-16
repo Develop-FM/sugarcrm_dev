@@ -1,0 +1,24 @@
+{
+  "name": "SugarCRM",
+  "type": "project",
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "SugarCRM\\": "include"
+    }
+  },
+  "require": {
+    "google/apiclient": "*",
+    "smarty/smarty": "~2.6",
+    "phpmailer/phpmailer": "^5.2",
+    "fergusean/nusoap": "^0.9.5",
+    "tecnick.com/tcpdf": "^6.0",
+    "ezyang/htmlpurifier": "~4.7",
+    "greenlion/php-sql-parser": "~4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  }
+}
