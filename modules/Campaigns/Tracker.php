@@ -52,7 +52,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 require_once('modules/Campaigns/utils.php');
 
-$GLOBALS['log'] = LoggerManager::getLogger('Campaign Tracker v2');
+$GLOBALS['log'] = new SugarLogger('Campaign Tracker v2');
 
 $db = DBManagerFactory::getInstance();
 

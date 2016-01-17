@@ -54,7 +54,6 @@ $GLOBALS['installing'] = true;
 define('SUGARCRM_IS_INSTALLING', $GLOBALS['installing']);
 $GLOBALS['sql_queries'] = 0;
 
-require_once('include/SugarLogger/LoggerManager.php');
 require_once('sugar_version.php');
 require_once('include/utils.php');
 require_once('install/install_utils.php');
@@ -85,7 +84,7 @@ if (get_magic_quotes_gpc() == 1) {
     $_GET     = array_map("stripslashes_checkstrings", $_GET);
 }
 
-$GLOBALS['log']      = LoggerManager::getLogger('SugarCRM');
+$GLOBALS['log']      = new SugarLogger('SugarCRM');
 $setup_sugar_version = $sugar_version;
 $install_script      = true;
 

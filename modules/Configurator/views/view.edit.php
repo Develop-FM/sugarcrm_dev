@@ -131,11 +131,14 @@ class ConfiguratorViewEdit extends ViewEdit
         }else{
             $this->ss->assign("PROXY_AUTH_DISPLAY", 'none');
         }
-        if (!empty($configurator->config['logger']['level'])) {
-            $this->ss->assign('log_levels', get_select_options_with_id(  LoggerManager::getLoggerLevels(), $configurator->config['logger']['level']));
-        } else {
-            $this->ss->assign('log_levels', get_select_options_with_id(  LoggerManager::getLoggerLevels(), ''));
-        }
+		
+		// TODO fix LoggerManager::getLoggerLevels()
+        // if (!empty($configurator->config['logger']['level'])) {
+        //    $this->ss->assign('log_levels', get_select_options_with_id(  LoggerManager::getLoggerLevels(), $configurator->config['logger']['level']));
+        // } else {
+        //    $this->ss->assign('log_levels', get_select_options_with_id(  LoggerManager::getLoggerLevels(), ''));
+        // }
+		
         if (!empty($configurator->config['lead_conv_activity_opt'])) {
             $this->ss->assign('lead_conv_activities', get_select_options_with_id(  Lead::getActivitiesOptions(), $configurator->config['lead_conv_activity_opt']));
         } else {

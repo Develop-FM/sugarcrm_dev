@@ -48,7 +48,7 @@ else  {
 
 if(!isset($GLOBALS['log']))
 {
-    $GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
+    $GLOBALS['log'] = new SugarLogger('SugarCRM');
 }
 
 $mail = new SugarPHPMailer();

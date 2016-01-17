@@ -481,7 +481,7 @@ if($upgradeType == constant('DCE_INSTANCE')){
     $isDCEInstance = true;
     $configOptions = $sugar_config['dbconfig'];
 
-	$GLOBALS['log']	= LoggerManager::getLogger('SugarCRM');
+	$GLOBALS['log']	= new SugarLogger('SugarCRM');
 	$db				= &DBManagerFactory::getInstance();
        		///////////////////////////////////////////////////////////////////////////////
 	////	MAKE SURE PATCH IS COMPATIBLE
