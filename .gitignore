@@ -57,3 +57,5 @@ Session.vim
 # Windows
 Thumbs.db
 Desktop.ini
+# Composer
+vendor
