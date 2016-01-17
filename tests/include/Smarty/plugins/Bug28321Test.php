@@ -77,11 +77,11 @@ class Bug28321Test extends Sugar_PHPUnit_Framework_TestCase
         	)
         );
 
-    	require_once('include/Sugar_Smarty.php');
+    	require_once('include/SugarSmarty/SugarSmarty.php');
     	$ss = new Sugar_Smarty();
     	$ss->left_delimiter = '{{';
     	$ss->right_delimiter = '}}';
-    	require_once 'include/Smarty/plugins/function.sugar_evalcolumn.php';
+    	require_once 'include/SugarSmarty/plugins/function.sugar_evalcolumn.php';
 		$output = smarty_function_sugar_evalcolumn($params, $ss);
 
 		//Doing this the hack way...customCode is 65 chars long.

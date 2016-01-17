@@ -36,7 +36,7 @@
 
  
 require_once 'modules/Import/Forms.php';
-require_once 'include/Sugar_Smarty.php';
+require_once 'include/SugarSmarty/SugarSmarty.php';
 require_once 'modules/Import/controller.php';
 require_once 'modules/Import/views/view.step3.php';
 require_once 'modules/Import/views/view.step4.php';

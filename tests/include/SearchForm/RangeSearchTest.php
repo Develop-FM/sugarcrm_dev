@@ -258,7 +258,7 @@ class RangeSearchTest extends Sugar_PHPUnit_Framework_TestCase
         $fields['date_closed_advanced'] = $vardef;
 
         //Create Smarty instance
-    	require_once('include/Sugar_Smarty.php');
+    	require_once('include/SugarSmarty/SugarSmarty.php');
     	$ss = new Sugar_Smarty();
 
     	//Assign Smarty variables

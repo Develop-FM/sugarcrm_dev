@@ -188,7 +188,7 @@ if(isset($_SESSION['current_db_version']) && isset($_SESSION['target_db_version'
 	    $_REQUEST['upgradeWizard'] = true;
 	    ob_start();
 			include('modules/ACL/install_actions.php');
-			include_once('include/Smarty/internals/core.write_file.php');
+			include_once('include/SugarSmarty/internals/core.write_file.php');
 		ob_end_clean();
 	 	$db =& DBManagerFactory::getInstance();
 		if($ce_to_pro_ent){

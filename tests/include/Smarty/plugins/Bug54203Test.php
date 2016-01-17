@@ -35,8 +35,8 @@
  ********************************************************************************/
 
 
-require_once('include/Sugar_Smarty.php');
-require_once('include/Smarty/plugins/function.sugar_replace_vars.php');
+require_once('include/SugarSmarty/SugarSmarty.php');
+require_once('include/SugarSmarty/plugins/function.sugar_replace_vars.php');
 
 /**
  * Bug #54203

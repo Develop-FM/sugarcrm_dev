@@ -356,7 +356,7 @@ $quicksearch_js = "";
 //$javascript = get_set_focus_js(). $javascript->getScript() . $quicksearch_js;
 $xtpl->assign('JAVASCRIPT', get_set_focus_js(). $javascript->getScript() . $quicksearch_js);
 
-require_once('include/Smarty/plugins/function.sugar_help.php');
+require_once('include/SugarSmarty/plugins/function.sugar_help.php');
 $tipsStrings = array(
     'LBL_SSL_DESC',
     'LBL_ASSIGN_TO_TEAM_DESC',

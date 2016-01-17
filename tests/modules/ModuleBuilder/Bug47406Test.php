@@ -43,9 +43,8 @@ if (file_exists("custom/include/Smarty/plugins/function.sugar_currency_format.ph
 }
 else
 {
-	require_once("include/Smarty/plugins/function.sugar_currency_format.php");
+	require_once("include/SugarSmarty/plugins/function.sugar_currency_format.php");
 }
-require_once("include/Smarty/Smarty.class.php");
 
 class Bug47406Test extends Sugar_PHPUnit_Framework_TestCase
 {

@@ -460,19 +460,6 @@ if($upgradeType == constant('DCE_INSTANCE')){
 	require("{$argv[4]}/sugar_version.php");
 	global $sugar_version;
 
-	/*
-	//require classes if they do not exist, as these were not in pre 550 entrypoint.php and need to be loaded first
-    if(!class_exists('VardefManager')){
-        require_once("{$newtemplate_path}/include/SugarObjects/VardefManager.php");
-    }
-    if (!class_exists('Sugar_Smarty')){
-        require_once("{$newtemplate_path}/include/Sugar_Smarty.php");
-    }
-    if (!class_exists('LanguageManager')){
-		require_once("{$newtemplate_path}/include/SugarObjects/LanguageManager.php");
-	}
-    */
-
 	//load up entrypoint from original template
    	require_once("{$argv[4]}/include/entryPoint.php");
 
@@ -781,7 +768,7 @@ if(isset($_SESSION['current_db_version']) && isset($_SESSION['target_db_version'
     {
 	    $_REQUEST['upgradeWizard'] = true;
 	    ob_start();
-		include('include/Smarty/internals/core.write_file.php');
+		include('include/SugarSmarty/internals/core.write_file.php');
 		ob_end_clean();
 	 	$db =& DBManagerFactory::getInstance();
 		if($ce_to_pro_ent){

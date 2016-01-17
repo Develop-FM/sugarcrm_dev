@@ -37,7 +37,7 @@
 
 
 require_once('modules/Users/UserViewHelper.php');
-require_once 'include/Sugar_Smarty.php';
+require_once 'include/SugarSmarty/SugarSmarty.php';
 
 /**
  * Bug49627Test.php

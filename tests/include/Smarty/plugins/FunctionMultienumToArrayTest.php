@@ -35,8 +35,8 @@
  ********************************************************************************/
 
  
-require_once('include/Smarty/plugins/function.multienum_to_array.php');
-require_once 'include/Sugar_Smarty.php';
+require_once('include/SugarSmarty/plugins/function.multienum_to_array.php');
+require_once 'include/SugarSmarty/SugarSmarty.php';
 
 class FunctionMultienumToArrayTest extends Sugar_PHPUnit_Framework_TestCase
 {

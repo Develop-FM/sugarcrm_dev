@@ -35,8 +35,8 @@
  ********************************************************************************/
 
 
-require_once 'include/Smarty/plugins/function.sugar_translate.php';
-require_once 'include/Sugar_Smarty.php';
+require_once 'include/SugarSmarty/plugins/function.sugar_translate.php';
+require_once 'include/SugarSmarty/SugarSmarty.php';
 
 class FunctionSugarTranslateTest extends Sugar_PHPUnit_Framework_TestCase
 {
