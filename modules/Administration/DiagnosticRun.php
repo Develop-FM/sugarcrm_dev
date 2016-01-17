@@ -321,9 +321,10 @@ function prepareDiag()
 	ob_flush();
 }
 
+// TODO: remove
 function executesugarlog()
 {
-    //BEGIN COPY SUGARCRM.LOG
+    /*//BEGIN COPY SUGARCRM.LOG
     //Copies the Sugarcrm log to our diagnostic directory
     global $cacheDir;
 	require_once('include/SugarLogger/SugarLogger.php');
@@ -331,7 +332,7 @@ function executesugarlog()
     if(!copy($logger->getLogFileNameWithPath(), $cacheDir.'/'.$logger->getLogFileName())) {
       echo "Couldn't copy sugarcrm.log to cacheDir.<br>";
     }
-    //END COPY SUGARCRM.LOG
+    //END COPY SUGARCRM.LOG*/
 
     //UPDATING PROGRESS BAR
     sodUpdateProgressBar(SUGARLOG_WEIGHT);

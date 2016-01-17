@@ -7,6 +7,11 @@ use DirectoryIterator;
 use SugarRelationshipFactory;
 use Illuminate\Console\Command;
 
+require_once DOCROOT.'include/utils.php';
+require_once DOCROOT.'include/utils/sugar_file_utils.php';
+require_once DOCROOT.'data/Relationships/RelationshipFactory.php';
+require_once DOCROOT.'include/SugarObjects/VardefManager.php';
+
 class IdeHelperGeneratorCommand extends Command
 {
     /**
@@ -156,9 +161,9 @@ class IdeHelperGeneratorCommand extends Command
     /**
      * @return null
      */
-    protected function handle()
+    public function handle()
     {
-        $path = STORAGE.'cache' . DIRECTORY_SEPARATOR . 'modules';
+        $path = DOCROOT.'cache' . DIRECTORY_SEPARATOR . 'modules';
 
         $helperFile = DOCROOT.'_ide_helper.php';
 

@@ -254,8 +254,6 @@ function pollMonitoredInboxes() {
  * Job 2
  */
 function runMassEmailCampaign() {
-
-	$GLOBALS['log'] = new SugarLogger('emailmandelivery');
 	$GLOBALS['log']->debug('Called:runMassEmailCampaign');
 
 	if (!class_exists('DBManagerFactory')){

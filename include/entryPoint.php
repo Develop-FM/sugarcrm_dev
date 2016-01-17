@@ -48,11 +48,6 @@ if (empty($GLOBALS['installing']) && ! file_exists('config.php')) {
     exit ();
 }
 
-// config|_override.php
-if (is_file('config.php')) {
-    require_once('config.php'); // provides $sugar_config
-}
-
 if (empty($GLOBALS['installing']) && empty($sugar_config['dbconfig']['db_name'])) {
     header('Location: install.php');
     exit ();

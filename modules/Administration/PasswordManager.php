@@ -134,8 +134,6 @@ if(!empty($_POST['saveConfig'])){
 
 $focus->retrieveSettings();
 
-
-require_once('include/SugarLogger/SugarLogger.php');
 $sugar_smarty = new Sugar_Smarty();
 
 // if no IMAP libraries available, disable Save/Test Settings

@@ -18,6 +18,15 @@ class LoadConfiguration
     {
         global $sugar_config;
 
+        // config|_override.php
+        if (is_file($configFile = DOCROOT.'config.php')) {
+            $config = require_once $configFile;
+
+            config([
+                'crm' => array_merge(config('crm'), $config)
+            ]);
+        }
+
         $sugar_config = config('crm');
 
         if (is_file(DOCROOT . 'config_override.php')) {

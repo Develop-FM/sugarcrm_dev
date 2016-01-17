@@ -65,8 +65,6 @@ require_once('modules/Configurator/Configurator.php');
 $configurator = new Configurator();
 $sugarConfig = SugarConfig::getInstance();
 
-
-require_once('include/SugarLogger/SugarLogger.php');
 $sugar_smarty = new Sugar_Smarty();
 $sugar_smarty->assign('MOD', $mod_strings);
 $sugar_smarty->assign('APP', $app_strings);

@@ -502,7 +502,6 @@ if($upgradeType == constant('DCE_INSTANCE')){
 	/////retrieve admin user
 	$configOptions = $sugar_config['dbconfig'];
 
-	$GLOBALS['log']	= new SugarLogger('SugarCRM');
 	$db				= &DBManagerFactory::getInstance();
        		///////////////////////////////////////////////////////////////////////////////
 	////	MAKE SURE PATCH IS COMPATIBLE

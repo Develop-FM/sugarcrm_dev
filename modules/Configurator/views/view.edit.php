@@ -45,7 +45,6 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 require_once('modules/Configurator/Forms.php');
 require_once('modules/Administration/Forms.php');
 require_once('modules/Configurator/Configurator.php');
-require_once('include/SugarLogger/SugarLogger.php');
 require_once('modules/Leads/Lead.php');
 
 class ConfiguratorViewEdit extends ViewEdit
@@ -144,11 +143,13 @@ class ConfiguratorViewEdit extends ViewEdit
         } else {
             $this->ss->assign('lead_conv_activities', get_select_options_with_id(  Lead::getActivitiesOptions(), ''));
         }
-        if (!empty($configurator->config['logger']['file']['suffix'])) {
+
+        /*if (!empty($configurator->config['logger']['file']['suffix'])) {
             $this->ss->assign('filename_suffix', get_select_options_with_id(  SugarLogger::$filename_suffix,$configurator->config['logger']['file']['suffix']));
         } else {
             $this->ss->assign('filename_suffix', get_select_options_with_id(  SugarLogger::$filename_suffix,''));
-        }
+        }*/
+
         if (isset($configurator->config['logger_visible'])) {
             $this->ss->assign('logger_visible', $configurator->config['logger_visible']);
         }

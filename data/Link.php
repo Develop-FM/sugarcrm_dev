@@ -807,24 +807,7 @@ class Link
 
 		//check whether duplicate exist or not.
 		if ($this->relationship_exists($this->_relationship->join_table, $add_values)) {
-
-			/*			switch($this->when_dup_relationship_found) {
-
-                            case 1: //do nothing.
-                                $GLOBALS['log']->debug("Executing default option, no action.");
-                                break;
-
-                            case 3: //delete the record first, then create a new entry.
-                                $this->_delete_row($this->_relationship->join_table,$this->_duplicate_key);
-                                $this->_insert_row($add_values);
-                                break;
-
-                            default:
-                            case 2: //update the record.
-            */
 			$this->_update_row($add_values, $this->_relationship->join_table, $this->_duplicate_where);
-			/*					break;
-                        }*/
 		} else {
 			$this->_insert_row($add_values);
 		}

@@ -74,7 +74,6 @@ class Configurator
 
 	function loadConfig()
 	{
-		$this->logger = new SugarLogger('CRM');
 		global $sugar_config;
 		$this->config = $sugar_config;
 	}
@@ -151,11 +150,6 @@ class Configurator
 			$overideString .= override_value_to_string_recursive2('sugar_config', $key, $val);
 		}
 		$overideString .= '/***CONFIGURATOR***/';
-
-		$this->saveOverride($overideString);
-		if (isset($this->config['logger']['level']) && $this->logger) {
-			$this->logger->setLevel($this->config['logger']['level']);
-		}
 	}
 
 	//bug #27947 , if previous $sugar_config['stack_trace_errors'] is true and now we disable it , we should clear all the cache.
@@ -339,9 +333,6 @@ class Configurator
 			$this->handleOverride();
 			unlink('log4php.properties');
 			$GLOBALS['sugar_config'] = $this->config; //load the rest of the sugar_config settings.
-			require_once('include/SugarLogger/SugarLogger.php');
-			//$logger = new SugarLogger(); //this will create the log file.
-
 		}
 
 		if (! isset($this->config['logger']) || empty($this->config['logger'])) {

@@ -46,11 +46,6 @@ else  {
 	$send_all=false; //if set to true email delivery will continue..to run until all email have been delivered.
 }
 
-if(!isset($GLOBALS['log']))
-{
-    $GLOBALS['log'] = new SugarLogger('SugarCRM');
-}
-
 $mail = new SugarPHPMailer();
 $admin = new Administration();
 $admin->retrieveSettings();

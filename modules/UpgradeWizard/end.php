@@ -219,14 +219,6 @@ if(file_exists('modules/Configurator/Configurator.php')){
 	$Configurator->parseLoggerSettings();
 }
 
-//unset the logger previously instantiated
-if(file_exists('include/SugarLogger/SugarLogger.php')){
-
-	unset($GLOBALS['log']);
-	$GLOBALS['log'] = new SugarLogger('SugarCRM');
-}
-
-
 //Upgrade connectors
 logThis('Begin upgrade_connectors', $path);
 upgrade_connectors();

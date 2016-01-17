@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected $bootstrappers = [
         'Illuminate\Foundation\Bootstrap\DetectEnvironment',
         'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-        'Illuminate\Foundation\Bootstrap\ConfigureLogging',
+        'App\Bootstrap\ConfigureLogging',
         'Illuminate\Foundation\Bootstrap\RegisterFacades',
         'Illuminate\Foundation\Bootstrap\SetRequestForConsole',
         'Illuminate\Foundation\Bootstrap\RegisterProviders',
@@ -55,6 +55,5 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
     }
 }

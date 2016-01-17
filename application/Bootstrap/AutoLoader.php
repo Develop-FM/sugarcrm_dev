@@ -51,7 +51,7 @@ class AutoLoader
         'Javascript'                   => 'include/javascript/javascript.php',
         'SugarPHPMailer'               => 'include/SugarPHPMailer.php',
         'SugarSearchEngineFullIndexer' => 'include/SugarSearchEngine/SugarSearchEngineFullIndexer.php',
-        'SugarSearchEngineSyncIndexer' => 'include/SugarSearchEngine/SugarSearchEngineSyncIndexer.php',
+        'SugarSearchEngineSyncIndexer' => 'include/SugarSearchEngine/SugarSearchEngineSyncInXdexer.php',
         'SugarConfig'                  => 'include/SugarObjects/SugarConfig.php',
         'SugarApplication'             => 'include/MVC/SugarApplication.php',
         'SugarRegistry'                => 'include/SugarObjects/SugarRegistry.php',
