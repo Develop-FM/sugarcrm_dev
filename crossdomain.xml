@@ -34,9 +34,9 @@
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
  ********************************************************************************/
-
 -->
+
 <!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd">
 <cross-domain-policy>
-<site-control permitted-cross-domain-policies="none"/>
+    <site-control permitted-cross-domain-policies="none"/>
 </cross-domain-policy>
