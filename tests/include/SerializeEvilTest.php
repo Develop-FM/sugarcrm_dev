@@ -38,7 +38,6 @@
 require_once("include/Sugarpdf/sugarpdf_config.php");
 require_once 'include/SugarCache/SugarCacheFile.php';
 require_once 'modules/Import/sources/ImportFile.php';
-require_once 'Zend/Http/Response.php';
 
 class SerializeEvilTest extends Sugar_PHPUnit_Framework_TestCase
 {

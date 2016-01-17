@@ -34,8 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-    require_once 'Zend/Oauth/Consumer.php';
     // use ZF oauth
     /**
      * Sugar Oauth consumer
@@ -169,8 +167,7 @@
                }
             }
             $client = $acc->getHttpClient($this->_oauth_config, $url);
-            
-            Zend_Loader::loadClass('Zend_Http_Client_Adapter_Proxy');
+
             $proxy_config = SugarModule::get('Administration')->loadBean();
             $proxy_config->retrieveSettings('proxy');
             
