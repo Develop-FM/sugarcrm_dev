@@ -34,12 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-/**
- * @see PHPSQLParser
- */
-require_once 'include/php-sql-parser.php';
-
 /**
  * @ticket 61996
  */

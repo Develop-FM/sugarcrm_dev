@@ -34,9 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-require_once 'include/php-sql-parser.php';
-
 /**
  * SQL Validator class
  * @api
@@ -59,7 +56,7 @@ class SugarSQLValidate
 	        $where = "deleted=0";
 	    }
 
-		$parser = new PHPSQLParser();
+		$parser = new PHPSQLParser\PHPSQLParser();
 		$testquery = "SELECT dummy FROM dummytable WHERE $where";
 		$clauses = 3;
 		if(!empty($order_by)) {
@@ -67,7 +64,6 @@ class SugarSQLValidate
 		    $clauses++;
 		}
 		$parsed = $parser->parse($testquery);
-		//$GLOBALS['log']->debug("PARSE: ".var_export($parsed, true));
 
 		if(count($parsed) != $clauses) {
 		    // we assume: SELECT, FROM, WHERE, maybe ORDER

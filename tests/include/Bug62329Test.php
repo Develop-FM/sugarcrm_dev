@@ -34,9 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-require_once('include/php-sql-parser.php');
-
 class Bug62329Test extends Sugar_PHPUnit_Framework_TestCase
 {
 
