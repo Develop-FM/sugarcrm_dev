@@ -41,7 +41,7 @@ class SugarAutoLoader
      * @var array
      */
     public static $map = [
-        'XTemplate'                    => 'XTemplate/xtpl.php',
+        'XTemplate'                    => 'include/XTemplate/xtpl.php',
         'ListView'                     => 'include/ListView/ListView.php',
         'Sugar_Smarty'                 => 'include/SugarSmarty/SugarSmarty.php',
         'SugarPHPMailer'               => 'include/SugarPHPMailer.php',
