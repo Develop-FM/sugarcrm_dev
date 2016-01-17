@@ -86,8 +86,7 @@ class ModuleScanner{
         'lua',
 	    'ziparchive',
 	    'splfileinfo',
-	    'splfileobject',
-	    'pclzip',
+	    'splfileobject'
 
     );
 	private $blackList = array(
