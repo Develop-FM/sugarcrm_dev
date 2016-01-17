@@ -140,7 +140,6 @@ class EmailReminder
         $user->retrieve($bean->created_by);
             
         $OBCharset = $GLOBALS['locale']->getPrecedentPreference('default_email_charset');
-        require_once("include/SugarPHPMailer.php");
         $mail = new SugarPHPMailer();
         $mail->setMailerForSystem();
         

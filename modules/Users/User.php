@@ -1740,7 +1740,6 @@ EOQ;
         //retrieve email defaults
         $emailObj = new Email();
         $defaults = $emailObj->getSystemDefaultEmail();
-        require_once('include/SugarPHPMailer.php');
         $mail = new SugarPHPMailer();
         $mail->setMailerForSystem();
         //$mail->IsHTML(true);

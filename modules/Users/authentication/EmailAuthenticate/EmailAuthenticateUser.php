@@ -115,7 +115,6 @@ class EmailAuthenticateUser extends SugarAuthenticateUser {
 	       return;
 	    }
 
-	    require_once("include/SugarPHPMailer.php");
 		global $locale;
         $OBCharset = $locale->getPrecedentPreference('default_email_charset');
         $notify_mail = new SugarPHPMailer();

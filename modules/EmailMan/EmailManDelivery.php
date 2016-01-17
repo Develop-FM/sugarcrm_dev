@@ -35,9 +35,6 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-require_once('include/SugarPHPMailer.php');
-
 $test=false;
 if (isset($_REQUEST['mode']) && $_REQUEST['mode']=='test') {
 	$test=true;

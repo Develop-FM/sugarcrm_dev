@@ -45,7 +45,6 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 
  function canSendPassword() {
- 	require_once('include/SugarPHPMailer.php');
     global $mod_strings;
 	global $current_user;
 	global $app_strings;

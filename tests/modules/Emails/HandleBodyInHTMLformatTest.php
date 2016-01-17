@@ -36,7 +36,6 @@
 
  
 require_once('modules/Emails/Email.php');
-require_once('include/SugarPHPMailer.php');
 
 /**
  * Test cases for Bug 30591

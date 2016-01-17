@@ -185,8 +185,6 @@ $sugar_smarty->assign("VALID_PUBLIC_KEY", $valid_public_key);
 
 $res=$GLOBALS['sugar_config']['passwordsetting'];
 
-
-require_once('include/SugarPHPMailer.php');   
 $mail = new SugarPHPMailer();
 $mail->setMailerForSystem();
 if($mail->Mailer == 'smtp' && $mail->Host ==''){

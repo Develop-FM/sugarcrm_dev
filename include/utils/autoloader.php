@@ -44,6 +44,7 @@ class SugarAutoLoader
         'XTemplate'                    => 'XTemplate/xtpl.php',
         'ListView'                     => 'include/ListView/ListView.php',
         'Sugar_Smarty'                 => 'include/SugarSmarty/SugarSmarty.php',
+        'SugarPHPMailer'               => 'include/SugarPHPMailer.php',
         'Javascript'                   => 'include/javascript/javascript.php',
         'SugarSearchEngineFullIndexer' => 'include/SugarSearchEngine/SugarSearchEngineFullIndexer.php',
         'SugarSearchEngineSyncIndexer' => 'include/SugarSearchEngine/SugarSearchEngineSyncIndexer.php',

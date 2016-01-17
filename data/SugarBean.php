@@ -1621,9 +1621,6 @@ class SugarBean
         global $beanList;
         $OBCharset = $locale->getPrecedentPreference('default_email_charset');
 
-
-        require_once("include/SugarPHPMailer.php");
-
         $notify_address = $notify_user->emailAddress->getPrimaryAddress($notify_user);
         $notify_name = $notify_user->full_name;
         $GLOBALS['log']->debug("Notifications: user has e-mail defined");
