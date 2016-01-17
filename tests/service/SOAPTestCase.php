@@ -34,8 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-require_once('include/nusoap/nusoap.php');
 require_once('include/TimeDate.php');
 
 abstract class SOAPTestCase extends Sugar_PHPUnit_Framework_TestCase
@@ -77,7 +75,7 @@ abstract class SOAPTestCase extends Sugar_PHPUnit_Framework_TestCase
 		$GLOBALS['beanList'] = $beanList;
 		$GLOBALS['beanFiles'] = $beanFiles;
 
-        $this->_soapClient = new nusoapclient($this->_soapURL,false,false,false,false,false,600,600);
+        $this->_soapClient = new nusoap_client($this->_soapURL,false,false,false,false,false,600,600);
         parent::setUp();
         $GLOBALS['db']->commit();
     }

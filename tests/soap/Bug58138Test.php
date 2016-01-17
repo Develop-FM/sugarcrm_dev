@@ -34,8 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-require_once 'include/nusoap/nusoap.php';
 require_once 'modules/DynamicFields/FieldCases.php';
 
 /**
@@ -48,7 +46,7 @@ require_once 'modules/DynamicFields/FieldCases.php';
 class Bug58138Test extends Sugar_PHPUnit_Framework_TestCase
 {
     /**
-     * @var nusoapclient
+     * @var nusoap_client
      */
     protected $soap = null;
 
@@ -138,7 +136,7 @@ class Bug58138Test extends Sugar_PHPUnit_Framework_TestCase
     public function testSoap()
     {
         $soap_url = $GLOBALS['sugar_config']['site_url'] . '/soap.php';
-        $this->soap = new nusoapclient($soap_url);
+        $this->soap = new nusoap_client($soap_url);
 
         $result = $this->soap->call('login', array(
                 'user_auth' => array(
@@ -191,7 +189,7 @@ class Bug58138Test extends Sugar_PHPUnit_Framework_TestCase
     public function testSoapVersions($url)
     {
         $soap_url = $GLOBALS['sugar_config']['site_url'] . $url;
-        $this->soap = new nusoapclient($soap_url);
+        $this->soap = new nusoap_client($soap_url);
 
         $result = $this->soap->call('login', array(
             'user_auth' => array(

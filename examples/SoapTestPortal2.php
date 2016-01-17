@@ -60,8 +60,7 @@ echo <<<EOQ
 EOQ;
 if(!empty($portal_name)){
 $portal_password = md5($portal_password);
-require_once('include/nusoap/nusoap.php');  //must also have the nusoap code on the Client Side.
-$soapclient = new nusoapclient($GLOBALS['sugar_config']['site_url'].'/soap.php');  //define the SOAP Client an
+$soapclient = new nusoap_client($GLOBALS['sugar_config']['site_url'].'/soap.php');  //define the SOAP Client an
 
 echo '<b>LOGIN:</b><BR>';
 $result = $soapclient->call('portal_login',array('portal_auth'=>array('user_name'=>$portal_name,'password'=>$portal_password, 'version'=>'.01'),'user_name'=>$user_name, 'application_name'=>'SoapTestPortal'));

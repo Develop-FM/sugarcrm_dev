@@ -34,10 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
- 
-require_once('include/nusoap/nusoap.php');
-
-
 /**
  * @group bug39234
  */
@@ -58,7 +54,7 @@ class Bug39234Test extends Sugar_PHPUnit_Framework_TestCase
      */
 	public function setUp() 
     {
-    	$this->_soapClient = new nusoapclient($GLOBALS['sugar_config']['site_url'].'/soap.php',false,false,false,false,false,600,600);
+    	$this->_soapClient = new nusoap_client($GLOBALS['sugar_config']['site_url'].'/soap.php',false,false,false,false,false,600,600);
         $this->_setupTestUser();
         
 		$beanList = array();

@@ -36,7 +36,6 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  ********************************************************************************/
 
 require_once('include/connectors/sources/default/source.php');
-require_once('include/nusoap/nusoap.php');
 
 /**
  * ext_soap

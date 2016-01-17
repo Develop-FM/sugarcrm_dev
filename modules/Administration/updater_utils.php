@@ -151,10 +151,8 @@ function check_now($send_usage_info=true, $get_request_data=false, $response_dat
             $info = getSystemInfo($send_usage_info);
         }
 
-		require_once('include/nusoap/nusoap.php');
-
 		$GLOBALS['log']->debug('USING HTTPS TO CONNECT TO HEARTBEAT');
-		$sclient = new nusoapclient('https://updates.sugarcrm.com/heartbeat/soap.php', false, false, false, false, false, 15, 15);
+		$sclient = new nusoap_client('https://updates.sugarcrm.com/heartbeat/soap.php', false, false, false, false, false, 15, 15);
 		$ping = $sclient->call('sugarPing', array());
         if (empty($ping) || $sclient->getError()) {
             if (!$get_request_data) {

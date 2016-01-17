@@ -34,8 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
-require_once('include/nusoap/nusoap.php');
 require_once 'tests/service/SOAPTestCase.php';
 
 /**
