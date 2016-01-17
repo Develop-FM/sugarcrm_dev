@@ -159,7 +159,6 @@ require('modules/DynamicFields/templates/Fields/TemplateText.php');
 
 require_once('include/utils/file_utils.php');
 require_once('include/SugarEmailAddress/SugarEmailAddress.php');
-require_once('include/SugarLogger/LoggerManager.php');
 require_once('modules/Trackers/BreadCrumbStack.php');
 require_once('modules/Trackers/Tracker.php');
 require_once('modules/Trackers/TrackerManager.php');
@@ -191,7 +190,10 @@ require_once 'include/SugarObjects/SugarRegistry.php';
 if (empty($GLOBALS['installing'])) {
 ///////////////////////////////////////////////////////////////////////////////
 ////	SETTING DEFAULT VAR VALUES
-    $GLOBALS['log']         = LoggerManager::getLogger('SugarCRM');
+
+    require_once('include/SugarLogger/SugarLogger.php');
+    $GLOBALS['log'] = new SugarLogger('CRM');
+
     $error_notice           = '';
     $use_current_user_login = false;
 

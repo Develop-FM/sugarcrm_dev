@@ -218,11 +218,12 @@ if(file_exists('modules/Configurator/Configurator.php')){
 	$Configurator = new Configurator();
 	$Configurator->parseLoggerSettings();
 }
+
 //unset the logger previously instantiated
-if(file_exists('include/SugarLogger/LoggerManager.php')){
+if(file_exists('include/SugarLogger/SugarLogger.php')){
 
 	unset($GLOBALS['log']);
-	$GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
+	$GLOBALS['log'] = new SugarLogger('SugarCRM');
 }
 
 

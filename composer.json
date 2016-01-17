@@ -16,6 +16,7 @@
     "fergusean/nusoap": "^0.9.5",
     "tecnickcom/tcpdf": "^6.0",
     "ezyang/htmlpurifier": "~4.7",
+    "monolog/monolog": "^1.17",
     "greenlion/php-sql-parser": "~4.0"
   },
   "require-dev": {

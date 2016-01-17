@@ -802,14 +802,12 @@ if(file_exists($newtemplate_path . '/modules/Configurator/Configurator.php')){
 }
 
 //unset the logger previously instantiated
-if(file_exists($newtemplate_path . '/include/SugarLogger/LoggerManager.php')){
+if(file_exists($newtemplate_path . '/include/SugarLogger/SugarLogger.php')){
 	set_upgrade_progress('logger','in_progress');
-	if(!class_exists('LoggerManager')){
 
-	}
-	if(class_exists('LoggerManager')){
+	if(class_exists('SugarLogger')){
 		unset($GLOBALS['log']);
-		$GLOBALS['log'] = LoggerManager::getLogger('SugarCRM');
+		$GLOBALS['log'] = new SugarLogger('SugarCRM');
 	}
 	set_upgrade_progress('logger','done');
 }
