@@ -161,7 +161,7 @@ class VardefManager{
             $object = BeanFactory::getObjectName($module);
         $file = create_cache_directory('modules/' . $module . '/' . $object . 'vardefs.php');
 
-        $out="<?php \n \$GLOBALS[\"dictionary\"][\"". $object . "\"]=" . var_export($GLOBALS['dictionary'][$object], true) .";";
+        $out="<?php \n \$GLOBALS[\"dictionary\"][\"". $object . "\"]=" . var_export_helper($GLOBALS['dictionary'][$object]) .";";
         sugar_file_put_contents_atomic($file, $out);
         if ( sugar_is_file($file) && is_readable($file)) {
             include($file);

@@ -518,7 +518,7 @@ class ConnectorUtils
 
            require(CONNECTOR_DISPLAY_CONFIG_FILE);
 
-           $GLOBALS['log']->debug(var_export($modules_sources, true));
+           $GLOBALS['log']->debug(var_export_helper($modules_sources, true));
            if(!empty($modules_sources)) {
               foreach($modules_sources as $module=>$mapping) {
                      $metadata_file = file_exists("custom/modules/{$module}/metadata/detailviewdefs.php") ? "custom/modules/{$module}/metadata/detailviewdefs.php" : "modules/{$module}/metadata/detailviewdefs.php";

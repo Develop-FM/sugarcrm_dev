@@ -768,7 +768,7 @@ class EditViewMerge{
 	 */
 	protected  function log($message){
 		if(!is_string($message)){
-			$message = var_export($message, true);
+			$message = var_export_helper($message);
 		}
 		if(!empty($this->fp)){
 			fwrite($this->fp, $message. "\n");

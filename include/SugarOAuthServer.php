@@ -119,7 +119,7 @@ class SugarOAuthServer
         if($token->consumer != $this->consumer->id) {
             return Zend_Oauth_Provider::TOKEN_REJECTED;
         }
-        $GLOBALS['log']->debug("OAUTH: tokenHandler, found token=".var_export($token->id, true));
+        $GLOBALS['log']->debug("OAUTH: tokenHandler, found token=".var_export_helper($token->id, true));
         if($token->tstate == OAuthToken::REQUEST) {
             if(!empty($token->verify) && $provider->verifier == $token->verify) {
                 $provider->token_secret = $token->secret;
@@ -159,7 +159,7 @@ class SugarOAuthServer
      */
     public function __construct($req_path = '')
     {
-        $GLOBALS['log']->debug("OAUTH: __construct($req_path): ".var_export($_REQUEST, true));
+        $GLOBALS['log']->debug("OAUTH: __construct($req_path): ".var_export_helper($_REQUEST, true));
         $this->check();
         $this->provider = new Zend_Oauth_Provider();
         try {

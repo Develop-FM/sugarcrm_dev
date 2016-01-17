@@ -123,7 +123,7 @@ class PackageManager{
 	            //array_push($nodes[$mypack['category_id']]['packages'], $package_arr);
 	         }
          }
-         $GLOBALS['log']->debug("NODES". var_export($nodes, true));
+         $GLOBALS['log']->debug("NODES". var_export_helper($nodes, true));
         return $nodes;
     }
 

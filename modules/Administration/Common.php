@@ -107,7 +107,7 @@ function &create_dropdown_lang_pak_contents(&$the_array, $language)
                '// ' . date('Y-m-d H:i:s') . "\n" .
                "// Language: $language\n\n" .
                '$app_list_strings = ' .
-               var_export($the_array, true) .
+				var_export_helper($the_array, true) .
                ";\n?>";
 
    return $contents;

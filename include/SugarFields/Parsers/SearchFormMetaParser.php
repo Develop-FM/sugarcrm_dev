@@ -77,9 +77,9 @@ $header .= "\$searchdefs['$moduleDir'] = array(
     'templateMeta' => array('maxColumns' => '3', 'widths' => array('label' => '10', 'field' => '30')),
     'layout' => array(  					
 \n\t'basic_search' =>";   
-$header .= "\t" . var_export($basicSection, true);
+$header .= "\t" . var_export_helper($basicSection);
 $header .= "\n\t,'advanced_search' =>";
-$header .= "\t" . var_export($advancedSection, true);
+$header .= "\t" . var_export_helper($advancedSection);
 $header .= "
      ),\n
 );

@@ -3427,7 +3427,7 @@ function upgradeModulesForTeam() {
                 }
             }
             //new modules list now has left over modules which are new to this install, so lets add them to the system tabs
-            logThis('new modules to add are '.var_export($newModuleList,true),$path);
+            logThis('new modules to add are '.var_export_helper($newModuleList),$path);
 
             if(!empty($newModuleList))
             {

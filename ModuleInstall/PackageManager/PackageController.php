@@ -199,7 +199,7 @@
             }
             $GLOBALS['log']->debug("CATEGORY ID: ".$category_id);
             $nodes = PackageManager::getModuleLoaderCategoryPackages($category_id);
-            $GLOBALS['log']->debug(var_export($nodes, true));
+            $GLOBALS['log']->debug(var_export_helper($nodes, true));
             echo 'result = ' . $json->encode(array('nodes' => $nodes));
         }
 
@@ -323,7 +323,7 @@
             }
 
             $documents = PackageManager::getDocumentation($package_id, $release_id);
-            $GLOBALS['log']->debug("DOCUMENTS: ".var_export($documents, true));
+            $GLOBALS['log']->debug("DOCUMENTS: ".var_export_helper($documents, true));
             echo 'result = ' . $json->encode(array('documents' => $documents));
         }
 

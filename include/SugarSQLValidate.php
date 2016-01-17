@@ -150,7 +150,7 @@ class SugarSQLValidate
 	            return false;
 	        }
 	        if(!empty($term['alias']) && $term['alias'] != $term['base_expr'] && $term['alias'] != "`".$term['base_expr']."`") {
-	            $GLOBALS['log']->debug("validation failed alias: ".var_export($term, true));
+	            $GLOBALS['log']->debug("validation failed alias: ".var_export_helper($term, true));
 	            return false;
 	        }
 	    }

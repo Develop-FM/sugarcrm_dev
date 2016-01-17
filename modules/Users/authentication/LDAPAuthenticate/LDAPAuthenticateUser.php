@@ -125,7 +125,7 @@ class LDAPAuthenticateUser extends SugarAuthenticateUser{
 
             $GLOBALS['log']->debug(
                 "ldapauth: Fetching user info from Directory using base dn: "
-                . $base_dn . ", name_filter: " . $name_filter . ", attrs: " . var_export($attrs, true)
+                . $base_dn . ", name_filter: " . $name_filter . ", attrs: " . var_export_helper($attrs)
             );
 
 			$result = @ldap_search($ldapconn, $base_dn, $name_filter, $attrs);
@@ -194,7 +194,7 @@ class LDAPAuthenticateUser extends SugarAuthenticateUser{
                     || ldap_count_entries($ldapconn, ldap_search($ldapconn, $group_name, $user_search)) ==  0) {
 
 					$GLOBALS['log']->fatal("ldapauth: User ($name) is not a member of the LDAP group");
-					$user_id = var_export($user_uid, true);
+					$user_id = var_export_helper($user_uid);
                     $GLOBALS['log']->debug(
                         "ldapauth: Group DN:{$GLOBALS['ldap_config']->settings['ldap_group_dn']}"
                         . " Group Name: " . $GLOBALS['ldap_config']->settings['ldap_group_name']

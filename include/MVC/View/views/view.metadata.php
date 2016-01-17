@@ -327,11 +327,11 @@ class VardefBrowser{
 					$fieldAttributes = (!empty($attributes))? $attributes:array_keys($def);
 					foreach($fieldAttributes as $k){
 						if(isset($def[$k])){
-							$v  = var_export($def[$k], true);
+							$v  = var_export_helper($def[$k], true);
 							$key = is_array($def[$k])?null:$def[$k];
 							if($k == 'type'){
 								if(isset($def['dbType'])){
-									$v = var_export($def['dbType'], true);	
+									$v = var_export_helper($def['dbType'], true);
 								}	
 							}
 							if($byModule){

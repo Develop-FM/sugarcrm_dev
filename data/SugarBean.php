@@ -1861,7 +1861,7 @@ class SugarBean
                             } else {
                                 $modified_relationships['remove']['failure'][] = $def['link'];
                             }
-                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - attempting to remove the relationship record returned " . var_export($success, true));
+                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - attempting to remove the relationship record returned " . var_export_helper($success, true));
                         }
 
                         if (!empty($this->$idName) && is_string($this->$idName)) {
@@ -1876,7 +1876,7 @@ class SugarBean
                                 $modified_relationships['add']['failure'][] = $linkField;
                             }
 
-                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - add a relationship record returned " . var_export($success, true));
+                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - add a relationship record returned " . var_export_helper($success, true));
                         }
                     } else {
                         $GLOBALS['log']->fatal("Failed to load relationship {$linkField} while saving {$this->module_dir}");

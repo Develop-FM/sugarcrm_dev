@@ -388,7 +388,7 @@ class SugarLogger
     protected function formatMessage($message)
     {
         if (is_array($message)) {
-            return var_export_helper($message, true);
+            return var_export_helper($message);
         }
 
         return $message;

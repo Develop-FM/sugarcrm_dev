@@ -72,13 +72,13 @@ if(!empty($_POST)){
 }
 curl_setopt ($ch, CURLOPT_POSTFIELDS, $post_data);
 // grab URL and pass it to the browser
-fwrite($fp, 'client headers:' . var_export($headers, true) . "\n");
+fwrite($fp, 'client headers:' . var_export_helper($headers) . "\n");
 fwrite($fp, 'starting curl request' . "\n");
 fwrite($fp, $post_data . "\n");
 $result = curl_exec($ch);
 curl_close($ch);
 fwrite($fp, 'finished curl request' . "\n");
-fwrite($fp, 'response:' . var_export($result, true) . "\n");
+fwrite($fp, 'response:' . var_export_helper($result) . "\n");
 //we only handle 1 response no redirects
 $result = explode("\r\n\r\n", $result, 2);
 //we neeed to split up the ehaders

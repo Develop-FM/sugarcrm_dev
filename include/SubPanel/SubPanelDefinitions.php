@@ -632,7 +632,7 @@ class SubPanelDefinitions
 
 				// make sure the module attribute is set, else none of this works...
 				if ( !isset($values_array [ 'module' ])) {
-					$GLOBALS['log']->debug("SubPanelDefinitions->get_available_tabs(): no module defined in subpaneldefs for '$key' =>" . var_export($values_array,true) . " - ingoring subpanel defintion") ;
+					$GLOBALS['log']->debug("SubPanelDefinitions->get_available_tabs(): no module defined in subpaneldefs for '$key' =>" . var_export_helper($values_array,true) . " - ingoring subpanel defintion") ;
 					continue;
 				}
 

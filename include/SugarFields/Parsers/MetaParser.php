@@ -548,7 +548,7 @@ $header .= "\$viewdefs['$moduleDir']['$this->mView'] = array(
     ),";
 } else {
 $header .= "\$viewdefs['$moduleDir']['$this->mView'] = array(
-    'templateMeta' =>" . var_export($templateMeta, true) . ",";
+    'templateMeta' =>" . var_export_helper($templateMeta) . ",";
 }
 
 //Replace all the @sq (single quote tags that may have been inserted)
@@ -572,7 +572,7 @@ $footer = "
 ?>";
 
    $metadata = '';
-   $body = var_export($panels, true);
+   $body = var_export_helper($panels);
    $metadata = $header . $body . $footer;
    $metadata = preg_replace('/(\d+)[\s]=>[\s]?/',"",$metadata);
    return $metadata;

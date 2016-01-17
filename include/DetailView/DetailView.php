@@ -216,7 +216,7 @@ class DetailView extends ListView {
 			unset($nav_ids_visited[key($nav_ids_visited)]);
 		}
 		$nav_ids_visited[$offset]=$object->id;
-		$nav_history=sprintf("%s:%s:%s",$nav_stamp,$nav_offset,var_export($nav_ids_visited,true));
+		$nav_history=sprintf("%s:%s:%s",$nav_stamp,$nav_offset,var_export_helper($nav_ids_visited,true));
         $this->setLocalSessionVariable($html_varName, "DETAIL_NAV_HISTORY",$nav_history);
 
 		return $object;

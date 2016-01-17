@@ -106,7 +106,7 @@ if(!defined('sugarEntry'))define('sugarEntry', true);
 			$GLOBALS['log']->error($error);
 			echo  $error;
 		}else{
-			$GLOBALS['log']->error(var_export($errorObject, true));
+			$GLOBALS['log']->error(var_export_helper($errorObject));
 			print_r($errorObject);
 		} // else
 	}
