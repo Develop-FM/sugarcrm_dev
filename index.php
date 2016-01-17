@@ -1,9 +1,5 @@
 <?php
 
-if (! defined('sugarEntry')) {
-    define('sugarEntry', true);
-}
-
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
@@ -39,14 +35,35 @@ if (! defined('sugarEntry')) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-include('include/MVC/preDispatch.php');
-require_once('include/entryPoint.php');
-require_once('include/MVC/SugarApplication.php');
+$application = require_once 'bootstrap.php';
+
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request
+| through the kernel, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
+|
+*/
+
+$kernel = $application->make(Illuminate\Contracts\Http\Kernel::class);
+
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
+
+include DOCROOT.'include/MVC/preDispatch.php';
+require_once DOCROOT.'include/entryPoint.php';
 
 $startTime = microtime(true);
 
-ob_start();
+ob_start(null, 0, PHP_OUTPUT_HANDLER_STDFLAGS);
 
-$app = new SugarApplication();
+$application->instance('sugar_app', $app = new SugarApplication($application));
 $app->startSession();
-$app->execute();
+$application->call([$app, 'execute']);
+
+$kernel->terminate($request, $response);

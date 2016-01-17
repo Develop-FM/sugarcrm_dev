@@ -39,57 +39,9 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-/**
- * Known Entry Points as of 4.5
- * acceptDecline.php
- * campaign_tracker.php
- * campaign_trackerv2.php
- * cron.php
- * dictionary.php
- * download.php
- * emailmandelivery.php
- * export_dataset.php
- * export.php
- * image.php
- * index.php
- * install.php
- * json.php
- * json_server.php
- * leadCapture.php
- * maintenance.php
- * metagen.php
- * pdf.php
- * phprint.php
- * process_queue.php
- * process_workflow.php
- * removeme.php
- * schedulers.php
- * soap.php
- * su.php
- * sugar_version.php
- * TreeData.php
- * tree_level.php
- * tree.php
- * vcal_server.php
- * vCard.php
- * zipatcher.php
- * WebToLeadCapture.php
- * HandleAjaxCall.php
- *
- * for 50, added:
- * minify.php
- *
- * for 510, added:
- * dceActionCleanup.php
- */
 $GLOBALS['starttTime'] = microtime(true);
 
 set_include_path(dirname(__FILE__).'/..'.PATH_SEPARATOR.get_include_path());
-
-if (! defined('PHP_VERSION_ID')) {
-    $version_array = explode('.', phpversion());
-    define('PHP_VERSION_ID', ($version_array[0] * 10000 + $version_array[1] * 100 + $version_array[2]));
-}
 
 if (empty($GLOBALS['installing']) && ! file_exists('config.php')) {
     header('Location: install.php');
@@ -101,21 +53,9 @@ if (is_file('config.php')) {
     require_once('config.php'); // provides $sugar_config
 }
 
-// load up the config_override.php file.  This is used to provide default user settings
-if (is_file('config_override.php')) {
-    require_once('config_override.php');
-}
-
 if (empty($GLOBALS['installing']) && empty($sugar_config['dbconfig']['db_name'])) {
     header('Location: install.php');
     exit ();
-}
-
-/**
- * Composer auto-loader
- */
-if (file_exists('vendor'.DIRECTORY_SEPARATOR.'autoload.php')) {
-    require 'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 }
 
 if (! empty($sugar_config['xhprof_config'])) {
@@ -123,61 +63,69 @@ if (! empty($sugar_config['xhprof_config'])) {
     SugarXHprof::getInstance()->start();
 }
 
-// make sure SugarConfig object is available
-require_once 'include/SugarObjects/SugarConfig.php';
+$include = [
+    'include/SugarObjects/SugarConfig.php',
+    'include/SugarObjects/LanguageManager.php',
+    'include/SugarCache/SugarCache.php',
 
-///////////////////////////////////////////////////////////////////////////////
-////	DATA SECURITY MEASURES
-require_once('include/utils.php');
-require_once('include/clean.php');
-clean_special_arguments();
-clean_incoming_data();
-////	END DATA SECURITY MEASURES
-///////////////////////////////////////////////////////////////////////////////
+    // DATA SECURITY MEASURES
+    'include/utils.php'       => function () {
+        // cn: set php.ini settings at entry points
+        setPhpIniSettings();
+    },
+    'include/clean.php'       => function () {
+        clean_special_arguments();
+        clean_incoming_data();
+    },
+    // END DATA SECURITY MEASURES
 
-// cn: set php.ini settings at entry points
-setPhpIniSettings();
+    // provides $sugar_version, $sugar_db_version, $sugar_flavor
+    'sugar_version.php',
+    'include/database/DBManagerFactory.php',
+    'include/dir_inc.php',
+    'include/Localization/Localization.php',
+    'include/javascript/jsAlerts.php',
+    'include/TimeDate.php',
+    // provides $moduleList, $beanList, $beanFiles, $modInvisList, $adminOnlyList, $modInvisListActivities
+    'include/modules.php',
+    'data/SugarBean.php',
+    'include/utils/mvc_utils.php',
+    'include/SugarObjects/VardefManager.php',
+    'modules/DynamicFields/templates/Fields/TemplateText.php',
+    'include/utils/file_utils.php',
+    'include/SugarEmailAddress/SugarEmailAddress.php',
+    'modules/Trackers/BreadCrumbStack.php',
+    'modules/Trackers/Tracker.php',
+    'modules/Trackers/TrackerManager.php',
+    'modules/ACL/ACLController.php',
+    'modules/Administration/Administration.php',
+    'modules/Administration/updater_utils.php',
+    'modules/Users/User.php',
+    'modules/Users/authentication/AuthenticationController.php',
+    'include/SugarTheme/SugarTheme.php',
+    'include/MVC/SugarModule.php',
+    'modules/Currencies/Currency.php',
+    'include/MVC/SugarApplication.php',
+    'include/upload_file.php' => function () {
+        UploadStream::register();
+    },
+    'include/SugarObjects/SugarRegistry.php'
+];
 
-require_once('sugar_version.php'); // provides $sugar_version, $sugar_db_version, $sugar_flavor
-require_once('include/database/DBManagerFactory.php');
-require_once('include/dir_inc.php');
+foreach ($include as $key => $path) {
+    $callback = null;
 
-require_once('include/Localization/Localization.php');
-require_once('include/javascript/jsAlerts.php');
-require_once('include/TimeDate.php');
-require_once('include/modules.php'); // provides $moduleList, $beanList, $beanFiles, $modInvisList, $adminOnlyList, $modInvisListActivities
+    if (! is_integer($key)) {
+        $callback = $path;
+        $path     = $key;
+    }
 
-require('include/utils/autoloader.php');
-spl_autoload_register(['SugarAutoLoader', 'autoload']);
+    require_once(DOCROOT.$path);
 
-require_once('data/SugarBean.php');
-require_once('include/utils/mvc_utils.php');
-require('include/SugarObjects/LanguageManager.php');
-require('include/SugarObjects/VardefManager.php');
-
-require('modules/DynamicFields/templates/Fields/TemplateText.php');
-
-require_once('include/utils/file_utils.php');
-require_once('include/SugarEmailAddress/SugarEmailAddress.php');
-require_once('modules/Trackers/BreadCrumbStack.php');
-require_once('modules/Trackers/Tracker.php');
-require_once('modules/Trackers/TrackerManager.php');
-require_once('modules/ACL/ACLController.php');
-require_once('modules/Administration/Administration.php');
-require_once('modules/Administration/updater_utils.php');
-require_once('modules/Users/User.php');
-require_once('modules/Users/authentication/AuthenticationController.php');
-require_once('include/utils/LogicHook.php');
-require_once('include/SugarTheme/SugarTheme.php');
-require_once('include/MVC/SugarModule.php');
-require_once('include/SugarCache/SugarCache.php');
-require('modules/Currencies/Currency.php');
-require_once('include/MVC/SugarApplication.php');
-
-require_once('include/upload_file.php');
-UploadStream::register();
-//
-//SugarApplication::startSession();
+    if (is_callable($callback)) {
+        call_user_func($callback);
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 ////    Handle loading and instantiation of various Sugar* class
@@ -185,19 +133,14 @@ if (! defined('SUGAR_PATH')) {
     define('SUGAR_PATH', realpath(dirname(__FILE__).'/..'));
 }
 
-require_once 'include/SugarObjects/SugarRegistry.php';
-
 if (empty($GLOBALS['installing'])) {
-///////////////////////////////////////////////////////////////////////////////
-////	SETTING DEFAULT VAR VALUES
-
-    require_once('include/SugarLogger/SugarLogger.php');
-    $GLOBALS['log'] = new SugarLogger('CRM');
+    ///////////////////////////////////////////////////////////////////////////////
+    ////	SETTING DEFAULT VAR VALUES
 
     $error_notice           = '';
     $use_current_user_login = false;
 
-// Allow for the session information to be passed via the URL for printing.
+    // Allow for the session information to be passed via the URL for printing.
     if (isset($_GET['PHPSESSID'])) {
         if (! empty($_COOKIE['PHPSESSID']) && strcmp($_GET['PHPSESSID'], $_COOKIE['PHPSESSID']) == 0) {
             session_id($_REQUEST['PHPSESSID']);

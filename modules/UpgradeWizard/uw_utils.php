@@ -752,9 +752,6 @@ function upgradeUWFiles($file) {
     if(file_exists("$from_dir/include/utils/sugar_file_utils.php")) {
         $allFiles[] = "$from_dir/include/utils/sugar_file_utils.php";
     }
-    if(file_exists("$from_dir/include/utils/autoloader.php")) {
-        $allFiles[] = "$from_dir/include/utils/autoloader.php";
-    }
 
     upgradeUWFilesCopy($allFiles, $from_dir);
 }
@@ -4266,9 +4263,6 @@ function upgradeSugarCache($file)
 	}
 	if(file_exists("$from_dir/include/utils/sugar_file_utils.php")) {
 		$allFiles[] = "$from_dir/include/utils/sugar_file_utils.php";
-	}
-	if(file_exists("$from_dir/include/utils/autoloader.php")) {
-		$allFiles[] = "$from_dir/include/utils/autoloader.php";
 	}
 
 	foreach($allFiles as $k => $file) {

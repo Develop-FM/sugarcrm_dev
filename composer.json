@@ -6,8 +6,12 @@
   },
   "autoload": {
     "psr-4": {
-      "SugarCRM\\": "include"
-    }
+      "SugarCRM\\": "include",
+      "App\\": "application"
+    },
+    "files": [
+      "application/helpers.php"
+    ]
   },
   "require": {
     "google/apiclient": "*",
@@ -16,10 +20,10 @@
     "fergusean/nusoap": "^0.9.5",
     "tecnickcom/tcpdf": "^6.0",
     "ezyang/htmlpurifier": "~4.7",
-    "monolog/monolog": "^1.17",
     "greenlion/php-sql-parser": "~4.0",
     "zendframework/zendframework1": "^1",
     "filp/whoops": "^1.1",
+    "laravel/framework": "^5.2",
     "fergusean/nusoap": "^0.9.5"
   },
   "require-dev": {
