@@ -51,13 +51,13 @@ private $new_upgrade2;
 public function setUp()
 {
     global $sugar_config;
-    $sugar_config['cache_dir'] = 'cache/';
+    $sugar_config['cache_dir'] = 'storage/cache/';
 
     $GLOBALS['db']->query("DELETE FROM upgrade_history WHERE name = 'SugarEnt-Upgrade-6.3.x-to-6.4.3'");
 
     $this->new_upgrade = new UpgradeHistory();
-    $this->new_upgrade->filename = 'cache/upload/upgrade/temp/Bug51721Test.zip';
-    $this->new_upgrade->md5sum = md5('cache/upload/upgrade/temp/Bug51721Test.zip');
+    $this->new_upgrade->filename = 'storage/cache/upload/upgrade/temp/Bug51721Test.zip';
+    $this->new_upgrade->md5sum = md5('storage/cache/upload/upgrade/temp/Bug51721Test.zip');
     $this->new_upgrade->type = 'patch';
     $this->new_upgrade->version = '6.4.3';
     $this->new_upgrade->status = "installed";
@@ -66,8 +66,8 @@ public function setUp()
     $this->new_upgrade->save();
 
     $this->new_upgrade2 = new UpgradeHistory();
-    $this->new_upgrade2->filename = 'cache//upload/upgrade/temp/Bug51721Test.zip';
-    $this->new_upgrade2->md5sum = md5('cache//upload/upgrade/temp/Bug51721Test.zip');
+    $this->new_upgrade2->filename = 'storage/cache//upload/upgrade/temp/Bug51721Test.zip';
+    $this->new_upgrade2->md5sum = md5('storage/cache//upload/upgrade/temp/Bug51721Test.zip');
     $this->new_upgrade2->type = 'patch';
     $this->new_upgrade2->version = '6.4.3';
     $this->new_upgrade2->status = "installed";

@@ -48,14 +48,14 @@ class ExtTest extends Sugar_PHPUnit_Framework_TestCase
         $GLOBALS['current_language'] = "en_us";
         $GLOBALS['app_strings'] = return_application_language($GLOBALS['current_language']);
         $GLOBALS['mod_strings'] = return_module_language($GLOBALS['current_language'], 'Administration');
-        mkdir_recursive("cache/ExtTest");
+        mkdir_recursive("storage/cache/ExtTest");
     }
 
 	public function setUp()
 	{
         $this->module_installer = new ModuleInstaller();
         $this->module_installer->silent = true;
-        $this->module_installer->base_dir = "cache/ExtTest";
+        $this->module_installer->base_dir = "storage/cache/ExtTest";
         $this->module_installer->id_name = 'ExtFrameworkTest';
         $this->testvalue = uniqid("ext", true);
         file_put_contents($this->module_installer->base_dir."/test.ext.php", "<?php \$testvalue = '$this->testvalue';");
@@ -79,10 +79,10 @@ class ExtTest extends Sugar_PHPUnit_Framework_TestCase
         unset($GLOBALS['current_language']);
         unset($GLOBALS['app_strings']);
         unset($GLOBALS['mod_strings']);
-	    if(file_exists("cache/ExtTest/test.ext.php")) {
-	        @unlink("cache/ExtTest/test.ext.php");
+	    if(file_exists("storage/cache/ExtTest/test.ext.php")) {
+	        @unlink("storage/cache/ExtTest/test.ext.php");
 	    }
-        rmdir_recursive("cache/ExtTest");
+        rmdir_recursive("storage/cache/ExtTest");
 	}
 
     public function getExt()

@@ -56,10 +56,10 @@ class Bug47553Test extends Sugar_PHPUnit_Framework_TestCase
         global $beanList, $beanFiles;
         require('include/modules.php');
 
-        if(file_exists('cache/modules/Employees/Employeevardefs.php'))
+        if(file_exists('storage/cache/modules/Employees/Employeevardefs.php'))
         {
-            $this->cachedEmployeeVardefs = file_get_contents('cache/modules/Employees/Employeevardefs.php');
-            unlink('cache/modules/Employees/Employeevardefs.php');
+            $this->cachedEmployeeVardefs = file_get_contents('storage/cache/modules/Employees/Employeevardefs.php');
+            unlink('storage/cache/modules/Employees/Employeevardefs.php');
         }
     }
 
@@ -67,7 +67,7 @@ class Bug47553Test extends Sugar_PHPUnit_Framework_TestCase
     {
         if(!empty($this->cachedEmployeeVardefs))
         {
-            file_put_contents('cache/modules/Employees/Employeevardefs.php', $this->cachedEmployeeVardefs);
+            file_put_contents('storage/cache/modules/Employees/Employeevardefs.php', $this->cachedEmployeeVardefs);
         }
     }
 
@@ -78,7 +78,7 @@ class Bug47553Test extends Sugar_PHPUnit_Framework_TestCase
         VardefManager::loadVardef('Users', 'User');
         $dynamicField->saveToVardef('Users', $dictionary['User']['fields']);
         //Test that we have refreshed the Employees vardef
-        $this->assertTrue(file_exists('cache/modules/Employees/Employeevardefs.php'), 'cache/modules/Employees/Emloyeevardefs.php file not created');
+        $this->assertTrue(file_exists('storage/cache/modules/Employees/Employeevardefs.php'), 'storage/cache/modules/Employees/Emloyeevardefs.php file not created');
 
         //Test that status is not set to be required
         $this->assertFalse($dictionary['Employee']['fields']['status']['required'], 'status field set to required');

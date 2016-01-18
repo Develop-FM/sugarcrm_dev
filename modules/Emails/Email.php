@@ -160,7 +160,7 @@ class Email extends SugarBean {
 
 		$this->emailAddress = new SugarEmailAddress();
 
-		$this->imagePrefix = rtrim($GLOBALS['sugar_config']['site_url'], "/")."/cache/images/";
+		$this->imagePrefix = rtrim($GLOBALS['sugar_config']['site_url'], "/")."/storage/cache/images/";
 	}
 
 	function email2init() {
@@ -2038,7 +2038,7 @@ class Email extends SugarBean {
 		$mail->AltBody = $plainText;
 		$this->description = $plainText;
 
-		$mail->replaceImageByRegex("(?:{$sugar_config['site_url']})?/?cache/images/", sugar_cached("images/"));
+		$mail->replaceImageByRegex("(?:{$sugar_config['site_url']})?/?storage/cache/images/", sugar_cached("images/"));
 
 		//Replace any embeded images using the secure entryPoint for src url.
 		$mail->replaceImageByRegex("(?:{$sugar_config['site_url']})?/?index.php[?]entryPoint=download&(?:amp;)?[^\"]+?id=", "upload://", true);

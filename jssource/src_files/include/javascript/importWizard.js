@@ -76,7 +76,7 @@ SUGAR.importWizard = function() {
 						var oScript= document.createElement("script");
 						oScript.type = "text/javascript";
 						oScript.id = "sugar_grp_yui_widgets";
-						oScript.src="cache/include/javascript/sugar_grp_yui_widgets.js";
+						oScript.src="storage/cache/include/javascript/sugar_grp_yui_widgets.js";
 						oHead.appendChild( oScript);
 				}
 				

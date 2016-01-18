@@ -261,7 +261,7 @@ if (! isset($_SESSION['setup_site_guid']) || empty($_SESSION['setup_site_guid'])
 }
 
 if (! isset($_SESSION['cache_dir']) || empty($_SESSION['cache_dir'])) {
-    $_SESSION['cache_dir'] = isset($sugar_config['cache_dir']) ? $sugar_config['cache_dir'] : 'cache/';
+    $_SESSION['cache_dir'] = isset($sugar_config['cache_dir']) ? $sugar_config['cache_dir'] : 'storage/cache/';
 }
 
 $workflow[] = 'confirmSettings.php';

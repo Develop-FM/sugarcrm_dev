@@ -37,7 +37,7 @@
 *}
 
 <script type="text/javascript" src="{sugar_getjspath file='modules/EAPM/EAPMEdit.js'}"></script>
-<script type="text/javascript" src="{sugar_getjspath file='cache/include/externalAPI.cache.js'}"></script>
+<script type="text/javascript" src="{sugar_getjspath file='storage/cache/include/externalAPI.cache.js'}"></script>
 <script type="text/javascript">
 EAPMFormName = 'EditView';
 EAPMOAuthNotice = '{$MOD.LBL_OAUTH_SAVE_NOTICE}';

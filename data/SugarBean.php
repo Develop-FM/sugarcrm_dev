@@ -2279,7 +2279,7 @@ class SugarBean
      *
      * @return string count query
      */
-    final public function create_list_count_query($query)
+    public function create_list_count_query($query)
     {
         // remove the 'order by' clause which is expected to be at the end of the query
         $pattern     = '/\sORDER BY.*/is';  // ignores the case

@@ -148,7 +148,7 @@ function generateComposeDataPackage($data,$forFullCompose = TRUE, $bean = null)
 
 			require_once("modules/Emails/EmailUI.php");
 			$subject = $bean->kbdocument_name;
-			$article_body = str_replace('/cache/images/',$GLOBALS['sugar_config']['site_url'].'/cache/images/',KBDocument::get_kbdoc_body_without_incrementing_count($bean->id));
+			$article_body = str_replace('/storage/cache/images/',$GLOBALS['sugar_config']['site_url'].'/storage/cache/images/',KBDocument::get_kbdoc_body_without_incrementing_count($bean->id));
 			$body = from_html($article_body);
 			$attachments = KBDocument::get_kbdoc_attachments_for_newemail($bean->id);
 			$attachments = $attachments['attachments'];

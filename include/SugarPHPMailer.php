@@ -362,7 +362,7 @@ eoq;
         //replace references to cache/images with cid tag
         $this->Body = preg_replace(';=\s*"'.preg_quote(sugar_cached('images/'), ';').';', '="cid:', $this->Body);
 
-        $this->replaceImageByRegex("(?:{$sugar_config['site_url']})?/?cache/images/", sugar_cached("images/"));
+        $this->replaceImageByRegex("(?:{$sugar_config['site_url']})?/?storage/cache/images/", sugar_cached("images/"));
 
         //Replace any embeded images using the secure entryPoint for src url.
         $this->replaceImageByRegex("(?:{$sugar_config['site_url']})?index.php[?]entryPoint=download&(?:amp;)?[^\"]+?id=", "upload://", true);

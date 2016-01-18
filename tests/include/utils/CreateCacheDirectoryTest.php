@@ -46,9 +46,9 @@ class CreateCacheDirectoryTest extends Sugar_PHPUnit_Framework_TestCase
         global $sugar_config;
         $this->_original_cwd = getcwd();
         $this->_original_cachedir = $sugar_config['cache_dir'];
-        $sugar_config['cache_dir'] = 'cache/';
+        $sugar_config['cache_dir'] = 'storage/cache/';
         chdir(dirname(__FILE__));
-        $this->_removeCacheDirectory('./cache');
+        $this->_removeCacheDirectory('./storage/cache');
     }
 
     public function tearDown()
@@ -87,16 +87,16 @@ class CreateCacheDirectoryTest extends Sugar_PHPUnit_Framework_TestCase
 
     public function testCreatesDirectoryInCacheDirectoryProvidedItIsGivenAFile()
     {
-        $this->assertFalse(file_exists('./cache/foobar-test'));
+        $this->assertFalse(file_exists('./storage/cache/foobar-test'));
         create_cache_directory('foobar-test/cache-file.php');
-        $this->assertTrue(file_exists('./cache/foobar-test'));
+        $this->assertTrue(file_exists('./storage/cache/foobar-test'));
     }
 
     public function testReturnsDirectoryCreated()
     {
         $created = create_cache_directory('foobar/cache-file.php');
         $this->assertEquals(
-            'cache/foobar/cache-file.php',
+            'storage/cache/foobar/cache-file.php',
             $created
         );
     }

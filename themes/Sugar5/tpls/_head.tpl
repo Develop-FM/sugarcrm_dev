@@ -58,5 +58,5 @@ if ( YAHOO.env.ua )
 -->
 </script>
 {/literal}
-<script type="text/javascript" src='{sugar_getjspath file="cache/include/javascript/sugar_field_grp.js"}'></script>
+<script type="text/javascript" src='{sugar_getjspath file="storage/cache/include/javascript/sugar_field_grp.js"}'></script>
 </head>

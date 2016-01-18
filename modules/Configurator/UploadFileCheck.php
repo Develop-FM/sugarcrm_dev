@@ -72,7 +72,7 @@ if(!$upload_ok) {
 if(file_exists($file_name) && is_file($file_name)) {
     $encoded_file_name = rawurlencode($upload->get_stored_file_name());
     $returnArray['path'] = $upload_path . '/' . $encoded_file_name;
-    $returnArray['url']= 'cache/images/'.$encoded_file_name;
+    $returnArray['url']= 'storage/cache/images/'.$encoded_file_name;
     if(!verify_uploaded_image($file_name, $returnArray['forQuotes'] == 'quotes')) {
         $returnArray['data']='other';
         $returnArray['path'] = '';

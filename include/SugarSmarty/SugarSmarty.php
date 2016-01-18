@@ -5,7 +5,7 @@ if (! defined('sugarEntry') || ! sugarEntry) {
 }
 
 if (! defined('SUGAR_SMARTY_DIR')) {
-    define('SUGAR_SMARTY_DIR', sugar_cached('smarty/'));
+    define('SUGAR_SMARTY_DIR', storage_path('smarty/'));
 }
 
 class Sugar_Smarty extends Smarty

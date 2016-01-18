@@ -47,8 +47,8 @@ class Bug44831Test extends Sugar_PHPUnit_Framework_OutputTestCase
         // Create a Custom editviewdefs.php
         sugar_mkdir("custom/modules/Leads/metadata/",null,true);
 
-        if ( is_dir("cache/modules/Leads") )
-            rmdir_recursive("cache/modules/Leads");
+        if ( is_dir("storage/cache/modules/Leads") )
+            rmdir_recursive("storage/cache/modules/Leads");
 
         if (file_exists("custom/modules/Leads/metadata/editviewdefs.php")) 
             unlink("custom/modules/Leads/metadata/editviewdefs.php");
@@ -95,8 +95,8 @@ EOQ;
     
     public function tearDown()
     {
-        if ( is_dir("cache/modules/Leads") )
-            rmdir_recursive("cache/modules/Leads");
+        if ( is_dir("storage/cache/modules/Leads") )
+            rmdir_recursive("storage/cache/modules/Leads");
 
         if (file_exists("custom/modules/Leads/metadata/editviewdefs.php")) 
             unlink("custom/modules/Leads/metadata/editviewdefs.php");

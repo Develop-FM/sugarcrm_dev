@@ -113,8 +113,8 @@ $dictionary['email_addresses'] = [
 ];
 
 // hack for installer
-if (file_exists("cache/modules/EmailAddresses/EmailAddressvardefs.php")) {
-    include("cache/modules/EmailAddresses/EmailAddressvardefs.php");
+if (file_exists("storage/cache/modules/EmailAddresses/EmailAddressvardefs.php")) {
+    include("storage/cache/modules/EmailAddresses/EmailAddressvardefs.php");
 } else {
     $dictionary['EmailAddress'] = $dictionary['email_addresses'];
 }

@@ -387,7 +387,7 @@ function sugar_cached($file)
         $cdir = rtrim($GLOBALS['sugar_config']['cache_dir'], '/\\');
     }
     if(empty($cdir)) {
-        $cdir = "cache";
+        $cdir = "storage/cache";
     }
     return "$cdir/$file";
 }

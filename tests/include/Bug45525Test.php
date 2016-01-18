@@ -41,13 +41,13 @@ class Bug45525 extends Sugar_PHPUnit_Framework_TestCase
     /**
      * @group Bug45525
      */
-    var $testLangFile = "cache/upload/myLang.php";
+    var $testLangFile = "storage/cache/upload/myLang.php";
 
     public function setUp()
     {
-        if(!file_exists('cache/upload'))
+        if(!file_exists('storage/cache/upload'))
         {
-            mkdir_recursive('cache/upload');
+            mkdir_recursive('storage/cache/upload');
         }
     }
 

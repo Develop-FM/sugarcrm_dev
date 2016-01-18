@@ -36,7 +36,7 @@
 
 *}
 {{if isset($vardef.allowEapm) && $vardef.allowEapm}}
-<script type="text/javascript" src='{{sugar_getjspath file="cache/include/externalAPI.cache.js"}}'></script>
+<script type="text/javascript" src='{{sugar_getjspath file="storage/cache/include/externalAPI.cache.js"}}'></script>
 {{/if}}
 <script type="text/javascript" src='{{sugar_getjspath file="include/SugarFields/Fields/File/SugarFieldFile.js"}}'></script>
 {{capture name=idName assign=idName}}{{sugarvar key='name'}}{{/capture}}

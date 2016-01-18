@@ -56,7 +56,7 @@ while(substr_count($_REQUEST['imageName'], '..') > 0){
 }
 
 if(isset($_REQUEST['spriteNamespace'])) {
-	$filename = "cache/sprites/{$_REQUEST['spriteNamespace']}/{$_REQUEST['imageName']}";
+	$filename = "storage/cache/sprites/{$_REQUEST['spriteNamespace']}/{$_REQUEST['imageName']}";
 	if(! file_exists($filename)) {
 		header($_SERVER["SERVER_PROTOCOL"].' 404 Not Found');
 		die;

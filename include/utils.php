@@ -96,7 +96,7 @@ function make_sugar_config(&$sugar_config)
 	$sugar_config = [
 		'admin_export_only'                       => empty($admin_export_only) ? false : $admin_export_only,
 		'export_delimiter'                        => empty($export_delimiter) ? ',' : $export_delimiter,
-		'cache_dir'                               => empty($cache_dir) ? 'cache/' : $cache_dir,
+		'cache_dir'                               => empty($cache_dir) ? 'storage/cache/' : $cache_dir,
 		'calculate_response_time'                 => empty($calculate_response_time) ? true : $calculate_response_time,
 		'create_default_user'                     => empty($create_default_user) ? false : $create_default_user,
 		'chartEngine'                             => 'Jit',
@@ -264,7 +264,7 @@ function get_sugar_config_defaults()
 		'admin_export_only'                       => false,
 		'export_delimiter'                        => ',',
 		'export_excel_compatible'                 => false,
-		'cache_dir'                               => 'cache/',
+		'cache_dir'                               => 'storage/cache/',
 		'calculate_response_time'                 => true,
 		'create_default_user'                     => false,
 		'chartEngine'                             => 'Jit',

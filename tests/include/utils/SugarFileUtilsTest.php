@@ -47,7 +47,7 @@ class SugarFileUtilsTest extends Sugar_PHPUnit_Framework_TestCase
         if (is_windows())
             $this->markTestSkipped('Skipping on Windows');
         
-        $this->_filename = realpath(dirname(__FILE__).'/../../../cache/').'file_utils_override'.mt_rand().'.txt';
+        $this->_filename = realpath(dirname(__FILE__).'/../../../storage/cache/').'file_utils_override'.mt_rand().'.txt';
         touch($this->_filename);
         $this->_old_default_permissions = $GLOBALS['sugar_config']['default_permissions'];
         $GLOBALS['sugar_config']['default_permissions'] =

@@ -57,7 +57,7 @@ class Bug39980Test extends Sugar_PHPUnit_Framework_TestCase
 }
 
 class Bug39980PackageManger extends PackageManager {
-	static $manifest_location = "cache/Bug39980manifest.php";
+	static $manifest_location = "storage/cache/Bug39980manifest.php";
 	
 	public function __construct() {
 	   parent::__construct();

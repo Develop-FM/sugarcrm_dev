@@ -727,9 +727,9 @@ class SugarView
             require_once("jssource/minify_utils.php");
             ConcatenateFiles(".");
         }
-        echo getVersionedScript('cache/include/javascript/sugar_grp1_jquery.js');
-        echo getVersionedScript('cache/include/javascript/sugar_grp1_yui.js');
-        echo getVersionedScript('cache/include/javascript/sugar_grp1.js');
+        echo getVersionedScript('storage/cache/include/javascript/sugar_grp1_jquery.js');
+        echo getVersionedScript('storage/cache/include/javascript/sugar_grp1_yui.js');
+        echo getVersionedScript('storage/cache/include/javascript/sugar_grp1.js');
         echo getVersionedScript('include/javascript/calendar.js');
         echo <<<EOQ
         <script>
@@ -797,7 +797,7 @@ EOHTML;
             }
 
             $js_vars = array(
-                "sugar_cache_dir" => "cache/",
+                "sugar_cache_dir" => "storage/cache/",
                 );
 
             if(isset($this->bean->module_dir)){
@@ -812,9 +812,9 @@ EOHTML;
                 require_once("jssource/minify_utils.php");
                 ConcatenateFiles(".");
             }
-            echo getVersionedScript('cache/include/javascript/sugar_grp1_jquery.js');
-            echo getVersionedScript('cache/include/javascript/sugar_grp1_yui.js');
-            echo getVersionedScript('cache/include/javascript/sugar_grp1.js');
+            echo getVersionedScript('storage/cache/include/javascript/sugar_grp1_jquery.js');
+            echo getVersionedScript('storage/cache/include/javascript/sugar_grp1_yui.js');
+            echo getVersionedScript('storage/cache/include/javascript/sugar_grp1.js');
             echo getVersionedScript('include/javascript/calendar.js');
 
             // output necessary config js in the top of the page
@@ -835,7 +835,7 @@ EOHTML;
                 require_once ('include/language/jsLanguage.php');
                 jsLanguage::createAppStringsCache($GLOBALS['current_language']);
             }
-            echo getVersionedScript('cache/jsLanguage/'. $GLOBALS['current_language'] . '.js', $GLOBALS['sugar_config']['js_lang_version']);
+            echo getVersionedScript('storage/cache/jsLanguage/'. $GLOBALS['current_language'] . '.js', $GLOBALS['sugar_config']['js_lang_version']);
 
 			echo $this->_getModLanguageJS();
 
@@ -858,7 +858,7 @@ EOHTML;
 			require_once ('include/language/jsLanguage.php');
 			jsLanguage::createModuleStringsCache($this->module, $GLOBALS['current_language']);
 		}
-		return getVersionedScript("cache/jsLanguage/{$this->module}/". $GLOBALS['current_language'] . '.js', $GLOBALS['sugar_config']['js_lang_version']);
+		return getVersionedScript("storage/cache/jsLanguage/{$this->module}/". $GLOBALS['current_language'] . '.js', $GLOBALS['sugar_config']['js_lang_version']);
 	}
 
     /**

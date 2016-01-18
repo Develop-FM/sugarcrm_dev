@@ -38,7 +38,7 @@
 
 
 *}
-<script type="text/javascript" src='{sugar_getjspath file ='cache/include/javascript/sugar_grp_yui_widgets.js'}'></script>
+<script type="text/javascript" src='{sugar_getjspath file ='storage/cache/include/javascript/sugar_grp_yui_widgets.js'}'></script>
 <script type="text/javascript" src='{sugar_getjspath file ='include/javascript/yui/build/paginator/paginator-min.js'}'></script>
 {literal}
 <style type="text/css">

@@ -61,9 +61,9 @@ public function setUp()
     $this->useSprites = $GLOBALS['sugar_config']['use_sprites'];
     $GLOBALS['sugar_config']['use_sprites'] = true;
 
-    if(file_exists('cache/sprites'))
+    if(file_exists('storage/cache/sprites'))
     {
-        rmdir_recursive('cache/sprites');
+        rmdir_recursive('storage/cache/sprites');
     }
 }
 
@@ -76,8 +76,8 @@ public function testSugarSpriteBuilder()
 {
     require_once('modules/UpgradeWizard/uw_utils.php');
     rebuildSprites(true);
-    $this->assertTrue(file_exists('cache/sprites'), 'Assert that we have built the sprites directory');
-    $files = glob('cache/sprites/default/*.png');
+    $this->assertTrue(file_exists('storage/cache/sprites'), 'Assert that we have built the sprites directory');
+    $files = glob('storage/cache/sprites/default/*.png');
     $this->assertTrue(!empty($files), 'Assert that we have created .png sprite images');
 }
 

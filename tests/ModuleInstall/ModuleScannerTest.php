@@ -42,7 +42,7 @@ class ModuleScannerTest extends Sugar_PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-        $this->fileLoc = "cache/moduleScannerTemp.php";
+        $this->fileLoc = "storage/cache/moduleScannerTemp.php";
 	}
 
 	public function tearDown()
@@ -229,7 +229,7 @@ EOQ;
         $notconfig = array(
             'custom/config.php',
             'custom/modules/config.php',
-            'cache/config_override.php',
+            'storage/cache/config_override.php',
             'modules/Module/config.php'
         );
 

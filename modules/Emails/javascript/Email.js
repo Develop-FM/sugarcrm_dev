@@ -336,7 +336,7 @@ function multiFiles( list_target){
 
                 // constants
                 allowedTypes = ['png', 'jpg', 'jpeg'],
-                imglocation = 'cache/images/';
+                imglocation = 'storage/cache/images/';
 
             //check if filetype is valid
             if (SUGAR.util.validateFileExt(fileName, allowedTypes)) {

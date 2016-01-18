@@ -161,14 +161,14 @@ EOQ;
 
 		$preProcessedImages = array();
 		$emailTemplateBodyHtml = from_html($focus->body_html);
-		if(strpos($emailTemplateBodyHtml, '"cache/images/')) {
+		if(strpos($emailTemplateBodyHtml, '"storage/cache/images/')) {
 			$matches = array();
-			preg_match_all('#<img[^>]*[\s]+src[^=]*=[\s]*["\']cache/images/(.+?)["\']#si', $emailTemplateBodyHtml, $matches);
+			preg_match_all('#<img[^>]*[\s]+src[^=]*=[\s]*["\']storage/cache/images/(.+?)["\']#si', $emailTemplateBodyHtml, $matches);
 			foreach($matches[1] as $match) {
 				$filename = urldecode($match);
                 if($filename != pathinfo($filename, PATHINFO_BASENAME)) {
                     // don't allow paths there
-                    $emailTemplateBodyHtml = str_replace("cache/images/$match", "", $emailTemplateBodyHtml);
+                    $emailTemplateBodyHtml = str_replace("storage/cache/images/$match", "", $emailTemplateBodyHtml);
                     continue;
                 }
 				$file_location = sugar_cached("images/{$filename}");
@@ -181,7 +181,7 @@ EOQ;
 						$GLOBALS['log']->debug("EMAIL Template could not copy attachment to $newFileLocation");
 					} else {
 						$secureLink = "index.php?entryPoint=download&type=Notes&id={$id}";
-					    $emailTemplateBodyHtml = str_replace("cache/images/$match", $secureLink, $emailTemplateBodyHtml);
+					    $emailTemplateBodyHtml = str_replace("storage/cache/images/$match", $secureLink, $emailTemplateBodyHtml);
 						unlink($file_location);
 						$preProcessedImages[$filename] = $id;
 					}

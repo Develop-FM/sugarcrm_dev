@@ -57,7 +57,7 @@ height: 10px;
 
 
 
-{sugar_getscript file="cache/include/javascript/sugar_grp_yui_widgets.js"}
+{sugar_getscript file="storage/cache/include/javascript/sugar_grp_yui_widgets.js"}
 {sugar_getscript file='include/javascript/dashlets.js'}
 
 {$chartResources}
