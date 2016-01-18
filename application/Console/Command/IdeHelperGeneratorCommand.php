@@ -2,7 +2,6 @@
 
 namespace App\Console\Command;
 
-use Arr;
 use DirectoryIterator;
 use SugarRelationshipFactory;
 use Illuminate\Console\Command;

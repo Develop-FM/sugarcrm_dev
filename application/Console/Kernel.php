@@ -6,15 +6,8 @@ use App\Console\Command\RepairCommand;
 use App\Console\Command\SchedulerCommand;
 use App\Console\Command\CacheClearCommand;
 use Illuminate\Console\Scheduling\Schedule;
-use App\Console\Command\RepairTeamsCommand;
-use App\Console\Command\DbTablesDiffCommand;
-use App\Console\Command\UserPublishKeysCommand;
-use App\Console\Command\RegenerateShippingKeys;
-use App\Console\Command\EmailSettingsFixCommand;
-use App\Console\Command\EmailSettingsTestCommand;
 use App\Console\Command\IdeHelperGeneratorCommand;
 use App\Console\Command\RebuildRelationshipsCommand;
-use App\Console\Command\RepairUserPublishKeyCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -43,7 +36,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         CacheClearCommand::class,
-        IdeHelperGeneratorCommand::class
+        IdeHelperGeneratorCommand::class,
+        SchedulerCommand::class,
+        RepairCommand::class,
+        RebuildRelationshipsCommand::class
     ];
 
     /**
