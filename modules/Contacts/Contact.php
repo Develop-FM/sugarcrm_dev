@@ -146,25 +146,6 @@ class Contact extends Person {
 		parent::Person();
 	}
 
-	function add_list_count_joins(&$query, $where)
-	{
-		// accounts.name
-		if(stristr($where, "accounts.name"))
-		{
-			// add a join to the accounts table.
-			$query .= "
-	            LEFT JOIN accounts_contacts
-	            ON contacts.id=accounts_contacts.contact_id
-	            LEFT JOIN accounts
-	            ON accounts_contacts.account_id=accounts.id
-			";
-		}
-        $custom_join = $this->getCustomJoin();
-        $query .= $custom_join['join'];
-
-
-	}
-
 	function listviewACLHelper(){
 		$array_assign = parent::listviewACLHelper();
 		$is_owner = false;

@@ -593,7 +593,7 @@ class Call extends SugarBean {
 
 
 
-	function get_notification_recipients() {
+protected function get_notification_recipients() {
 		if($this->special_notification) {
 			return parent::get_notification_recipients();
 		}

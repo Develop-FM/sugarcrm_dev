@@ -89,7 +89,7 @@ class Campaign extends SugarBean {
 
 	var $new_schema = true;
 
-	function list_view_parse_additional_sections(&$listTmpl) {
+	function list_view_parse_additional_sections(XTemplate &$listTmpl) {
 		global $locale;
 
 		// take $assigned_user_id and get the Username value to assign
@@ -227,8 +227,6 @@ class Campaign extends SugarBean {
 				$this->amount_usdollar = $currency->convertToDollar($this->amount);
 
 			}
-
-		$this->unformat_all_fields();
 
 		// Bug53301
 		if($this->campaign_type != 'NewsLetter') {

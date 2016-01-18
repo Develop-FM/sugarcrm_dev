@@ -162,7 +162,7 @@ class Currency extends SugarBean
 	 	return '';
 	 }
 
-	 function list_view_parse_additional_sections(&$list_form) {
+	 function list_view_parse_additional_sections(XTemplate &$list_form) {
 		global $isMerge;
 
 		if(isset($isMerge) && $isMerge && $this->id != '-99'){

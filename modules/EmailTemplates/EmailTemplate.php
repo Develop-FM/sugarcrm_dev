@@ -717,7 +717,7 @@ class EmailTemplate extends SugarBean {
     /**
      * Allows us to save variables of template as they are
      */
-    public function cleanBean()
+	protected function cleanBean()
     {
         $this->storedVariables = array();
         $this->body_html = preg_replace_callback('/\{::[^}]+::\}/', array($this, 'storeVariables'), $this->body_html);

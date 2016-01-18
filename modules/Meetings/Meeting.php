@@ -597,7 +597,7 @@ class Meeting extends SugarBean {
 	/**
 	 * Redefine method to remove ics after email is sent
 	 */
-	public function send_assignment_notifications($notify_user, $admin){
+	protected function send_assignment_notifications($notify_user, $admin){
 		parent::send_assignment_notifications($notify_user, $admin);
 		
 		$path = SugarConfig::getInstance()->get('upload_dir','upload/') . $this->id;
@@ -679,7 +679,7 @@ class Meeting extends SugarBean {
 	}
 
 
-	function get_notification_recipients() {
+	protected function get_notification_recipients() {
 		if($this->special_notification) {
 			return parent::get_notification_recipients();
 		}
