@@ -83,6 +83,25 @@ class SugarApplication
     }
 
     /**
+     * @return SugarController
+     */
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    public function executeArtisan()
+    {
+        $this->controller = ControllerFactory::getController('Administration');
+        SugarThemeRegistry::buildRegistry();
+        $this->loadLanguages();
+        $this->checkDatabaseVersion();
+        $this->loadDisplaySettings();
+        $this->loadLicense();
+        $this->loadGlobals();
+    }
+
+    /**
      * Perform execution of the application. This method is called from index2.php
      *
      * @param Request $request
@@ -103,12 +122,12 @@ class SugarApplication
         $this->setupPrint();
         $this->controller = ControllerFactory::getController($module);
 
-        // If the entry point is defined to not need auth, then don't authenticate.
-        if (empty($_REQUEST['entryPoint']) || $this->controller->checkEntryPointRequiresAuth($_REQUEST['entryPoint'])) {
+        // if the entry point is defined to not need auth, then don't authenicate
+        if (! $request->has('entryPoint') || $this->controller->checkEntryPointRequiresAuth($request->query('entryPoint'))) {
             $this->loadUser();
             $this->ACLFilter();
             $this->preProcess();
-            $this->controller->preProcess();
+            $this->getController()->preProcess();
             $this->checkHTTPReferer();
         }
 
@@ -121,7 +140,7 @@ class SugarApplication
 
         $this->setupResourceManagement($module);
 
-        $this->controller->execute();
+        $this->getController()->execute();
         sugar_cleanup();
     }
 

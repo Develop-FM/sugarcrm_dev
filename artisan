@@ -16,14 +16,17 @@ $application = require_once('bootstrap.php');
 
 $kernel = $application->make(Illuminate\Contracts\Console\Kernel::class);
 
-$status = $kernel->handle(
-    $input = new Symfony\Component\Console\Input\ArgvInput,
-    new Symfony\Component\Console\Output\ConsoleOutput
-);
+$kernel->bootstrap();
 
 require_once(DOCROOT.'include/entryPoint.php');
 
 $application->instance('sugar_app', $app = new SugarApplication($application));
+$application->call([$app, 'executeArtisan']);
+
+$status = $kernel->handle(
+    $input = new Symfony\Component\Console\Input\ArgvInput,
+    new Symfony\Component\Console\Output\ConsoleOutput
+);
 
 /*
 |--------------------------------------------------------------------------
