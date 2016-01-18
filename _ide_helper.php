@@ -3,41 +3,41 @@
 /**
  * Class Account
  *
- * @property  created_by_name 
- * @property  assigned_user_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  modified_by_name 
- * @property  parent_name 
- * @property  campaign_name The first campaign name for Account (Meta-data only)
- * @property Link2 emails 
- * @property Link2 calls 
+ * @property Account parent_name 
+ * @property Campaign campaign_name The first campaign name for Account (Meta-data only)
  * @property Link2 meetings 
+ * @property Link2 calls 
+ * @property Link2 emails 
+ * @property Link2 bugs 
+ * @property Link2 contacts 
  * @property Link2 notes 
- * @property Link2 member_of 
+ * @property Link2 cases 
  * @property Link2 email_addresses 
  * @property Link2 email_addresses_primary 
  * @property Link2 members 
- * @property Link2 bugs 
- * @property Link2 cases 
+ * @property Link2 member_of 
+ * @property Link2 opportunities 
  * @property Link2 tasks 
  * @property Link2 documents 
  * @property Link2 created_by_link 
  * @property Link2 campaign_accounts 
- * @property Link2 campaigns 
  * @property Link2 leads 
+ * @property Link2 project 
+ * @property Link2 campaigns 
  * @property Link2 modified_user_link 
  * @property Link2 assigned_user_link 
  * @property Link2 prospect_lists 
- * @property Link2 opportunities 
- * @property Link2 project 
- * @property Link2 contacts 
- * @property bool email_opt_out 
+ * @property User created_by_name 
+ * @property User assigned_user_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User modified_by_name 
  * @property bool invalid_email 
+ * @property bool email_opt_out 
  * @property bool deleted Record deletion indicator
  * @property string shipping_address_postalcode The zip code used for the shipping address
  * @property string shipping_address_country The country used for the shipping address
- * @property string campaign_id Campaign that generated Account
  * @property string email1 
+ * @property string campaign_id Campaign that generated Account
  * @property string parent_id Account ID of the parent of this account
  * @property string email 
  * @property string sic_code SIC code of the account
@@ -75,55 +75,42 @@
  * @property string phone_alternate An alternate phone number
  * @property string shipping_address_state The state used for the shipping address
  *
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedModified_by_name
- * @method  getRelatedParent_name
- * @method  getRelatedCampaign_name
- * @method [] getRelatedMember_of
+ * @method Account getRelatedParent_name
+ * @method Campaign getRelatedCampaign_name
+ * @method Meeting[] getRelatedMeetings
+ * @method Call[] getRelatedCalls
+ * @method Email[] getRelatedEmails
+ * @method Bug[] getRelatedBugs
+ * @method Contact[] getRelatedContacts
+ * @method Note[] getRelatedNotes
+ * @method aCase[] getRelatedCases
+ * @method Account[] getRelatedMembers
+ * @method Account[] getRelatedMember_of
+ * @method Opportunity[] getRelatedOpportunities
+ * @method Task[] getRelatedTasks
+ * @method User[] getRelatedCreated_by_link
+ * @method Lead[] getRelatedLeads
+ * @method Project[] getRelatedProject
+ * @method CampaignLog[] getRelatedCampaigns
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method ProspectList[] getRelatedProspect_lists
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedModified_by_name
  *
  */
 class Account {
 	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
+	 * @var Account 
 	 */
 	 public $parent_name;
 
 	/** 
-	 * @var  The first campaign name for Account (Meta-data only)
+	 * @var Campaign The first campaign name for Account (Meta-data only)
 	 */
 	 public $campaign_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
 
 	/** 
 	 * @var Link2 
@@ -133,12 +120,32 @@ class Account {
 	/** 
 	 * @var Link2 
 	 */
+	 public $calls;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $emails;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $bugs;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $contacts;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $notes;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $member_of;
+	 public $cases;
 
 	/** 
 	 * @var Link2 
@@ -158,12 +165,12 @@ class Account {
 	/** 
 	 * @var Link2 
 	 */
-	 public $bugs;
+	 public $member_of;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $cases;
+	 public $opportunities;
 
 	/** 
 	 * @var Link2 
@@ -188,12 +195,17 @@ class Account {
 	/** 
 	 * @var Link2 
 	 */
-	 public $campaigns;
+	 public $leads;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $leads;
+	 public $project;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $campaigns;
 
 	/** 
 	 * @var Link2 
@@ -211,29 +223,34 @@ class Account {
 	 public $prospect_lists;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $opportunities;
+	 public $created_by_name;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $project;
+	 public $assigned_user_name;
 
 	/** 
-	 * @var Link2 
+	 * @var User User ID assigned to record
 	 */
-	 public $contacts;
+	 public $assigned_user_id;
 
 	/** 
-	 * @var bool 
+	 * @var User 
 	 */
-	 public $email_opt_out;
+	 public $modified_by_name;
 
 	/** 
 	 * @var bool 
 	 */
 	 public $invalid_email;
+
+	/** 
+	 * @var bool 
+	 */
+	 public $email_opt_out;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -251,14 +268,14 @@ class Account {
 	 public $shipping_address_country;
 
 	/** 
-	 * @var string Campaign that generated Account
-	 */
-	 public $campaign_id;
-
-	/** 
 	 * @var string 
 	 */
 	 public $email1;
+
+	/** 
+	 * @var string Campaign that generated Account
+	 */
+	 public $campaign_id;
 
 	/** 
 	 * @var string Account ID of the parent of this account
@@ -441,11 +458,11 @@ class Account {
 	 public $shipping_address_state;
 
 	public $relationship_fields = [
+		'parent_id' => 'member_of',
+		'campaign_id' => 'campaign_accounts',
 		'created_by' => 'created_by_link',
 		'assigned_user_id' => 'assigned_user_link',
 		'modified_user_id' => 'modified_user_link',
-		'parent_id' => 'member_of',
-		'campaign_id' => 'campaign_accounts',
 	];
 
 }
@@ -633,27 +650,27 @@ class Administration {
 /**
  * Class Bug
  *
- * @property  assigned_user_name 
- * @property  created_by_name 
- * @property  modified_by_name 
- * @property  fixed_in_release_name 
- * @property  release_name 
- * @property  assigned_user_id User ID assigned to record
+ * @property Link2 emails 
  * @property Link2 documents 
  * @property Link2 assigned_user_link 
  * @property Link2 calls 
+ * @property Link2 meetings 
  * @property Link2 tasks 
  * @property Link2 notes 
- * @property Link2 meetings 
- * @property Link2 emails 
- * @property Link2 modified_user_link 
- * @property Link2 project 
- * @property Link2 release_link 
- * @property Link2 fixed_in_release_link 
  * @property Link2 created_by_link 
+ * @property Link2 modified_user_link 
+ * @property Link2 fixed_in_release_link 
+ * @property Link2 release_link 
  * @property Link2 cases 
- * @property Link2 accounts 
+ * @property Link2 project 
  * @property Link2 contacts 
+ * @property Link2 accounts 
+ * @property Release release_name 
+ * @property Release fixed_in_release_name 
+ * @property User modified_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User assigned_user_name 
+ * @property User created_by_name 
  * @property bool deleted Record deletion indicator
  * @property string source An indicator of how the bug was entered (ex: via web, email, etc.)
  * @property string product_category Where the bug was discovered (ex: Accounts, Contacts, Leads)
@@ -673,44 +690,24 @@ class Administration {
  * @property string status The status of the issue
  * @property string fixed_in_release The software or service release that corrected the bug
  *
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedCreated_by_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedFixed_in_release_name
- * @method  getRelatedRelease_name
- * @method  getRelatedAssigned_user_id
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method Release[] getRelatedFixed_in_release_link
+ * @method Release[] getRelatedRelease_link
+ * @method Release getRelatedRelease_name
+ * @method Release getRelatedFixed_in_release_name
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedCreated_by_name
  *
  */
 class Bug {
 	/** 
-	 * @var  
+	 * @var Link2 
 	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $fixed_in_release_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $release_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
+	 public $emails;
 
 	/** 
 	 * @var Link2 
@@ -730,6 +727,11 @@ class Bug {
 	/** 
 	 * @var Link2 
 	 */
+	 public $meetings;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $tasks;
 
 	/** 
@@ -740,12 +742,7 @@ class Bug {
 	/** 
 	 * @var Link2 
 	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
+	 public $created_by_link;
 
 	/** 
 	 * @var Link2 
@@ -755,7 +752,7 @@ class Bug {
 	/** 
 	 * @var Link2 
 	 */
-	 public $project;
+	 public $fixed_in_release_link;
 
 	/** 
 	 * @var Link2 
@@ -765,17 +762,17 @@ class Bug {
 	/** 
 	 * @var Link2 
 	 */
-	 public $fixed_in_release_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
 	 public $cases;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $project;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $contacts;
 
 	/** 
 	 * @var Link2 
@@ -783,9 +780,34 @@ class Bug {
 	 public $accounts;
 
 	/** 
-	 * @var Link2 
+	 * @var Release 
 	 */
-	 public $contacts;
+	 public $release_name;
+
+	/** 
+	 * @var Release 
+	 */
+	 public $fixed_in_release_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -878,11 +900,11 @@ class Bug {
 	 public $fixed_in_release;
 
 	public $relationship_fields = [
+		'found_in_release' => 'release_link',
+		'fixed_in_release' => 'fixed_in_release_link',
+		'modified_user_id' => 'modified_user_link',
 		'assigned_user_id' => 'assigned_user_link',
 		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-		'fixed_in_release' => 'fixed_in_release_link',
-		'found_in_release' => 'release_link',
 	];
 
 }
@@ -890,22 +912,22 @@ class Bug {
 /**
  * Class Call
  *
- * @property  assigned_user_id User ID assigned to record
- * @property  created_by_name 
- * @property  modified_by_name 
- * @property  assigned_user_name 
- * @property  contact_name 
+ * @property Contact contact_name 
+ * @property Link2 created_by_link 
  * @property Link2 modified_user_link 
  * @property Link2 opportunities 
- * @property Link2 assigned_user_link 
- * @property Link2 created_by_link 
- * @property Link2 project 
- * @property Link2 users 
- * @property Link2 notes 
- * @property Link2 contacts 
- * @property Link2 accounts 
  * @property Link2 leads 
+ * @property Link2 assigned_user_link 
+ * @property Link2 project 
+ * @property Link2 accounts 
+ * @property Link2 contacts 
+ * @property Link2 users 
  * @property Link2 case 
+ * @property Link2 notes 
+ * @property User assigned_user_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User created_by_name 
+ * @property User modified_by_name 
  * @property bool email_reminder_sent Whether email reminder is already sent
  * @property bool email_reminder_checked checkbox indicating whether or not the email reminder value is set (Meta-data only)
  * @property bool reminder_checked checkbox indicating whether or not the reminder value is set (Meta-data only)
@@ -940,38 +962,28 @@ class Bug {
  * @property string date_start Date in which call is schedule to (or did) start
  * @property string parent_type The Sugar object to which the call is related
  *
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedCreated_by_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedContact_name
+ * @method Contact getRelatedContact_name
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method Account[] getRelatedAccounts
+ * @method Note[] getRelatedNotes
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedModified_by_name
  *
  */
 class Call {
 	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
+	 * @var Contact 
 	 */
 	 public $contact_name;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $created_by_link;
 
 	/** 
 	 * @var Link2 
@@ -986,12 +998,12 @@ class Call {
 	/** 
 	 * @var Link2 
 	 */
-	 public $assigned_user_link;
+	 public $leads;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $created_by_link;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -1001,12 +1013,7 @@ class Call {
 	/** 
 	 * @var Link2 
 	 */
-	 public $users;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
+	 public $accounts;
 
 	/** 
 	 * @var Link2 
@@ -1016,17 +1023,37 @@ class Call {
 	/** 
 	 * @var Link2 
 	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
+	 public $users;
 
 	/** 
 	 * @var Link2 
 	 */
 	 public $case;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $notes;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
 
 	/** 
 	 * @var bool Whether email reminder is already sent
@@ -1194,10 +1221,10 @@ class Call {
 	 public $parent_type;
 
 	public $relationship_fields = [
+		'contact_id' => 'contacts',
+		'assigned_user_id' => 'assigned_user_link',
 		'created_by' => 'created_by_link',
 		'modified_user_id' => 'modified_user_link',
-		'assigned_user_id' => 'assigned_user_link',
-		'contact_id' => 'contacts',
 	];
 
 }
@@ -1205,7 +1232,7 @@ class Call {
 /**
  * Class CampaignLog
  *
- * @property  campaign_name1 
+ * @property Campaign campaign_name1 
  * @property Link2 campaign 
  * @property Link2 created_lead 
  * @property Link2 created_contact 
@@ -1236,12 +1263,12 @@ class Call {
  * @property string related_type 
  * @property string marketing_name 
  *
- * @method  getRelatedCampaign_name1
+ * @method Campaign getRelatedCampaign_name1
  *
  */
 class CampaignLog {
 	/** 
-	 * @var  
+	 * @var Campaign 
 	 */
 	 public $campaign_name1;
 
@@ -1399,29 +1426,29 @@ class CampaignLog {
 /**
  * Class Campaign
  *
- * @property  created_by_name 
- * @property  modified_by_name 
- * @property  assigned_user_name 
- * @property  assigned_user_id User ID assigned to record
  * @property Link2 assigned_user_link 
+ * @property Link2 created_by_link 
  * @property Link2 log_entries 
+ * @property Link2 queueitems 
  * @property Link2 prospectlists 
  * @property Link2 emailmarketing 
- * @property Link2 queueitems 
- * @property Link2 created_by_link 
+ * @property Link2 tracked_urls 
  * @property Link2 modified_user_link 
  * @property Link2 opportunities 
- * @property Link2 tracked_urls 
+ * @property ProspectLink contacts 
  * @property ProspectLink accounts 
  * @property ProspectLink leads 
- * @property ProspectLink contacts 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User modified_by_name 
+ * @property User created_by_name 
+ * @property User assigned_user_name 
  * @property bool deleted Record deletion indicator
  * @property string expected_revenue Expected revenue stemming from the campaign
- * @property string actual_cost Actual cost of the campaign
  * @property string campaign_type The type of campaign
- * @property string content The campaign description
- * @property string expected_cost Expected cost of the campaign
+ * @property string actual_cost Actual cost of the campaign
  * @property string frequency Frequency of the campaign
+ * @property string expected_cost Expected cost of the campaign
+ * @property string content The campaign description
  * @property string objective The objective of the campaign
  * @property string end_date Ending date of the campaign
  * @property string created_by User who created record
@@ -1441,33 +1468,16 @@ class CampaignLog {
  * @property string start_date Starting date of the campaign
  * @property string budget Budgeted amount for the campaign
  *
- * @method  getRelatedCreated_by_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedAssigned_user_id
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_name
  *
  */
 class Campaign {
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
 	/** 
 	 * @var Link2 
 	 */
@@ -1476,7 +1486,17 @@ class Campaign {
 	/** 
 	 * @var Link2 
 	 */
+	 public $created_by_link;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $log_entries;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $queueitems;
 
 	/** 
 	 * @var Link2 
@@ -1491,12 +1511,7 @@ class Campaign {
 	/** 
 	 * @var Link2 
 	 */
-	 public $queueitems;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
+	 public $tracked_urls;
 
 	/** 
 	 * @var Link2 
@@ -1509,9 +1524,9 @@ class Campaign {
 	 public $opportunities;
 
 	/** 
-	 * @var Link2 
+	 * @var ProspectLink 
 	 */
-	 public $tracked_urls;
+	 public $contacts;
 
 	/** 
 	 * @var ProspectLink 
@@ -1524,9 +1539,24 @@ class Campaign {
 	 public $leads;
 
 	/** 
-	 * @var ProspectLink 
+	 * @var User User ID assigned to record
 	 */
-	 public $contacts;
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -1539,19 +1569,19 @@ class Campaign {
 	 public $expected_revenue;
 
 	/** 
-	 * @var string Actual cost of the campaign
-	 */
-	 public $actual_cost;
-
-	/** 
 	 * @var string The type of campaign
 	 */
 	 public $campaign_type;
 
 	/** 
-	 * @var string The campaign description
+	 * @var string Actual cost of the campaign
 	 */
-	 public $content;
+	 public $actual_cost;
+
+	/** 
+	 * @var string Frequency of the campaign
+	 */
+	 public $frequency;
 
 	/** 
 	 * @var string Expected cost of the campaign
@@ -1559,9 +1589,9 @@ class Campaign {
 	 public $expected_cost;
 
 	/** 
-	 * @var string Frequency of the campaign
+	 * @var string The campaign description
 	 */
-	 public $frequency;
+	 public $content;
 
 	/** 
 	 * @var string The objective of the campaign
@@ -1654,8 +1684,8 @@ class Campaign {
 	 public $budget;
 
 	public $relationship_fields = [
-		'created_by' => 'created_by_link',
 		'modified_user_id' => 'modified_user_link',
+		'created_by' => 'created_by_link',
 		'assigned_user_id' => 'assigned_user_link',
 	];
 
@@ -1748,26 +1778,26 @@ class CampaignTracker {
 /**
  * Class Case
  *
- * @property  created_by_name 
- * @property  assigned_user_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  modified_by_name 
- * @property  account_name The name of the account represented by the account_id field
- * @property  account_id The account to which the case is associated
- * @property Link2 assigned_user_link 
- * @property Link2 tasks 
+ * @property Account account_name The name of the account represented by the account_id field
+ * @property Account account_id The account to which the case is associated
  * @property Link2 documents 
+ * @property Link2 assigned_user_link 
  * @property Link2 emails 
  * @property Link2 notes 
+ * @property Link2 tasks 
+ * @property Link2 modified_user_link 
  * @property Link2 meetings 
  * @property Link2 created_by_link 
- * @property Link2 contacts 
- * @property Link2 accounts 
- * @property Link2 project 
  * @property Link2 bugs 
  * @property Link2 calls 
- * @property Link2 modified_user_link 
  * @property Link2 kbdocuments 
+ * @property Link2 contacts 
+ * @property Link2 project 
+ * @property Link2 accounts 
+ * @property User modified_by_name 
+ * @property User created_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User assigned_user_name 
  * @property bool deleted Record deletion indicator
  * @property string account_name1 
  * @property string status The status of the case
@@ -1784,60 +1814,38 @@ class CampaignTracker {
  * @property string type The type of issue (ex: issue, feature)
  * @property string work_log Free-form text used to denote activities of interest
  *
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedModified_by_name
- * @method  getRelatedAccount_name
- * @method  getRelatedAccount_id
- * @method [] getRelatedAccounts
+ * @method Account getRelatedAccount_name
+ * @method Account getRelatedAccount_id
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method Array[] getRelatedAccounts
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedAssigned_user_name
  *
  */
 class Case {
 	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  The name of the account represented by the account_id field
+	 * @var Account The name of the account represented by the account_id field
 	 */
 	 public $account_name;
 
 	/** 
-	 * @var  The account to which the case is associated
+	 * @var Account The account to which the case is associated
 	 */
 	 public $account_id;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
 	 public $documents;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -1852,27 +1860,22 @@ class Case {
 	/** 
 	 * @var Link2 
 	 */
+	 public $tasks;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $modified_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $meetings;
 
 	/** 
 	 * @var Link2 
 	 */
 	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
 
 	/** 
 	 * @var Link2 
@@ -1887,12 +1890,42 @@ class Case {
 	/** 
 	 * @var Link2 
 	 */
-	 public $modified_user_link;
+	 public $kbdocuments;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $kbdocuments;
+	 public $contacts;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $project;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $accounts;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -1970,10 +2003,10 @@ class Case {
 	 public $work_log;
 
 	public $relationship_fields = [
+		'account_id' => 'accounts',
+		'modified_user_id' => 'modified_user_link',
 		'created_by' => 'created_by_link',
 		'assigned_user_id' => 'assigned_user_link',
-		'modified_user_id' => 'modified_user_link',
-		'account_id' => 'accounts',
 	];
 
 }
@@ -1981,55 +2014,55 @@ class Case {
 /**
  * Class Contact
  *
- * @property  opportunity_role_fields 
  * @property  c_accept_status_fields 
- * @property  report_to_name 
- * @property  assigned_user_name 
- * @property  campaign_name The first campaign name for Contact (Meta-data only)
- * @property  created_by_name 
- * @property  assigned_user_id User ID assigned to record
+ * @property  opportunity_role_fields 
  * @property  m_accept_status_fields 
- * @property  account_id 
- * @property  account_name 
- * @property  modified_by_name 
- * @property Link2 direct_reports 
- * @property Link2 cases 
+ * @property Account account_id 
+ * @property Account account_name 
+ * @property Campaign campaign_name The first campaign name for Contact (Meta-data only)
+ * @property Contact report_to_name 
+ * @property Link2 documents 
  * @property Link2 emails 
  * @property Link2 leads 
- * @property Link2 meetings 
- * @property Link2 calls 
- * @property Link2 documents 
- * @property Link2 opportunities 
+ * @property Link2 project_resource 
  * @property Link2 notes 
+ * @property Link2 direct_reports 
+ * @property Link2 meetings 
+ * @property Link2 opportunities 
  * @property Link2 accounts 
  * @property Link2 email_addresses_primary 
- * @property Link2 reports_to_link 
- * @property Link2 bugs 
  * @property Link2 email_addresses 
- * @property Link2 project 
- * @property Link2 campaigns 
- * @property Link2 user_sync 
- * @property Link2 campaign_contacts 
- * @property Link2 modified_user_link 
- * @property Link2 prospect_lists 
- * @property Link2 created_by_link 
- * @property Link2 notes_parent 
- * @property Link2 assigned_user_link 
+ * @property Link2 reports_to_link 
  * @property Link2 tasks 
- * @property Link2 project_resource 
+ * @property Link2 calls 
+ * @property Link2 bugs 
+ * @property Link2 cases 
+ * @property Link2 project 
+ * @property Link2 assigned_user_link 
+ * @property Link2 campaign_contacts 
  * @property Link2 tasks_parent 
- * @property bool do_not_call An indicator of whether contact can be called
- * @property bool invalid_email 
+ * @property Link2 created_by_link 
+ * @property Link2 prospect_lists 
+ * @property Link2 campaigns 
+ * @property Link2 modified_user_link 
+ * @property Link2 notes_parent 
+ * @property Link2 user_sync 
+ * @property User modified_by_name 
+ * @property User created_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User assigned_user_name 
  * @property bool email_opt_out 
- * @property bool deleted Record deletion indicator
  * @property bool sync_contact Synch to outlook?  (Meta-Data only)
- * @property string accept_status_id 
+ * @property bool do_not_call An indicator of whether contact can be called
+ * @property bool deleted Record deletion indicator
+ * @property bool invalid_email 
  * @property string accept_status_name 
  * @property string lead_source How did the contact come about
- * @property string reports_to_id The contact this contact reports to
- * @property string campaign_id Campaign that generated lead
+ * @property string accept_status_id 
  * @property string email_and_name1 
  * @property string birthdate The birthdate of the contact
+ * @property string campaign_id Campaign that generated lead
+ * @property string reports_to_id The contact this contact reports to
  * @property string opportunity_role 
  * @property string opportunity_role_id 
  * @property string alt_address_postalcode Postal code for alternate address
@@ -2071,26 +2104,27 @@ class Case {
  * @property string primary_address_state State for primary address
  * @property string email_addresses_non_primary 
  *
- * @method  getRelatedOpportunity_role_fields
  * @method  getRelatedC_accept_status_fields
- * @method  getRelatedReport_to_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedCampaign_name
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_id
+ * @method  getRelatedOpportunity_role_fields
  * @method  getRelatedM_accept_status_fields
- * @method  getRelatedAccount_id
- * @method  getRelatedAccount_name
- * @method  getRelatedModified_by_name
- * @method [] getRelatedReports_to_link
+ * @method Account getRelatedAccount_id
+ * @method Account getRelatedAccount_name
+ * @method Campaign getRelatedCampaign_name
+ * @method Contact getRelatedReport_to_name
+ * @method Opportunity[] getRelatedOpportunities
+ * @method Array[] getRelatedReports_to_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method ProspectList[] getRelatedProspect_lists
+ * @method CampaignLog[] getRelatedCampaigns
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedAssigned_user_name
  *
  */
 class Contact {
-	/** 
-	 * @var  
-	 */
-	 public $opportunity_role_fields;
-
 	/** 
 	 * @var  
 	 */
@@ -2099,27 +2133,7 @@ class Contact {
 	/** 
 	 * @var  
 	 */
-	 public $report_to_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  The first campaign name for Contact (Meta-data only)
-	 */
-	 public $campaign_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
+	 public $opportunity_role_fields;
 
 	/** 
 	 * @var  
@@ -2127,29 +2141,29 @@ class Contact {
 	 public $m_accept_status_fields;
 
 	/** 
-	 * @var  
+	 * @var Account 
 	 */
 	 public $account_id;
 
 	/** 
-	 * @var  
+	 * @var Account 
 	 */
 	 public $account_name;
 
 	/** 
-	 * @var  
+	 * @var Campaign The first campaign name for Contact (Meta-data only)
 	 */
-	 public $modified_by_name;
+	 public $campaign_name;
+
+	/** 
+	 * @var Contact 
+	 */
+	 public $report_to_name;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $direct_reports;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
+	 public $documents;
 
 	/** 
 	 * @var Link2 
@@ -2164,27 +2178,27 @@ class Contact {
 	/** 
 	 * @var Link2 
 	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $documents;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
+	 public $project_resource;
 
 	/** 
 	 * @var Link2 
 	 */
 	 public $notes;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $direct_reports;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $meetings;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $opportunities;
 
 	/** 
 	 * @var Link2 
@@ -2199,62 +2213,12 @@ class Contact {
 	/** 
 	 * @var Link2 
 	 */
-	 public $reports_to_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
 	 public $email_addresses;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $user_sync;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospect_lists;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes_parent;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
+	 public $reports_to_link;
 
 	/** 
 	 * @var Link2 
@@ -2264,7 +2228,32 @@ class Contact {
 	/** 
 	 * @var Link2 
 	 */
-	 public $project_resource;
+	 public $calls;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $bugs;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $cases;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $project;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $assigned_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $campaign_contacts;
 
 	/** 
 	 * @var Link2 
@@ -2272,14 +2261,54 @@ class Contact {
 	 public $tasks_parent;
 
 	/** 
-	 * @var bool An indicator of whether contact can be called
+	 * @var Link2 
 	 */
-	 public $do_not_call;
+	 public $created_by_link;
 
 	/** 
-	 * @var bool 
+	 * @var Link2 
 	 */
-	 public $invalid_email;
+	 public $prospect_lists;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $campaigns;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $modified_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $notes_parent;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $user_sync;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
 
 	/** 
 	 * @var bool 
@@ -2287,19 +2316,24 @@ class Contact {
 	 public $email_opt_out;
 
 	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
 	 * @var bool Synch to outlook?  (Meta-Data only)
 	 */
 	 public $sync_contact;
 
 	/** 
-	 * @var string 
+	 * @var bool An indicator of whether contact can be called
 	 */
-	 public $accept_status_id;
+	 public $do_not_call;
+
+	/** 
+	 * @var bool Record deletion indicator
+	 */
+	 public $deleted;
+
+	/** 
+	 * @var bool 
+	 */
+	 public $invalid_email;
 
 	/** 
 	 * @var string 
@@ -2312,14 +2346,9 @@ class Contact {
 	 public $lead_source;
 
 	/** 
-	 * @var string The contact this contact reports to
+	 * @var string 
 	 */
-	 public $reports_to_id;
-
-	/** 
-	 * @var string Campaign that generated lead
-	 */
-	 public $campaign_id;
+	 public $accept_status_id;
 
 	/** 
 	 * @var string 
@@ -2330,6 +2359,16 @@ class Contact {
 	 * @var string The birthdate of the contact
 	 */
 	 public $birthdate;
+
+	/** 
+	 * @var string Campaign that generated lead
+	 */
+	 public $campaign_id;
+
+	/** 
+	 * @var string The contact this contact reports to
+	 */
+	 public $reports_to_id;
 
 	/** 
 	 * @var string 
@@ -2532,12 +2571,12 @@ class Contact {
 	 public $email_addresses_non_primary;
 
 	public $relationship_fields = [
-		'reports_to_id' => 'reports_to_link',
-		'assigned_user_id' => 'assigned_user_link',
-		'campaign_id' => 'campaign_contacts',
-		'created_by' => 'created_by_link',
 		'account_id' => 'accounts',
+		'campaign_id' => 'campaign_contacts',
+		'reports_to_id' => 'reports_to_link',
 		'modified_user_id' => 'modified_user_link',
+		'created_by' => 'created_by_link',
+		'assigned_user_id' => 'assigned_user_link',
 	];
 
 }
@@ -2617,15 +2656,15 @@ class Currency {
 /**
  * Class DocumentRevision
  *
- * @property  created_by_name 
  * @property Link2 documents 
  * @property Link2 created_by_link 
+ * @property User created_by_name 
  * @property bool deleted 
  * @property string revision 
  * @property string date_modified 
- * @property string document_name 
- * @property string file_mime_type 
  * @property string latest_revision 
+ * @property string file_mime_type 
+ * @property string document_name 
  * @property string latest_revision_id 
  * @property string file_ext 
  * @property string doc_id Document ID from documents web server provider
@@ -2638,15 +2677,11 @@ class Currency {
  * @property string date_entered 
  * @property string id 
  *
- * @method  getRelatedCreated_by_name
+ * @method User[] getRelatedCreated_by_link
+ * @method User getRelatedCreated_by_name
  *
  */
 class DocumentRevision {
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
 	/** 
 	 * @var Link2 
 	 */
@@ -2656,6 +2691,11 @@ class DocumentRevision {
 	 * @var Link2 
 	 */
 	 public $created_by_link;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
 
 	/** 
 	 * @var bool 
@@ -2675,7 +2715,7 @@ class DocumentRevision {
 	/** 
 	 * @var string 
 	 */
-	 public $document_name;
+	 public $latest_revision;
 
 	/** 
 	 * @var string 
@@ -2685,7 +2725,7 @@ class DocumentRevision {
 	/** 
 	 * @var string 
 	 */
-	 public $latest_revision;
+	 public $document_name;
 
 	/** 
 	 * @var string 
@@ -2751,22 +2791,22 @@ class DocumentRevision {
 /**
  * Class Document
  *
- * @property  assigned_user_id User ID assigned to record
- * @property  created_by_name 
- * @property  related_doc_name The related document name for Meta-Data framework
- * @property  modified_by_name 
- * @property  assigned_user_name 
- * @property Link2 bugs 
+ * @property Document related_doc_name The related document name for Meta-Data framework
+ * @property Link2 created_by_link 
  * @property Link2 modified_user_link 
  * @property Link2 cases 
+ * @property Link2 bugs 
  * @property Link2 assigned_user_link 
- * @property Link2 created_by_link 
  * @property Link2 opportunities 
  * @property Link2 leads 
  * @property Link2 contracts 
  * @property Link2 accounts 
  * @property Link2 revisions 
  * @property Link2 contacts 
+ * @property User modified_by_name 
+ * @property User assigned_user_name 
+ * @property User created_by_name 
+ * @property User assigned_user_id User ID assigned to record
  * @property bool is_template 
  * @property bool deleted Record deletion indicator
  * @property string related_doc_rev_id 
@@ -2806,43 +2846,26 @@ class DocumentRevision {
  * @property string subcategory_id 
  * @property string latest_revision 
  *
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedCreated_by_name
- * @method  getRelatedRelated_doc_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedAssigned_user_name
+ * @method Document getRelatedRelated_doc_name
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_id
  *
  */
 class Document {
 	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  The related document name for Meta-Data framework
+	 * @var Document The related document name for Meta-Data framework
 	 */
 	 public $related_doc_name;
 
 	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
 	 * @var Link2 
 	 */
-	 public $bugs;
+	 public $created_by_link;
 
 	/** 
 	 * @var Link2 
@@ -2857,12 +2880,12 @@ class Document {
 	/** 
 	 * @var Link2 
 	 */
-	 public $assigned_user_link;
+	 public $bugs;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $created_by_link;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -2893,6 +2916,26 @@ class Document {
 	 * @var Link2 
 	 */
 	 public $contacts;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
 
 	/** 
 	 * @var bool 
@@ -3085,9 +3128,9 @@ class Document {
 	 public $latest_revision;
 
 	public $relationship_fields = [
-		'created_by' => 'created_by_link',
 		'modified_user_id' => 'modified_user_link',
 		'assigned_user_id' => 'assigned_user_link',
+		'created_by' => 'created_by_link',
 	];
 
 }
@@ -3095,64 +3138,42 @@ class Document {
 /**
  * Class EAPM
  *
- * @property  created_by_name 
- * @property  assigned_user_name 
- * @property  modified_by_name 
- * @property  assigned_user_id User ID assigned to record
- * @property Link2 modified_user_link 
  * @property Link2 created_by_link 
  * @property Link2 assigned_user_link 
- * @property bool validated 
+ * @property Link2 modified_user_link 
+ * @property User assigned_user_name 
+ * @property User created_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User modified_by_name 
  * @property bool deleted Record deletion indicator
+ * @property bool validated 
  * @property string consumer_key 
  * @property string api_data Any API data that the external API may wish to store on a per-user basis
  * @property string consumer_secret 
+ * @property string oauth_token 
+ * @property string application 
  * @property string oauth_secret 
  * @property string note 
- * @property string application 
- * @property string oauth_token 
  * @property string password 
  * @property string date_modified Date record last modified
- * @property string created_by User who created record
+ * @property string modified_user_id User who last modified record
  * @property string description Full text of the note
  * @property string id Unique identifier
- * @property string name 
  * @property string date_entered Date record created
- * @property string modified_user_id User who last modified record
+ * @property string created_by User who created record
+ * @property string name 
  * @property string url 
  *
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedAssigned_user_id
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedModified_by_name
  *
  */
 class EAPM {
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
 	/** 
 	 * @var Link2 
 	 */
@@ -3164,14 +3185,39 @@ class EAPM {
 	 public $assigned_user_link;
 
 	/** 
-	 * @var bool 
+	 * @var Link2 
 	 */
-	 public $validated;
+	 public $modified_user_link;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
 
 	/** 
 	 * @var bool Record deletion indicator
 	 */
 	 public $deleted;
+
+	/** 
+	 * @var bool 
+	 */
+	 public $validated;
 
 	/** 
 	 * @var string 
@@ -3191,12 +3237,7 @@ class EAPM {
 	/** 
 	 * @var string 
 	 */
-	 public $oauth_secret;
-
-	/** 
-	 * @var string 
-	 */
-	 public $note;
+	 public $oauth_token;
 
 	/** 
 	 * @var string 
@@ -3206,7 +3247,12 @@ class EAPM {
 	/** 
 	 * @var string 
 	 */
-	 public $oauth_token;
+	 public $oauth_secret;
+
+	/** 
+	 * @var string 
+	 */
+	 public $note;
 
 	/** 
 	 * @var string 
@@ -3219,9 +3265,9 @@ class EAPM {
 	 public $date_modified;
 
 	/** 
-	 * @var string User who created record
+	 * @var string User who last modified record
 	 */
-	 public $created_by;
+	 public $modified_user_id;
 
 	/** 
 	 * @var string Full text of the note
@@ -3234,19 +3280,19 @@ class EAPM {
 	 public $id;
 
 	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
 	 * @var string Date record created
 	 */
 	 public $date_entered;
 
 	/** 
-	 * @var string User who last modified record
+	 * @var string User who created record
 	 */
-	 public $modified_user_id;
+	 public $created_by;
+
+	/** 
+	 * @var string 
+	 */
+	 public $name;
 
 	/** 
 	 * @var string 
@@ -3254,8 +3300,8 @@ class EAPM {
 	 public $url;
 
 	public $relationship_fields = [
-		'created_by' => 'created_by_link',
 		'assigned_user_id' => 'assigned_user_link',
+		'created_by' => 'created_by_link',
 		'modified_user_id' => 'modified_user_link',
 	];
 
@@ -3390,7 +3436,7 @@ class EmailMan {
 /**
  * Class EmailMarketing
  *
- * @property  template_name 
+ * @property EmailTemplate template_name 
  * @property Link2 emailtemplate 
  * @property Link2 prospectlists 
  * @property bool all_prospect_lists 
@@ -3412,12 +3458,12 @@ class EmailMan {
  * @property string from_name 
  * @property string id 
  *
- * @method  getRelatedTemplate_name
+ * @method EmailTemplate getRelatedTemplate_name
  *
  */
 class EmailMarketing {
 	/** 
-	 * @var  
+	 * @var EmailTemplate 
 	 */
 	 public $template_name;
 
@@ -3575,6 +3621,22 @@ class EmailMarketing {
  * @property string description 
  * @property string name The subject of the email
  *
+ * @method Bug[] getRelatedBugs
+ * @method aCase[] getRelatedCases
+ * @method Contact[] getRelatedContacts
+ * @method Account[] getRelatedAccounts
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method Lead[] getRelatedLeads
+ * @method Opportunity[] getRelatedOpportunities
+ * @method User[] getRelatedUsers
+ * @method Note[] getRelatedNotes
+ * @method Meeting[] getRelatedMeetings
+ * @method Task[] getRelatedTasks
+ * @method Prospect[] getRelatedProspects
+ * @method Project[] getRelatedProject
+ * @method ProjectTask[] getRelatedProjecttask
  *
  */
 class Email {
@@ -3806,9 +3868,9 @@ class Email {
 /**
  * Class EmailTemplate
  *
- * @property  assigned_user_id User ID assigned to record
- * @property  assigned_user_name 
  * @property Link2 assigned_user_link 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User assigned_user_name 
  * @property bool deleted Record deletion indicator
  * @property bool text_only Should be checked if email template is to be sent in text only
  * @property string body_html HTML formatted email body to be used in resulting email
@@ -3824,25 +3886,26 @@ class Email {
  * @property string name Email template name
  * @property string id Unique identifier
  *
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedAssigned_user_name
+ * @method User[] getRelatedAssigned_user_link
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedAssigned_user_name
  *
  */
 class EmailTemplate {
 	/** 
-	 * @var  User ID assigned to record
+	 * @var Link2 
+	 */
+	 public $assigned_user_link;
+
+	/** 
+	 * @var User User ID assigned to record
 	 */
 	 public $assigned_user_id;
 
 	/** 
-	 * @var  
+	 * @var User 
 	 */
 	 public $assigned_user_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -3995,23 +4058,23 @@ class EmailText {
 /**
  * Class Employee
  *
- * @property  reports_to_name 
  * @property  m_accept_status_fields 
  * @property  c_accept_status_fields 
- * @property Link2 email_addresses 
  * @property Link2 contacts_sync 
- * @property Link2 reports_to_link 
- * @property Link2 aclroles 
  * @property Link2 meetings 
+ * @property Link2 reports_to_link 
+ * @property Link2 email_addresses 
  * @property Link2 reportees 
+ * @property Link2 email_addresses_primary 
+ * @property Link2 aclroles 
  * @property Link2 calls 
  * @property Link2 eapm 
  * @property Link2 oauth_tokens 
  * @property Link2 project_resource 
- * @property Link2 email_addresses_primary 
- * @property Link2 holidays 
  * @property Link2 prospect_lists 
+ * @property Link2 holidays 
  * @property Link2 emails_users 
+ * @property User reports_to_name 
  * @property bool portal_only 
  * @property bool show_on_employees 
  * @property bool is_group 
@@ -4060,22 +4123,19 @@ class EmailText {
  * @property string phone_work 
  * @property string UserType 
  *
- * @method  getRelatedReports_to_name
  * @method  getRelatedM_accept_status_fields
  * @method  getRelatedC_accept_status_fields
- * @method [] getRelatedReports_to_link
- * @method [] getRelatedAclroles
- * @method [] getRelatedReportees
- * @method [] getRelatedOauth_tokens
- * @method [] getRelatedHolidays
+ * @method Array[] getRelatedReports_to_link
+ * @method Array[] getRelatedReportees
+ * @method User[] getRelatedAclroles
+ * @method OAuthToken[] getRelatedOauth_tokens
+ * @method ProspectList[] getRelatedProspect_lists
+ * @method Array[] getRelatedHolidays
+ * @method Email[] getRelatedEmails_users
+ * @method User getRelatedReports_to_name
  *
  */
 class Employee {
-	/** 
-	 * @var  
-	 */
-	 public $reports_to_name;
-
 	/** 
 	 * @var  
 	 */
@@ -4089,22 +4149,7 @@ class Employee {
 	/** 
 	 * @var Link2 
 	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
 	 public $contacts_sync;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reports_to_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $aclroles;
 
 	/** 
 	 * @var Link2 
@@ -4114,7 +4159,27 @@ class Employee {
 	/** 
 	 * @var Link2 
 	 */
+	 public $reports_to_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $email_addresses;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $reportees;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $email_addresses_primary;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $aclroles;
 
 	/** 
 	 * @var Link2 
@@ -4139,7 +4204,7 @@ class Employee {
 	/** 
 	 * @var Link2 
 	 */
-	 public $email_addresses_primary;
+	 public $prospect_lists;
 
 	/** 
 	 * @var Link2 
@@ -4149,12 +4214,12 @@ class Employee {
 	/** 
 	 * @var Link2 
 	 */
-	 public $prospect_lists;
+	 public $emails_users;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $emails_users;
+	 public $reports_to_name;
 
 	/** 
 	 * @var bool 
@@ -4616,6 +4681,8 @@ class ImportMap {
  * @property string status Status of the inbound email mailbox (ex: Active or Inactive)
  * @property string email_password Password of user identified by email_user
  *
+ * @method User[] getRelatedModified_user_id_link
+ * @method User[] getRelatedCreated_by_link
  *
  */
 class InboundEmail {
@@ -4742,41 +4809,41 @@ class InboundEmail {
 /**
  * Class Lead
  *
- * @property  assigned_user_name 
- * @property  assigned_user_id User ID assigned to record
  * @property  m_accept_status_fields 
  * @property  c_accept_status_fields 
- * @property  campaign_name 
- * @property  created_by_name 
- * @property  report_to_name 
- * @property  modified_by_name 
- * @property Link2 oldmeetings 
- * @property Link2 campaign_leads 
+ * @property Campaign campaign_name 
+ * @property Contact report_to_name 
  * @property Link2 prospect_lists 
+ * @property Link2 oldcalls 
  * @property Link2 contact 
+ * @property Link2 contacts 
+ * @property Link2 accounts 
+ * @property Link2 campaign_leads 
  * @property Link2 campaigns 
- * @property Link2 reports_to_link 
  * @property Link2 reportees 
+ * @property Link2 emails 
  * @property Link2 email_addresses_primary 
  * @property Link2 email_addresses 
- * @property Link2 contacts 
- * @property Link2 emails 
- * @property Link2 accounts 
- * @property Link2 modified_user_link 
- * @property Link2 created_by_link 
- * @property Link2 opportunity 
- * @property Link2 calls 
- * @property Link2 oldcalls 
- * @property Link2 assigned_user_link 
+ * @property Link2 reports_to_link 
  * @property Link2 tasks 
  * @property Link2 notes 
+ * @property Link2 opportunity 
+ * @property Link2 calls 
+ * @property Link2 oldmeetings 
+ * @property Link2 created_by_link 
+ * @property Link2 modified_user_link 
  * @property Link2 meetings 
+ * @property Link2 assigned_user_link 
+ * @property User modified_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User created_by_name 
+ * @property User assigned_user_name 
  * @property bool email_opt_out 
- * @property bool webtolead_invalid_email Indicator that email address for lead is invalid
+ * @property bool converted Has Lead been converted to a Contact (and other Sugar objects)
  * @property bool invalid_email 
  * @property bool deleted Record deletion indicator
  * @property bool do_not_call An indicator of whether contact can be called
- * @property bool converted Has Lead been converted to a Contact (and other Sugar objects)
+ * @property bool webtolead_invalid_email Indicator that email address for lead is invalid
  * @property bool webtolead_email_opt_out Indicator signaling if lead elects to opt out of email campaigns
  * @property string account_description Description of lead account
  * @property string contact_id If converted, Contact ID resulting from the conversion
@@ -4839,29 +4906,25 @@ class InboundEmail {
  * @property string primary_address_country Country for primary address
  * @property string lead_source_description Description of the lead source
  *
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedAssigned_user_id
  * @method  getRelatedM_accept_status_fields
  * @method  getRelatedC_accept_status_fields
- * @method  getRelatedCampaign_name
- * @method  getRelatedCreated_by_name
- * @method  getRelatedReport_to_name
- * @method  getRelatedModified_by_name
- * @method [] getRelatedReports_to_link
- * @method [] getRelatedReportees
+ * @method Campaign getRelatedCampaign_name
+ * @method Contact getRelatedReport_to_name
+ * @method ProspectList[] getRelatedProspect_lists
+ * @method Contact[] getRelatedContacts
+ * @method CampaignLog[] getRelatedCampaigns
+ * @method Array[] getRelatedReportees
+ * @method Array[] getRelatedReports_to_link
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_name
  *
  */
 class Lead {
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
 	/** 
 	 * @var  
 	 */
@@ -4873,34 +4936,14 @@ class Lead {
 	 public $c_accept_status_fields;
 
 	/** 
-	 * @var  
+	 * @var Campaign 
 	 */
 	 public $campaign_name;
 
 	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
+	 * @var Contact 
 	 */
 	 public $report_to_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $oldmeetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_leads;
 
 	/** 
 	 * @var Link2 
@@ -4910,7 +4953,27 @@ class Lead {
 	/** 
 	 * @var Link2 
 	 */
+	 public $oldcalls;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $contact;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $contacts;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $accounts;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $campaign_leads;
 
 	/** 
 	 * @var Link2 
@@ -4920,12 +4983,12 @@ class Lead {
 	/** 
 	 * @var Link2 
 	 */
-	 public $reports_to_link;
+	 public $reportees;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $reportees;
+	 public $emails;
 
 	/** 
 	 * @var Link2 
@@ -4940,47 +5003,7 @@ class Lead {
 	/** 
 	 * @var Link2 
 	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunity;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $oldcalls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
+	 public $reports_to_link;
 
 	/** 
 	 * @var Link2 
@@ -4995,7 +5018,57 @@ class Lead {
 	/** 
 	 * @var Link2 
 	 */
+	 public $opportunity;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $calls;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $oldmeetings;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $created_by_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $modified_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $meetings;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $assigned_user_link;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
 
 	/** 
 	 * @var bool 
@@ -5003,9 +5076,9 @@ class Lead {
 	 public $email_opt_out;
 
 	/** 
-	 * @var bool Indicator that email address for lead is invalid
+	 * @var bool Has Lead been converted to a Contact (and other Sugar objects)
 	 */
-	 public $webtolead_invalid_email;
+	 public $converted;
 
 	/** 
 	 * @var bool 
@@ -5023,9 +5096,9 @@ class Lead {
 	 public $do_not_call;
 
 	/** 
-	 * @var bool Has Lead been converted to a Contact (and other Sugar objects)
+	 * @var bool Indicator that email address for lead is invalid
 	 */
-	 public $converted;
+	 public $webtolead_invalid_email;
 
 	/** 
 	 * @var bool Indicator signaling if lead elects to opt out of email campaigns
@@ -5333,10 +5406,10 @@ class Lead {
 	 public $lead_source_description;
 
 	public $relationship_fields = [
-		'assigned_user_id' => 'assigned_user_link',
 		'campaign_id' => 'campaign_leads',
-		'created_by' => 'created_by_link',
 		'modified_user_id' => 'modified_user_link',
+		'created_by' => 'created_by_link',
+		'assigned_user_id' => 'assigned_user_link',
 	];
 
 }
@@ -5344,30 +5417,30 @@ class Lead {
 /**
  * Class Meeting
  *
- * @property  assigned_user_name 
- * @property  created_by_name 
- * @property  modified_by_name 
- * @property  contact_name 
- * @property  assigned_user_id User ID assigned to record
- * @property Link2 assigned_user_link 
+ * @property Contact contact_name 
  * @property Link2 notes 
  * @property Link2 contacts 
  * @property Link2 case 
+ * @property Link2 assigned_user_link 
+ * @property Link2 opportunity 
  * @property Link2 users 
  * @property Link2 accounts 
  * @property Link2 leads 
- * @property Link2 opportunity 
- * @property Link2 modified_user_link 
  * @property Link2 created_by_link 
+ * @property Link2 modified_user_link 
+ * @property User modified_by_name 
+ * @property User assigned_user_name 
+ * @property User created_by_name 
+ * @property User assigned_user_id User ID assigned to record
  * @property bool email_reminder_sent Whether email reminder is already sent
- * @property bool email_reminder_checked checkbox indicating whether or not the email reminder value is set (Meta-data only)
  * @property bool deleted Record deletion indicator
+ * @property bool email_reminder_checked checkbox indicating whether or not the email reminder value is set (Meta-data only)
  * @property bool reminder_checked checkbox indicating whether or not the reminder value is set (Meta-data only)
- * @property string email_reminder_time Specifies when a email reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
  * @property string reminder_time Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
+ * @property string email_reminder_time Specifies when a email reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
+ * @property string outlook_id When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
  * @property string sequence Meeting update sequence for meetings as per iCalendar standards
  * @property string parent_name 
- * @property string outlook_id When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
  * @property string repeat_type Type of recurrence
  * @property string repeat_parent_id Id of the first element of recurring records
  * @property string recurring_source Source of recurring meeting
@@ -5403,43 +5476,22 @@ class Lead {
  * @property string duration_minutes Duration (minutes)
  * @property string parent_id ID of item indicated by parent_type
  *
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedCreated_by_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedContact_name
- * @method  getRelatedAssigned_user_id
+ * @method Contact getRelatedContact_name
+ * @method Note[] getRelatedNotes
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_id
  *
  */
 class Meeting {
 	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
+	 * @var Contact 
 	 */
 	 public $contact_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -5459,6 +5511,16 @@ class Meeting {
 	/** 
 	 * @var Link2 
 	 */
+	 public $assigned_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $opportunity;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $users;
 
 	/** 
@@ -5474,7 +5536,7 @@ class Meeting {
 	/** 
 	 * @var Link2 
 	 */
-	 public $opportunity;
+	 public $created_by_link;
 
 	/** 
 	 * @var Link2 
@@ -5482,9 +5544,24 @@ class Meeting {
 	 public $modified_user_link;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $created_by_link;
+	 public $modified_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
 
 	/** 
 	 * @var bool Whether email reminder is already sent
@@ -5492,14 +5569,14 @@ class Meeting {
 	 public $email_reminder_sent;
 
 	/** 
-	 * @var bool checkbox indicating whether or not the email reminder value is set (Meta-data only)
-	 */
-	 public $email_reminder_checked;
-
-	/** 
 	 * @var bool Record deletion indicator
 	 */
 	 public $deleted;
+
+	/** 
+	 * @var bool checkbox indicating whether or not the email reminder value is set (Meta-data only)
+	 */
+	 public $email_reminder_checked;
 
 	/** 
 	 * @var bool checkbox indicating whether or not the reminder value is set (Meta-data only)
@@ -5507,14 +5584,19 @@ class Meeting {
 	 public $reminder_checked;
 
 	/** 
+	 * @var string Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
+	 */
+	 public $reminder_time;
+
+	/** 
 	 * @var string Specifies when a email reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
 	 */
 	 public $email_reminder_time;
 
 	/** 
-	 * @var string Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
+	 * @var string When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
 	 */
-	 public $reminder_time;
+	 public $outlook_id;
 
 	/** 
 	 * @var string Meeting update sequence for meetings as per iCalendar standards
@@ -5525,11 +5607,6 @@ class Meeting {
 	 * @var string 
 	 */
 	 public $parent_name;
-
-	/** 
-	 * @var string When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
-	 */
-	 public $outlook_id;
 
 	/** 
 	 * @var string Type of recurrence
@@ -5702,10 +5779,10 @@ class Meeting {
 	 public $parent_id;
 
 	public $relationship_fields = [
+		'contact_id' => 'contacts',
+		'modified_user_id' => 'modified_user_link',
 		'assigned_user_id' => 'assigned_user_link',
 		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-		'contact_id' => 'contacts',
 	];
 
 }
@@ -5725,32 +5802,32 @@ class MergeRecord {
 /**
  * Class Note
  *
- * @property  assigned_user_id User ID assigned to record
- * @property  created_by_name 
- * @property  modified_by_name 
- * @property  contact_name 
- * @property  assigned_user_name 
- * @property Link2 cases 
+ * @property Contact contact_name 
  * @property Link2 accounts 
- * @property Link2 modified_user_link 
- * @property Link2 created_by_link 
  * @property Link2 opportunities 
+ * @property Link2 cases 
+ * @property Link2 bugs 
  * @property Link2 contact 
+ * @property Link2 created_by_link 
+ * @property Link2 modified_user_link 
+ * @property Link2 emails 
  * @property Link2 leads 
+ * @property Link2 calls 
  * @property Link2 assigned_user_link 
  * @property Link2 tasks 
  * @property Link2 meetings 
  * @property Link2 project_tasks 
  * @property Link2 projects 
- * @property Link2 bugs 
- * @property Link2 emails 
- * @property Link2 calls 
- * @property bool embed_flag Embed flag indicator determines if note embedded in email
- * @property bool deleted Record deletion indicator
+ * @property User assigned_user_name 
+ * @property User created_by_name 
+ * @property User modified_by_name 
+ * @property User assigned_user_id User ID assigned to record
  * @property bool portal_flag Portal flag indicator determines if note created via portal
+ * @property bool deleted Record deletion indicator
+ * @property bool embed_flag Embed flag indicator determines if note embedded in email
  * @property string acase_id 
- * @property string lead_id 
  * @property string opportunity_id 
+ * @property string lead_id 
  * @property string parent_name 
  * @property string created_by User who created record
  * @property string name Name of the note
@@ -5769,43 +5846,21 @@ class MergeRecord {
  * @property string parent_id The ID of the Sugar item specified in parent_type
  * @property string account_id 
  *
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedCreated_by_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedContact_name
- * @method  getRelatedAssigned_user_name
+ * @method Contact getRelatedContact_name
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_id
  *
  */
 class Note {
 	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
+	 * @var Contact 
 	 */
 	 public $contact_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
 
 	/** 
 	 * @var Link2 
@@ -5815,17 +5870,17 @@ class Note {
 	/** 
 	 * @var Link2 
 	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
 	 public $opportunities;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $cases;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $bugs;
 
 	/** 
 	 * @var Link2 
@@ -5835,7 +5890,27 @@ class Note {
 	/** 
 	 * @var Link2 
 	 */
+	 public $created_by_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $modified_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $emails;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $leads;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $calls;
 
 	/** 
 	 * @var Link2 
@@ -5863,24 +5938,29 @@ class Note {
 	 public $projects;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $bugs;
+	 public $assigned_user_name;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $emails;
+	 public $created_by_name;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $calls;
+	 public $modified_by_name;
 
 	/** 
-	 * @var bool Embed flag indicator determines if note embedded in email
+	 * @var User User ID assigned to record
 	 */
-	 public $embed_flag;
+	 public $assigned_user_id;
+
+	/** 
+	 * @var bool Portal flag indicator determines if note created via portal
+	 */
+	 public $portal_flag;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -5888,9 +5968,9 @@ class Note {
 	 public $deleted;
 
 	/** 
-	 * @var bool Portal flag indicator determines if note created via portal
+	 * @var bool Embed flag indicator determines if note embedded in email
 	 */
-	 public $portal_flag;
+	 public $embed_flag;
 
 	/** 
 	 * @var string 
@@ -5900,12 +5980,12 @@ class Note {
 	/** 
 	 * @var string 
 	 */
-	 public $lead_id;
+	 public $opportunity_id;
 
 	/** 
 	 * @var string 
 	 */
-	 public $opportunity_id;
+	 public $lead_id;
 
 	/** 
 	 * @var string 
@@ -5993,10 +6073,10 @@ class Note {
 	 public $account_id;
 
 	public $relationship_fields = [
-		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
 		'contact_id' => 'contact',
 		'assigned_user_id' => 'assigned_user_link',
+		'created_by' => 'created_by_link',
+		'modified_user_id' => 'modified_user_link',
 	];
 
 }
@@ -6004,14 +6084,14 @@ class Note {
 /**
  * Class OAuthKey
  *
- * @property  created_by_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  assigned_user_name 
- * @property  modified_by_name 
- * @property Link2 tokens 
+ * @property Link2 modified_user_link 
  * @property Link2 assigned_user_link 
  * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
+ * @property Link2 tokens 
+ * @property User created_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User modified_by_name 
+ * @property User assigned_user_name 
  * @property bool deleted Record deletion indicator
  * @property string c_secret Consumer secret key
  * @property string c_key Consumer public key
@@ -6023,37 +6103,21 @@ class Note {
  * @property string created_by User who created record
  * @property string id Unique identifier
  *
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedModified_by_name
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method OAuthToken[] getRelatedTokens
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_name
  *
  */
 class OAuthKey {
 	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
 	 * @var Link2 
 	 */
-	 public $tokens;
+	 public $modified_user_link;
 
 	/** 
 	 * @var Link2 
@@ -6068,7 +6132,27 @@ class OAuthKey {
 	/** 
 	 * @var Link2 
 	 */
-	 public $modified_user_link;
+	 public $tokens;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -6122,8 +6206,8 @@ class OAuthKey {
 
 	public $relationship_fields = [
 		'created_by' => 'created_by_link',
-		'assigned_user_id' => 'assigned_user_link',
 		'modified_user_id' => 'modified_user_link',
+		'assigned_user_id' => 'assigned_user_link',
 	];
 
 }
@@ -6131,11 +6215,11 @@ class OAuthKey {
 /**
  * Class OAuthToken
  *
- * @property  consumer_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  assigned_user_name 
- * @property Link2 assigned_user_link 
  * @property Link2 consumer_link 
+ * @property Link2 assigned_user_link 
+ * @property OAuthKey consumer_name 
+ * @property User assigned_user_name 
+ * @property User assigned_user_id User ID assigned to record
  * @property bool deleted Record deletion indicator
  * @property string tstate Token state
  * @property string secret Secret key
@@ -6145,26 +6229,18 @@ class OAuthKey {
  * @property string verify Token verification info
  * @property string id Unique identifier
  *
- * @method  getRelatedConsumer_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedAssigned_user_name
+ * @method OAuthKey[] getRelatedConsumer_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method OAuthKey getRelatedConsumer_name
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedAssigned_user_id
  *
  */
 class OAuthToken {
 	/** 
-	 * @var  
+	 * @var Link2 
 	 */
-	 public $consumer_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
+	 public $consumer_link;
 
 	/** 
 	 * @var Link2 
@@ -6172,9 +6248,19 @@ class OAuthToken {
 	 public $assigned_user_link;
 
 	/** 
-	 * @var Link2 
+	 * @var OAuthKey 
 	 */
-	 public $consumer_link;
+	 public $consumer_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -6226,31 +6312,31 @@ class OAuthToken {
 /**
  * Class Opportunity
  *
- * @property  account_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  campaign_name 
- * @property  currency_name 
- * @property  currency_symbol 
- * @property  created_by_name 
- * @property  assigned_user_name 
- * @property  modified_by_name 
+ * @property Account account_name 
+ * @property Campaign campaign_name 
+ * @property Currency currency_name 
+ * @property Currency currency_symbol 
+ * @property Link2 assigned_user_link 
  * @property Link2 tasks 
- * @property Link2 notes 
+ * @property Link2 emails 
  * @property Link2 campaign_opportunities 
- * @property Link2 campaigns 
  * @property Link2 contacts 
- * @property Link2 currencies 
- * @property Link2 campaign_link 
- * @property Link2 accounts 
  * @property Link2 meetings 
  * @property Link2 calls 
  * @property Link2 created_by_link 
+ * @property Link2 campaigns 
+ * @property Link2 campaign_link 
+ * @property Link2 currencies 
+ * @property Link2 leads 
+ * @property Link2 project 
+ * @property Link2 notes 
+ * @property Link2 accounts 
  * @property Link2 documents 
  * @property Link2 modified_user_link 
- * @property Link2 project 
- * @property Link2 leads 
- * @property Link2 emails 
- * @property Link2 assigned_user_link 
+ * @property User assigned_user_name 
+ * @property User modified_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User created_by_name 
  * @property bool deleted Record deletion indicator
  * @property string probability The probability of closure
  * @property string sales_stage Indication of progression towards closure
@@ -6271,56 +6357,48 @@ class OAuthToken {
  * @property string id Unique identifier
  * @property string next_step The next step in the sales process
  *
- * @method  getRelatedAccount_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedCampaign_name
- * @method  getRelatedCurrency_name
- * @method  getRelatedCurrency_symbol
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedModified_by_name
+ * @method Account getRelatedAccount_name
+ * @method Campaign getRelatedCampaign_name
+ * @method Currency getRelatedCurrency_name
+ * @method Currency getRelatedCurrency_symbol
+ * @method User[] getRelatedAssigned_user_link
+ * @method Contact[] getRelatedContacts
+ * @method User[] getRelatedCreated_by_link
+ * @method CampaignLog[] getRelatedCampaigns
+ * @method Campaign[] getRelatedCampaign_link
+ * @method Account[] getRelatedAccounts
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedCreated_by_name
  *
  */
 class Opportunity {
 	/** 
-	 * @var  
+	 * @var Account 
 	 */
 	 public $account_name;
 
 	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
+	 * @var Campaign 
 	 */
 	 public $campaign_name;
 
 	/** 
-	 * @var  
+	 * @var Currency 
 	 */
 	 public $currency_name;
 
 	/** 
-	 * @var  
+	 * @var Currency 
 	 */
 	 public $currency_symbol;
 
 	/** 
-	 * @var  
+	 * @var Link2 
 	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -6330,7 +6408,7 @@ class Opportunity {
 	/** 
 	 * @var Link2 
 	 */
-	 public $notes;
+	 public $emails;
 
 	/** 
 	 * @var Link2 
@@ -6340,27 +6418,7 @@ class Opportunity {
 	/** 
 	 * @var Link2 
 	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
 	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $currencies;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
 
 	/** 
 	 * @var Link2 
@@ -6380,17 +6438,17 @@ class Opportunity {
 	/** 
 	 * @var Link2 
 	 */
-	 public $documents;
+	 public $campaigns;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $modified_user_link;
+	 public $campaign_link;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $project;
+	 public $currencies;
 
 	/** 
 	 * @var Link2 
@@ -6400,12 +6458,47 @@ class Opportunity {
 	/** 
 	 * @var Link2 
 	 */
-	 public $emails;
+	 public $project;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $assigned_user_link;
+	 public $notes;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $accounts;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $documents;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $modified_user_link;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -6505,9 +6598,9 @@ class Opportunity {
 	public $relationship_fields = [
 		'account_id' => 'accounts',
 		'campaign_id' => 'campaign_opportunities',
-		'created_by' => 'created_by_link',
 		'assigned_user_id' => 'assigned_user_link',
 		'modified_user_id' => 'modified_user_link',
+		'created_by' => 'created_by_link',
 	];
 
 }
@@ -6515,25 +6608,25 @@ class Opportunity {
 /**
  * Class Project
  *
- * @property  created_by_name 
- * @property  assigned_user_name 
- * @property  modified_by_name 
- * @property Link2 tasks 
  * @property Link2 meetings 
  * @property Link2 calls 
- * @property Link2 contacts 
- * @property Link2 notes 
- * @property Link2 quotes 
  * @property Link2 emails 
+ * @property Link2 tasks 
+ * @property Link2 notes 
+ * @property Link2 contacts 
+ * @property Link2 quotes 
  * @property Link2 accounts 
+ * @property Link2 projecttask 
  * @property Link2 created_by_link 
- * @property Link2 cases 
  * @property Link2 bugs 
  * @property Link2 products 
+ * @property Link2 cases 
  * @property Link2 assigned_user_link 
  * @property Link2 modified_user_link 
- * @property Link2 projecttask 
  * @property Link2 opportunities 
+ * @property User created_by_name 
+ * @property User assigned_user_name 
+ * @property User modified_by_name 
  * @property bool deleted Record deletion indicator
  * @property string total_actual_effort 
  * @property string modified_user_id User who last modified record
@@ -6550,35 +6643,18 @@ class Opportunity {
  * @property string estimated_start_date 
  * @property string id Unique identifier
  *
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedModified_by_name
- * @method [] getRelatedCases
- * @method [] getRelatedBugs
+ * @method User[] getRelatedCreated_by_link
+ * @method Bug[] getRelatedBugs
  * @method [] getRelatedProducts
+ * @method aCase[] getRelatedCases
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedModified_by_name
  *
  */
 class Project {
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
 	/** 
 	 * @var Link2 
 	 */
@@ -6592,7 +6668,12 @@ class Project {
 	/** 
 	 * @var Link2 
 	 */
-	 public $contacts;
+	 public $emails;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $tasks;
 
 	/** 
 	 * @var Link2 
@@ -6602,12 +6683,12 @@ class Project {
 	/** 
 	 * @var Link2 
 	 */
-	 public $quotes;
+	 public $contacts;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $emails;
+	 public $quotes;
 
 	/** 
 	 * @var Link2 
@@ -6617,12 +6698,12 @@ class Project {
 	/** 
 	 * @var Link2 
 	 */
-	 public $created_by_link;
+	 public $projecttask;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $cases;
+	 public $created_by_link;
 
 	/** 
 	 * @var Link2 
@@ -6637,6 +6718,11 @@ class Project {
 	/** 
 	 * @var Link2 
 	 */
+	 public $cases;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $assigned_user_link;
 
 	/** 
@@ -6647,12 +6733,22 @@ class Project {
 	/** 
 	 * @var Link2 
 	 */
-	 public $projecttask;
+	 public $opportunities;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $opportunities;
+	 public $created_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -6740,88 +6836,72 @@ class Project {
 /**
  * Class ProjectTask
  *
- * @property  project_name 
- * @property  assigned_user_name 
- * @property  created_by_name 
- * @property  modified_by_name 
- * @property Link2 emails 
  * @property Link2 calls 
+ * @property Link2 meetings 
  * @property Link2 tasks 
  * @property Link2 notes 
+ * @property Link2 emails 
  * @property Link2 projects 
- * @property Link2 meetings 
- * @property Link2 created_by_link 
- * @property Link2 project_name_link 
  * @property Link2 assigned_user_link 
  * @property Link2 modified_user_link 
+ * @property Link2 project_name_link 
+ * @property Link2 created_by_link 
+ * @property Project project_name 
+ * @property User assigned_user_name 
+ * @property User created_by_name 
+ * @property User modified_by_name 
  * @property bool milestone_flag 
  * @property bool deleted 
- * @property string task_number 
- * @property string order_number 
- * @property string estimated_effort 
- * @property string date_modified 
- * @property string project_id 
- * @property string date_entered 
- * @property string utilization 
- * @property string actual_effort 
- * @property string created_by 
  * @property string time_start 
+ * @property string date_start 
  * @property string time_finish 
  * @property string date_finish 
- * @property string duration 
- * @property string date_start 
+ * @property string utilization 
  * @property string predecessors 
- * @property string name 
- * @property string status 
  * @property string description 
- * @property string duration_unit 
+ * @property string date_modified 
+ * @property string date_entered 
+ * @property string project_id 
+ * @property string project_task_id 
+ * @property string status 
+ * @property string name 
+ * @property string actual_effort 
+ * @property string estimated_effort 
+ * @property string parent_task_id 
+ * @property string assigned_user_id 
+ * @property string time_due 
+ * @property string date_due 
  * @property string actual_duration 
+ * @property string percent_complete 
  * @property string modified_user_id 
  * @property string id 
+ * @property string order_number 
+ * @property string task_number 
+ * @property string duration 
+ * @property string created_by 
  * @property string priority 
- * @property string assigned_user_id 
- * @property string parent_task_id 
- * @property string percent_complete 
- * @property string date_due 
- * @property string time_due 
- * @property string project_task_id 
+ * @property string duration_unit 
  *
- * @method  getRelatedProject_name
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedCreated_by_name
- * @method  getRelatedModified_by_name
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedModified_user_link
+ * @method Project[] getRelatedProject_name_link
+ * @method User[] getRelatedCreated_by_link
+ * @method Project getRelatedProject_name
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedModified_by_name
  *
  */
 class ProjectTask {
 	/** 
-	 * @var  
-	 */
-	 public $project_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
 	 * @var Link2 
 	 */
 	 public $calls;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $meetings;
 
 	/** 
 	 * @var Link2 
@@ -6836,22 +6916,12 @@ class ProjectTask {
 	/** 
 	 * @var Link2 
 	 */
+	 public $emails;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $projects;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project_name_link;
 
 	/** 
 	 * @var Link2 
@@ -6862,6 +6932,36 @@ class ProjectTask {
 	 * @var Link2 
 	 */
 	 public $modified_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $project_name_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $created_by_link;
+
+	/** 
+	 * @var Project 
+	 */
+	 public $project_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
 
 	/** 
 	 * @var bool 
@@ -6876,52 +6976,12 @@ class ProjectTask {
 	/** 
 	 * @var string 
 	 */
-	 public $task_number;
-
-	/** 
-	 * @var string 
-	 */
-	 public $order_number;
-
-	/** 
-	 * @var string 
-	 */
-	 public $estimated_effort;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $project_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $utilization;
-
-	/** 
-	 * @var string 
-	 */
-	 public $actual_effort;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
 	 public $time_start;
+
+	/** 
+	 * @var string 
+	 */
+	 public $date_start;
 
 	/** 
 	 * @var string 
@@ -6936,12 +6996,7 @@ class ProjectTask {
 	/** 
 	 * @var string 
 	 */
-	 public $duration;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_start;
+	 public $utilization;
 
 	/** 
 	 * @var string 
@@ -6951,7 +7006,27 @@ class ProjectTask {
 	/** 
 	 * @var string 
 	 */
-	 public $name;
+	 public $description;
+
+	/** 
+	 * @var string 
+	 */
+	 public $date_modified;
+
+	/** 
+	 * @var string 
+	 */
+	 public $date_entered;
+
+	/** 
+	 * @var string 
+	 */
+	 public $project_id;
+
+	/** 
+	 * @var string 
+	 */
+	 public $project_task_id;
 
 	/** 
 	 * @var string 
@@ -6961,17 +7036,47 @@ class ProjectTask {
 	/** 
 	 * @var string 
 	 */
-	 public $description;
+	 public $name;
 
 	/** 
 	 * @var string 
 	 */
-	 public $duration_unit;
+	 public $actual_effort;
+
+	/** 
+	 * @var string 
+	 */
+	 public $estimated_effort;
+
+	/** 
+	 * @var string 
+	 */
+	 public $parent_task_id;
+
+	/** 
+	 * @var string 
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var string 
+	 */
+	 public $time_due;
+
+	/** 
+	 * @var string 
+	 */
+	 public $date_due;
 
 	/** 
 	 * @var string 
 	 */
 	 public $actual_duration;
+
+	/** 
+	 * @var string 
+	 */
+	 public $percent_complete;
 
 	/** 
 	 * @var string 
@@ -6986,37 +7091,32 @@ class ProjectTask {
 	/** 
 	 * @var string 
 	 */
+	 public $order_number;
+
+	/** 
+	 * @var string 
+	 */
+	 public $task_number;
+
+	/** 
+	 * @var string 
+	 */
+	 public $duration;
+
+	/** 
+	 * @var string 
+	 */
+	 public $created_by;
+
+	/** 
+	 * @var string 
+	 */
 	 public $priority;
 
 	/** 
 	 * @var string 
 	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_task_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $percent_complete;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_due;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_due;
-
-	/** 
-	 * @var string 
-	 */
-	 public $project_task_id;
+	 public $duration_unit;
 
 	public $relationship_fields = [
 		'project_id' => 'project_name_link',
@@ -7030,18 +7130,18 @@ class ProjectTask {
 /**
  * Class ProspectList
  *
- * @property  modified_by_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  created_by_name 
- * @property  assigned_user_name 
+ * @property Link2 leads 
  * @property Link2 contacts 
  * @property Link2 prospects 
- * @property Link2 leads 
- * @property Link2 campaigns 
- * @property Link2 assigned_user_link 
- * @property Link2 email_marketing 
- * @property Link2 users 
  * @property Link2 accounts 
+ * @property Link2 campaigns 
+ * @property Link2 email_marketing 
+ * @property Link2 assigned_user_link 
+ * @property Link2 users 
+ * @property User created_by_name 
+ * @property User assigned_user_name 
+ * @property User modified_by_name 
+ * @property User assigned_user_id User ID assigned to record
  * @property bool deleted 
  * @property string name 
  * @property string list_type 
@@ -7056,32 +7156,18 @@ class ProjectTask {
  * @property string modified_user_id 
  * @property string description 
  *
- * @method  getRelatedModified_by_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_name
+ * @method User[] getRelatedAssigned_user_link
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_id
  *
  */
 class ProspectList {
 	/** 
-	 * @var  
+	 * @var Link2 
 	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
+	 public $leads;
 
 	/** 
 	 * @var Link2 
@@ -7096,7 +7182,7 @@ class ProspectList {
 	/** 
 	 * @var Link2 
 	 */
-	 public $leads;
+	 public $accounts;
 
 	/** 
 	 * @var Link2 
@@ -7106,12 +7192,12 @@ class ProspectList {
 	/** 
 	 * @var Link2 
 	 */
-	 public $assigned_user_link;
+	 public $email_marketing;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $email_marketing;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -7119,9 +7205,24 @@ class ProspectList {
 	 public $users;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $accounts;
+	 public $created_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
 
 	/** 
 	 * @var bool 
@@ -7197,22 +7298,22 @@ class ProspectList {
 /**
  * Class Prospect
  *
- * @property  assigned_user_id User ID assigned to record
- * @property  created_by_name 
- * @property  modified_by_name 
- * @property  assigned_user_name 
  * @property Link2 modified_user_link 
- * @property Link2 email_addresses_primary 
- * @property Link2 email_addresses 
- * @property Link2 assigned_user_link 
  * @property Link2 created_by_link 
- * @property Link2 prospect_lists 
- * @property Link2 tasks 
- * @property Link2 emails 
- * @property Link2 notes 
- * @property Link2 meetings 
+ * @property Link2 assigned_user_link 
+ * @property Link2 email_addresses 
+ * @property Link2 email_addresses_primary 
  * @property Link2 campaigns 
+ * @property Link2 prospect_lists 
+ * @property Link2 meetings 
+ * @property Link2 notes 
+ * @property Link2 tasks 
  * @property Link2 calls 
+ * @property Link2 emails 
+ * @property User assigned_user_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User created_by_name 
+ * @property User modified_by_name 
  * @property bool invalid_email 
  * @property bool do_not_call 
  * @property bool email_opt_out 
@@ -7261,52 +7362,22 @@ class ProspectList {
  * @property string primary_address_street_2 
  * @property string title The title of the contact
  *
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedCreated_by_name
- * @method  getRelatedModified_by_name
- * @method  getRelatedAssigned_user_name
+ * @method User[] getRelatedModified_user_link
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method CampaignLog[] getRelatedCampaigns
+ * @method ProspectList[] getRelatedProspect_lists
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedCreated_by_name
+ * @method User getRelatedModified_by_name
  *
  */
 class Prospect {
 	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
 	 * @var Link2 
 	 */
 	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses_primary;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -7316,27 +7387,17 @@ class Prospect {
 	/** 
 	 * @var Link2 
 	 */
-	 public $prospect_lists;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $tasks;
+	 public $email_addresses;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
+	 public $email_addresses_primary;
 
 	/** 
 	 * @var Link2 
@@ -7346,7 +7407,52 @@ class Prospect {
 	/** 
 	 * @var Link2 
 	 */
+	 public $prospect_lists;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $meetings;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $notes;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $tasks;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $calls;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $emails;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
 
 	/** 
 	 * @var bool 
@@ -7584,9 +7690,9 @@ class Prospect {
 	 public $title;
 
 	public $relationship_fields = [
+		'assigned_user_id' => 'assigned_user_link',
 		'created_by' => 'created_by_link',
 		'modified_user_id' => 'modified_user_link',
-		'assigned_user_id' => 'assigned_user_link',
 	];
 
 }
@@ -7852,6 +7958,7 @@ class Role {
  * @property string date_entered 
  * @property string id 
  *
+ * @method User[] getRelatedAssigned_user_link
  *
  */
 class SavedSearch {
@@ -7918,20 +8025,20 @@ class SavedSearch {
 /**
  * Class Scheduler
  *
- * @property  modified_by_name 
- * @property  created_by_name 
- * @property Link2 modified_user_link 
  * @property Link2 schedulers_times 
  * @property Link2 created_by_link 
- * @property bool deleted 
+ * @property Link2 modified_user_link 
+ * @property User modified_by_name 
+ * @property User created_by_name 
  * @property bool adv_interval 
  * @property bool catch_up 
+ * @property bool deleted 
+ * @property string date_time_end 
  * @property string job_interval 
  * @property string time_from 
- * @property string last_run 
- * @property string status 
- * @property string date_time_end 
  * @property string time_to 
+ * @property string status 
+ * @property string last_run 
  * @property string job 
  * @property string created_by 
  * @property string date_modified 
@@ -7943,26 +8050,14 @@ class SavedSearch {
  * @property string id 
  * @property string date_time_start 
  *
- * @method  getRelatedModified_by_name
- * @method  getRelatedCreated_by_name
+ * @method SchedulersJob[] getRelatedSchedulers_times
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedCreated_by_name
  *
  */
 class Scheduler {
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
 	/** 
 	 * @var Link2 
 	 */
@@ -7974,9 +8069,19 @@ class Scheduler {
 	 public $created_by_link;
 
 	/** 
-	 * @var bool 
+	 * @var Link2 
 	 */
-	 public $deleted;
+	 public $modified_user_link;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
 
 	/** 
 	 * @var bool 
@@ -7987,6 +8092,16 @@ class Scheduler {
 	 * @var bool 
 	 */
 	 public $catch_up;
+
+	/** 
+	 * @var bool 
+	 */
+	 public $deleted;
+
+	/** 
+	 * @var string 
+	 */
+	 public $date_time_end;
 
 	/** 
 	 * @var string 
@@ -8001,7 +8116,7 @@ class Scheduler {
 	/** 
 	 * @var string 
 	 */
-	 public $last_run;
+	 public $time_to;
 
 	/** 
 	 * @var string 
@@ -8011,12 +8126,7 @@ class Scheduler {
 	/** 
 	 * @var string 
 	 */
-	 public $date_time_end;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_to;
+	 public $last_run;
 
 	/** 
 	 * @var string 
@@ -8078,12 +8188,12 @@ class Scheduler {
 /**
  * Class SchedulersJob
  *
- * @property  assigned_user_name 
- * @property  assigned_user_id User ID assigned to record
- * @property Link2 schedulers 
  * @property Link2 assigned_user_link 
- * @property bool requeue 
+ * @property Link2 schedulers 
+ * @property User assigned_user_name 
+ * @property User assigned_user_id User ID assigned to record
  * @property bool deleted 
+ * @property bool requeue 
  * @property string data 
  * @property string retry_count 
  * @property string client 
@@ -8101,20 +8211,16 @@ class Scheduler {
  * @property string execute_time 
  * @property string message 
  *
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedAssigned_user_id
+ * @method User[] getRelatedAssigned_user_link
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedAssigned_user_id
  *
  */
 class SchedulersJob {
 	/** 
-	 * @var  
+	 * @var Link2 
 	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
@@ -8122,19 +8228,24 @@ class SchedulersJob {
 	 public $schedulers;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $assigned_user_link;
+	 public $assigned_user_name;
 
 	/** 
-	 * @var bool 
+	 * @var User User ID assigned to record
 	 */
-	 public $requeue;
+	 public $assigned_user_id;
 
 	/** 
 	 * @var bool 
 	 */
 	 public $deleted;
+
+	/** 
+	 * @var bool 
+	 */
+	 public $requeue;
 
 	/** 
 	 * @var string 
@@ -8225,13 +8336,13 @@ class SchedulersJob {
 /**
  * Class SugarFeed
  *
- * @property  modified_by_name 
- * @property  created_by_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  assigned_user_name 
  * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
  * @property Link2 assigned_user_link 
+ * @property Link2 modified_user_link 
+ * @property User modified_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User assigned_user_name 
+ * @property User created_by_name 
  * @property bool deleted Record deletion indicator
  * @property string related_module related module
  * @property string related_id related module
@@ -8245,33 +8356,16 @@ class SchedulersJob {
  * @property string date_modified Date record last modified
  * @property string description Name of the feed
  *
- * @method  getRelatedModified_by_name
- * @method  getRelatedCreated_by_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedAssigned_user_name
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedAssigned_user_link
+ * @method User[] getRelatedModified_user_link
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedCreated_by_name
  *
  */
 class SugarFeed {
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
 	/** 
 	 * @var Link2 
 	 */
@@ -8280,12 +8374,32 @@ class SugarFeed {
 	/** 
 	 * @var Link2 
 	 */
-	 public $modified_user_link;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $assigned_user_link;
+	 public $modified_user_link;
+
+	/** 
+	 * @var User 
+	 */
+	 public $modified_by_name;
+
+	/** 
+	 * @var User User ID assigned to record
+	 */
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $assigned_user_name;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
 
 	/** 
 	 * @var bool Record deletion indicator
@@ -8349,8 +8463,8 @@ class SugarFeed {
 
 	public $relationship_fields = [
 		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
 		'assigned_user_id' => 'assigned_user_link',
+		'created_by' => 'created_by_link',
 	];
 
 }
@@ -8358,24 +8472,24 @@ class SugarFeed {
 /**
  * Class Task
  *
- * @property  assigned_user_name 
- * @property  created_by_name 
- * @property  contact_name 
- * @property  assigned_user_id User ID assigned to record
- * @property  modified_by_name 
- * @property Link2 assigned_user_link 
+ * @property Contact contact_name 
+ * @property Link2 created_by_link 
+ * @property Link2 cases 
+ * @property Link2 modified_user_link 
+ * @property Link2 opportunities 
  * @property Link2 contacts 
  * @property Link2 accounts 
- * @property Link2 opportunities 
- * @property Link2 modified_user_link 
+ * @property Link2 assigned_user_link 
  * @property Link2 bugs 
+ * @property Link2 project_tasks 
  * @property Link2 notes 
  * @property Link2 contact_parent 
- * @property Link2 project_tasks 
- * @property Link2 projects 
- * @property Link2 cases 
  * @property Link2 leads 
- * @property Link2 created_by_link 
+ * @property Link2 projects 
+ * @property User assigned_user_name 
+ * @property User modified_by_name 
+ * @property User assigned_user_id User ID assigned to record
+ * @property User created_by_name 
  * @property bool date_start_flag 
  * @property bool deleted Record deletion indicator
  * @property bool date_due_flag 
@@ -8398,44 +8512,43 @@ class SugarFeed {
  * @property string time_due 
  * @property string id Unique identifier
  *
- * @method  getRelatedAssigned_user_name
- * @method  getRelatedCreated_by_name
- * @method  getRelatedContact_name
- * @method  getRelatedAssigned_user_id
- * @method  getRelatedModified_by_name
- * @method [] getRelatedContacts
+ * @method Contact getRelatedContact_name
+ * @method User[] getRelatedCreated_by_link
+ * @method User[] getRelatedModified_user_link
+ * @method Array[] getRelatedContacts
+ * @method User[] getRelatedAssigned_user_link
+ * @method Note[] getRelatedNotes
+ * @method User getRelatedAssigned_user_name
+ * @method User getRelatedModified_by_name
+ * @method User getRelatedAssigned_user_id
+ * @method User getRelatedCreated_by_name
  *
  */
 class Task {
 	/** 
-	 * @var  
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var  
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var  
+	 * @var Contact 
 	 */
 	 public $contact_name;
 
 	/** 
-	 * @var  User ID assigned to record
+	 * @var Link2 
 	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var  
-	 */
-	 public $modified_by_name;
+	 public $created_by_link;
 
 	/** 
 	 * @var Link2 
 	 */
-	 public $assigned_user_link;
+	 public $cases;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $modified_user_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $opportunities;
 
 	/** 
 	 * @var Link2 
@@ -8450,17 +8563,17 @@ class Task {
 	/** 
 	 * @var Link2 
 	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
+	 public $assigned_user_link;
 
 	/** 
 	 * @var Link2 
 	 */
 	 public $bugs;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $project_tasks;
 
 	/** 
 	 * @var Link2 
@@ -8475,7 +8588,7 @@ class Task {
 	/** 
 	 * @var Link2 
 	 */
-	 public $project_tasks;
+	 public $leads;
 
 	/** 
 	 * @var Link2 
@@ -8483,19 +8596,24 @@ class Task {
 	 public $projects;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $cases;
+	 public $assigned_user_name;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $leads;
+	 public $modified_by_name;
 
 	/** 
-	 * @var Link2 
+	 * @var User User ID assigned to record
 	 */
-	 public $created_by_link;
+	 public $assigned_user_id;
+
+	/** 
+	 * @var User 
+	 */
+	 public $created_by_name;
 
 	/** 
 	 * @var bool 
@@ -8603,10 +8721,10 @@ class Task {
 	 public $id;
 
 	public $relationship_fields = [
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
 		'contact_id' => 'contacts',
+		'assigned_user_id' => 'assigned_user_link',
 		'modified_user_id' => 'modified_user_link',
+		'created_by' => 'created_by_link',
 	];
 
 }
@@ -8628,6 +8746,7 @@ class Task {
  * @property string item_summary 
  * @property string id 
  *
+ * @method User[] getRelatedAssigned_user_link
  *
  */
 class Tracker {
@@ -8764,23 +8883,23 @@ class UserPreference {
 /**
  * Class User
  *
- * @property  reports_to_name 
  * @property  m_accept_status_fields 
  * @property  c_accept_status_fields 
- * @property Link2 email_addresses 
  * @property Link2 contacts_sync 
- * @property Link2 reports_to_link 
- * @property Link2 aclroles 
  * @property Link2 meetings 
+ * @property Link2 reports_to_link 
+ * @property Link2 email_addresses 
  * @property Link2 reportees 
+ * @property Link2 email_addresses_primary 
+ * @property Link2 aclroles 
  * @property Link2 calls 
  * @property Link2 eapm 
  * @property Link2 oauth_tokens 
  * @property Link2 project_resource 
- * @property Link2 email_addresses_primary 
- * @property Link2 holidays 
  * @property Link2 prospect_lists 
+ * @property Link2 holidays 
  * @property Link2 emails_users 
+ * @property User reports_to_name 
  * @property bool portal_only 
  * @property bool show_on_employees 
  * @property bool is_group 
@@ -8829,22 +8948,19 @@ class UserPreference {
  * @property string phone_work 
  * @property string UserType 
  *
- * @method  getRelatedReports_to_name
  * @method  getRelatedM_accept_status_fields
  * @method  getRelatedC_accept_status_fields
- * @method [] getRelatedReports_to_link
- * @method [] getRelatedAclroles
- * @method [] getRelatedReportees
- * @method [] getRelatedOauth_tokens
- * @method [] getRelatedHolidays
+ * @method Array[] getRelatedReports_to_link
+ * @method Array[] getRelatedReportees
+ * @method User[] getRelatedAclroles
+ * @method OAuthToken[] getRelatedOauth_tokens
+ * @method ProspectList[] getRelatedProspect_lists
+ * @method Array[] getRelatedHolidays
+ * @method Email[] getRelatedEmails_users
+ * @method User getRelatedReports_to_name
  *
  */
 class User {
-	/** 
-	 * @var  
-	 */
-	 public $reports_to_name;
-
 	/** 
 	 * @var  
 	 */
@@ -8858,22 +8974,7 @@ class User {
 	/** 
 	 * @var Link2 
 	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
 	 public $contacts_sync;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reports_to_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $aclroles;
 
 	/** 
 	 * @var Link2 
@@ -8883,7 +8984,27 @@ class User {
 	/** 
 	 * @var Link2 
 	 */
+	 public $reports_to_link;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $email_addresses;
+
+	/** 
+	 * @var Link2 
+	 */
 	 public $reportees;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $email_addresses_primary;
+
+	/** 
+	 * @var Link2 
+	 */
+	 public $aclroles;
 
 	/** 
 	 * @var Link2 
@@ -8908,7 +9029,7 @@ class User {
 	/** 
 	 * @var Link2 
 	 */
-	 public $email_addresses_primary;
+	 public $prospect_lists;
 
 	/** 
 	 * @var Link2 
@@ -8918,12 +9039,12 @@ class User {
 	/** 
 	 * @var Link2 
 	 */
-	 public $prospect_lists;
+	 public $emails_users;
 
 	/** 
-	 * @var Link2 
+	 * @var User 
 	 */
-	 public $emails_users;
+	 public $reports_to_name;
 
 	/** 
 	 * @var bool 
