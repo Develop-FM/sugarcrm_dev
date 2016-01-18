@@ -59,3 +59,5 @@ Thumbs.db
 Desktop.ini
 # Composer
 vendor
+# Gulp
+node_modules

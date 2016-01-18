@@ -1,6 +1,7 @@
 <?php
 
-class SugarMin {
+class SugarMin
+{
 
     /**
      * jsParser will take javascript source code and minify it.
@@ -13,25 +14,28 @@ class SugarMin {
      * line and mult-line comments. Pass 2 performs some sanitation on each of the lines
      * and pass 3 works on stripping out unnecessary spaces.
      *
-     * @param string $js
-     * @param string $currentOptions
-     * @return void
+     * @param string $text
+     * @param string $compression
      */
-    private function __construct($text, $compression) {
-        $this->text = trim($text)."\n";
+    private function __construct($text, $compression)
+    {
+        $this->text        = trim($text)."\n";
         $this->compression = $compression;
     }
 
     /**
      * Entry point function to minify javascript.
      *
-     * @param string $js Javascript source code as a string.
+     * @param string $js          Javascript source code as a string.
      * @param string $compression Compression option. {light, deep}.
+     *
      * @return string $output Output javascript code as a string.
+     * @throws Exception
      */
-    static public function minify($js, $compression = 'light') {
+    static public function minify($js, $compression = 'light')
+    {
         try {
-            $me = new SugarMin($js, $compression);
+            $me     = new SugarMin($js, $compression);
             $output = $me->jsParser();
 
             return $output;
@@ -41,8 +45,11 @@ class SugarMin {
         }
     }
 
-    protected function jsParser() {
-        require_once('jssource/Minifier.php');
-        return Minifier::minify($this->text);
-	}
+    /**
+     * @return string
+     */
+    protected function jsParser()
+    {
+        return \JShrink\Minifier::minify($this->text);
+    }
 }

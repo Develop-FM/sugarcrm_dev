@@ -1202,7 +1202,7 @@ p#clear {
     right: 6px;
     width: 25px;
     height: 15px;
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=close_dashboard.gif') no-repeat;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=close_dashboard.gif') no-repeat;
     cursor: pointer;
 }
 
@@ -1440,7 +1440,7 @@ th.yui-dt-hidden .yui-dt-liner,td.yui-dt-hidden .yui-dt-liner,th.yui-dt-hidden .
 }
 
  .yui-dt th, .yui-dt-hd {
-    background: #D8D8DA url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x 0 -30px;
+    background: #D8D8DA url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x 0 -30px;
 }
 
  .yui-dt th, .yui-dt th a {
@@ -1537,7 +1537,7 @@ th.yui-dt-hidden, td.yui-dt-hidden {
 }
 
  th.yui-dt-sortable .yui-dt-liner {
-    background: url('../../../../index.php?entryPoint=getImage&imageName=arrow.gif') no-repeat right;
+    background: url('/index.php?entryPoint=getImage&imageName=arrow.gif') no-repeat right;
  }
 
  th.yui-dt-sortable .yui-dt-label {
@@ -1545,11 +1545,11 @@ th.yui-dt-hidden, td.yui-dt-hidden {
 }
 
  th.yui-dt-asc .yui-dt-liner {
-    background: url('../../../../index.php?entryPoint=getImage&imageName=arrow_up.gif') no-repeat right;
+    background: url('/index.php?entryPoint=getImage&imageName=arrow_up.gif') no-repeat right;
 }
 
  th.yui-dt-desc .yui-dt-liner {
-    background: url('../../../../index.php?entryPoint=getImage&imageName=arrow_down.gif') no-repeat right;
+    background: url('/index.php?entryPoint=getImage&imageName=arrow_down.gif') no-repeat right;
 }
 
 tbody .yui-dt-editable {
@@ -3244,7 +3244,7 @@ body.yui-layout {
 
  .yui-layout .yui-layout-unit-left div.yui-layout-hd .collapse
 {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -110px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -110px;
     right: 10px;
 }
 .yui-layout .yui-layout-unit-left div.yui-layout-hd .collapse:hover {
@@ -3254,7 +3254,7 @@ body.yui-layout {
 }
 
  .yui-layout .yui-layout-clip-left .collapse {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -90px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -90px;
 }
  .yui-layout .yui-layout-clip-left .collapse:hover, .yui-layout .yui-layout-clip-right .collapse {
     border: 1px solid #666; 
@@ -3263,7 +3263,7 @@ body.yui-layout {
  }
 
  .yui-layout .yui-layout-unit-right div.yui-layout-hd .collapse {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -90px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -90px;
     left: 5px;
 }
 .yui-layout .yui-layout-unit-right div.yui-layout-hd .collapse:hover {
@@ -3273,38 +3273,38 @@ body.yui-layout {
 }
 
  .yui-layout .yui-layout-clip-right .collapse {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -0 -110px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -0 -110px;
 }
 
  .yui-layout .yui-layout-unit-top div.yui-layout-hd .collapse
     {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -20px -220px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -20px -220px;
     border: 1px solid #808080;
 }
 
  .yui-layout .yui-layout-clip-top .collapse {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png')no-repeat -20px -240px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png')no-repeat -20px -240px;
     border: 1px solid #808080;
 }
 
  .yui-layout .yui-layout-unit-bottom div.yui-layout-hd .collapse
     {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -90px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat 0 -90px;
     right: 5px;
 }
 
  .yui-layout .yui-layout-clip-bottom .collapse {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -20px -180px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -20px -180px;
     border: 1px solid #808080;
 }
 
  .yui-layout .yui-layout-unit div.yui-layout-hd .close {
-    background: transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -20px -100px;
+    background: transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') no-repeat -20px -100px;
     border: 1px solid #808080;
 }
 
  .yui-layout .yui-layout-hd {
-    background: #DDD url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 0;
+    background: #DDD url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 0;
     border-color:#808080;
 	border-style:solid;
 	border-width:0 1px 0px;
@@ -5723,7 +5723,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
     display: -moz-inline-stack;
     vertical-align: bottom;
     zoom: 1;
-    background:#DDD url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -30px;   
+    background:#DDD url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -30px;   
 }
 
 .yui-navset-left .yui-nav li a,.yui-navset-right .yui-nav li a {
@@ -5762,7 +5762,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
 
 .yui-navset .yui-nav, .yui-navset .yui-navset-top .yui-nav
 {
-	background:#DDD url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 0;   
+	background:#DDD url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 0;   
     zoom: 1;
     white-space: nowrap;
     overflow-x:hidden;
@@ -5785,7 +5785,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
 
  .yui-navset .yui-nav a, .yui-navset .yui-navset-top .yui-nav a
     {
-    background: background:#FDFDFD url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -30px;
+    background: background:#FDFDFD url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -30px;
     border: solid #a3a3a3;
     border-width: 0 1px;
     color: #000;
@@ -5809,7 +5809,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
 
  .yui-navset .yui-nav .selected a, .yui-navset .yui-nav .selected a:focus, .yui-navset .yui-nav .selected a:hover
     {
-    background:#666666 url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -155px;
+    background:#666666 url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -155px;
     color: #000;
 }
 
@@ -6155,7 +6155,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
 }
 
 .sugar-progress-bar {
-    background:#DDD url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -50px;   
+    background:#DDD url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 -50px;   
     height: 16px;
     width: 0px;
 }
@@ -6167,7 +6167,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
 	position:relative;
 	top:-3px;
 	width:9px;
-    background : transparent url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png')  no-repeat scroll 0px -70px;
+    background : transparent url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png')  no-repeat scroll 0px -70px;
 }
 
 .sugar-message-prompt {
@@ -6205,7 +6205,7 @@ h2.yui-editor-skipheader,h3.yui-editor-skipheader {
 
 
 .yui-navset-top ul{
-    background:#DDD url('../../../../index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 0;   
+    background:#DDD url('/index.php?entryPoint=getImage&imageName=sugar-yui-sprites-grey.png') repeat-x scroll 0 0;   
     border-color:#666666 !important;
     border-style:solid;
     border-width:0 0 5px;

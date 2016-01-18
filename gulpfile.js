@@ -24,7 +24,9 @@ elixir.extend("remove", function (path) {
  |
  */
 elixir(function (mix) {
-    mix.scripts([
+    mix
+        .remove(['storage/cache/include/javascript'])
+        .scripts([
             //scripts loaded on first page
             'include/javascript/sugar_3.js',
             'include/javascript/ajaxUI.js',
@@ -34,13 +36,28 @@ elixir(function (mix) {
             'include/javascript/quickCompose.js',
             'include/javascript/yui/build/yuiloader/yuiloader-min.js',
             //HTML decode
-            'include/javascript/phpjs/license.js',
             'include/javascript/phpjs/get_html_translation_table.js',
             'include/javascript/phpjs/html_entity_decode.js',
-            //Expression Engine
-            'include/Expressions/javascript/expressions.js',
-            'include/Expressions/javascript/dependency.js'
+            'include/javascript/phpjs/htmlentities.js',
+            'include/EditView/Panels.js'
         ], 'include/javascript/sugar_grp1.js', 'jssource/src_files/'
+    ).scripts([
+            'Collection/SugarFieldCollection.js',
+            'Datetimecombo/Datetimecombo.js'
+        ], 'include/javascript/sugar_field_grp.js', 'jssource/src_files/include/SugarFields/Fields/'
+    ).scripts([//jquery libraries
+            'jquery-min.js',
+            'jquery-ui-min.js',
+            'jquery.json-2.3.js',
+            'jquery.hoverIntent.js',
+            'jquery.hoverscroll.js',
+            'jquery.hotkeys.js',
+            'jquery.superfish.js',
+            'jquery.tipTip.js',
+            'jquery.sugarMenu.js',
+            'jquery.highLight.js',
+            'jquery.showLoading.js'
+        ], 'include/javascript/sugar_grp1_jquery.js', 'jssource/src_files/include/javascript/jquery/'
     ).scripts([
             //YUI scripts loaded on first page
             'include/javascript/yui3/build/yui/yui-min.js',
@@ -68,7 +85,8 @@ elixir(function (mix) {
             'include/javascript/yui/build/menu/menu-min.js',
             'include/javascript/sugar_connection_event_listener.js',
             'include/javascript/yui/build/calendar/calendar.js',
-            'include/javascript/yui/build/history/history.js'
+            'include/javascript/yui/build/history/history.js',
+            'include/javascript/yui/build/resize/resize-min.js'
         ], 'include/javascript/sugar_grp1_yui.js', 'jssource/src_files/'
     ).scripts([
             //sugar_grp1_yui must be laoded before sugar_grp_yui_widgets
@@ -86,16 +104,9 @@ elixir(function (mix) {
             'include/javascript/yui/build/container/container-min.js'
         ], 'include/javascript/sugar_grp_yui2.js', 'jssource/src_files/'
     ).scripts([
-            //overlib combination
-            'include/javascript/overlibmws.js',
-            'include/javascript/overlibmws_iframe.js',
-        ], 'include/javascript/sugar_grp_overlib.js', 'jssource/src_files/'
-    ).scripts([
             'include/javascript/yui/ygDDList.js',
             'include/SugarEmailAddress/SugarEmailAddress.js',
             'include/SugarFields/Fields/Collection/SugarFieldCollection.js',
-            'include/SugarRouting/javascript/SugarRouting.js',
-            'include/SugarDependentDropdown/javascript/SugarDependentDropdown.js',
             'modules/InboundEmail/InboundEmail.js',
             'modules/Emails/javascript/EmailUIShared.js',
             'modules/Emails/javascript/EmailUI.js',
@@ -110,6 +121,8 @@ elixir(function (mix) {
             'include/javascript/quicksearch.js'
         ], 'include/javascript/sugar_grp_emails.js', 'jssource/src_files/'
     ).scripts([
+            'include/javascript/jsclass_base.js',
+            'include/javascript/jsclass_async.js',
             'modules/Emails/javascript/vars.js',
             'include/SugarFields/Fields/Collection/SugarFieldCollection.js',
             //For team selection
@@ -126,9 +139,13 @@ elixir(function (mix) {
             'include/javascript/jsclass_async.js',
             'modules/Meetings/jsclass_scheduler.js'
         ], 'include/javascript/sugar_grp_jsolait.js', 'jssource/src_files/'
-    ).scripts(
-        'include/MySugar/javascript/MySugar.js', 'include/MySugar/javascript/MySugar.js', 'jssource/src_files/'
-    ).scripts(
-        'modules/Meetings/jsclass_scheduler.js', 'modules/Meetings/jsclass_scheduler.js', 'jssource/src_files/'
+    ).styles([
+            'include/javascript/yui/build/fonts/fonts-min.css',
+            'include/javascript/yui/build/treeview/assets/skins/sam/treeview.css',
+            'include/javascript/yui/build/datatable/assets/skins/sam/datatable.css',
+            'include/javascript/yui/build/container/assets/skins/sam/container.css',
+            'include/javascript/yui/build/button/assets/skins/sam/button.css',
+            'include/javascript/yui/build/calendar/assets/skins/sam/calendar.css'
+        ], 'include/javascript/sugar_grp_yui_widgets.css', 'jssource/src_files/'
     )
 });
