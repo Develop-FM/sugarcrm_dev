@@ -46,7 +46,7 @@ require_once('modules/Contacts/Popup_picker.php');
 class ContactsViewContactAddressPopup extends SugarView {
 	
  	function ContactsViewContactAddressPopup(){
- 		parent::SugarView();
+ 		parent::__construct();
  	}
  	
  	function process() {

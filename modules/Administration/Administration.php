@@ -37,12 +37,6 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-/*********************************************************************************
- * Description:  TODO: To be written.
- * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
- * All Rights Reserved.
- * Contributor(s): ______________________________________..
- ********************************************************************************/
 require_once('data/SugarBean.php');
 require_once('include/OutboundEmail/OutboundEmail.php');
 

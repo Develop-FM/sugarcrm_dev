@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Your installation or use of this SugarCRM file is subject to the applicable
  * terms available at
@@ -16,14 +17,14 @@ class ImportViewRevokeAccess extends SugarView
     public function process()
     {
         if (isset($_REQUEST['application'])) {
-            $response = array(
-                'result' => $this->revokeAccess($_REQUEST['application']),
+            $response = [
+                'result'  => $this->revokeAccess($_REQUEST['application']),
                 'sources' => $this->getAuthenticatedImportableExternalEAPMs(),
-            );
+            ];
         } else {
-            $response = array(
+            $response = [
                 'result' => false,
-            );
+            ];
         }
 
         header('Content-Type: application/json');
@@ -35,6 +36,7 @@ class ImportViewRevokeAccess extends SugarView
         if ($application == 'Google') {
             require_once 'include/externalAPI/Google/ExtAPIGoogle.php';
             $api = new ExtAPIGoogle();
+
             return $api->revokeToken();
         }
 

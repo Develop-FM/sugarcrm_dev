@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Your installation or use of this SugarCRM file is subject to the applicable
  * terms available at
@@ -19,15 +20,15 @@ class EAPMViewGoogleOauth2Redirect extends SugarView
 
         $token = $this->authenticate();
         if ($token) {
-            $token = json_decode($token, true);
-            $response = array(
-                'result' => true,
+            $token    = json_decode($token, true);
+            $response = [
+                'result'          => true,
                 'hasRefreshToken' => isset($token['refresh_token']),
-            );
+            ];
         } else {
-            $response = array(
+            $response = [
                 'result' => false,
-            );
+            ];
         }
 
         $this->ss->assign('response', $response);
@@ -37,12 +38,13 @@ class EAPMViewGoogleOauth2Redirect extends SugarView
 
     protected function authenticate()
     {
-        if (!isset($_GET['code'])) {
+        if (! isset($_GET['code'])) {
             return false;
         }
 
         require_once 'include/externalAPI/Google/ExtAPIGoogle.php';
         $api = new ExtAPIGoogle();
+
         return $api->authenticate($_GET['code']);
     }
 }

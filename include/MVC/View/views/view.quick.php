@@ -46,7 +46,7 @@ class ViewQuick extends ViewDetail{
 	var $type ='detail';
 	
  	function ViewQuick(){
- 		parent::SugarView();
+ 		parent::__construct();
  		$this->options['show_subpanels'] = false;
  		$this->options['show_title'] = false;
 		$this->options['show_header'] = false;

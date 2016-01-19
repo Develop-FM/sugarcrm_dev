@@ -1,4 +1,5 @@
 <?php
+
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
@@ -43,7 +44,7 @@ class ViewAjax extends SugarView
      *
      * @see SugarView::SugarView()
      */
- 	public function ViewAjax()
+ 	public function __construct()
  	{
  		$this->options['show_title'] = false;
 		$this->options['show_header'] = false;
@@ -52,6 +53,6 @@ class ViewAjax extends SugarView
 		$this->options['show_subpanels'] = false; 
 		$this->options['show_search'] = false; 
 		
- 		parent::SugarView();
+ 		parent::__construct();
  	}
 }
