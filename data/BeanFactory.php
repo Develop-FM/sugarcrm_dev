@@ -1,9 +1,7 @@
 <?php
-
 if (! defined('sugarEntry') || ! sugarEntry) {
     die('Not A Valid Entry Point');
 }
-
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
@@ -39,7 +37,7 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-require_once('data/SugarBean.php');
+require_once(DOCROOT.'data/SugarBean.php');
 
 /**
  * Factory to create SugarBeans
@@ -86,13 +84,14 @@ class BeanFactory
      * @param array  $params  A name/value array of parameters. Names: encode, deleted,
      *                        If $params is boolean we revert to the old arguments (encode, deleted), and use $params
      *                        as $encode. This will be changed to using only $params in later versions.
-     * @param Bool   $deleted @see SugarBean::retrieve
+     * @param bool   $deleted
+     *
+     * @see SugarBean::retrieve
      *
      * @return SugarBean
      */
     public static function getBean($module, $id = null, $params = [], $deleted = true)
     {
-
         // Check if params is an array, if not use old arguments
         if (isset($params) && ! is_array($params)) {
             $params = ['encode' => $params];
@@ -181,7 +180,6 @@ class BeanFactory
     }
 
     /**
-     * @static
      * This function registers a bean with the bean factory so that it can be access from accross the code without doing
      * multiple retrieves. Beans should be registered as soon as they have an id.
      *
@@ -229,6 +227,7 @@ class BeanFactory
                 }
                 $index = "i".(self::$total % self::$maxLoaded);
             }
+
             if (isset(self::$loadOrder[$index])) {
                 unset(self::$loadedBeans[$info['module']][$info['id']]);
                 unset(self::$touched[$info['module']][$info['id']]);
