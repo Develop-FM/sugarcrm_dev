@@ -40,11 +40,17 @@ require_once('include/SugarObjects/templates/basic/Basic.php');
 class Company extends Basic
 {
     /**
+     * @var SugarEmailAddress
+     */
+    public $emailAddress;
+
+    /**
      * Constructor
      */
-    public function Company()
+    public function __construct()
     {
-        parent::Basic();
+        parent::__construct();
+
         $this->emailAddress = new SugarEmailAddress();
     }
 

@@ -549,11 +549,6 @@ class User extends Person {
 			return false;
 	}
 
-    function get_summary_text() {
-        //$this->_create_proper_name_field();
-        return $this->name;
-	}
-
 	/**
 	 * @deprecated
 	* @param string $user_name - Must be non null and at least 2 characters

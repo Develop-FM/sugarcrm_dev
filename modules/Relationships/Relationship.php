@@ -92,11 +92,6 @@ class Relationship extends SugarBean
 
     var $_self_referencing;
 
-    function Relationship()
-    {
-        parent::SugarBean();
-    }
-
     /**
      * @return true if the relationship is self referencing. equality check is performed for both table and key names.
      */

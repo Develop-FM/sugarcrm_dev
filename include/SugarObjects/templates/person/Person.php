@@ -63,9 +63,10 @@ class Person extends Basic
      */
     protected $emailAddress;
 
-    public function Person()
+    public function __construct()
     {
-        parent::Basic();
+        parent::__construct();
+
         $this->emailAddress = new SugarEmailAddress();
     }
 
@@ -199,7 +200,7 @@ class Person extends Basic
     {
         $this->_create_proper_name_field();
 
-        return $this->name;
+        return parent::get_summary_text();
     }
 
     /**

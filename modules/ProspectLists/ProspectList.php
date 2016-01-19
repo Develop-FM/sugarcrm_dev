@@ -1,33 +1,35 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+if (! defined('sugarEntry') || ! sugarEntry) {
+	die('Not A Valid Entry Point');
+}
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License version 3 as published by the
  * Free Software Foundation with the addition of the following permission added
  * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
  * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
  * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License along with
  * this program; if not, see http://www.gnu.org/licenses or write to the Free
  * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
- * 
+ *
  * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
  * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- * 
+ *
  * The interactive user interfaces in modified source and object code versions
  * of this program must display Appropriate Legal Notices, as required under
  * Section 5 of the GNU Affero General Public License version 3.
- * 
+ *
  * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
  * these Appropriate Legal Notices must retain the display of the "Powered by
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
@@ -35,131 +37,133 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-/*********************************************************************************
-
- * Description:
- ********************************************************************************/
-
-
-
-
-
-
-
-class ProspectList extends SugarBean {
+class ProspectList extends SugarBean
+{
 	var $field_name_map;
-	
+
 	// Stored fields
 	var $id;
+
 	var $date_entered;
+
 	var $date_modified;
+
 	var $modified_user_id;
+
 	var $assigned_user_id;
+
 	var $created_by;
+
 	var $created_by_name;
+
 	var $modified_by_name;
+
 	var $list_type;
+
 	var $domain_name;
 
 	var $name;
+
 	var $description;
-	
+
 	// These are related
 	var $assigned_user_name;
+
 	var $prospect_id;
+
 	var $contact_id;
+
 	var $lead_id;
 
 	// module name definitions and table relations
 	var $table_name = "prospect_lists";
+
 	var $module_dir = 'ProspectLists';
+
 	var $rel_prospects_table = "prospect_lists_prospects";
+
 	var $object_name = "ProspectList";
 
 	// This is used to retrieve related fields from form posts.
-	var $additional_column_fields = array(
-		'assigned_user_name', 'assigned_user_id', 'campaign_id',
-	);
-	var $relationship_fields = array(
-		'campaign_id'=>'campaigns',
-		'prospect_list_prospects' => 'prospects',
-	);
+	var $additional_column_fields = [
+		'assigned_user_name',
+		'assigned_user_id',
+		'campaign_id',
+	];
 
-    var $entry_count;
-    
-	function ProspectList() {
-		global $sugar_config;
-		parent::SugarBean();
-		
-	}
+	var $relationship_fields = [
+		'campaign_id'             => 'campaigns',
+		'prospect_list_prospects' => 'prospects',
+	];
+
+	var $entry_count;
 
 	var $new_schema = true;
 
-	function get_summary_text()
-	{
-		return "$this->name";
-	}
-
 	function create_list_query($order_by, $where, $show_deleted = 0)
 	{
-        $custom_join = $this->getCustomJoin();
-		
+		$custom_join = $this->getCustomJoin();
+
 		$query = "SELECT ";
 		$query .= "users.user_name as assigned_user_name, ";
 		$query .= "prospect_lists.*";
 
-        $query .= $custom_join['select'];
+		$query .= $custom_join['select'];
 		$query .= " FROM prospect_lists ";
 
 		$query .= "LEFT JOIN users
 					ON prospect_lists.assigned_user_id=users.id ";
 
-        $query .= $custom_join['join'];
+		$query .= $custom_join['join'];
 
-			$where_auto = '1=1';
-				if($show_deleted == 0){
-                	$where_auto = "$this->table_name.deleted=0";
-				}else if($show_deleted == 1){
-                	$where_auto = "$this->table_name.deleted=1";
-				}
+		$where_auto = '1=1';
+		if ($show_deleted == 0) {
+			$where_auto = "$this->table_name.deleted=0";
+		} else if ($show_deleted == 1) {
+			$where_auto = "$this->table_name.deleted=1";
+		}
 
-		if($where != "")
+		if ($where != "") {
 			$query .= "where $where AND ".$where_auto;
-		else
+		} else {
 			$query .= "where ".$where_auto;
+		}
 
-		if($order_by != "")
+		if ($order_by != "") {
 			$query .= " ORDER BY $order_by";
-		else
+		} else {
 			$query .= " ORDER BY prospect_lists.name";
+		}
 
 		return $query;
 	}
 
-
 	function create_export_query($order_by, $where)
 	{
 
-                                $query = "SELECT
+		$query = "SELECT
                                 prospect_lists.*,
                                 users.user_name as assigned_user_name ";
-	                            $query .= "FROM prospect_lists ";
-		$query .= 				"LEFT JOIN users
+		$query .= "FROM prospect_lists ";
+		$query .= "LEFT JOIN users
                                 ON prospect_lists.assigned_user_id=users.id ";
 
 		$where_auto = " prospect_lists.deleted=0";
 
-        if($where != "")
-                $query .= " WHERE $where AND ".$where_auto;
-        else
-                $query .= " WHERE ".$where_auto;
+		if ($where != "") {
+			$query .= " WHERE $where AND ".$where_auto;
+		} else {
+			$query .= " WHERE ".$where_auto;
+		}
 
-        if($order_by != "")
-                $query .= " ORDER BY $order_by";
-        else
-                $query .= " ORDER BY prospect_lists.name";
-        return $query;
-    }
+		if ($order_by != "") {
+			$query .= " ORDER BY $order_by";
+		} else {
+			$query .= " ORDER BY prospect_lists.name";
+		}
+
+		return $query;
+	}
 
 	function create_export_members_query($record_id)
 	{
@@ -227,50 +231,55 @@ FROM prospect_lists_prospects plp
 				WHERE plp.prospect_list_id = $record_id  AND plp.deleted=0 
 				AND a.deleted=0
 				AND (ear.deleted=0 OR ear.deleted IS NULL)";
-		$order_by = "ORDER BY related_type, id, primary_address DESC";
-		$query = "$leads_query UNION ALL $users_query UNION ALL $contacts_query UNION ALL $prospects_query UNION ALL $accounts_query $order_by";
+		$order_by       = "ORDER BY related_type, id, primary_address DESC";
+		$query          = "$leads_query UNION ALL $users_query UNION ALL $contacts_query UNION ALL $prospects_query UNION ALL $accounts_query $order_by";
+
 		return $query;
 	}
-	
+
 	function save_relationship_changes($is_update)
-    {
-    	parent::save_relationship_changes($is_update);
-		if($this->lead_id != "")
-	   		$this->set_prospect_relationship($this->id, $this->lead_id, "lead");
-    	if($this->contact_id != "")
-    		$this->set_prospect_relationship($this->id, $this->contact_id, "contact");
-    	if($this->prospect_id != "")
-    		$this->set_prospect_relationship($this->id, $this->contact_id, "prospect");
-    }
+	{
+		parent::save_relationship_changes($is_update);
+		if ($this->lead_id != "") {
+			$this->set_prospect_relationship($this->id, $this->lead_id, "lead");
+		}
+		if ($this->contact_id != "") {
+			$this->set_prospect_relationship($this->id, $this->contact_id, "contact");
+		}
+		if ($this->prospect_id != "") {
+			$this->set_prospect_relationship($this->id, $this->contact_id, "prospect");
+		}
+	}
 
 	function set_prospect_relationship($prospect_list_id, &$link_ids, $link_name)
 	{
 		$link_field = sprintf("%s_id", $link_name);
-		
-		foreach($link_ids as $link_id)
-		{
-			$this->set_relationship('prospect_lists_prospects', array( $link_field=>$link_id, 'prospect_list_id'=>$prospect_list_id ));
+
+		foreach ($link_ids as $link_id) {
+			$this->set_relationship('prospect_lists_prospects', [$link_field        => $link_id,
+																 'prospect_list_id' => $prospect_list_id
+			]);
 		}
 	}
 
 	function set_prospect_relationship_single($prospect_list_id, $link_id, $link_name)
 	{
 		$link_field = sprintf("%s_id", $link_name);
-		
-		$this->set_relationship('prospect_lists_prospects', array( $link_field=>$link_id, 'prospect_list_id'=>$prospect_list_id ));
-	}
 
+		$this->set_relationship('prospect_lists_prospects', [$link_field        => $link_id,
+															 'prospect_list_id' => $prospect_list_id
+		]);
+	}
 
 	function clear_prospect_relationship($prospect_list_id, $link_id, $link_name)
 	{
-		$link_field = sprintf("%s_id", $link_name);
+		$link_field   = sprintf("%s_id", $link_name);
 		$where_clause = " AND $link_field = '$link_id' ";
-		
+
 		$query = sprintf("DELETE FROM prospect_lists_prospects WHERE prospect_list_id='%s' AND deleted = '0' %s", $prospect_list_id, $where_clause);
-	
+
 		$this->db->query($query, true, "Error clearing prospect/prospect_list relationship: ");
 	}
-	
 
 	function mark_relationships_deleted($id)
 	{
@@ -283,77 +292,80 @@ FROM prospect_lists_prospects plp
 	function fill_in_additional_detail_fields()
 	{
 		parent::fill_in_additional_detail_fields();
-        $this->entry_count = $this->get_entry_count();
+		$this->entry_count = $this->get_entry_count();
 	}
 
-	
-	function update_currency_id($fromid, $toid){
+	function update_currency_id($fromid, $toid)
+	{
 	}
-
 
 	function get_entry_count()
 	{
-		$query = "SELECT count(*) AS num FROM prospect_lists_prospects WHERE prospect_list_id='$this->id' AND deleted = '0'";
+		$query  = "SELECT count(*) AS num FROM prospect_lists_prospects WHERE prospect_list_id='$this->id' AND deleted = '0'";
 		$result = $this->db->query($query, true, "Grabbing prospect_list entry count");
-		
+
 		$row = $this->db->fetchByAssoc($result);
 
-		if($row)
+		if ($row) {
 			return $row['num'];
-		else
+		} else {
 			return 0;
+		}
 	}
-		
-		
-	function get_list_view_data(){
-		$temp_array = $this->get_list_view_array();
-		$temp_array["ENTRY_COUNT"] = $this->get_entry_count();		
+
+	function get_list_view_data()
+	{
+		$temp_array                = $this->get_list_view_array();
+		$temp_array["ENTRY_COUNT"] = $this->get_entry_count();
+
 		return $temp_array;
 	}
+
 	/**
-		builds a generic search based on the query string using or
-		do not include any $this-> because this is called on without having the class instantiated
-	*/
-	function build_generic_where_clause ($the_query_string) 
+	 * builds a generic search based on the query string using or
+	 * do not include any $this-> because this is called on without having the class instantiated
+	 */
+	function build_generic_where_clause($the_query_string)
 	{
-		$where_clauses = Array();
+		$where_clauses    = [];
 		$the_query_string = $GLOBALS['db']->quote($the_query_string);
 		array_push($where_clauses, "prospect_lists.name like '$the_query_string%'");
 
 		$the_where = "";
-		foreach($where_clauses as $clause)
-		{
-			if($the_where != "") $the_where .= " or ";
+		foreach ($where_clauses as $clause) {
+			if ($the_where != "") {
+				$the_where .= " or ";
+			}
 			$the_where .= $clause;
 		}
-
 
 		return $the_where;
 	}
 
-	function save($check_notify = FALSE) {
+	function save($check_notify = false)
+	{
 
 		return parent::save($check_notify);
-
 	}
 
-    function mark_deleted($id){
-        $query = "UPDATE prospect_lists_prospects SET deleted = 1 WHERE prospect_list_id = '{$id}' ";
-        $this->db->query($query);
-        return parent::mark_deleted($id);
-    }
-	
-	 function bean_implements($interface){
-		switch($interface){
-			case 'ACL':return true;
+	function mark_deleted($id)
+	{
+		$query = "UPDATE prospect_lists_prospects SET deleted = 1 WHERE prospect_list_id = '{$id}' ";
+		$this->db->query($query);
+
+		return parent::mark_deleted($id);
+	}
+
+	function bean_implements($interface)
+	{
+		switch ($interface) {
+			case 'ACL':
+				return true;
 		}
+
 		return false;
 	}
 
 }
-
-
-
-
 
 ?>

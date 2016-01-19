@@ -190,6 +190,9 @@ class SugarBean
     //TODO This should be replaced by altering the current user before the call to save.
     var $set_created_by = true;
 
+    /**
+     * @var string
+     */
     var $team_set_id;
 
     /**
@@ -398,7 +401,7 @@ class SugarBean
      * 3. Setup row-level security preference
      * All implementing classes  must call this constructor using the parent::SugarBean() class.
      */
-    public function SugarBean()
+    public function __construct()
     {
         global $dictionary, $current_user;
 

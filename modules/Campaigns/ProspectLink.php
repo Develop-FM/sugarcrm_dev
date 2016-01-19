@@ -67,6 +67,7 @@ class ProspectLink extends Link2
             $join_type = $params['join_type'];
         }
         $join = '';
+
         $bean_is_lhs=$this->_get_bean_position();
 
         if (

@@ -43,12 +43,6 @@ require_once('include/SugarObjects/templates/basic/Basic.php');
 
 class Sale extends Basic
 {
-
-    function Sale()
-    {
-        parent::Basic();
-    }
-
     /**
      * @param string    $order_by
      * @param string    $where
