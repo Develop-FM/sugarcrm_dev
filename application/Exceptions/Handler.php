@@ -24,10 +24,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if (config('crm.debug')) {
-            $this->renderWoopsException($e);
+        if (config('app.debug') and config('app.use_woops')) {
+            return $this->renderWoopsException($e);
         } else {
-            $this->renderException($e);
+            return $this->renderException($e);
         }
     }
 
@@ -35,22 +35,27 @@ class Handler extends ExceptionHandler
      * Convert the given exception into a Response instance.
      *
      * @param  \Exception $e
+     *
+     * @return \Illuminate\Http\Response
      */
     protected function renderWoopsException(Exception $e)
     {
         $whoops = new \Whoops\Run;
         $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-        $whoops->handleException($e);
+
+        return $this->toIlluminateResponse($whoops->handleException($e), $e);
     }
 
     /**
      * Convert the given exception into a Response instance.
      *
      * @param  \Exception $e
+     *
+     * @return \Illuminate\Http\Response
      */
     protected function renderException(Exception $e)
     {
-        (new SymfonyDisplayer(true))->handle($e);
+        return $this->toIlluminateResponse($this->convertExceptionToResponse($e), $e);
     }
 }
 

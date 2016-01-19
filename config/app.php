@@ -26,6 +26,8 @@ return [
      */
     'debug' => env('APP_DEBUG', false),
 
+    'use_woops' => env('APP_WOOPS', true),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -50,7 +52,7 @@ return [
     |
     */
 
-    'key' => 'V7iryd4HJE3LvftrQ0UErLVC2FvAD78i',
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 

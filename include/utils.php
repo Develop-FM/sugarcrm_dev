@@ -1634,12 +1634,10 @@ function get_select_options_with_id_separate_key($label_list, $key_list, $select
  * We print the error message and then die with an appropriate
  * exit code.
  */
-function sugar_die($error_message, $exit_code = 1)
+function sugar_die($error_message)
 {
-	global $focus;
 	sugar_cleanup();
-	echo $error_message;
-	die($exit_code);
+	throw new \App\Exceptions\SugarException($error_message);
 }
 
 /**
