@@ -61,6 +61,7 @@ class ConnectorFactory
             require_once(DOCROOT.'include/connectors/component.php');
 
             $source    = SourceFactory::getSource($source_name);
+            
             $component = new component();
             $component->setSource($source);
             $component->init();

@@ -53,6 +53,8 @@ class component
 	 */
 	protected $_source;
 
+	public function init() {}
+
 	/**
 	 * fillBean
 	 * This function wraps the call to getItem, but takes an additional SugarBean argument
