@@ -672,7 +672,7 @@ class SugarApplication
             }
         }
 
-        LogicHook::initialize()->call_custom_logic('', 'after_session_start');
+        LogicHook::instance()->call_custom_logic('core', 'after_session_start');
     }
 
     function endSession()

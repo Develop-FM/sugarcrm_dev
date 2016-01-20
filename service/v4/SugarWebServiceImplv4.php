@@ -90,8 +90,7 @@ class SugarWebServiceImplv4 extends SugarWebServiceImplv3_1 {
             {
                 $error->set_error('password_expired');
                 $GLOBALS['log']->fatal('password expired for user ' . $user_auth['user_name']);
-                LogicHook::initialize();
-                $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+                LogicHook::instance()->call_custom_logic('Users', 'login_failed');
                 self::$helperObject->setFaultObject($error);
                 return;
             }
@@ -106,8 +105,7 @@ class SugarWebServiceImplv4 extends SugarWebServiceImplv3_1 {
         {
             $error->set_error('lockout_reached');
             $GLOBALS['log']->fatal('Lockout reached for user ' . $user_auth['user_name']);
-            LogicHook::initialize();
-            $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+            LogicHook::instance()->call_custom_logic('Users', 'login_failed');
             self::$helperObject->setFaultObject($error);
             return;
         }
@@ -133,8 +131,7 @@ class SugarWebServiceImplv4 extends SugarWebServiceImplv3_1 {
         	{
 
 	            $error->set_error('ldap_error');
-	            LogicHook::initialize();
-	            $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+                LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 	            self::$helperObject->setFaultObject($error);
 	            return;
         	}
@@ -184,8 +181,7 @@ class SugarWebServiceImplv4 extends SugarWebServiceImplv3_1 {
             $_SESSION['user_language'] = $current_language;
             return array('id'=>session_id(), 'module_name'=>'Users', 'name_value_list'=>$nameValueArray);
         }
-        LogicHook::initialize();
-        $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+        LogicHook::instance()->call_custom_logic('Users', 'login_failed');
         $error->set_error('invalid_login');
         self::$helperObject->setFaultObject($error);
         $GLOBALS['log']->error('End: SugarWebServiceImpl->login - failed login');

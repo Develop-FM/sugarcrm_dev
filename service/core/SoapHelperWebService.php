@@ -218,8 +218,7 @@ function validate_user($user_name, $password){
 			$GLOBALS['log']->debug("calling destroy");
 			session_destroy();
 		}
-		LogicHook::initialize();
-		$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+		LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 		$GLOBALS['log']->info('End: SoapHelperWebServices->validate_authenticated - validation failed');
 		return false;
 	}

@@ -172,7 +172,7 @@ if (empty($GLOBALS['installing'])) {
     $system_config  = new Administration();
     $system_config->retrieveSettings();
 
-    LogicHook::initialize()->call_custom_logic('', 'after_entry_point');
+    LogicHook::instance()->call_custom_logic('core', 'after_entry_point');
 }
 
 ////	END SETTING DEFAULT VAR VALUES

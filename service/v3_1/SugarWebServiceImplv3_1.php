@@ -306,8 +306,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             {
                 $error->set_error('password_expired');
                 $GLOBALS['log']->fatal('password expired for user ' . $user_auth['user_name']);
-                LogicHook::initialize();
-                $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+                LogicHook::instance()->call_custom_logic('Users', 'login_failed');
                 self::$helperObject->setFaultObject($error);
                 return;
             }
@@ -322,8 +321,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         {
             $error->set_error('lockout_reached');
             $GLOBALS['log']->fatal('Lockout reached for user ' . $user_auth['user_name']);
-            LogicHook::initialize();
-            $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+            LogicHook::instance()->call_custom_logic('Users', 'login_failed');
             self::$helperObject->setFaultObject($error);
             return;
         }
@@ -331,8 +329,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
                  && (empty($user_auth['encryption']) || $user_auth['encryption'] !== 'PLAIN' ) )
         {
             $error->set_error('ldap_error');
-            LogicHook::initialize();
-            $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+            LogicHook::instance()->call_custom_logic('Users', 'login_failed');
             self::$helperObject->setFaultObject($error);
             return;
         }
@@ -386,8 +383,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             $_SESSION['user_language'] = $current_language;
             return array('id'=>session_id(), 'module_name'=>'Users', 'name_value_list'=>$nameValueArray);
         }
-        LogicHook::initialize();
-        $GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+        LogicHook::instance()->call_custom_logic('Users', 'login_failed');
         $error->set_error('invalid_login');
         self::$helperObject->setFaultObject($error);
         $GLOBALS['log']->info('End: SugarWebServiceImpl->login - failed login');

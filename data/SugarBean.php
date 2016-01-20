@@ -4954,12 +4954,7 @@ class SugarBean
             //and we only will return if one event gets caught in a loop. We do not increment globally
             //for each event called.
             $this->logicHookDepth[$event]++;
-
-            //method defined in 'include/utils/LogicHook.php'
-
-            $logicHook = new LogicHook();
-            $logicHook->setBean($this);
-            $logicHook->call_custom_logic($this->module_dir, $event, $arguments);
+            LogicHook::instance($this)->call_custom_logic($this->module_dir, $event, $arguments);
             $this->logicHookDepth[$event]--;
         }
     }

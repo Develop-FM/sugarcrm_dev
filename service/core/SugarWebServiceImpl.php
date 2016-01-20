@@ -544,8 +544,7 @@ public function login($user_auth, $application, $name_value_list){
 		if ($_SESSION['hasExpiredPassword'] =='1') {
 			$error->set_error('password_expired');
 			$GLOBALS['log']->fatal('password expired for user ' . $user_auth['user_name']);
-			LogicHook::initialize();
-			$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+			LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 			self::$helperObject->setFaultObject($error);
 			return;
 		} // if
@@ -557,8 +556,7 @@ public function login($user_auth, $application, $name_value_list){
 	} else if($usr_id && isset($user->user_name) && ($user->getPreference('lockout') == '1')) {
 			$error->set_error('lockout_reached');
 			$GLOBALS['log']->fatal('Lockout reached for user ' . $user_auth['user_name']);
-			LogicHook::initialize();
-			$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+		LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 			self::$helperObject->setFaultObject($error);
 			return;
 	} else if(function_exists('mcrypt_cbc')){
@@ -596,8 +594,7 @@ public function login($user_auth, $application, $name_value_list){
 		$_SESSION['user_language'] = $current_language;
 		return array('id'=>session_id(), 'module_name'=>'Users', 'name_value_list'=>$nameValueArray);
 } // if
-	LogicHook::initialize();
-	$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+	LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 	$error->set_error('invalid_login');
 	self::$helperObject->setFaultObject($error);
 	$GLOBALS['log']->info('End: SugarWebServiceImpl->login - failed login');
@@ -615,16 +612,16 @@ function logout($session){
 
 	$GLOBALS['log']->info('Begin: SugarWebServiceImpl->logout');
 	$error = new SoapError();
-	LogicHook::initialize();
+
 	if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', '', '', '', $error)) {
-		$GLOBALS['logic_hook']->call_custom_logic('Users', 'after_logout');
+		LogicHook::instance()->call_custom_logic('Users', 'after_logout');
 		$GLOBALS['log']->info('End: SugarWebServiceImpl->logout');
 		return;
 	} // if
 
 	$current_user->call_custom_logic('before_logout');
 	session_destroy();
-	$GLOBALS['logic_hook']->call_custom_logic('Users', 'after_logout');
+	LogicHook::instance()->call_custom_logic('Users', 'after_logout');
 	$GLOBALS['log']->info('End: SugarWebServiceImpl->logout');
 } // fn
 

@@ -106,8 +106,7 @@ function login($user_auth, $application){
 		if ($_SESSION['hasExpiredPassword'] =='1') {
 			$error->set_error('password_expired');
 			$GLOBALS['log']->fatal('password expired for user ' . $user_auth['user_name']);
-			LogicHook::initialize();
-			$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+			LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 			return array('id'=>-1, 'error'=>$error);
 		} // if
 		if(!empty($user) && !empty($user->id) && !$user->is_group) {
@@ -118,8 +117,7 @@ function login($user_auth, $application){
 	} else if($usr_id && isset($user->user_name) && ($user->getPreference('lockout') == '1')) {
 			$error->set_error('lockout_reached');
 			$GLOBALS['log']->fatal('Lockout reached for user ' . $user_auth['user_name']);
-			LogicHook::initialize();
-			$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+			LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 			return array('id'=>-1, 'error'=>$error);
 	} else if(function_exists('mcrypt_cbc')){
 		$password = decrypt_string($user_auth['password']);
@@ -148,8 +146,7 @@ function login($user_auth, $application){
 	}
 	$error->set_error('invalid_login');
 	$GLOBALS['log']->fatal('SECURITY: User authentication for '. $user_auth['user_name']. ' failed');
-	LogicHook::initialize();
-	$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+	LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 	return array('id'=>-1, 'error'=>$error);
 
 }
@@ -198,9 +195,9 @@ function validate_authenticated($session_id){
 
 		session_destroy();
 	}
-	LogicHook::initialize();
+
 	$GLOBALS['log']->fatal('SECURITY: The session ID is invalid');
-	$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+	LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 	return false;
 }
 
@@ -851,15 +848,14 @@ function logout($session){
 	global $current_user;
 
 	$error = new SoapError();
-	LogicHook::initialize();
 	if(validate_authenticated($session)){
 		$current_user->call_custom_logic('before_logout');
 		session_destroy();
-		$GLOBALS['logic_hook']->call_custom_logic('Users', 'after_logout');
+		LogicHook::instance()->call_custom_logic('Users', 'after_logout');
 		return $error->get_soap_array();
 	}
 	$error->set_error('no_session');
-	$GLOBALS['logic_hook']->call_custom_logic('Users', 'after_logout');
+	LogicHook::instance()->call_custom_logic('Users', 'after_logout');
 	return $error->get_soap_array();
 }
 

@@ -238,11 +238,13 @@ class SugarController
 			$this->setModule($module);
 		}
 
-		if (! empty($_REQUEST['target_module']) && $_REQUEST['target_module'] != 'undefined') {
-			$this->target_module = $_REQUEST['target_module'];
+		if ($this->request->has('target_module') and ($target_module = $this->request->get('target_module')) != 'undefined') {
+			$this->target_module = $target_module;
 		}
+
 		//set properties on the controller from the $_REQUEST
 		$this->loadPropertiesFromRequest();
+
 		//load the mapping files
 		$this->loadMappings();
 	}
@@ -263,23 +265,8 @@ class SugarController
 	 */
 	private function loadPropertiesFromRequest()
 	{
-		if (! empty($_REQUEST['action'])) {
-			$this->action = $_REQUEST['action'];
-		}
-		if (! empty($_REQUEST['record'])) {
-			$this->record = $_REQUEST['record'];
-		}
-		if (! empty($_REQUEST['view'])) {
-			$this->view = $_REQUEST['view'];
-		}
-		if (! empty($_REQUEST['return_module'])) {
-			$this->return_module = $_REQUEST['return_module'];
-		}
-		if (! empty($_REQUEST['return_action'])) {
-			$this->return_action = $_REQUEST['return_action'];
-		}
-		if (! empty($_REQUEST['return_id'])) {
-			$this->return_id = $_REQUEST['return_id'];
+		foreach (['action', 'record', 'view', 'return_module', 'return_action', 'return_id'] as $key) {
+			$this->{$key} = $this->request->get($key, $this->{$key});
 		}
 	}
 
@@ -326,31 +313,36 @@ class SugarController
 			} else {
 				$$var = [];
 			}
-			if (file_exists('include/MVC/Controller/'.$var.'.php')) {
-				require('include/MVC/Controller/'.$var.'.php');
-			}
-			if (file_exists('modules/'.$this->module.'/'.$var.'.php')) {
-				require('modules/'.$this->module.'/'.$var.'.php');
-			}
-			if (file_exists('custom/modules/'.$this->module.'/'.$var.'.php')) {
-				require('custom/modules/'.$this->module.'/'.$var.'.php');
-			}
-			if (file_exists('custom/include/MVC/Controller/'.$var.'.php')) {
-				require('custom/include/MVC/Controller/'.$var.'.php');
+
+			if (file_exists($path = DOCROOT."include/MVC/Controller/{$var}.php")) {
+				require($path);
 			}
 
-			// entry_point_registry -> EntryPointRegistry
+			if (file_exists($path = DOCROOT."modules/{$this->module}/{$var}'.php")) {
+				require($path);
+			}
+
+			if (file_exists($path = DOCROOT."custom/modules/{$this->module}/{$var}.php")) {
+				require($path);
+			}
+
+			if (file_exists($path = DOCROOT."custom/include/MVC/Controller/{$var}.php")) {
+				require($path);
+			}
 
 			$varname = str_replace(" ", "", ucwords(str_replace("_", " ", $var)));
-			if (file_exists("custom/application/Ext/$varname/$var.ext.php")) {
-				require("custom/application/Ext/$varname/$var.ext.php");
+
+			if (file_exists($path = DOCROOT."custom/application/Ext/{$varname}/{$var}.ext.php")) {
+				require($path);
 			}
-			if (file_exists("custom/modules/{$this->module}/Ext/$varname/$var.ext.php")) {
-				require("custom/modules/{$this->module}/Ext/$varname/$var.ext.php");
+
+			if (file_exists($path = DOCROOT."custom/modules/{$this->module}/Ext/{$varname}/{$var}.ext.php")) {
+				require($path);
 			}
 
 			sugar_cache_put("CONTROLLER_".$var."_".$this->module, $$var);
 		}
+
 		$this->$var = $$var;
 	}
 
@@ -378,15 +370,19 @@ class SugarController
 	 */
 	protected function handleException(Exception $e)
 	{
-		$GLOBALS['log']->fatal("Exception in Controller: [{$e->getMessage()}]:[File: {$e->getFile()}:{$e->getLine()}]");
-		$logicHook = new LogicHook();
+		$logicHook = LogicHook::instance();
+		$dir = '';
 
-		if ($this->bean instanceof SugarBean) {
+		$GLOBALS['log']->fatal("Exception in Controller: [{$e->getMessage()}]:[File: {$e->getFile()}:{$e->getLine()}]");
+
+		if (isset($this->bean)) {
 			$logicHook->setBean($this->bean);
-			$logicHook->call_custom_logic($this->bean->module_dir, "handle_exception", $e);
-		} else {
-			$logicHook->call_custom_logic('', "handle_exception", $e);
+			$dir = $this->bean->module_dir;
 		}
+
+		LogicHook::instance();
+
+		$logicHook->call_custom_logic($dir, "handle_exception", $e);
 	}
 
 	/**

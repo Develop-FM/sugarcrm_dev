@@ -3093,9 +3093,8 @@ function sugar_cleanup($exit = false)
 	set_include_path(realpath(dirname(__FILE__).'/..').PATH_SEPARATOR.get_include_path());
 	chdir(realpath(dirname(__FILE__).'/..'));
 	global $sugar_config;
-	require_once('include/utils/LogicHook.php');
-	LogicHook::initialize();
-	$GLOBALS['logic_hook']->call_custom_logic('', 'server_round_trip');
+
+	LogicHook::instance()->call_custom_logic('core', 'server_round_trip');
 
 	//added this check to avoid errors during install.
 	if (empty($sugar_config['dbconfig'])) {

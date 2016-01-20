@@ -147,7 +147,6 @@ class SugarView
      */
     public function process()
     {
-        LogicHook::initialize();
         $this->_checkModule();
 
         //trackView has to be here in order to track for breadcrumbs
@@ -172,11 +171,7 @@ class SugarView
         $this->displayErrors();
         $this->display();
 
-        if (! empty($this->module)) {
-            $GLOBALS['logic_hook']->call_custom_logic($this->module, 'after_ui_frame');
-        } else {
-            $GLOBALS['logic_hook']->call_custom_logic('', 'after_ui_frame');
-        }
+        LogicHook::instance($this->module, 'after_ui_frame');
 
         // We have to update jsAlerts as soon as possible
         if (! isset($_SESSION['isMobile']) && ($this instanceof ViewList || $this instanceof ViewDetail || $this instanceof ViewEdit)) {
@@ -197,7 +192,7 @@ class SugarView
             $this->displayFooter();
         }
 
-        $GLOBALS['logic_hook']->call_custom_logic('', 'after_ui_footer');
+        LogicHook::instance()->call_custom_logic('core', 'after_ui_footer');
 
         if ($this->_getOption('json_output')) {
             $content  = ob_get_clean();

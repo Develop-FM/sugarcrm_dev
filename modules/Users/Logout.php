@@ -61,8 +61,7 @@ if(isset($_COOKIE[session_name()])) {
 // clear out the authenticating flag
 session_destroy();
 
-LogicHook::initialize();
-$GLOBALS['logic_hook']->call_custom_logic('Users', 'after_logout');
+LogicHook::instance()->call_custom_logic('Users', 'after_logout');
 
 /** @var AuthenticationController $authController */
 $authController->authController->logout();

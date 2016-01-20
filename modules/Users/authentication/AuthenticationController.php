@@ -125,7 +125,7 @@ class AuthenticationController
 		unset($GLOBALS['login_error']);
 
 		if($this->loggedIn)return $this->loginSuccess;
-		LogicHook::initialize()->call_custom_logic('Users', 'before_login');
+		LogicHook::instance()->call_custom_logic('Users', 'before_login');
 
 		$this->loginSuccess = $this->authController->loginAuthenticate($username, $password, false, $PARAMS);
 		$this->loggedIn = true;
@@ -171,8 +171,7 @@ class AuthenticationController
 			}
 		}else{
 			//kbrill bug #13225
-			LogicHook::initialize();
-			$GLOBALS['logic_hook']->call_custom_logic('Users', 'login_failed');
+			LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 			$GLOBALS['log']->fatal('FAILED LOGIN:attempts[' .$_SESSION['loginAttempts'] .'] - '. $username);
 		}
 		// if password has expired, set a session variable
@@ -211,7 +210,6 @@ class AuthenticationController
 	{
 		$GLOBALS['current_user']->call_custom_logic('before_logout');
 		$this->authController->logout();
-		LogicHook::initialize();
-		$GLOBALS['logic_hook']->call_custom_logic('Users', 'after_logout');
+		LogicHook::instance()->call_custom_logic('Users', 'after_logout');
 	}
 }
