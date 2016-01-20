@@ -38,7 +38,6 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-require_once('include/MVC/View/SugarView.php');
 require_once('include/Sugarpdf/FontManager.php');
 
 class ConfiguratorViewAddFontView extends SugarView

@@ -44,42 +44,56 @@ class SugarView
      * This array is meant to hold an objects/data that we would like to pass between
      * the controller and the view.  The bean will automatically be set for us, but this
      * is meant to hold anything else.
+     *
+     * @var array
      */
     var $view_object_map = [];
 
     /**
      * The name of the current module.
+     *
+     * @var string
      */
     var $module = '';
 
     /**
      * The name of the current action.
+     *
+     * @var string
      */
     var $action = '';
 
     /**
+     * @var SugarBean
      */
     var $bean = null;
 
     /**
-     * @var Sugar_Smarty
      * Sugar_Smarty. This is useful if you have a view and a subview you can
-     * share the same smarty object.
+     * share the same smarty object..
+     *
+     * @var Sugar_Smarty
      */
     var $ss = null;
 
     /**
      * Any errors that occured this can either be set by the view or the controller or the model
+     *
+     * @var array
      */
     var $errors = [];
 
     /**
      * Set to true if you do not want to display errors from SugarView::displayErrors(); instead they will be returned
+     *
+     * @var bool
      */
     var $suppressDisplayErrors = false;
 
     /**
      * Options for what UI elements to hide/show/
+     *
+     * @var array
      */
     var $options = [
         'show_header'     => true,
@@ -91,8 +105,14 @@ class SugarView
         'view_print'      => false,
     ];
 
+    /**
+     * @var string
+     */
     var $type = null;
 
+    /**
+     * @var int
+     */
     var $responseTime;
 
     var $fileResources;
@@ -101,12 +121,17 @@ class SugarView
     {
     }
 
-    public function init($bean = null, $view_object_map = [])
+    /**
+     * @param SugarBean|null $bean
+     * @param array          $view_object_map
+     */
+    public function init(SugarBean $bean = null, array $view_object_map = [])
     {
         $this->bean            = $bean;
         $this->view_object_map = $view_object_map;
         $this->action          = $GLOBALS['action'];
         $this->module          = $GLOBALS['module'];
+
         $this->_initSmarty();
     }
 
@@ -146,6 +171,7 @@ class SugarView
         $this->preDisplay();
         $this->displayErrors();
         $this->display();
+
         if (! empty($this->module)) {
             $GLOBALS['logic_hook']->call_custom_logic($this->module, 'after_ui_frame');
         } else {
@@ -166,10 +192,13 @@ class SugarView
             //this is needed for a faster loading login page ie won't render unless the tables are closed
             ob_flush();
         }
+
         if ($this->_getOption('show_footer')) {
             $this->displayFooter();
         }
+
         $GLOBALS['logic_hook']->call_custom_logic('', 'after_ui_footer');
+
         if ($this->_getOption('json_output')) {
             $content  = ob_get_clean();
             $module   = $this->module;
@@ -193,12 +222,15 @@ class SugarView
             if (empty($this->responseTime)) {
                 $this->_calculateFooterMetrics();
             }
+
             $ajax_ret['responseTime'] = $this->responseTime;
             $json                     = getJSONobj();
+
             echo $json->encode($ajax_ret);
             $GLOBALS['app']->headerDisplayed = false;
             ob_flush();
         }
+
         //Do not track if there is no module or if module is not a String
         $this->_track();
     }
@@ -248,6 +280,7 @@ class SugarView
     protected function _trackView()
     {
         $action = strtolower($this->action);
+
         //Skip save, tracked in SugarBean instead
         if ($action == 'save') {
             return;
@@ -255,6 +288,7 @@ class SugarView
 
         $trackerManager = TrackerManager::getInstance();
         $timeStamp      = TimeDate::getInstance()->nowDb();
+
         if ($monitor = $trackerManager->getMonitor('tracker')) {
             $monitor->setValue('action', $action);
             $monitor->setValue('user_id', $GLOBALS['current_user']->id);
@@ -274,12 +308,17 @@ class SugarView
 
                 return;
             }
+
             $trackerManager->saveMonitor($monitor, true, true);
         }
     }
 
     /**
      * Displays the header on section of the page; basically everything before the content
+     *
+     * @param bool $retModTabs
+     *
+     * @return mixed|string|void
      */
     public function displayHeader($retModTabs = false)
     {
@@ -345,15 +384,18 @@ class SugarView
                 "IMAGE"       => $themeObject->getImage($menu_item[2], "border='0' align='absmiddle'", null, null, '.gif', $menu_item[1]),
             ];
         }
+
         $ss->assign("SHORTCUT_MENU", $shortcut_menu);
 
         // handle rtl text direction
         if (isset($_REQUEST['RTL']) && $_REQUEST['RTL'] == 'RTL') {
             $_SESSION['RTL'] = true;
         }
+
         if (isset($_REQUEST['LTR']) && $_REQUEST['LTR'] == 'LTR') {
             unset($_SESSION['RTL']);
         }
+
         if (isset($_SESSION['RTL']) && $_SESSION['RTL']) {
             $ss->assign("DIR", 'dir="RTL"');
         }
@@ -376,11 +418,13 @@ class SugarView
             if ($width > 212 || $height > 40) {
                 $resizePctWidth  = ($width - 212) / 212;
                 $resizePctHeight = ($height - 40) / 40;
+
                 if ($resizePctWidth > $resizePctHeight) {
                     $resizeAmount = $width / 212;
                 } else {
                     $resizeAmount = $height / 40;
                 }
+
                 $ss->assign("COMPANY_LOGO_WIDTH", round($width * (1 / $resizeAmount)));
                 $ss->assign("COMPANY_LOGO_HEIGHT", round($height * (1 / $resizeAmount)));
             } else {
@@ -395,6 +439,7 @@ class SugarView
                 $ss->get_template_vars("COMPANY_LOGO_HEIGHT")
             ]);
         }
+
         $ss->assign("COMPANY_LOGO_URL", getJSPath($companyLogoURL)."&logo_md5=".$ss->get_template_vars("COMPANY_LOGO_MD5"));
 
         // get the global links
@@ -417,11 +462,13 @@ class SugarView
                         "URL"     => current($attributevalue),
                         "SUBMENU" => [],
                     ];
+
                     if (substr($gcls[$key]["URL"], 0, 11) == "javascript:") {
                         $gcls[$key]["ONCLICK"] = substr($gcls[$key]["URL"], 11);
                         $gcls[$key]["URL"]     = "javascript:void(0)";
                     }
                 }
+
                 // and now the sublinks
                 if ($linkattribute == 'submenu' && is_array($attributevalue)) {
                     foreach ($attributevalue as $submenulinkkey => $submenulinkinfo) {
@@ -430,6 +477,7 @@ class SugarView
                             "URL"   => current($submenulinkinfo),
                         ];
                     }
+
                     if (substr($gcls[$key]['SUBMENU'][$submenulinkkey]["URL"], 0, 11) == "javascript:") {
                         $gcls[$key]['SUBMENU'][$submenulinkkey]["ONCLICK"] = substr($gcls[$key]['SUBMENU'][$submenulinkkey]["URL"], 11);
                         $gcls[$key]['SUBMENU'][$submenulinkkey]["URL"]     = "javascript:void(0)";
@@ -437,15 +485,14 @@ class SugarView
                 }
             }
         }
-        $ss->assign("GCLS", $gcls);
 
+        $ss->assign("GCLS", $gcls);
         $ss->assign("SEARCH", isset($_REQUEST['query_string']) ? $_REQUEST['query_string'] : '');
+        $ss->assign("AUTHENTICATED", isset($_SESSION["authenticated_user_id"]));
 
         if ($this->action == "EditView" || $this->action == "Login") {
             $ss->assign("ONLOAD", 'onload="set_focus()"');
         }
-
-        $ss->assign("AUTHENTICATED", isset($_SESSION["authenticated_user_id"]));
 
         // get other things needed for page style popup
         if (isset($_SESSION["authenticated_user_id"])) {
@@ -557,6 +604,7 @@ class SugarView
                 if (count($topTabs) > $max_tabs) {
                     $extraTabs = array_splice($topTabs, $max_tabs);
                 }
+
                 // Make sure the current module is accessable through one of the top tabs
                 if (! isset($topTabs[$moduleTab])) {
                     // Nope, we need to add it.
@@ -564,28 +612,18 @@ class SugarView
                     if (isset($extraTabs[$moduleTab])) {
                         unset($extraTabs[$moduleTab]);
                     }
+
                     if (count($topTabs) >= $max_tabs - 1) {
                         // We already have the maximum number of tabs, so we need to shuffle the last one
                         // from the top to the first one of the extras
                         $lastElem  = array_splice($topTabs, $max_tabs - 1);
                         $extraTabs = $lastElem + $extraTabs;
                     }
+
                     if (! empty($moduleTab)) {
                         $topTabs[$moduleTab] = $app_list_strings['moduleList'][$moduleTab];
                     }
                 }
-
-                /*
-                // This was removed, but I like the idea, so I left the code in here in case we decide to turn it back on
-                // If we are using group tabs, add all the "hidden" tabs to the end of the extra menu
-                if ( $usingGroupTabs ) {
-                    foreach($fullModuleList as $moduleKey => $module ) {
-                        if ( !isset($topTabs[$moduleKey]) && !isset($extraTabs[$moduleKey]) ) {
-                            $extraTabs[$moduleKey] = $module;
-                        }
-                    }
-                }
-                */
 
                 // Get a unique list of the top tabs so we can build the popup menus for them
                 foreach ($topTabs as $moduleKey => $module) {
@@ -598,6 +636,7 @@ class SugarView
         }
 
         if (isset($topTabList) && is_array($topTabList)) {
+
             // Adding shortcuts array to menu array for displaying shortcuts associated with each module
             $shortcutTopMenu = [];
             foreach ($topTabList as $module_key => $label) {
@@ -613,6 +652,7 @@ class SugarView
                     ];
                 }
             }
+
             $ss->assign("groupTabs", $groupTabs);
             $ss->assign("shortcutTopMenu", $shortcutTopMenu);
             $ss->assign('USE_GROUP_TABS', $usingGroupTabs);
@@ -638,6 +678,7 @@ class SugarView
                     ];
                 }
             }
+
             $ss->assign("shortcutExtraMenu", $shortcutExtraMenu);
         }
 
@@ -648,6 +689,7 @@ class SugarView
         $imageURL  = SugarThemeRegistry::current()->getImageURL("dashboard.png");
         $homeImage = "<img src='$imageURL'>";
         $ss->assign("homeImage", $homeImage);
+
         global $mod_strings;
         $mod_strings = $bakModStrings;
         $headerTpl   = $themeObject->getTemplate('header.tpl');
@@ -681,16 +723,17 @@ class SugarView
      *
      * @param string $file
      */
-    public function includeClassicFile(
-        $file
-    ) {
+    public function includeClassicFile($file)
+    {
         global $sugar_config, $theme, $current_user, $sugar_version, $sugar_flavor, $mod_strings, $app_strings, $app_list_strings, $action;
         global $gridline, $request_string, $modListHeader, $dashletData, $authController, $locale, $currentModule, $import_bean_map, $image_path, $license;
         global $user_unique_key, $server_unique_key, $barChartColors, $modules_exempt_from_availability_check, $dictionary, $current_language, $beanList, $beanFiles, $sugar_build, $sugar_codename;
         global $timedate, $login_error; // cn: bug 13855 - timedate not available to classic views.
+
         if (! empty($this->module)) {
             $currentModule = $this->module;
         }
+
         require_once($file);
     }
 
@@ -780,15 +823,18 @@ EOHTML;
             if (isset($this->bean->module_dir)) {
                 $js_vars['module_sugar_grp1'] = $this->bean->module_dir;
             }
+
             if (isset($_REQUEST['action'])) {
                 $js_vars['action_sugar_grp1'] = $_REQUEST['action'];
             }
+
             echo '<script>jscal_today = 1000*'.$timedate->asUserTs($timedate->getNow()).'; if(typeof app_strings == "undefined") app_strings = new Array();</script>';
             if (! is_file(sugar_cached("include/javascript/sugar_grp1.js")) || ! is_file(sugar_cached("include/javascript/sugar_grp1_yui.js")) || ! is_file(sugar_cached("include/javascript/sugar_grp1_jquery.js"))) {
                 $_REQUEST['root_directory'] = ".";
                 require_once("jssource/minify_utils.php");
                 ConcatenateFiles(".");
             }
+
             echo getVersionedScript('storage/cache/include/javascript/sugar_grp1_jquery.js');
             echo getVersionedScript('storage/cache/include/javascript/sugar_grp1_yui.js');
             echo getVersionedScript('storage/cache/include/javascript/sugar_grp1.js');
@@ -808,10 +854,12 @@ EOHTML;
             echo '<script type="text/javascript">SUGAR.themes.image_server="'.$image_server.'";</script>'; // cn: bug 12274 - create session-stored key to defend against CSRF
             echo '<script type="text/javascript">var name_format = "'.$locale->getLocaleFormatMacro().'";</script>';
             echo self::getJavascriptValidation();
+
             if (! is_file(sugar_cached('jsLanguage/').$GLOBALS['current_language'].'.js')) {
                 require_once('include/language/jsLanguage.php');
                 jsLanguage::createAppStringsCache($GLOBALS['current_language']);
             }
+
             echo getVersionedScript('storage/cache/jsLanguage/'.$GLOBALS['current_language'].'.js', $GLOBALS['sugar_config']['js_lang_version']);
 
             echo $this->_getModLanguageJS();
@@ -825,10 +873,14 @@ EOHTML;
             foreach ($js_vars as $var => $value) {
                 echo "var {$var} = '{$value}';\n";
             }
+
             echo "</script>\n";
         }
     }
 
+    /**
+     * @return string
+     */
     protected function _getModLanguageJS()
     {
         if (! is_file(sugar_cached('jsLanguage/').$this->module.'/'.$GLOBALS['current_language'].'.js')) {
@@ -847,9 +899,11 @@ EOHTML;
         if (empty($this->responseTime)) {
             $this->_calculateFooterMetrics();
         }
+
         global $sugar_config;
         global $app_strings;
         global $mod_strings;
+
         $themeObject = SugarThemeRegistry::current();
         //decide whether or not to show themepicker, default is to show
         $showThemePicker = true;
@@ -865,18 +919,21 @@ EOHTML;
         if (isset($this->action) && $this->action != "EditView") {
             $bottomLinkList['print'] = [$app_strings['LNK_PRINT'] => getPrintLink()];
         }
+
         $bottomLinkList['backtotop'] = [$app_strings['LNK_BACKTOTOP'] => 'javascript:SUGAR.util.top();'];
 
         $bottomLinksStr = "";
         foreach ($bottomLinkList as $key => $value) {
             foreach ($value as $text => $link) {
                 $href = $link;
+
                 if (substr($link, 0, 11) == "javascript:") {
                     $onclick = " onclick=\"".substr($link, 11)."\"";
                     $href    = "javascript:void(0)";
                 } else {
                     $onclick = "";
                 }
+
                 $imageURL = SugarThemeRegistry::current()->getImageURL($key.'.gif');
                 $bottomLinksStr .= "<a href=\"{$href}\"";
                 $bottomLinksStr .= (isset($onclick)) ? $onclick : "";
@@ -884,6 +941,7 @@ EOHTML;
                 $bottomLinksStr .= " ".$text."</a>";
             }
         }
+
         $ss->assign("BOTTOMLINKS", $bottomLinksStr);
         if (SugarConfig::getInstance()->get('calculate_response_time', false)) {
             $ss->assign('STATISTICS', $this->_getStatistics());
@@ -941,6 +999,7 @@ EOHTML;
                 $ss->get_template_vars("COMPANY_LOGO_HEIGHT")
             ]);
         }
+
         $ss->assign("COMPANY_LOGO_URL", getJSPath($companyLogoURL)."&logo_md5=".$ss->get_template_vars("COMPANY_LOGO_MD5"));
 
         // Bug 38594 - Add in Trademark wording
@@ -951,6 +1010,7 @@ EOHTML;
         if (file_exists('include/images/poweredby_sugarcrm_65.png')) {
             $copyright .= $attribLinkImg;
         }
+
         // End Required Image
         $ss->assign('COPYRIGHT', $copyright);
 
@@ -961,7 +1021,6 @@ EOHTML;
             $label = (isset($GLOBALS['app_list_strings']['moduleList'][$this->module]) ? $GLOBALS['app_list_strings']['moduleList'][$this->module] : $this->module).' '.$app_strings['LNK_HELP'];
             $ss->assign('HELP_LINK', SugarThemeRegistry::current()->getLink($url, $label, "id='help_link_two'", 'help-dashlet.png', 'class="icon"', null, null, '', 'left'));
         }
-        // end
 
         $ss->display(SugarThemeRegistry::current()->getTemplate('footer.tpl'));
     }
@@ -994,9 +1053,8 @@ EOHTML;
      *
      * @return bool - the value of the option
      */
-    protected function _getOption(
-        $option, $default = false
-    ) {
+    protected function _getOption($option, $default = false)
+    {
         if (! empty($this->options) && isset($this->options['show_all'])) {
             return $this->options['show_all'];
         } elseif (! empty($this->options) && isset($this->options[$option])) {
@@ -1007,7 +1065,6 @@ EOHTML;
     }
 
     /**
-     * track
      * Private function to track information about the view request
      */
     private function _track()
@@ -1050,6 +1107,7 @@ EOHTML;
         $endTime            = microtime(true);
         $deltaTime          = $endTime - $GLOBALS['startTime'];
         $this->responseTime = number_format(round($deltaTime, 2), 2);
+
         // Print out the resources used in constructing the page.
         $this->fileResources = count(get_included_files());
     }
@@ -1060,7 +1118,7 @@ EOHTML;
         $deltaTime            = $endTime - $GLOBALS['startTime'];
         $response_time_string = $GLOBALS['app_strings']['LBL_SERVER_RESPONSE_TIME'].' '.number_format(round($deltaTime, 2), 2).' '.$GLOBALS['app_strings']['LBL_SERVER_RESPONSE_TIME_SECONDS'];
         $return               = $response_time_string;
-        // $return .= '<br />';
+
         if (! empty($GLOBALS['sugar_config']['show_page_resources'])) {
             // Print out the resources used in constructing the page.
             $included_files = get_included_files();
@@ -1073,7 +1131,9 @@ EOHTML;
                 // preserve the first capitalization encountered.
                 $list_of_files_case_insensitive[mb_strtolower($name)] = $name;
             }
+
             $return .= $GLOBALS['app_strings']['LBL_SERVER_RESPONSE_RESOURCES'].'('.DBManager::getQueryCount().','.sizeof($list_of_files_case_insensitive).')<br>';
+
             // Display performance of the internal and external caches....
             $cacheStats = SugarCache::instance()->getCacheStats();
             $return .= "External cache (hits/total=ratio) local ({$cacheStats['localHits']}/{$cacheStats['requests']}=".round($cacheStats['localHits'] * 100 / $cacheStats['requests'], 0)."%)";
@@ -1094,7 +1154,7 @@ EOHTML;
      *
      * @param $newline String of newline character to use (defaults to </ br>)
      *
-     * @return $message String formatted message about memory statistics
+     * @return string $message String formatted message about memory statistics
      */
     protected function logMemoryStatistics($newline = '<br>')
     {
@@ -1135,13 +1195,12 @@ EOHTML;
     /**
      * Loads the module shortcuts menu
      *
-     * @param  $module string optional, can specify module to retrieve menu for if not the current one
+     * @param string $module string optional, can specify module to retrieve menu for if not the current one
      *
      * @return array module menu
      */
-    public function getMenu(
-        $module = null
-    ) {
+    public function getMenu($module = null)
+    {
         global $current_language, $current_user, $mod_strings, $app_strings, $module_menu;
 
         if (empty($module)) {
@@ -1157,9 +1216,11 @@ EOHTML;
         if (file_exists('modules/'.$module.'/Menu.php')) {
             require('modules/'.$module.'/Menu.php');
         }
+
         if (file_exists('custom/modules/'.$module.'/Ext/Menus/menu.ext.php')) {
             require('custom/modules/'.$module.'/Ext/Menus/menu.ext.php');
         }
+
         if (! file_exists('modules/'.$module.'/Menu.php') && ! file_exists('custom/modules/'.$module.'/Ext/Menus/menu.ext.php') && ! empty($GLOBALS['mod_strings']['LNK_NEW_RECORD'])) {
             $module_menu[] = [
                 "index.php?module=$module&action=EditView&return_module=$module&return_action=DetailView",
@@ -1167,12 +1228,14 @@ EOHTML;
                 "{$GLOBALS['app_strings']['LBL_CREATE_BUTTON_LABEL']}$module",
                 $module
             ];
+
             $module_menu[] = [
                 "index.php?module=$module&action=index",
                 $GLOBALS['mod_strings']['LNK_LIST'],
                 $module,
                 $module
             ];
+
             if (($this->bean instanceOf SugarBean) && ! empty($this->bean->importable)) {
                 if (! empty($mod_strings['LNK_IMPORT_'.strtoupper($module)])) {
                     $module_menu[] = [
@@ -1191,6 +1254,7 @@ EOHTML;
                 }
             }
         }
+
         if (file_exists('custom/application/Ext/Menus/menu.ext.php')) {
             require('custom/application/Ext/Menus/menu.ext.php');
         }
@@ -1240,9 +1304,8 @@ EOHTML;
      *
      * @return HTML string containing breadcrumb title
      */
-    public function getModuleTitle(
-        $show_help = true
-    ) {
+    public function getModuleTitle($show_help = true)
+    {
         global $sugar_version, $sugar_flavor, $server_unique_key, $current_language, $action;
 
         $theTitle = "<div class='moduleTitle'>\n";
@@ -1255,9 +1318,11 @@ EOHTML;
         if (SugarThemeRegistry::current()->directionality == "rtl") {
             $params = array_reverse($params);
         }
+
         if (count($params) > 1) {
             array_shift($params);
         }
+
         $count       = count($params);
         $paramString = '';
         foreach ($params as $parm) {
@@ -1326,6 +1391,7 @@ EOHTML;
         if (! $foundViewDefs && file_exists($coreMetaPath)) {
             $metadataFile = $coreMetaPath;
         }
+
         $GLOBALS['log']->debug("metadatafile=".$metadataFile);
 
         return $metadataFile;
@@ -1342,7 +1408,7 @@ EOHTML;
     protected function _getModuleTitleParams($browserTitle = false)
     {
         $params = [$this->_getModuleTitleListParam($browserTitle)];
-        //$params = array();
+
         if (isset($this->action)) {
             switch ($this->action) {
                 case 'EditView':
@@ -1402,6 +1468,11 @@ EOHTML;
         }
     }
 
+    /**
+     * @param string $module
+     *
+     * @return string
+     */
     protected function getModuleTitleIconPath($module)
     {
         $iconPath = "";
@@ -1461,22 +1532,27 @@ EOHTML;
 
         // Set all the config parameters in the JS config as necessary
         $config_js = [];
+
         // AjaxUI stock banned modules
         $config_js[] = "SUGAR.config.stockAjaxBannedModules = ".json_encode(ajaxBannedModules()).";";
         if (isset($sugar_config['quicksearch_querydelay'])) {
             $config_js[] = $this->prepareConfigVarForJs('quicksearch_querydelay', $sugar_config['quicksearch_querydelay']);
         }
+
         if (empty($sugar_config['disableAjaxUI'])) {
             $config_js[] = "SUGAR.config.disableAjaxUI = false;";
         } else {
             $config_js[] = "SUGAR.config.disableAjaxUI = true;";
         }
+
         if (! empty($sugar_config['addAjaxBannedModules'])) {
             $config_js[] = $this->prepareConfigVarForJs('addAjaxBannedModules', $sugar_config['addAjaxBannedModules']);
         }
+
         if (! empty($sugar_config['overrideAjaxBannedModules'])) {
             $config_js[] = $this->prepareConfigVarForJs('overrideAjaxBannedModules', $sugar_config['overrideAjaxBannedModules']);
         }
+
         if (! empty($sugar_config['js_available']) && is_array($sugar_config['js_available'])) {
             foreach ($sugar_config['js_available'] as $configKey) {
                 if (isset($sugar_config[$configKey])) {
@@ -1502,7 +1578,6 @@ EOHTML;
     protected function prepareConfigVarForJs($key, $value)
     {
         $value = json_encode($value);
-
         return "SUGAR.config.{$key} = {$value};";
     }
 
@@ -1513,7 +1588,7 @@ EOHTML;
      *
      * @param $module String the formatted module name
      *
-     * @return $theTitle String the HTML for the help text
+     * @return string $theTitle String the HTML for the help text
      */
     protected function getHelpText($module)
     {
@@ -1550,6 +1625,7 @@ EOHTML;
         if ($module_favicon) {
             $favicon = $themeObject->getImageURL($this->module.'.gif', false);
         }
+
         if (! sugar_is_file($favicon) || ! $module_favicon) {
             $favicon = $themeObject->getImageURL('sugar_icon.ico', false);
         }
@@ -1577,9 +1653,9 @@ EOHTML;
      *
      * This function wraps a call to get_custom_file_if_exists from include/utils.php
      *
-     * @param $file String of filename to check
+     * @param string $file String of filename to check
      *
-     * @return $file String of filename including custom directory if found
+     * @return string $file String of filename including custom directory if found
      */
     protected function getCustomFilePathIfExists($file)
     {
@@ -1593,7 +1669,7 @@ EOHTML;
      *
      * @param $file String path of the file to fetch
      *
-     * @return $content String content from resulting Smarty fetch operation on template
+     * @return string $content String content from resulting Smarty fetch operation on template
      */
     protected function fetchTemplate($file)
     {

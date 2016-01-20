@@ -35,8 +35,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-require_once('include/MVC/View/SugarView.php');
-
 class CalendarViewGetGRUsers extends SugarView
 {
 	function process()

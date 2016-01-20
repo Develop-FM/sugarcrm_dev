@@ -284,7 +284,7 @@ class ExternalAPIFactory
 
         // Not such an easy case, we need to limit to specific modules and see if we have authentication (or not)
         foreach ($apiList as $apiName => $apiOpts) {
-            if ($module == '' || in_array($module, $apiOpts['supportedModules'])) {
+            if ($module == '' || in_array($module, (array) $apiOpts['supportedModules'])) {
                 // This matches the module criteria
                 if ($ignoreAuth || ! $apiOpts['useAuth'] || ! $apiOpts['requireAuth']) {
                     // Don't need to worry about authentication

@@ -34,8 +34,12 @@
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
  ********************************************************************************/
+
 class ViewJson extends SugarView
 {
+    /**
+     * @var string
+     */
     var $type = 'detail';
 
     function display()

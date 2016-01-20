@@ -88,10 +88,7 @@ class Bug44113Test extends Sugar_PHPUnit_Framework_TestCase
 
     public function testEmailManController()
     {
-
-
       require_once('modules/EmailMan/controller.php');
-      require_once('include/MVC/Controller/SugarController.php');
 
       global $sugar_config;
       $conn = new EmailManController();

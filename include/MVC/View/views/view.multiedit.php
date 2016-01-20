@@ -59,12 +59,13 @@ class ViewMultiedit extends SugarView
                     }
                     $index++;
                 }
-                //$js_array = "Array(".implode(",", $js_array). ")";
+                
                 $js_array .= ');';
                 echo "<script language='javascript'>var ajaxFormArray = new ".$js_array."</script>";
                 if ($count > 1) {
                     echo '<input type="button" class="button" value="Save All" id=\'ajaxsaveall\' onclick="return saveForms(\'Saving...\', \'Save Complete\');"/>';
                 }
+
                 foreach ($_REQUEST['modules'] as $module) {
                     $bean = $beanList[$module];
                     require_once($beanFiles[$bean]);
@@ -79,5 +80,3 @@ class ViewMultiedit extends SugarView
         }
     }
 }
-
-?>

@@ -38,13 +38,6 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-/*********************************************************************************
- * Description: view handler for step 4 of the import process
- * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
- * All Rights Reserved.
- ********************************************************************************/
-
-require_once('include/MVC/View/SugarView.php');
 require_once('modules/Import/Importer.php');
 
 class ImportViewStep4 extends SugarView

@@ -1,33 +1,35 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+if (! defined('sugarEntry') || ! sugarEntry) {
+    die('Not A Valid Entry Point');
+}
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License version 3 as published by the
  * Free Software Foundation with the addition of the following permission added
  * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
  * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
  * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License along with
  * this program; if not, see http://www.gnu.org/licenses or write to the Free
  * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
- * 
+ *
  * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
  * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- * 
+ *
  * The interactive user interfaces in modified source and object code versions
  * of this program must display Appropriate Legal Notices, as required under
  * Section 5 of the GNU Affero General Public License version 3.
- * 
+ *
  * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
  * these Appropriate Legal Notices must retain the display of the "Powered by
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
@@ -35,26 +37,38 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-
 class SugarModule
 {
-    protected static $_instances = array();
+    /**
+     * @var SugarModule[]
+     */
+    protected static $_instances = [];
 
+    /**
+     * @var string
+     */
     protected $_moduleName;
 
-    public static function get(
-        $moduleName
-        )
+    /**
+     * @param string $moduleName
+     *
+     * @return SugarModule
+     */
+    public static function get($moduleName)
     {
-        if ( !isset(self::$_instances[$moduleName]) )
+        if (! isset(self::$_instances[$moduleName])) {
             self::$_instances[$moduleName] = new SugarModule($moduleName);
+        }
 
         return self::$_instances[$moduleName];
     }
 
-    public function __construct(
-        $moduleName
-        )
+    /**
+     * SugarModule constructor.
+     *
+     * @param string $moduleName
+     */
+    public function __construct($moduleName)
     {
         $this->_moduleName = $moduleName;
     }
@@ -62,56 +76,63 @@ class SugarModule
     /**
      * Returns true if the given module implements the indicated template
      *
-     * @param  string $template
+     * @param string $template
+     *
      * @return bool
      */
-    public function moduleImplements(
-        $template
-        )
+    public function moduleImplements($template)
     {
         $focus = self::loadBean();
 
-        if ( !$focus )
+        if (! $focus) {
             return false;
+        }
 
-        return is_a($focus,$template);
+        return is_a($focus, $template);
     }
 
     /**
      * Returns the bean object of the given module
      *
-     * @return object
+     * @param array|null $beanList
+     * @param array|null $beanFiles
+     * @param bool       $returnObject
+     *
+     * @return SugarBean
      */
-    public function loadBean($beanList = null, $beanFiles = null, $returnObject = true)
+    public function loadBean(array $beanList = null, array $beanFiles = null, $returnObject = true)
     {
         // Populate these reference arrays
-        if ( empty($beanList) ) {
+        if (empty($beanList)) {
             global $beanList;
         }
-        if ( empty($beanFiles) ) {
+
+        if (empty($beanFiles)) {
             global $beanFiles;
         }
-        if ( !isset($beanList) || !isset($beanFiles) ) {
-            require('include/modules.php');
+
+        if (is_null($beanList) || is_null($beanFiles)) {
+            require(DOCROOT.'include/modules.php');
         }
 
-        if ( isset($beanList[$this->_moduleName]) ) {
+        if (isset($beanList[$this->_moduleName])) {
             $bean = $beanList[$this->_moduleName];
+
             if (isset($beanFiles[$bean])) {
-                if ( !$returnObject ) {
+                if (! $returnObject) {
                     return true;
                 }
-                if ( !sugar_is_file($beanFiles[$bean]) ) {
+
+                if (! sugar_is_file($beanFiles[$bean])) {
                     return false;
                 }
+
                 require_once($beanFiles[$bean]);
                 $focus = new $bean;
-            }
-            else {
+            } else {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
 

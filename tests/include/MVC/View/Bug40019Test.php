@@ -34,9 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
- 
-require_once('include/MVC/View/SugarView.php');
-
 class Bug40019Test extends Sugar_PHPUnit_Framework_TestCase
 {   
     public function setUp() 

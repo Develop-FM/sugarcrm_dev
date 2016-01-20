@@ -37,14 +37,6 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-/*********************************************************************************
- * Description:  TODO: To be written.
- * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
- * All Rights Reserved.
- * Contributor(s): ______________________________________..
- ********************************************************************************/
-
-require_once('include/MVC/View/SugarView.php');
 require_once('modules/EmailMan/Forms.php');
 
 class ViewConfig extends SugarView

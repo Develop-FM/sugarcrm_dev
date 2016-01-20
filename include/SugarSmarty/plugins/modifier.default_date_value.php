@@ -122,7 +122,6 @@ Touched:
 - include/database/DBHelper.php
 - include/javascript/jsAlerts.php
 - include/CurrencyService/CurrencyService.php
-- include/MVC/View/SugarView.php
 - include/MVC/SugarApplication.php
 - include/ListView/ListViewData.php
 - soap/SoapSync.php

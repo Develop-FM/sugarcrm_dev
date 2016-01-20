@@ -34,9 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
- 
-require_once 'include/MVC/Controller/SugarController.php';
-
 class SugarControllerTest extends Sugar_PHPUnit_Framework_OutputTestCase
 {
     public function setUp()

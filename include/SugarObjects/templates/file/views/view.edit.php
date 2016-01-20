@@ -41,11 +41,6 @@ if (! defined('sugarEntry') || ! sugarEntry) {
 
 class <module_name>ViewEdit extends ViewEdit
 {
-    public function <module_name>ViewEdit()
-    {
-        parent::ViewEdit();
-    }
-
     public function display()
     {
         if (isset($this->bean->id)) {

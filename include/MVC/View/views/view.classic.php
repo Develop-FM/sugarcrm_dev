@@ -34,9 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-require_once('include/MVC/View/SugarView.php');
-require_once('include/MVC/Controller/SugarController.php');
-
 class ViewClassic extends SugarView
 {
 	public function __construct()
@@ -47,7 +44,7 @@ class ViewClassic extends SugarView
 	}
 
 	/**
-	 * @see SugarView::display()
+	 * @return bool
 	 */
 	public function display()
 	{
@@ -56,6 +53,7 @@ class ViewClassic extends SugarView
 
 			return false;
 		}
+
 		// Call SugarController::getActionFilename to handle case sensitive file names
 		$file = SugarController::getActionFilename($this->action);
 		if (file_exists('custom/modules/'.$this->module.'/'.$file.'.php')) {

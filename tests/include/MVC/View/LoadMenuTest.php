@@ -34,9 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
- 
-require_once('include/MVC/View/SugarView.php');
-
 class LoadMenuTest extends Sugar_PHPUnit_Framework_TestCase
 {
     protected $_moduleName;

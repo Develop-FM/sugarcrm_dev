@@ -35,12 +35,9 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-require_once('include/MVC/View/SugarView.php');
-
 class ViewHtml extends SugarView
 {
     function display()
     {
     }
-
 }

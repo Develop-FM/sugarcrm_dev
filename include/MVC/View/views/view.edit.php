@@ -38,19 +38,35 @@ require_once('include/EditView/EditView2.php');
 
 class ViewEdit extends SugarView
 {
+    /**
+     * @var EditView
+     */
     var $ev;
 
+    /**
+     * @var string
+     */
     var $type = 'edit';
 
-    var $useForSubpanel = false;  //boolean variable to determine whether view can be used for subpanel creates
-
-    var $useModuleQuickCreateTemplate = false; //boolean variable to determine whether or not SubpanelQuickCreate has a separate display function
-
-    var $showTitle = true;
+    /**
+     * boolean variable to determine whether view can be used for subpanel creates
+     *
+     * @var bool
+     */
+    var $useForSubpanel = false;
 
     /**
-     * @see SugarView::preDisplay()
+     * boolean variable to determine whether or not SubpanelQuickCreate has a separate display function
+     *
+     * @var bool
      */
+    var $useModuleQuickCreateTemplate = false;
+
+    /**
+     * @var bool
+     */
+    var $showTitle = true;
+
     public function preDisplay()
     {
         $metadataFile = $this->getMetaDataFile();
@@ -67,6 +83,7 @@ class ViewEdit extends SugarView
 
     /**
      * Get EditView object
+     *
      * @return EditView
      */
     protected function getEditView()

@@ -352,7 +352,6 @@ class SugarWebServiceUtilv3_1 extends SugarWebServiceUtilv3
 	}
 
 	function get_module_view_defs($module_name, $type, $view){
-        require_once('include/MVC/View/SugarView.php');
         $metadataFile = null;
         $results = array();
         $view = strtolower($view);

@@ -57,6 +57,8 @@ class AutoLoader
         'SugarRegistry'                => 'include/SugarObjects/SugarRegistry.php',
         'BeanFactory'                  => 'data/BeanFactory.php',
         'LogicHook'                    => 'include/utils/LogicHook.php',
+        'SugarController'              => 'include/MVC/Controller/SugarController.php',
+        'SugarView'                    => 'include/MVC/View/SugarView.php',
     ];
 
     /**

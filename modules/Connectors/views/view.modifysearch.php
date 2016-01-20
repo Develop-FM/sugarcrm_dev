@@ -38,7 +38,6 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-require_once('include/MVC/View/SugarView.php');
 require_once('include/connectors/sources/SourceFactory.php');
 
 class ViewModifySearch extends SugarView

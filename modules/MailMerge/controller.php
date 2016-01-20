@@ -36,10 +36,6 @@
 
 require_once('soap/SoapHelperFunctions.php');
 class MailMergeController extends SugarController{
-	function MailMergeController(){
-		parent::SugarController();
-	}
-
     public function action_search(){
         //set ajax view
         $this->view = 'ajax';

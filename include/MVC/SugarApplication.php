@@ -38,8 +38,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Foundation\Application;
 
-require_once('include/MVC/Controller/ControllerFactory.php');
-require_once('include/MVC/View/ViewFactory.php');
+require_once(DOCROOT.'include/MVC/Controller/ControllerFactory.php');
+require_once(DOCROOT.'include/MVC/View/ViewFactory.php');
 
 /**
  * SugarCRM application

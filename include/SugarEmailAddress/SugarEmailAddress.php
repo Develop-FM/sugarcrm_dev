@@ -37,12 +37,6 @@ if (! defined('sugarEntry') || ! sugarEntry) {
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-/*********************************************************************************
- * Description:
- * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc. All Rights
- * Reserved. Contributor(s): ______________________________________..
- *********************************************************************************/
-
 require_once("include/JSON.php");
 
 class SugarEmailAddress extends SugarBean
@@ -179,16 +173,17 @@ class SugarEmailAddress extends SugarBean
     /**
      * Saves email addresses for a parent bean
      *
-     * @param string $id        Parent bean ID
-     * @param string $module    Parent bean's module
-     * @param array  $addresses Override of $_REQUEST vars, used to handle non-standard bean saves
-     * @param string $primary   GUID of primary address
-     * @param string $replyTo   GUID of reply-to address
-     * @param string $invalid   GUID of invalid address
+     * @param string $id      Parent bean ID
+     * @param string $module  Parent bean's module
+     * @param array  $new_addrs
+     * @param string $primary GUID of primary address
+     * @param string $replyTo GUID of reply-to address
+     * @param string $invalid GUID of invalid address
+     * @param string $optOut
+     * @param bool   $in_workflow
      */
-    function save(
-        $id, $module, $new_addrs = [], $primary = '', $replyTo = '', $invalid = '', $optOut = '', $in_workflow = false
-    ) {
+    function saveForBean($id, $module, $new_addrs = [], $primary = '', $replyTo = '', $invalid = '', $optOut = '', $in_workflow = false)
+    {
         if (empty($this->addresses) || $in_workflow) {
             $this->populateAddresses($id, $module, $new_addrs, $primary);
         }

@@ -87,7 +87,7 @@ class Company extends Basic
         }
 
         if ($ori_in_workflow === false || ! empty($override_email)) {
-            $this->emailAddress->save($this->id, $this->module_dir, $override_email, '', '', '', '', $this->in_workflow);
+            $this->emailAddress->saveForBean($this->id, $this->module_dir, $override_email, '', '', '', '', $this->in_workflow);
         }
 
         return $record_id;

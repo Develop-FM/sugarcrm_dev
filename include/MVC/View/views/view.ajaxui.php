@@ -34,8 +34,6 @@
  * "Powered by SugarCRM".
  ********************************************************************************/
 
-require_once('include/MVC/View/SugarView.php');
-
 class ViewAjaxUI extends SugarView
 {
     /**
@@ -60,6 +58,7 @@ class ViewAjaxUI extends SugarView
  		$user = $GLOBALS["current_user"];
  		$etag = $user->id . $user->getETagSeed("mainMenuETag");
  		generateEtagHeader($etag);
+
         //Prevent double footers
         $GLOBALS['app']->headerDisplayed = false;
  	}
