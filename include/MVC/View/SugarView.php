@@ -171,7 +171,7 @@ class SugarView
         $this->displayErrors();
         $this->display();
 
-        LogicHook::instance($this->module, 'after_ui_frame');
+        LogicHook::instance()->call_custom_logic($this->module, 'after_ui_frame');
 
         // We have to update jsAlerts as soon as possible
         if (! isset($_SESSION['isMobile']) && ($this instanceof ViewList || $this instanceof ViewDetail || $this instanceof ViewEdit)) {
