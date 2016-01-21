@@ -182,8 +182,15 @@ class LogicHook
         // declare the hook array variable, it will be defined in the included file.
         $hook_array = null;
 
+        if (empty($module_dir)) {
+            $module_dir = 'core';
+        }
+
         // This will load an array of the hooks to process
         $hooks = $this->getHooks($module_dir);
+
+        Event::fire("{$module_dir}.{$event}", $arguments);
+        Log::debug("{$module_dir}.{$event}");
 
         $this->process_hooks($hooks, $event, $arguments);
     }
