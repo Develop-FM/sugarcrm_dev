@@ -13,7 +13,7 @@ class IdeHelperGeneratorCommand extends Command
      *
      * @var string
      */
-    protected $name = 'ide:helper:generate';
+    protected $name = 'crm:ide:helper:generate';
 
     /**
      * The console command description.
@@ -24,11 +24,26 @@ class IdeHelperGeneratorCommand extends Command
 
     public function handle()
     {
-        $path = DOCROOT.'cache'.DIRECTORY_SEPARATOR.'modules';
+        global $sugar_version;
 
-        $helperFile = DOCROOT.'_ide_helper.php';
+        $path = storage_path('cache'.DIRECTORY_SEPARATOR.'modules');
+
+        $helperFile = DOCROOT.'_crm_ide_helper.php';
+
+        $date = date('Y-m-d');
 
         $phpDoc = '<?php '.PHP_EOL.PHP_EOL;
+
+        $phpDoc .= <<<EOL
+/**
+ * A helper file for SugarCRM, to provide autocomplete information to your IDE
+ * Generated for SugarCRM {$sugar_version} on {$date}.
+ *
+ * @author Butschster <butschster@gmail.com>
+ * @see https://github.com/butschster/sugarcrm_dev
+ */
+EOL;
+        $phpDoc .= PHP_EOL.PHP_EOL;
 
         foreach (new DirectoryIterator($path) as $directory) {
             if (! $directory->isDir()) {
@@ -106,6 +121,8 @@ class IdeHelperGeneratorCommand extends Command
         }
 
         file_put_contents($helperFile, $phpDoc);
+
+        $this->call('ide-helper:generate');
     }
 
     /**

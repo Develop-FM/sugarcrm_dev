@@ -24,7 +24,8 @@
     "zendframework/zendframework1": "^1",
     "filp/whoops": "^1.1",
     "laravel/framework": "^5.2",
-    "tedivm/jshrink": "^1.1"
+    "tedivm/jshrink": "^1.1",
+    "barryvdh/laravel-ide-helper": "^2.1"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0"

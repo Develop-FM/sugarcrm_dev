@@ -99,6 +99,7 @@ return [
         Illuminate\Pipeline\PipelineServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /*
          * Application Service Providers...

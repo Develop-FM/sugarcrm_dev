@@ -1,9415 +1,7737 @@
-<?php 
-
+<?php
 /**
- * Class Account
+ * A helper file for Laravel 5, to provide autocomplete information to your IDE
+ * Generated for Laravel 5.2.10 on 2016-01-21.
  *
- * @property Account parent_name 
- * @property Campaign campaign_name The first campaign name for Account (Meta-data only)
- * @property Link2 meetings 
- * @property Link2 calls 
- * @property Link2 emails 
- * @property Link2 bugs 
- * @property Link2 contacts 
- * @property Link2 notes 
- * @property Link2 cases 
- * @property Link2 email_addresses 
- * @property Link2 email_addresses_primary 
- * @property Link2 members 
- * @property Link2 member_of 
- * @property Link2 opportunities 
- * @property Link2 tasks 
- * @property Link2 documents 
- * @property Link2 created_by_link 
- * @property Link2 campaign_accounts 
- * @property Link2 leads 
- * @property Link2 project 
- * @property Link2 campaigns 
- * @property Link2 modified_user_link 
- * @property Link2 assigned_user_link 
- * @property Link2 prospect_lists 
- * @property User created_by_name 
- * @property User assigned_user_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User modified_by_name 
- * @property bool invalid_email 
- * @property bool email_opt_out 
- * @property bool deleted Record deletion indicator
- * @property string shipping_address_postalcode The zip code used for the shipping address
- * @property string shipping_address_country The country used for the shipping address
- * @property string email1 
- * @property string campaign_id Campaign that generated Account
- * @property string parent_id Account ID of the parent of this account
- * @property string email 
- * @property string sic_code SIC code of the account
- * @property string email_addresses_non_primary 
- * @property string shipping_address_street_2 
- * @property string phone_fax The fax phone number of this company
- * @property string annual_revenue Annual revenue for this company
- * @property string billing_address_street The street address used for billing address
- * @property string billing_address_street_2 
- * @property string billing_address_street_4 
- * @property string billing_address_street_3 
- * @property string industry The company belongs in this industry
- * @property string account_type The Company is of this type
- * @property string date_entered Date record created
- * @property string name Name of the Company
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string description Full text of the note
- * @property string created_by User who created record
- * @property string billing_address_city The city used for billing address
- * @property string billing_address_state The state used for billing address
- * @property string shipping_address_street The street address used for for shipping purposes
- * @property string ticker_symbol The stock trading (ticker) symbol for the company
- * @property string id Unique identifier
- * @property string shipping_address_street_3 
- * @property string shipping_address_city The city used for the shipping address
- * @property string shipping_address_street_4 
- * @property string employees Number of employees, varchar to accomodate for both number (100) or range (50-100)
- * @property string ownership 
- * @property string billing_address_country The country used for the billing address
- * @property string billing_address_postalcode The postal code used for billing address
- * @property string rating An arbitrary rating for this company for use in comparisons with others
- * @property string phone_office The office phone number
- * @property string website URL of website for the company
- * @property string phone_alternate An alternate phone number
- * @property string shipping_address_state The state used for the shipping address
- *
- * @method Account getRelatedParent_name
- * @method Campaign getRelatedCampaign_name
- * @method Meeting[] getRelatedMeetings
- * @method Call[] getRelatedCalls
- * @method Email[] getRelatedEmails
- * @method Bug[] getRelatedBugs
- * @method Contact[] getRelatedContacts
- * @method Note[] getRelatedNotes
- * @method aCase[] getRelatedCases
- * @method Account[] getRelatedMembers
- * @method Account[] getRelatedMember_of
- * @method Opportunity[] getRelatedOpportunities
- * @method Task[] getRelatedTasks
- * @method User[] getRelatedCreated_by_link
- * @method Lead[] getRelatedLeads
- * @method Project[] getRelatedProject
- * @method CampaignLog[] getRelatedCampaigns
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedAssigned_user_link
- * @method ProspectList[] getRelatedProspect_lists
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedModified_by_name
- *
+ * @author Barry vd. Heuvel <barryvdh@gmail.com>
+ * @see https://github.com/barryvdh/laravel-ide-helper
  */
-class Account {
-	/** 
-	 * @var Account 
-	 */
-	 public $parent_name;
 
-	/** 
-	 * @var Campaign The first campaign name for Account (Meta-data only)
-	 */
-	 public $campaign_name;
+namespace {
+    exit("This file should not be included, only analyzed by your IDE");
+
+    class App extends \Illuminate\Support\Facades\App{
+        
+        /**
+         * Get the path to the application "app" directory.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function path(){
+            return \App\Application::path();
+        }
+        
+        /**
+         * Get the path to the cached "compiled.php" file.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getCachedCompilePath(){
+            return \App\Application::getCachedCompilePath();
+        }
+        
+        /**
+         * Get the path to the cached services.php file.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getCachedServicesPath(){
+            return \App\Application::getCachedServicesPath();
+        }
+        
+        /**
+         * Get the version number of the application.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function version(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::version();
+        }
+        
+        /**
+         * Run the given array of bootstrap classes.
+         *
+         * @param array $bootstrappers
+         * @return void 
+         * @static 
+         */
+        public static function bootstrapWith($bootstrappers){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::bootstrapWith($bootstrappers);
+        }
+        
+        /**
+         * Register a callback to run after loading the environment.
+         *
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+        public static function afterLoadingEnvironment($callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::afterLoadingEnvironment($callback);
+        }
+        
+        /**
+         * Register a callback to run before a bootstrapper.
+         *
+         * @param string $bootstrapper
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+        public static function beforeBootstrapping($bootstrapper, $callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::beforeBootstrapping($bootstrapper, $callback);
+        }
+        
+        /**
+         * Register a callback to run after a bootstrapper.
+         *
+         * @param string $bootstrapper
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+        public static function afterBootstrapping($bootstrapper, $callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::afterBootstrapping($bootstrapper, $callback);
+        }
+        
+        /**
+         * Determine if the application has been bootstrapped before.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasBeenBootstrapped(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::hasBeenBootstrapped();
+        }
+        
+        /**
+         * Set the base path for the application.
+         *
+         * @param string $basePath
+         * @return $this 
+         * @static 
+         */
+        public static function setBasePath($basePath){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::setBasePath($basePath);
+        }
+        
+        /**
+         * Get the base path of the Laravel installation.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function basePath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::basePath();
+        }
+        
+        /**
+         * Get the path to the application configuration files.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function configPath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::configPath();
+        }
+        
+        /**
+         * Get the path to the database directory.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function databasePath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::databasePath();
+        }
+        
+        /**
+         * Set the database directory.
+         *
+         * @param string $path
+         * @return $this 
+         * @static 
+         */
+        public static function useDatabasePath($path){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::useDatabasePath($path);
+        }
+        
+        /**
+         * Get the path to the language files.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function langPath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::langPath();
+        }
+        
+        /**
+         * Get the path to the public / web directory.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function publicPath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::publicPath();
+        }
+        
+        /**
+         * Get the path to the storage directory.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function storagePath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::storagePath();
+        }
+        
+        /**
+         * Set the storage directory.
+         *
+         * @param string $path
+         * @return $this 
+         * @static 
+         */
+        public static function useStoragePath($path){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::useStoragePath($path);
+        }
+        
+        /**
+         * Get the path to the environment file directory.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function environmentPath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::environmentPath();
+        }
+        
+        /**
+         * Set the directory for the environment file.
+         *
+         * @param string $path
+         * @return $this 
+         * @static 
+         */
+        public static function useEnvironmentPath($path){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::useEnvironmentPath($path);
+        }
+        
+        /**
+         * Set the environment file to be loaded during bootstrapping.
+         *
+         * @param string $file
+         * @return $this 
+         * @static 
+         */
+        public static function loadEnvironmentFrom($file){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::loadEnvironmentFrom($file);
+        }
+        
+        /**
+         * Get the environment file the application is using.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function environmentFile(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::environmentFile();
+        }
+        
+        /**
+         * Get or check the current application environment.
+         *
+         * @param mixed
+         * @return string 
+         * @static 
+         */
+        public static function environment(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::environment();
+        }
+        
+        /**
+         * Determine if application is in local environment.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isLocal(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::isLocal();
+        }
+        
+        /**
+         * Detect the application's current environment.
+         *
+         * @param \Closure $callback
+         * @return string 
+         * @static 
+         */
+        public static function detectEnvironment($callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::detectEnvironment($callback);
+        }
+        
+        /**
+         * Determine if we are running in the console.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function runningInConsole(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::runningInConsole();
+        }
+        
+        /**
+         * Determine if we are running unit tests.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function runningUnitTests(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::runningUnitTests();
+        }
+        
+        /**
+         * Register all of the configured providers.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function registerConfiguredProviders(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::registerConfiguredProviders();
+        }
+        
+        /**
+         * Register a service provider with the application.
+         *
+         * @param \Illuminate\Support\ServiceProvider|string $provider
+         * @param array $options
+         * @param bool $force
+         * @return \Illuminate\Support\ServiceProvider 
+         * @static 
+         */
+        public static function register($provider, $options = array(), $force = false){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::register($provider, $options, $force);
+        }
+        
+        /**
+         * Get the registered service provider instance if it exists.
+         *
+         * @param \Illuminate\Support\ServiceProvider|string $provider
+         * @return \Illuminate\Support\ServiceProvider|null 
+         * @static 
+         */
+        public static function getProvider($provider){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getProvider($provider);
+        }
+        
+        /**
+         * Resolve a service provider instance from the class name.
+         *
+         * @param string $provider
+         * @return \Illuminate\Support\ServiceProvider 
+         * @static 
+         */
+        public static function resolveProviderClass($provider){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::resolveProviderClass($provider);
+        }
+        
+        /**
+         * Load and boot all of the remaining deferred providers.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function loadDeferredProviders(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::loadDeferredProviders();
+        }
+        
+        /**
+         * Load the provider for a deferred service.
+         *
+         * @param string $service
+         * @return void 
+         * @static 
+         */
+        public static function loadDeferredProvider($service){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::loadDeferredProvider($service);
+        }
+        
+        /**
+         * Register a deferred provider and service.
+         *
+         * @param string $provider
+         * @param string $service
+         * @return void 
+         * @static 
+         */
+        public static function registerDeferredProvider($provider, $service = null){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::registerDeferredProvider($provider, $service);
+        }
+        
+        /**
+         * Resolve the given type from the container.
+         * 
+         * (Overriding Container::make)
+         *
+         * @param string $abstract
+         * @param array $parameters
+         * @return mixed 
+         * @static 
+         */
+        public static function make($abstract, $parameters = array()){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::make($abstract, $parameters);
+        }
+        
+        /**
+         * Determine if the given abstract type has been bound.
+         * 
+         * (Overriding Container::bound)
+         *
+         * @param string $abstract
+         * @return bool 
+         * @static 
+         */
+        public static function bound($abstract){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::bound($abstract);
+        }
+        
+        /**
+         * Determine if the application has booted.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isBooted(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::isBooted();
+        }
+        
+        /**
+         * Boot the application's service providers.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function boot(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::boot();
+        }
+        
+        /**
+         * Register a new boot listener.
+         *
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */
+        public static function booting($callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::booting($callback);
+        }
+        
+        /**
+         * Register a new "booted" listener.
+         *
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */
+        public static function booted($callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::booted($callback);
+        }
+        
+        /**
+         * {@inheritdoc}
+         *
+         * @static 
+         */
+        public static function handle($request, $type = 1, $catch = true){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::handle($request, $type, $catch);
+        }
+        
+        /**
+         * Determine if middleware has been disabled for the application.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function shouldSkipMiddleware(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::shouldSkipMiddleware();
+        }
+        
+        /**
+         * Determine if the application configuration is cached.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function configurationIsCached(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::configurationIsCached();
+        }
+        
+        /**
+         * Get the path to the configuration cache file.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getCachedConfigPath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getCachedConfigPath();
+        }
+        
+        /**
+         * Determine if the application routes are cached.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function routesAreCached(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::routesAreCached();
+        }
+        
+        /**
+         * Get the path to the routes cache file.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getCachedRoutesPath(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getCachedRoutesPath();
+        }
+        
+        /**
+         * Determine if the application is currently down for maintenance.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isDownForMaintenance(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::isDownForMaintenance();
+        }
+        
+        /**
+         * Throw an HttpException with the given data.
+         *
+         * @param int $code
+         * @param string $message
+         * @param array $headers
+         * @return void 
+         * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+         * @static 
+         */
+        public static function abort($code, $message = '', $headers = array()){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::abort($code, $message, $headers);
+        }
+        
+        /**
+         * Register a terminating callback with the application.
+         *
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function terminating($callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::terminating($callback);
+        }
+        
+        /**
+         * Terminate the application.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function terminate(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::terminate();
+        }
+        
+        /**
+         * Get the service providers that have been loaded.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getLoadedProviders(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getLoadedProviders();
+        }
+        
+        /**
+         * Get the application's deferred services.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDeferredServices(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getDeferredServices();
+        }
+        
+        /**
+         * Set the application's deferred services.
+         *
+         * @param array $services
+         * @return void 
+         * @static 
+         */
+        public static function setDeferredServices($services){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::setDeferredServices($services);
+        }
+        
+        /**
+         * Add an array of services to the application's deferred services.
+         *
+         * @param array $services
+         * @return void 
+         * @static 
+         */
+        public static function addDeferredServices($services){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::addDeferredServices($services);
+        }
+        
+        /**
+         * Determine if the given service is a deferred service.
+         *
+         * @param string $service
+         * @return bool 
+         * @static 
+         */
+        public static function isDeferredService($service){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::isDeferredService($service);
+        }
+        
+        /**
+         * Define a callback to be used to configure Monolog.
+         *
+         * @param callable $callback
+         * @return $this 
+         * @static 
+         */
+        public static function configureMonologUsing($callback){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::configureMonologUsing($callback);
+        }
+        
+        /**
+         * Determine if the application has a custom Monolog configurator.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasMonologConfigurator(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::hasMonologConfigurator();
+        }
+        
+        /**
+         * Get the custom Monolog configurator for the application.
+         *
+         * @return callable 
+         * @static 
+         */
+        public static function getMonologConfigurator(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getMonologConfigurator();
+        }
+        
+        /**
+         * Get the current application locale.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getLocale(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getLocale();
+        }
+        
+        /**
+         * Set the current application locale.
+         *
+         * @param string $locale
+         * @return void 
+         * @static 
+         */
+        public static function setLocale($locale){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::setLocale($locale);
+        }
+        
+        /**
+         * Register the core class aliases in the container.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function registerCoreContainerAliases(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::registerCoreContainerAliases();
+        }
+        
+        /**
+         * Flush the container of all bindings and resolved instances.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function flush(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            \App\Application::flush();
+        }
+        
+        /**
+         * Get the application namespace.
+         *
+         * @return string 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function getNamespace(){
+            //Method inherited from \Illuminate\Foundation\Application            
+            return \App\Application::getNamespace();
+        }
+        
+        /**
+         * Define a contextual binding.
+         *
+         * @param string $concrete
+         * @return \Illuminate\Contracts\Container\ContextualBindingBuilder 
+         * @static 
+         */
+        public static function when($concrete){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::when($concrete);
+        }
+        
+        /**
+         * Determine if the given abstract type has been resolved.
+         *
+         * @param string $abstract
+         * @return bool 
+         * @static 
+         */
+        public static function resolved($abstract){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::resolved($abstract);
+        }
+        
+        /**
+         * Determine if a given string is an alias.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function isAlias($name){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::isAlias($name);
+        }
+        
+        /**
+         * Register a binding with the container.
+         *
+         * @param string|array $abstract
+         * @param \Closure|string|null $concrete
+         * @param bool $shared
+         * @return void 
+         * @static 
+         */
+        public static function bind($abstract, $concrete = null, $shared = false){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::bind($abstract, $concrete, $shared);
+        }
+        
+        /**
+         * Add a contextual binding to the container.
+         *
+         * @param string $concrete
+         * @param string $abstract
+         * @param \Closure|string $implementation
+         * @return void 
+         * @static 
+         */
+        public static function addContextualBinding($concrete, $abstract, $implementation){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::addContextualBinding($concrete, $abstract, $implementation);
+        }
+        
+        /**
+         * Register a binding if it hasn't already been registered.
+         *
+         * @param string $abstract
+         * @param \Closure|string|null $concrete
+         * @param bool $shared
+         * @return void 
+         * @static 
+         */
+        public static function bindIf($abstract, $concrete = null, $shared = false){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::bindIf($abstract, $concrete, $shared);
+        }
+        
+        /**
+         * Register a shared binding in the container.
+         *
+         * @param string|array $abstract
+         * @param \Closure|string|null $concrete
+         * @return void 
+         * @static 
+         */
+        public static function singleton($abstract, $concrete = null){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::singleton($abstract, $concrete);
+        }
+        
+        /**
+         * Wrap a Closure such that it is shared.
+         *
+         * @param \Closure $closure
+         * @return \Closure 
+         * @static 
+         */
+        public static function share($closure){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::share($closure);
+        }
+        
+        /**
+         * "Extend" an abstract type in the container.
+         *
+         * @param string $abstract
+         * @param \Closure $closure
+         * @return void 
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function extend($abstract, $closure){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::extend($abstract, $closure);
+        }
+        
+        /**
+         * Register an existing instance as shared in the container.
+         *
+         * @param string $abstract
+         * @param mixed $instance
+         * @return void 
+         * @static 
+         */
+        public static function instance($abstract, $instance){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::instance($abstract, $instance);
+        }
+        
+        /**
+         * Assign a set of tags to a given binding.
+         *
+         * @param array|string $abstracts
+         * @param array|mixed $tags
+         * @return void 
+         * @static 
+         */
+        public static function tag($abstracts, $tags){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::tag($abstracts, $tags);
+        }
+        
+        /**
+         * Resolve all of the bindings for a given tag.
+         *
+         * @param string $tag
+         * @return array 
+         * @static 
+         */
+        public static function tagged($tag){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::tagged($tag);
+        }
+        
+        /**
+         * Alias a type to a different name.
+         *
+         * @param string $abstract
+         * @param string $alias
+         * @return void 
+         * @static 
+         */
+        public static function alias($abstract, $alias){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::alias($abstract, $alias);
+        }
+        
+        /**
+         * Bind a new callback to an abstract's rebind event.
+         *
+         * @param string $abstract
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function rebinding($abstract, $callback){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::rebinding($abstract, $callback);
+        }
+        
+        /**
+         * Refresh an instance on the given target and method.
+         *
+         * @param string $abstract
+         * @param mixed $target
+         * @param string $method
+         * @return mixed 
+         * @static 
+         */
+        public static function refresh($abstract, $target, $method){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::refresh($abstract, $target, $method);
+        }
+        
+        /**
+         * Wrap the given closure such that its dependencies will be injected when executed.
+         *
+         * @param \Closure $callback
+         * @param array $parameters
+         * @return \Closure 
+         * @static 
+         */
+        public static function wrap($callback, $parameters = array()){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::wrap($callback, $parameters);
+        }
+        
+        /**
+         * Call the given Closure / class@method and inject its dependencies.
+         *
+         * @param callable|string $callback
+         * @param array $parameters
+         * @param string|null $defaultMethod
+         * @return mixed 
+         * @static 
+         */
+        public static function call($callback, $parameters = array(), $defaultMethod = null){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::call($callback, $parameters, $defaultMethod);
+        }
+        
+        /**
+         * Instantiate a concrete instance of the given type.
+         *
+         * @param string $concrete
+         * @param array $parameters
+         * @return mixed 
+         * @throws \Illuminate\Contracts\Container\BindingResolutionException
+         * @static 
+         */
+        public static function build($concrete, $parameters = array()){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::build($concrete, $parameters);
+        }
+        
+        /**
+         * Register a new resolving callback.
+         *
+         * @param string $abstract
+         * @param \Closure|null $callback
+         * @return void 
+         * @static 
+         */
+        public static function resolving($abstract, $callback = null){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::resolving($abstract, $callback);
+        }
+        
+        /**
+         * Register a new after resolving callback for all types.
+         *
+         * @param string $abstract
+         * @param \Closure|null $callback
+         * @return void 
+         * @static 
+         */
+        public static function afterResolving($abstract, $callback = null){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::afterResolving($abstract, $callback);
+        }
+        
+        /**
+         * Determine if a given type is shared.
+         *
+         * @param string $abstract
+         * @return bool 
+         * @static 
+         */
+        public static function isShared($abstract){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::isShared($abstract);
+        }
+        
+        /**
+         * Get the container's bindings.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getBindings(){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::getBindings();
+        }
+        
+        /**
+         * Remove a resolved instance from the instance cache.
+         *
+         * @param string $abstract
+         * @return void 
+         * @static 
+         */
+        public static function forgetInstance($abstract){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::forgetInstance($abstract);
+        }
+        
+        /**
+         * Clear all of the instances from the container.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function forgetInstances(){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::forgetInstances();
+        }
+        
+        /**
+         * Set the globally available instance of the container.
+         *
+         * @return static 
+         * @static 
+         */
+        public static function getInstance(){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::getInstance();
+        }
+        
+        /**
+         * Set the shared instance of the container.
+         *
+         * @param \Illuminate\Contracts\Container\Container $container
+         * @return void 
+         * @static 
+         */
+        public static function setInstance($container){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::setInstance($container);
+        }
+        
+        /**
+         * Determine if a given offset exists.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function offsetExists($key){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::offsetExists($key);
+        }
+        
+        /**
+         * Get the value at a given offset.
+         *
+         * @param string $key
+         * @return mixed 
+         * @static 
+         */
+        public static function offsetGet($key){
+            //Method inherited from \Illuminate\Container\Container            
+            return \App\Application::offsetGet($key);
+        }
+        
+        /**
+         * Set the value at a given offset.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function offsetSet($key, $value){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::offsetSet($key, $value);
+        }
+        
+        /**
+         * Unset the value at a given offset.
+         *
+         * @param string $key
+         * @return void 
+         * @static 
+         */
+        public static function offsetUnset($key){
+            //Method inherited from \Illuminate\Container\Container            
+            \App\Application::offsetUnset($key);
+        }
+        
+    }
+
+
+    class Artisan extends \Illuminate\Support\Facades\Artisan{
+        
+        /**
+         * Run the console application.
+         *
+         * @param \Symfony\Component\Console\Input\InputInterface $input
+         * @param \Symfony\Component\Console\Output\OutputInterface $output
+         * @return int 
+         * @static 
+         */
+        public static function handle($input, $output = null){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            return \App\Console\Kernel::handle($input, $output);
+        }
+        
+        /**
+         * Terminate the application.
+         *
+         * @param \Symfony\Component\Console\Input\InputInterface $input
+         * @param int $status
+         * @return void 
+         * @static 
+         */
+        public static function terminate($input, $status){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            \App\Console\Kernel::terminate($input, $status);
+        }
+        
+        /**
+         * Run an Artisan console command by name.
+         *
+         * @param string $command
+         * @param array $parameters
+         * @return int 
+         * @static 
+         */
+        public static function call($command, $parameters = array()){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            return \App\Console\Kernel::call($command, $parameters);
+        }
+        
+        /**
+         * Queue the given console command.
+         *
+         * @param string $command
+         * @param array $parameters
+         * @return void 
+         * @static 
+         */
+        public static function queue($command, $parameters = array()){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            \App\Console\Kernel::queue($command, $parameters);
+        }
+        
+        /**
+         * Get all of the commands registered with the console.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function all(){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            return \App\Console\Kernel::all();
+        }
+        
+        /**
+         * Get the output for the last run command.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function output(){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            return \App\Console\Kernel::output();
+        }
+        
+        /**
+         * Bootstrap the application for artisan commands.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function bootstrap(){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            \App\Console\Kernel::bootstrap();
+        }
+        
+    }
+
+
+    class Blade extends \Illuminate\Support\Facades\Blade{
+        
+        /**
+         * Compile the view at the given path.
+         *
+         * @param string $path
+         * @return void 
+         * @static 
+         */
+        public static function compile($path = null){
+            \Illuminate\View\Compilers\BladeCompiler::compile($path);
+        }
+        
+        /**
+         * Get the path currently being compiled.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getPath(){
+            return \Illuminate\View\Compilers\BladeCompiler::getPath();
+        }
+        
+        /**
+         * Set the path currently being compiled.
+         *
+         * @param string $path
+         * @return void 
+         * @static 
+         */
+        public static function setPath($path){
+            \Illuminate\View\Compilers\BladeCompiler::setPath($path);
+        }
+        
+        /**
+         * Compile the given Blade template contents.
+         *
+         * @param string $value
+         * @return string 
+         * @static 
+         */
+        public static function compileString($value){
+            return \Illuminate\View\Compilers\BladeCompiler::compileString($value);
+        }
+        
+        /**
+         * Compile the default values for the echo statement.
+         *
+         * @param string $value
+         * @return string 
+         * @static 
+         */
+        public static function compileEchoDefaults($value){
+            return \Illuminate\View\Compilers\BladeCompiler::compileEchoDefaults($value);
+        }
+        
+        /**
+         * Get the extensions used by the compiler.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getExtensions(){
+            return \Illuminate\View\Compilers\BladeCompiler::getExtensions();
+        }
+        
+        /**
+         * Register a custom Blade compiler.
+         *
+         * @param callable $compiler
+         * @return void 
+         * @static 
+         */
+        public static function extend($compiler){
+            \Illuminate\View\Compilers\BladeCompiler::extend($compiler);
+        }
+        
+        /**
+         * Register a handler for custom directives.
+         *
+         * @param string $name
+         * @param callable $handler
+         * @return void 
+         * @static 
+         */
+        public static function directive($name, $handler){
+            \Illuminate\View\Compilers\BladeCompiler::directive($name, $handler);
+        }
+        
+        /**
+         * Get the list of custom directives.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getCustomDirectives(){
+            return \Illuminate\View\Compilers\BladeCompiler::getCustomDirectives();
+        }
+        
+        /**
+         * Gets the raw tags used by the compiler.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getRawTags(){
+            return \Illuminate\View\Compilers\BladeCompiler::getRawTags();
+        }
+        
+        /**
+         * Sets the raw tags used for the compiler.
+         *
+         * @param string $openTag
+         * @param string $closeTag
+         * @return void 
+         * @static 
+         */
+        public static function setRawTags($openTag, $closeTag){
+            \Illuminate\View\Compilers\BladeCompiler::setRawTags($openTag, $closeTag);
+        }
+        
+        /**
+         * Sets the content tags used for the compiler.
+         *
+         * @param string $openTag
+         * @param string $closeTag
+         * @param bool $escaped
+         * @return void 
+         * @static 
+         */
+        public static function setContentTags($openTag, $closeTag, $escaped = false){
+            \Illuminate\View\Compilers\BladeCompiler::setContentTags($openTag, $closeTag, $escaped);
+        }
+        
+        /**
+         * Sets the escaped content tags used for the compiler.
+         *
+         * @param string $openTag
+         * @param string $closeTag
+         * @return void 
+         * @static 
+         */
+        public static function setEscapedContentTags($openTag, $closeTag){
+            \Illuminate\View\Compilers\BladeCompiler::setEscapedContentTags($openTag, $closeTag);
+        }
+        
+        /**
+         * Gets the content tags used for the compiler.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getContentTags(){
+            return \Illuminate\View\Compilers\BladeCompiler::getContentTags();
+        }
+        
+        /**
+         * Gets the escaped content tags used for the compiler.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getEscapedContentTags(){
+            return \Illuminate\View\Compilers\BladeCompiler::getEscapedContentTags();
+        }
+        
+        /**
+         * Set the echo format to be used by the compiler.
+         *
+         * @param string $format
+         * @return void 
+         * @static 
+         */
+        public static function setEchoFormat($format){
+            \Illuminate\View\Compilers\BladeCompiler::setEchoFormat($format);
+        }
+        
+        /**
+         * Get the path to the compiled version of a view.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function getCompiledPath($path){
+            //Method inherited from \Illuminate\View\Compilers\Compiler            
+            return \Illuminate\View\Compilers\BladeCompiler::getCompiledPath($path);
+        }
+        
+        /**
+         * Determine if the view at the given path is expired.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */
+        public static function isExpired($path){
+            //Method inherited from \Illuminate\View\Compilers\Compiler            
+            return \Illuminate\View\Compilers\BladeCompiler::isExpired($path);
+        }
+        
+    }
+
+
+    class Cache extends \Illuminate\Support\Facades\Cache{
+        
+        /**
+         * Get a cache store instance by name.
+         *
+         * @param string|null $name
+         * @return mixed 
+         * @static 
+         */
+        public static function store($name = null){
+            return \Illuminate\Cache\CacheManager::store($name);
+        }
+        
+        /**
+         * Get a cache driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            return \Illuminate\Cache\CacheManager::driver($driver);
+        }
+        
+        /**
+         * Create a new cache repository with the given implementation.
+         *
+         * @param \Illuminate\Contracts\Cache\Store $store
+         * @return \Illuminate\Cache\Repository 
+         * @static 
+         */
+        public static function repository($store){
+            return \Illuminate\Cache\CacheManager::repository($store);
+        }
+        
+        /**
+         * Get the default cache driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \Illuminate\Cache\CacheManager::getDefaultDriver();
+        }
+        
+        /**
+         * Set the default cache driver name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultDriver($name){
+            \Illuminate\Cache\CacheManager::setDefaultDriver($name);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            return \Illuminate\Cache\CacheManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Set the event dispatcher instance.
+         *
+         * @param \Illuminate\Contracts\Events\Dispatcher $events
+         * @return void 
+         * @static 
+         */
+        public static function setEventDispatcher($events){
+            \Illuminate\Cache\Repository::setEventDispatcher($events);
+        }
+        
+        /**
+         * Determine if an item exists in the cache.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function has($key){
+            return \Illuminate\Cache\Repository::has($key);
+        }
+        
+        /**
+         * Retrieve an item from the cache by key.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */
+        public static function get($key, $default = null){
+            return \Illuminate\Cache\Repository::get($key, $default);
+        }
+        
+        /**
+         * Retrieve multiple items from the cache by key.
+         * 
+         * Items not found in the cache will have a null value.
+         *
+         * @param array $keys
+         * @return array 
+         * @static 
+         */
+        public static function many($keys){
+            return \Illuminate\Cache\Repository::many($keys);
+        }
+        
+        /**
+         * Retrieve an item from the cache and delete it.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */
+        public static function pull($key, $default = null){
+            return \Illuminate\Cache\Repository::pull($key, $default);
+        }
+        
+        /**
+         * Store an item in the cache.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @param \DateTime|int $minutes
+         * @return void 
+         * @static 
+         */
+        public static function put($key, $value, $minutes = null){
+            \Illuminate\Cache\Repository::put($key, $value, $minutes);
+        }
+        
+        /**
+         * Store multiple items in the cache for a given number of minutes.
+         *
+         * @param array $values
+         * @param int $minutes
+         * @return void 
+         * @static 
+         */
+        public static function putMany($values, $minutes){
+            \Illuminate\Cache\Repository::putMany($values, $minutes);
+        }
+        
+        /**
+         * Store an item in the cache if the key does not exist.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @param \DateTime|int $minutes
+         * @return bool 
+         * @static 
+         */
+        public static function add($key, $value, $minutes){
+            return \Illuminate\Cache\Repository::add($key, $value, $minutes);
+        }
+        
+        /**
+         * Store an item in the cache indefinitely.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function forever($key, $value){
+            \Illuminate\Cache\Repository::forever($key, $value);
+        }
+        
+        /**
+         * Get an item from the cache, or store the default value.
+         *
+         * @param string $key
+         * @param \DateTime|int $minutes
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function remember($key, $minutes, $callback){
+            return \Illuminate\Cache\Repository::remember($key, $minutes, $callback);
+        }
+        
+        /**
+         * Get an item from the cache, or store the default value forever.
+         *
+         * @param string $key
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function sear($key, $callback){
+            return \Illuminate\Cache\Repository::sear($key, $callback);
+        }
+        
+        /**
+         * Get an item from the cache, or store the default value forever.
+         *
+         * @param string $key
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function rememberForever($key, $callback){
+            return \Illuminate\Cache\Repository::rememberForever($key, $callback);
+        }
+        
+        /**
+         * Remove an item from the cache.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function forget($key){
+            return \Illuminate\Cache\Repository::forget($key);
+        }
+        
+        /**
+         * Begin executing a new tags operation if the store supports it.
+         *
+         * @param string $name
+         * @return \Illuminate\Cache\TaggedCache 
+         * @deprecated since version 5.1. Use tags instead.
+         * @static 
+         */
+        public static function section($name){
+            return \Illuminate\Cache\Repository::section($name);
+        }
+        
+        /**
+         * Begin executing a new tags operation if the store supports it.
+         *
+         * @param array|mixed $names
+         * @return \Illuminate\Cache\TaggedCache 
+         * @throws \BadMethodCallException
+         * @static 
+         */
+        public static function tags($names){
+            return \Illuminate\Cache\Repository::tags($names);
+        }
+        
+        /**
+         * Get the default cache time.
+         *
+         * @return int 
+         * @static 
+         */
+        public static function getDefaultCacheTime(){
+            return \Illuminate\Cache\Repository::getDefaultCacheTime();
+        }
+        
+        /**
+         * Set the default cache time in minutes.
+         *
+         * @param int $minutes
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultCacheTime($minutes){
+            \Illuminate\Cache\Repository::setDefaultCacheTime($minutes);
+        }
+        
+        /**
+         * Get the cache store implementation.
+         *
+         * @return \Illuminate\Contracts\Cache\Store 
+         * @static 
+         */
+        public static function getStore(){
+            return \Illuminate\Cache\Repository::getStore();
+        }
+        
+        /**
+         * Determine if a cached value exists.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function offsetExists($key){
+            return \Illuminate\Cache\Repository::offsetExists($key);
+        }
+        
+        /**
+         * Retrieve an item from the cache by key.
+         *
+         * @param string $key
+         * @return mixed 
+         * @static 
+         */
+        public static function offsetGet($key){
+            return \Illuminate\Cache\Repository::offsetGet($key);
+        }
+        
+        /**
+         * Store an item in the cache for the default time.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function offsetSet($key, $value){
+            \Illuminate\Cache\Repository::offsetSet($key, $value);
+        }
+        
+        /**
+         * Remove an item from the cache.
+         *
+         * @param string $key
+         * @return void 
+         * @static 
+         */
+        public static function offsetUnset($key){
+            \Illuminate\Cache\Repository::offsetUnset($key);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Illuminate\Cache\Repository::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Illuminate\Cache\Repository::hasMacro($name);
+        }
+        
+        /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */
+        public static function macroCall($method, $parameters){
+            return \Illuminate\Cache\Repository::macroCall($method, $parameters);
+        }
+        
+        /**
+         * Increment the value of an item in the cache.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return int 
+         * @static 
+         */
+        public static function increment($key, $value = 1){
+            return \Illuminate\Cache\FileStore::increment($key, $value);
+        }
+        
+        /**
+         * Decrement the value of an item in the cache.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return int 
+         * @static 
+         */
+        public static function decrement($key, $value = 1){
+            return \Illuminate\Cache\FileStore::decrement($key, $value);
+        }
+        
+        /**
+         * Remove all items from the cache.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function flush(){
+            \Illuminate\Cache\FileStore::flush();
+        }
+        
+        /**
+         * Get the Filesystem instance.
+         *
+         * @return \Illuminate\Filesystem\Filesystem 
+         * @static 
+         */
+        public static function getFilesystem(){
+            return \Illuminate\Cache\FileStore::getFilesystem();
+        }
+        
+        /**
+         * Get the working directory of the cache.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDirectory(){
+            return \Illuminate\Cache\FileStore::getDirectory();
+        }
+        
+        /**
+         * Get the cache key prefix.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getPrefix(){
+            return \Illuminate\Cache\FileStore::getPrefix();
+        }
+        
+    }
+
+
+    class Config extends \Illuminate\Support\Facades\Config{
+        
+        /**
+         * Determine if the given configuration value exists.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function has($key){
+            return \Illuminate\Config\Repository::has($key);
+        }
+        
+        /**
+         * Get the specified configuration value.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */
+        public static function get($key, $default = null){
+            return \Illuminate\Config\Repository::get($key, $default);
+        }
+        
+        /**
+         * Set a given configuration value.
+         *
+         * @param array|string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function set($key, $value = null){
+            \Illuminate\Config\Repository::set($key, $value);
+        }
+        
+        /**
+         * Prepend a value onto an array configuration value.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function prepend($key, $value){
+            \Illuminate\Config\Repository::prepend($key, $value);
+        }
+        
+        /**
+         * Push a value onto an array configuration value.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function push($key, $value){
+            \Illuminate\Config\Repository::push($key, $value);
+        }
+        
+        /**
+         * Get all of the configuration items for the application.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function all(){
+            return \Illuminate\Config\Repository::all();
+        }
+        
+        /**
+         * Determine if the given configuration option exists.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function offsetExists($key){
+            return \Illuminate\Config\Repository::offsetExists($key);
+        }
+        
+        /**
+         * Get a configuration option.
+         *
+         * @param string $key
+         * @return mixed 
+         * @static 
+         */
+        public static function offsetGet($key){
+            return \Illuminate\Config\Repository::offsetGet($key);
+        }
+        
+        /**
+         * Set a configuration option.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function offsetSet($key, $value){
+            \Illuminate\Config\Repository::offsetSet($key, $value);
+        }
+        
+        /**
+         * Unset a configuration option.
+         *
+         * @param string $key
+         * @return void 
+         * @static 
+         */
+        public static function offsetUnset($key){
+            \Illuminate\Config\Repository::offsetUnset($key);
+        }
+        
+    }
+
+
+    class Cookie extends \Illuminate\Support\Facades\Cookie{
+        
+        /**
+         * Create a new cookie instance.
+         *
+         * @param string $name
+         * @param string $value
+         * @param int $minutes
+         * @param string $path
+         * @param string $domain
+         * @param bool $secure
+         * @param bool $httpOnly
+         * @return \Symfony\Component\HttpFoundation\Cookie 
+         * @static 
+         */
+        public static function make($name, $value, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true){
+            return \Illuminate\Cookie\CookieJar::make($name, $value, $minutes, $path, $domain, $secure, $httpOnly);
+        }
+        
+        /**
+         * Create a cookie that lasts "forever" (five years).
+         *
+         * @param string $name
+         * @param string $value
+         * @param string $path
+         * @param string $domain
+         * @param bool $secure
+         * @param bool $httpOnly
+         * @return \Symfony\Component\HttpFoundation\Cookie 
+         * @static 
+         */
+        public static function forever($name, $value, $path = null, $domain = null, $secure = false, $httpOnly = true){
+            return \Illuminate\Cookie\CookieJar::forever($name, $value, $path, $domain, $secure, $httpOnly);
+        }
+        
+        /**
+         * Expire the given cookie.
+         *
+         * @param string $name
+         * @param string $path
+         * @param string $domain
+         * @return \Symfony\Component\HttpFoundation\Cookie 
+         * @static 
+         */
+        public static function forget($name, $path = null, $domain = null){
+            return \Illuminate\Cookie\CookieJar::forget($name, $path, $domain);
+        }
+        
+        /**
+         * Determine if a cookie has been queued.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasQueued($key){
+            return \Illuminate\Cookie\CookieJar::hasQueued($key);
+        }
+        
+        /**
+         * Get a queued cookie instance.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Symfony\Component\HttpFoundation\Cookie 
+         * @static 
+         */
+        public static function queued($key, $default = null){
+            return \Illuminate\Cookie\CookieJar::queued($key, $default);
+        }
+        
+        /**
+         * Queue a cookie to send with the next response.
+         *
+         * @param mixed
+         * @return void 
+         * @static 
+         */
+        public static function queue(){
+            \Illuminate\Cookie\CookieJar::queue();
+        }
+        
+        /**
+         * Remove a cookie from the queue.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function unqueue($name){
+            \Illuminate\Cookie\CookieJar::unqueue($name);
+        }
+        
+        /**
+         * Set the default path and domain for the jar.
+         *
+         * @param string $path
+         * @param string $domain
+         * @param bool $secure
+         * @return $this 
+         * @static 
+         */
+        public static function setDefaultPathAndDomain($path, $domain, $secure = false){
+            return \Illuminate\Cookie\CookieJar::setDefaultPathAndDomain($path, $domain, $secure);
+        }
+        
+        /**
+         * Get the cookies which have been queued for the next request.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getQueuedCookies(){
+            return \Illuminate\Cookie\CookieJar::getQueuedCookies();
+        }
+        
+    }
+
+
+    class DB extends \Illuminate\Support\Facades\DB{
+        
+        /**
+         * Get a database connection instance.
+         *
+         * @param string $name
+         * @return \Illuminate\Database\Connection 
+         * @static 
+         */
+        public static function connection($name = null){
+            return \Illuminate\Database\DatabaseManager::connection($name);
+        }
+        
+        /**
+         * Disconnect from the given database and remove from local cache.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function purge($name = null){
+            \Illuminate\Database\DatabaseManager::purge($name);
+        }
+        
+        /**
+         * Disconnect from the given database.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function disconnect($name = null){
+            \Illuminate\Database\DatabaseManager::disconnect($name);
+        }
+        
+        /**
+         * Reconnect to the given database.
+         *
+         * @param string $name
+         * @return \Illuminate\Database\Connection 
+         * @static 
+         */
+        public static function reconnect($name = null){
+            return \Illuminate\Database\DatabaseManager::reconnect($name);
+        }
+        
+        /**
+         * Get the default connection name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultConnection(){
+            return \Illuminate\Database\DatabaseManager::getDefaultConnection();
+        }
+        
+        /**
+         * Set the default connection name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultConnection($name){
+            \Illuminate\Database\DatabaseManager::setDefaultConnection($name);
+        }
+        
+        /**
+         * Get all of the support drivers.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function supportedDrivers(){
+            return \Illuminate\Database\DatabaseManager::supportedDrivers();
+        }
+        
+        /**
+         * Get all of the drivers that are actually available.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function availableDrivers(){
+            return \Illuminate\Database\DatabaseManager::availableDrivers();
+        }
+        
+        /**
+         * Register an extension connection resolver.
+         *
+         * @param string $name
+         * @param callable $resolver
+         * @return void 
+         * @static 
+         */
+        public static function extend($name, $resolver){
+            \Illuminate\Database\DatabaseManager::extend($name, $resolver);
+        }
+        
+        /**
+         * Return all of the created connections.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getConnections(){
+            return \Illuminate\Database\DatabaseManager::getConnections();
+        }
+        
+    }
+
+
+    class Event extends \Illuminate\Support\Facades\Event{
+        
+        /**
+         * Register an event listener with the dispatcher.
+         *
+         * @param string|array $events
+         * @param mixed $listener
+         * @param int $priority
+         * @return void 
+         * @static 
+         */
+        public static function listen($events, $listener, $priority = 0){
+            \Illuminate\Events\Dispatcher::listen($events, $listener, $priority);
+        }
+        
+        /**
+         * Determine if a given event has listeners.
+         *
+         * @param string $eventName
+         * @return bool 
+         * @static 
+         */
+        public static function hasListeners($eventName){
+            return \Illuminate\Events\Dispatcher::hasListeners($eventName);
+        }
+        
+        /**
+         * Register an event and payload to be fired later.
+         *
+         * @param string $event
+         * @param array $payload
+         * @return void 
+         * @static 
+         */
+        public static function push($event, $payload = array()){
+            \Illuminate\Events\Dispatcher::push($event, $payload);
+        }
+        
+        /**
+         * Register an event subscriber with the dispatcher.
+         *
+         * @param object|string $subscriber
+         * @return void 
+         * @static 
+         */
+        public static function subscribe($subscriber){
+            \Illuminate\Events\Dispatcher::subscribe($subscriber);
+        }
+        
+        /**
+         * Fire an event until the first non-null response is returned.
+         *
+         * @param string|object $event
+         * @param array $payload
+         * @return mixed 
+         * @static 
+         */
+        public static function until($event, $payload = array()){
+            return \Illuminate\Events\Dispatcher::until($event, $payload);
+        }
+        
+        /**
+         * Flush a set of pushed events.
+         *
+         * @param string $event
+         * @return void 
+         * @static 
+         */
+        public static function flush($event){
+            \Illuminate\Events\Dispatcher::flush($event);
+        }
+        
+        /**
+         * Get the event that is currently firing.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function firing(){
+            return \Illuminate\Events\Dispatcher::firing();
+        }
+        
+        /**
+         * Fire an event and call the listeners.
+         *
+         * @param string|object $event
+         * @param mixed $payload
+         * @param bool $halt
+         * @return array|null 
+         * @static 
+         */
+        public static function fire($event, $payload = array(), $halt = false){
+            return \Illuminate\Events\Dispatcher::fire($event, $payload, $halt);
+        }
+        
+        /**
+         * Get all of the listeners for a given event name.
+         *
+         * @param string $eventName
+         * @return array 
+         * @static 
+         */
+        public static function getListeners($eventName){
+            return \Illuminate\Events\Dispatcher::getListeners($eventName);
+        }
+        
+        /**
+         * Register an event listener with the dispatcher.
+         *
+         * @param mixed $listener
+         * @return mixed 
+         * @static 
+         */
+        public static function makeListener($listener){
+            return \Illuminate\Events\Dispatcher::makeListener($listener);
+        }
+        
+        /**
+         * Create a class based listener using the IoC container.
+         *
+         * @param mixed $listener
+         * @return \Closure 
+         * @static 
+         */
+        public static function createClassListener($listener){
+            return \Illuminate\Events\Dispatcher::createClassListener($listener);
+        }
+        
+        /**
+         * Remove a set of listeners from the dispatcher.
+         *
+         * @param string $event
+         * @return void 
+         * @static 
+         */
+        public static function forget($event){
+            \Illuminate\Events\Dispatcher::forget($event);
+        }
+        
+        /**
+         * Forget all of the pushed listeners.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function forgetPushed(){
+            \Illuminate\Events\Dispatcher::forgetPushed();
+        }
+        
+        /**
+         * Set the queue resolver implementation.
+         *
+         * @param callable $resolver
+         * @return $this 
+         * @static 
+         */
+        public static function setQueueResolver($resolver){
+            return \Illuminate\Events\Dispatcher::setQueueResolver($resolver);
+        }
+        
+    }
+
+
+    class File extends \Illuminate\Support\Facades\File{
+        
+        /**
+         * Determine if a file or directory exists.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */
+        public static function exists($path){
+            return \Illuminate\Filesystem\Filesystem::exists($path);
+        }
+        
+        /**
+         * Get the contents of a file.
+         *
+         * @param string $path
+         * @return string 
+         * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+         * @static 
+         */
+        public static function get($path){
+            return \Illuminate\Filesystem\Filesystem::get($path);
+        }
+        
+        /**
+         * Get the returned value of a file.
+         *
+         * @param string $path
+         * @return mixed 
+         * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+         * @static 
+         */
+        public static function getRequire($path){
+            return \Illuminate\Filesystem\Filesystem::getRequire($path);
+        }
+        
+        /**
+         * Require the given file once.
+         *
+         * @param string $file
+         * @return mixed 
+         * @static 
+         */
+        public static function requireOnce($file){
+            return \Illuminate\Filesystem\Filesystem::requireOnce($file);
+        }
+        
+        /**
+         * Write the contents of a file.
+         *
+         * @param string $path
+         * @param string $contents
+         * @param bool $lock
+         * @return int 
+         * @static 
+         */
+        public static function put($path, $contents, $lock = false){
+            return \Illuminate\Filesystem\Filesystem::put($path, $contents, $lock);
+        }
+        
+        /**
+         * Prepend to a file.
+         *
+         * @param string $path
+         * @param string $data
+         * @return int 
+         * @static 
+         */
+        public static function prepend($path, $data){
+            return \Illuminate\Filesystem\Filesystem::prepend($path, $data);
+        }
+        
+        /**
+         * Append to a file.
+         *
+         * @param string $path
+         * @param string $data
+         * @return int 
+         * @static 
+         */
+        public static function append($path, $data){
+            return \Illuminate\Filesystem\Filesystem::append($path, $data);
+        }
+        
+        /**
+         * Delete the file at a given path.
+         *
+         * @param string|array $paths
+         * @return bool 
+         * @static 
+         */
+        public static function delete($paths){
+            return \Illuminate\Filesystem\Filesystem::delete($paths);
+        }
+        
+        /**
+         * Move a file to a new location.
+         *
+         * @param string $path
+         * @param string $target
+         * @return bool 
+         * @static 
+         */
+        public static function move($path, $target){
+            return \Illuminate\Filesystem\Filesystem::move($path, $target);
+        }
+        
+        /**
+         * Copy a file to a new location.
+         *
+         * @param string $path
+         * @param string $target
+         * @return bool 
+         * @static 
+         */
+        public static function copy($path, $target){
+            return \Illuminate\Filesystem\Filesystem::copy($path, $target);
+        }
+        
+        /**
+         * Extract the file name from a file path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function name($path){
+            return \Illuminate\Filesystem\Filesystem::name($path);
+        }
+        
+        /**
+         * Extract the file extension from a file path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function extension($path){
+            return \Illuminate\Filesystem\Filesystem::extension($path);
+        }
+        
+        /**
+         * Get the file type of a given file.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function type($path){
+            return \Illuminate\Filesystem\Filesystem::type($path);
+        }
+        
+        /**
+         * Get the mime-type of a given file.
+         *
+         * @param string $path
+         * @return string|false 
+         * @static 
+         */
+        public static function mimeType($path){
+            return \Illuminate\Filesystem\Filesystem::mimeType($path);
+        }
+        
+        /**
+         * Get the file size of a given file.
+         *
+         * @param string $path
+         * @return int 
+         * @static 
+         */
+        public static function size($path){
+            return \Illuminate\Filesystem\Filesystem::size($path);
+        }
+        
+        /**
+         * Get the file's last modification time.
+         *
+         * @param string $path
+         * @return int 
+         * @static 
+         */
+        public static function lastModified($path){
+            return \Illuminate\Filesystem\Filesystem::lastModified($path);
+        }
+        
+        /**
+         * Determine if the given path is a directory.
+         *
+         * @param string $directory
+         * @return bool 
+         * @static 
+         */
+        public static function isDirectory($directory){
+            return \Illuminate\Filesystem\Filesystem::isDirectory($directory);
+        }
+        
+        /**
+         * Determine if the given path is writable.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */
+        public static function isWritable($path){
+            return \Illuminate\Filesystem\Filesystem::isWritable($path);
+        }
+        
+        /**
+         * Determine if the given path is a file.
+         *
+         * @param string $file
+         * @return bool 
+         * @static 
+         */
+        public static function isFile($file){
+            return \Illuminate\Filesystem\Filesystem::isFile($file);
+        }
+        
+        /**
+         * Find path names matching a given pattern.
+         *
+         * @param string $pattern
+         * @param int $flags
+         * @return array 
+         * @static 
+         */
+        public static function glob($pattern, $flags = 0){
+            return \Illuminate\Filesystem\Filesystem::glob($pattern, $flags);
+        }
+        
+        /**
+         * Get an array of all files in a directory.
+         *
+         * @param string $directory
+         * @return array 
+         * @static 
+         */
+        public static function files($directory){
+            return \Illuminate\Filesystem\Filesystem::files($directory);
+        }
+        
+        /**
+         * Get all of the files from the given directory (recursive).
+         *
+         * @param string $directory
+         * @return array 
+         * @static 
+         */
+        public static function allFiles($directory){
+            return \Illuminate\Filesystem\Filesystem::allFiles($directory);
+        }
+        
+        /**
+         * Get all of the directories within a given directory.
+         *
+         * @param string $directory
+         * @return array 
+         * @static 
+         */
+        public static function directories($directory){
+            return \Illuminate\Filesystem\Filesystem::directories($directory);
+        }
+        
+        /**
+         * Create a directory.
+         *
+         * @param string $path
+         * @param int $mode
+         * @param bool $recursive
+         * @param bool $force
+         * @return bool 
+         * @static 
+         */
+        public static function makeDirectory($path, $mode = 493, $recursive = false, $force = false){
+            return \Illuminate\Filesystem\Filesystem::makeDirectory($path, $mode, $recursive, $force);
+        }
+        
+        /**
+         * Copy a directory from one location to another.
+         *
+         * @param string $directory
+         * @param string $destination
+         * @param int $options
+         * @return bool 
+         * @static 
+         */
+        public static function copyDirectory($directory, $destination, $options = null){
+            return \Illuminate\Filesystem\Filesystem::copyDirectory($directory, $destination, $options);
+        }
+        
+        /**
+         * Recursively delete a directory.
+         * 
+         * The directory itself may be optionally preserved.
+         *
+         * @param string $directory
+         * @param bool $preserve
+         * @return bool 
+         * @static 
+         */
+        public static function deleteDirectory($directory, $preserve = false){
+            return \Illuminate\Filesystem\Filesystem::deleteDirectory($directory, $preserve);
+        }
+        
+        /**
+         * Empty the specified directory of all files and folders.
+         *
+         * @param string $directory
+         * @return bool 
+         * @static 
+         */
+        public static function cleanDirectory($directory){
+            return \Illuminate\Filesystem\Filesystem::cleanDirectory($directory);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Illuminate\Filesystem\Filesystem::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Illuminate\Filesystem\Filesystem::hasMacro($name);
+        }
+        
+    }
+
+
+    class Hash extends \Illuminate\Support\Facades\Hash{
+        
+        /**
+         * Hash the given value.
+         *
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function make($value, $options = array()){
+            return \Illuminate\Hashing\BcryptHasher::make($value, $options);
+        }
+        
+        /**
+         * Check the given plain value against a hash.
+         *
+         * @param string $value
+         * @param string $hashedValue
+         * @param array $options
+         * @return bool 
+         * @static 
+         */
+        public static function check($value, $hashedValue, $options = array()){
+            return \Illuminate\Hashing\BcryptHasher::check($value, $hashedValue, $options);
+        }
+        
+        /**
+         * Check if the given hash has been hashed using the given options.
+         *
+         * @param string $hashedValue
+         * @param array $options
+         * @return bool 
+         * @static 
+         */
+        public static function needsRehash($hashedValue, $options = array()){
+            return \Illuminate\Hashing\BcryptHasher::needsRehash($hashedValue, $options);
+        }
+        
+        /**
+         * Set the default password work factor.
+         *
+         * @param int $rounds
+         * @return $this 
+         * @static 
+         */
+        public static function setRounds($rounds){
+            return \Illuminate\Hashing\BcryptHasher::setRounds($rounds);
+        }
+        
+    }
+
+
+    class Input extends \Illuminate\Support\Facades\Input{
+        
+        /**
+         * Create a new Illuminate HTTP request from server variables.
+         *
+         * @return static 
+         * @static 
+         */
+        public static function capture(){
+            return \Illuminate\Http\Request::capture();
+        }
+        
+        /**
+         * Return the Request instance.
+         *
+         * @return $this 
+         * @static 
+         */
+        public static function instance(){
+            return \Illuminate\Http\Request::instance();
+        }
+        
+        /**
+         * Get the request method.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function method(){
+            return \Illuminate\Http\Request::method();
+        }
+        
+        /**
+         * Get the root URL for the application.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function root(){
+            return \Illuminate\Http\Request::root();
+        }
+        
+        /**
+         * Get the URL (no query string) for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function url(){
+            return \Illuminate\Http\Request::url();
+        }
+        
+        /**
+         * Get the full URL for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function fullUrl(){
+            return \Illuminate\Http\Request::fullUrl();
+        }
+        
+        /**
+         * Get the current path info for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function path(){
+            return \Illuminate\Http\Request::path();
+        }
+        
+        /**
+         * Get the current encoded path info for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function decodedPath(){
+            return \Illuminate\Http\Request::decodedPath();
+        }
+        
+        /**
+         * Get a segment from the URI (1 based index).
+         *
+         * @param int $index
+         * @param string|null $default
+         * @return string|null 
+         * @static 
+         */
+        public static function segment($index, $default = null){
+            return \Illuminate\Http\Request::segment($index, $default);
+        }
+        
+        /**
+         * Get all of the segments for the request path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function segments(){
+            return \Illuminate\Http\Request::segments();
+        }
+        
+        /**
+         * Determine if the current request URI matches a pattern.
+         *
+         * @param mixed  string
+         * @return bool 
+         * @static 
+         */
+        public static function is(){
+            return \Illuminate\Http\Request::is();
+        }
+        
+        /**
+         * Determine if the request is the result of an AJAX call.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function ajax(){
+            return \Illuminate\Http\Request::ajax();
+        }
+        
+        /**
+         * Determine if the request is the result of an PJAX call.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function pjax(){
+            return \Illuminate\Http\Request::pjax();
+        }
+        
+        /**
+         * Determine if the request is over HTTPS.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function secure(){
+            return \Illuminate\Http\Request::secure();
+        }
+        
+        /**
+         * Returns the client IP address.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function ip(){
+            return \Illuminate\Http\Request::ip();
+        }
+        
+        /**
+         * Returns the client IP addresses.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function ips(){
+            return \Illuminate\Http\Request::ips();
+        }
+        
+        /**
+         * Determine if the request contains a given input item key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */
+        public static function exists($key){
+            return \Illuminate\Http\Request::exists($key);
+        }
+        
+        /**
+         * Determine if the request contains a non-empty value for an input item.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */
+        public static function has($key){
+            return \Illuminate\Http\Request::has($key);
+        }
+        
+        /**
+         * Get all of the input and files for the request.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function all(){
+            return \Illuminate\Http\Request::all();
+        }
+        
+        /**
+         * Retrieve an input item from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function input($key = null, $default = null){
+            return \Illuminate\Http\Request::input($key, $default);
+        }
+        
+        /**
+         * Get a subset of the items from the input data.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */
+        public static function only($keys){
+            return \Illuminate\Http\Request::only($keys);
+        }
+        
+        /**
+         * Get all of the input except for a specified array of items.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */
+        public static function except($keys){
+            return \Illuminate\Http\Request::except($keys);
+        }
+        
+        /**
+         * Retrieve a query string item from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function query($key = null, $default = null){
+            return \Illuminate\Http\Request::query($key, $default);
+        }
+        
+        /**
+         * Determine if a cookie is set on the request.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasCookie($key){
+            return \Illuminate\Http\Request::hasCookie($key);
+        }
+        
+        /**
+         * Retrieve a cookie from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function cookie($key = null, $default = null){
+            return \Illuminate\Http\Request::cookie($key, $default);
+        }
+        
+        /**
+         * Retrieve a file from the request.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Symfony\Component\HttpFoundation\File\UploadedFile|array|null 
+         * @static 
+         */
+        public static function file($key = null, $default = null){
+            return \Illuminate\Http\Request::file($key, $default);
+        }
+        
+        /**
+         * Determine if the uploaded data contains a file.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasFile($key){
+            return \Illuminate\Http\Request::hasFile($key);
+        }
+        
+        /**
+         * Retrieve a header from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function header($key = null, $default = null){
+            return \Illuminate\Http\Request::header($key, $default);
+        }
+        
+        /**
+         * Retrieve a server variable from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function server($key = null, $default = null){
+            return \Illuminate\Http\Request::server($key, $default);
+        }
+        
+        /**
+         * Retrieve an old input item.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function old($key = null, $default = null){
+            return \Illuminate\Http\Request::old($key, $default);
+        }
+        
+        /**
+         * Flash the input for the current request to the session.
+         *
+         * @param string $filter
+         * @param array $keys
+         * @return void 
+         * @static 
+         */
+        public static function flash($filter = null, $keys = array()){
+            \Illuminate\Http\Request::flash($filter, $keys);
+        }
+        
+        /**
+         * Flash only some of the input to the session.
+         *
+         * @param array|mixed $keys
+         * @return void 
+         * @static 
+         */
+        public static function flashOnly($keys){
+            \Illuminate\Http\Request::flashOnly($keys);
+        }
+        
+        /**
+         * Flash only some of the input to the session.
+         *
+         * @param array|mixed $keys
+         * @return void 
+         * @static 
+         */
+        public static function flashExcept($keys){
+            \Illuminate\Http\Request::flashExcept($keys);
+        }
+        
+        /**
+         * Flush all of the old input from the session.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function flush(){
+            \Illuminate\Http\Request::flush();
+        }
+        
+        /**
+         * Merge new input into the current request's input array.
+         *
+         * @param array $input
+         * @return void 
+         * @static 
+         */
+        public static function merge($input){
+            \Illuminate\Http\Request::merge($input);
+        }
+        
+        /**
+         * Replace the input for the current request.
+         *
+         * @param array $input
+         * @return void 
+         * @static 
+         */
+        public static function replace($input){
+            \Illuminate\Http\Request::replace($input);
+        }
+        
+        /**
+         * Get the JSON payload for the request.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */
+        public static function json($key = null, $default = null){
+            return \Illuminate\Http\Request::json($key, $default);
+        }
+        
+        /**
+         * Determine if the given content types match.
+         *
+         * @param string $actual
+         * @param string $type
+         * @return bool 
+         * @static 
+         */
+        public static function matchesType($actual, $type){
+            return \Illuminate\Http\Request::matchesType($actual, $type);
+        }
+        
+        /**
+         * Determine if the request is sending JSON.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isJson(){
+            return \Illuminate\Http\Request::isJson();
+        }
+        
+        /**
+         * Determine if the current request is asking for JSON in return.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function wantsJson(){
+            return \Illuminate\Http\Request::wantsJson();
+        }
+        
+        /**
+         * Determines whether the current requests accepts a given content type.
+         *
+         * @param string|array $contentTypes
+         * @return bool 
+         * @static 
+         */
+        public static function accepts($contentTypes){
+            return \Illuminate\Http\Request::accepts($contentTypes);
+        }
+        
+        /**
+         * Return the most suitable content type from the given array based on content negotiation.
+         *
+         * @param string|array $contentTypes
+         * @return string|null 
+         * @static 
+         */
+        public static function prefers($contentTypes){
+            return \Illuminate\Http\Request::prefers($contentTypes);
+        }
+        
+        /**
+         * Determines whether a request accepts JSON.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function acceptsJson(){
+            return \Illuminate\Http\Request::acceptsJson();
+        }
+        
+        /**
+         * Determines whether a request accepts HTML.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function acceptsHtml(){
+            return \Illuminate\Http\Request::acceptsHtml();
+        }
+        
+        /**
+         * Get the data format expected in the response.
+         *
+         * @param string $default
+         * @return string 
+         * @static 
+         */
+        public static function format($default = 'html'){
+            return \Illuminate\Http\Request::format($default);
+        }
+        
+        /**
+         * Get the bearer token from the request headers.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function bearerToken(){
+            return \Illuminate\Http\Request::bearerToken();
+        }
+        
+        /**
+         * Create an Illuminate request from a Symfony instance.
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @return \Illuminate\Http\Request 
+         * @static 
+         */
+        public static function createFromBase($request){
+            return \Illuminate\Http\Request::createFromBase($request);
+        }
+        
+        /**
+         * Clones a request and overrides some of its parameters.
+         *
+         * @param array $query The GET parameters
+         * @param array $request The POST parameters
+         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array $cookies The COOKIE parameters
+         * @param array $files The FILES parameters
+         * @param array $server The SERVER parameters
+         * @return \Symfony\Component\HttpFoundation\Request The duplicated request
+         * @static 
+         */
+        public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null){
+            return \Illuminate\Http\Request::duplicate($query, $request, $attributes, $cookies, $files, $server);
+        }
+        
+        /**
+         * Get the session associated with the request.
+         *
+         * @return \Illuminate\Session\Store 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function session(){
+            return \Illuminate\Http\Request::session();
+        }
+        
+        /**
+         * Get the user making the request.
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function user(){
+            return \Illuminate\Http\Request::user();
+        }
+        
+        /**
+         * Get the route handling the request.
+         *
+         * @param string|null $param
+         * @return \Illuminate\Routing\Route|object|string 
+         * @static 
+         */
+        public static function route($param = null){
+            return \Illuminate\Http\Request::route($param);
+        }
+        
+        /**
+         * Get a unique fingerprint for the request / route / IP address.
+         *
+         * @return string 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function fingerprint(){
+            return \Illuminate\Http\Request::fingerprint();
+        }
+        
+        /**
+         * Get the user resolver callback.
+         *
+         * @return \Closure 
+         * @static 
+         */
+        public static function getUserResolver(){
+            return \Illuminate\Http\Request::getUserResolver();
+        }
+        
+        /**
+         * Set the user resolver callback.
+         *
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function setUserResolver($callback){
+            return \Illuminate\Http\Request::setUserResolver($callback);
+        }
+        
+        /**
+         * Get the route resolver callback.
+         *
+         * @return \Closure 
+         * @static 
+         */
+        public static function getRouteResolver(){
+            return \Illuminate\Http\Request::getRouteResolver();
+        }
+        
+        /**
+         * Set the route resolver callback.
+         *
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function setRouteResolver($callback){
+            return \Illuminate\Http\Request::setRouteResolver($callback);
+        }
+        
+        /**
+         * Get all of the input and files for the request.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function toArray(){
+            return \Illuminate\Http\Request::toArray();
+        }
+        
+        /**
+         * Determine if the given offset exists.
+         *
+         * @param string $offset
+         * @return bool 
+         * @static 
+         */
+        public static function offsetExists($offset){
+            return \Illuminate\Http\Request::offsetExists($offset);
+        }
+        
+        /**
+         * Get the value at the given offset.
+         *
+         * @param string $offset
+         * @return mixed 
+         * @static 
+         */
+        public static function offsetGet($offset){
+            return \Illuminate\Http\Request::offsetGet($offset);
+        }
+        
+        /**
+         * Set the value at the given offset.
+         *
+         * @param string $offset
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function offsetSet($offset, $value){
+            \Illuminate\Http\Request::offsetSet($offset, $value);
+        }
+        
+        /**
+         * Remove the value at the given offset.
+         *
+         * @param string $offset
+         * @return void 
+         * @static 
+         */
+        public static function offsetUnset($offset){
+            \Illuminate\Http\Request::offsetUnset($offset);
+        }
+        
+        /**
+         * Sets the parameters for this request.
+         * 
+         * This method also re-initializes all properties.
+         *
+         * @param array $query The GET parameters
+         * @param array $request The POST parameters
+         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array $cookies The COOKIE parameters
+         * @param array $files The FILES parameters
+         * @param array $server The SERVER parameters
+         * @param string|resource $content The raw body data
+         * @static 
+         */
+        public static function initialize($query = array(), $request = array(), $attributes = array(), $cookies = array(), $files = array(), $server = array(), $content = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::initialize($query, $request, $attributes, $cookies, $files, $server, $content);
+        }
+        
+        /**
+         * Creates a new request with values from PHP's super globals.
+         *
+         * @return \Symfony\Component\HttpFoundation\Request A new request
+         * @static 
+         */
+        public static function createFromGlobals(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::createFromGlobals();
+        }
+        
+        /**
+         * Creates a Request based on a given URI and configuration.
+         * 
+         * The information contained in the URI always take precedence
+         * over the other information (server and parameters).
+         *
+         * @param string $uri The URI
+         * @param string $method The HTTP method
+         * @param array $parameters The query (GET) or request (POST) parameters
+         * @param array $cookies The request cookies ($_COOKIE)
+         * @param array $files The request files ($_FILES)
+         * @param array $server The server parameters ($_SERVER)
+         * @param string $content The raw body data
+         * @return \Symfony\Component\HttpFoundation\Request A Request instance
+         * @static 
+         */
+        public static function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::create($uri, $method, $parameters, $cookies, $files, $server, $content);
+        }
+        
+        /**
+         * Sets a callable able to create a Request instance.
+         * 
+         * This is mainly useful when you need to override the Request class
+         * to keep BC with an existing system. It should not be used for any
+         * other purpose.
+         *
+         * @param callable|null $callable A PHP callable
+         * @static 
+         */
+        public static function setFactory($callable){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setFactory($callable);
+        }
+        
+        /**
+         * Overrides the PHP global variables according to this request instance.
+         * 
+         * It overrides $_GET, $_POST, $_REQUEST, $_SERVER, $_COOKIE.
+         * $_FILES is never overridden, see rfc1867
+         *
+         * @static 
+         */
+        public static function overrideGlobals(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::overrideGlobals();
+        }
+        
+        /**
+         * Sets a list of trusted proxies.
+         * 
+         * You should only list the reverse proxies that you manage directly.
+         *
+         * @param array $proxies A list of trusted proxies
+         * @static 
+         */
+        public static function setTrustedProxies($proxies){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setTrustedProxies($proxies);
+        }
+        
+        /**
+         * Gets the list of trusted proxies.
+         *
+         * @return array An array of trusted proxies.
+         * @static 
+         */
+        public static function getTrustedProxies(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getTrustedProxies();
+        }
+        
+        /**
+         * Sets a list of trusted host patterns.
+         * 
+         * You should only list the hosts you manage using regexs.
+         *
+         * @param array $hostPatterns A list of trusted host patterns
+         * @static 
+         */
+        public static function setTrustedHosts($hostPatterns){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setTrustedHosts($hostPatterns);
+        }
+        
+        /**
+         * Gets the list of trusted host patterns.
+         *
+         * @return array An array of trusted host patterns.
+         * @static 
+         */
+        public static function getTrustedHosts(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getTrustedHosts();
+        }
+        
+        /**
+         * Sets the name for trusted headers.
+         * 
+         * The following header keys are supported:
+         * 
+         *  * Request::HEADER_CLIENT_IP:    defaults to X-Forwarded-For   (see getClientIp())
+         *  * Request::HEADER_CLIENT_HOST:  defaults to X-Forwarded-Host  (see getHost())
+         *  * Request::HEADER_CLIENT_PORT:  defaults to X-Forwarded-Port  (see getPort())
+         *  * Request::HEADER_CLIENT_PROTO: defaults to X-Forwarded-Proto (see getScheme() and isSecure())
+         * 
+         * Setting an empty value allows to disable the trusted header for the given key.
+         *
+         * @param string $key The header key
+         * @param string $value The header name
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function setTrustedHeaderName($key, $value){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setTrustedHeaderName($key, $value);
+        }
+        
+        /**
+         * Gets the trusted proxy header name.
+         *
+         * @param string $key The header key
+         * @return string The header name
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function getTrustedHeaderName($key){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getTrustedHeaderName($key);
+        }
+        
+        /**
+         * Normalizes a query string.
+         * 
+         * It builds a normalized query string, where keys/value pairs are alphabetized,
+         * have consistent escaping and unneeded delimiters are removed.
+         *
+         * @param string $qs Query string
+         * @return string A normalized query string for the Request
+         * @static 
+         */
+        public static function normalizeQueryString($qs){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::normalizeQueryString($qs);
+        }
+        
+        /**
+         * Enables support for the _method request parameter to determine the intended HTTP method.
+         * 
+         * Be warned that enabling this feature might lead to CSRF issues in your code.
+         * Check that you are using CSRF tokens when required.
+         * If the HTTP method parameter override is enabled, an html-form with method "POST" can be altered
+         * and used to send a "PUT" or "DELETE" request via the _method request parameter.
+         * If these methods are not protected against CSRF, this presents a possible vulnerability.
+         * 
+         * The HTTP method can only be overridden when the real HTTP method is POST.
+         *
+         * @static 
+         */
+        public static function enableHttpMethodParameterOverride(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::enableHttpMethodParameterOverride();
+        }
+        
+        /**
+         * Checks whether support for the _method request parameter is enabled.
+         *
+         * @return bool True when the _method request parameter is enabled, false otherwise
+         * @static 
+         */
+        public static function getHttpMethodParameterOverride(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getHttpMethodParameterOverride();
+        }
+        
+        /**
+         * Gets a "parameter" value from any bag.
+         * 
+         * This method is mainly useful for libraries that want to provide some flexibility. If you don't need the
+         * flexibility in controllers, it is better to explicitly get request parameters from the appropriate
+         * public property instead (attributes, query, request).
+         * 
+         * Order of precedence: PATH (routing placeholders or custom attributes), GET, BODY
+         *
+         * @param string $key the key
+         * @param mixed $default the default value
+         * @return mixed 
+         * @static 
+         */
+        public static function get($key, $default = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::get($key, $default);
+        }
+        
+        /**
+         * Gets the Session.
+         *
+         * @return \Symfony\Component\HttpFoundation\SessionInterface|null The session
+         * @static 
+         */
+        public static function getSession(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getSession();
+        }
+        
+        /**
+         * Whether the request contains a Session which was started in one of the
+         * previous requests.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasPreviousSession(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::hasPreviousSession();
+        }
+        
+        /**
+         * Whether the request contains a Session object.
+         * 
+         * This method does not give any information about the state of the session object,
+         * like whether the session is started or not. It is just a way to check if this Request
+         * is associated with a Session instance.
+         *
+         * @return bool true when the Request contains a Session object, false otherwise
+         * @static 
+         */
+        public static function hasSession(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::hasSession();
+        }
+        
+        /**
+         * Sets the Session.
+         *
+         * @param \Symfony\Component\HttpFoundation\SessionInterface $session The Session
+         * @static 
+         */
+        public static function setSession($session){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setSession($session);
+        }
+        
+        /**
+         * Returns the client IP addresses.
+         * 
+         * In the returned array the most trusted IP address is first, and the
+         * least trusted one last. The "real" client IP address is the last one,
+         * but this is also the least trusted one. Trusted proxies are stripped.
+         * 
+         * Use this method carefully; you should use getClientIp() instead.
+         *
+         * @return array The client IP addresses
+         * @see getClientIp()
+         * @static 
+         */
+        public static function getClientIps(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getClientIps();
+        }
+        
+        /**
+         * Returns the client IP address.
+         * 
+         * This method can read the client IP address from the "X-Forwarded-For" header
+         * when trusted proxies were set via "setTrustedProxies()". The "X-Forwarded-For"
+         * header value is a comma+space separated list of IP addresses, the left-most
+         * being the original client, and each successive proxy that passed the request
+         * adding the IP address where it received the request from.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-For",
+         * ("Client-Ip" for instance), configure it via "setTrustedHeaderName()" with
+         * the "client-ip" key.
+         *
+         * @return string The client IP address
+         * @see getClientIps()
+         * @see http://en.wikipedia.org/wiki/X-Forwarded-For
+         * @static 
+         */
+        public static function getClientIp(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getClientIp();
+        }
+        
+        /**
+         * Returns current script name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getScriptName(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getScriptName();
+        }
+        
+        /**
+         * Returns the path being requested relative to the executed script.
+         * 
+         * The path info always starts with a /.
+         * 
+         * Suppose this request is instantiated from /mysite on localhost:
+         * 
+         *  * http://localhost/mysite              returns an empty string
+         *  * http://localhost/mysite/about        returns '/about'
+         *  * http://localhost/mysite/enco%20ded   returns '/enco%20ded'
+         *  * http://localhost/mysite/about?var=1  returns '/about'
+         *
+         * @return string The raw path (i.e. not urldecoded)
+         * @static 
+         */
+        public static function getPathInfo(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPathInfo();
+        }
+        
+        /**
+         * Returns the root path from which this request is executed.
+         * 
+         * Suppose that an index.php file instantiates this request object:
+         * 
+         *  * http://localhost/index.php         returns an empty string
+         *  * http://localhost/index.php/page    returns an empty string
+         *  * http://localhost/web/index.php     returns '/web'
+         *  * http://localhost/we%20b/index.php  returns '/we%20b'
+         *
+         * @return string The raw path (i.e. not urldecoded)
+         * @static 
+         */
+        public static function getBasePath(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getBasePath();
+        }
+        
+        /**
+         * Returns the root URL from which this request is executed.
+         * 
+         * The base URL never ends with a /.
+         * 
+         * This is similar to getBasePath(), except that it also includes the
+         * script filename (e.g. index.php) if one exists.
+         *
+         * @return string The raw URL (i.e. not urldecoded)
+         * @static 
+         */
+        public static function getBaseUrl(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getBaseUrl();
+        }
+        
+        /**
+         * Gets the request's scheme.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getScheme(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getScheme();
+        }
+        
+        /**
+         * Returns the port on which the request is made.
+         * 
+         * This method can read the client port from the "X-Forwarded-Port" header
+         * when trusted proxies were set via "setTrustedProxies()".
+         * 
+         * The "X-Forwarded-Port" header must contain the client port.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-Port",
+         * configure it via "setTrustedHeaderName()" with the "client-port" key.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getPort(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPort();
+        }
+        
+        /**
+         * Returns the user.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function getUser(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUser();
+        }
+        
+        /**
+         * Returns the password.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function getPassword(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPassword();
+        }
+        
+        /**
+         * Gets the user info.
+         *
+         * @return string A user name and, optionally, scheme-specific information about how to gain authorization to access the server
+         * @static 
+         */
+        public static function getUserInfo(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUserInfo();
+        }
+        
+        /**
+         * Returns the HTTP host being requested.
+         * 
+         * The port name will be appended to the host if it's non-standard.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getHttpHost(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getHttpHost();
+        }
+        
+        /**
+         * Returns the requested URI (path and query string).
+         *
+         * @return string The raw URI (i.e. not URI decoded)
+         * @static 
+         */
+        public static function getRequestUri(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRequestUri();
+        }
+        
+        /**
+         * Gets the scheme and HTTP host.
+         * 
+         * If the URL was called with basic authentication, the user
+         * and the password are not added to the generated string.
+         *
+         * @return string The scheme and HTTP host
+         * @static 
+         */
+        public static function getSchemeAndHttpHost(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getSchemeAndHttpHost();
+        }
+        
+        /**
+         * Generates a normalized URI (URL) for the Request.
+         *
+         * @return string A normalized URI (URL) for the Request
+         * @see getQueryString()
+         * @static 
+         */
+        public static function getUri(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUri();
+        }
+        
+        /**
+         * Generates a normalized URI for the given path.
+         *
+         * @param string $path A path to use instead of the current one
+         * @return string The normalized URI for the path
+         * @static 
+         */
+        public static function getUriForPath($path){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUriForPath($path);
+        }
+        
+        /**
+         * Returns the path as relative reference from the current Request path.
+         * 
+         * Only the URIs path component (no schema, host etc.) is relevant and must be given.
+         * Both paths must be absolute and not contain relative parts.
+         * Relative URLs from one resource to another are useful when generating self-contained downloadable document archives.
+         * Furthermore, they can be used to reduce the link size in documents.
+         * 
+         * Example target paths, given a base path of "/a/b/c/d":
+         * - "/a/b/c/d"     -> ""
+         * - "/a/b/c/"      -> "./"
+         * - "/a/b/"        -> "../"
+         * - "/a/b/c/other" -> "other"
+         * - "/a/x/y"       -> "../../x/y"
+         *
+         * @param string $path The target path
+         * @return string The relative target path
+         * @static 
+         */
+        public static function getRelativeUriForPath($path){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRelativeUriForPath($path);
+        }
+        
+        /**
+         * Generates the normalized query string for the Request.
+         * 
+         * It builds a normalized query string, where keys/value pairs are alphabetized
+         * and have consistent escaping.
+         *
+         * @return string|null A normalized query string for the Request
+         * @static 
+         */
+        public static function getQueryString(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getQueryString();
+        }
+        
+        /**
+         * Checks whether the request is secure or not.
+         * 
+         * This method can read the client protocol from the "X-Forwarded-Proto" header
+         * when trusted proxies were set via "setTrustedProxies()".
+         * 
+         * The "X-Forwarded-Proto" header must contain the protocol: "https" or "http".
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-Proto"
+         * ("SSL_HTTPS" for instance), configure it via "setTrustedHeaderName()" with
+         * the "client-proto" key.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isSecure(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isSecure();
+        }
+        
+        /**
+         * Returns the host name.
+         * 
+         * This method can read the client host name from the "X-Forwarded-Host" header
+         * when trusted proxies were set via "setTrustedProxies()".
+         * 
+         * The "X-Forwarded-Host" header must contain the client host name.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-Host",
+         * configure it via "setTrustedHeaderName()" with the "client-host" key.
+         *
+         * @return string 
+         * @throws \UnexpectedValueException when the host name is invalid
+         * @static 
+         */
+        public static function getHost(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getHost();
+        }
+        
+        /**
+         * Sets the request method.
+         *
+         * @param string $method
+         * @static 
+         */
+        public static function setMethod($method){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setMethod($method);
+        }
+        
+        /**
+         * Gets the request "intended" method.
+         * 
+         * If the X-HTTP-Method-Override header is set, and if the method is a POST,
+         * then it is used to determine the "real" intended HTTP method.
+         * 
+         * The _method request parameter can also be used to determine the HTTP method,
+         * but only if enableHttpMethodParameterOverride() has been called.
+         * 
+         * The method is always an uppercased string.
+         *
+         * @return string The request method
+         * @see getRealMethod()
+         * @static 
+         */
+        public static function getMethod(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getMethod();
+        }
+        
+        /**
+         * Gets the "real" request method.
+         *
+         * @return string The request method
+         * @see getMethod()
+         * @static 
+         */
+        public static function getRealMethod(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRealMethod();
+        }
+        
+        /**
+         * Gets the mime type associated with the format.
+         *
+         * @param string $format The format
+         * @return string The associated mime type (null if not found)
+         * @static 
+         */
+        public static function getMimeType($format){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getMimeType($format);
+        }
+        
+        /**
+         * Gets the format associated with the mime type.
+         *
+         * @param string $mimeType The associated mime type
+         * @return string|null The format (null if not found)
+         * @static 
+         */
+        public static function getFormat($mimeType){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getFormat($mimeType);
+        }
+        
+        /**
+         * Associates a format with mime types.
+         *
+         * @param string $format The format
+         * @param string|array $mimeTypes The associated mime types (the preferred one must be the first as it will be used as the content type)
+         * @static 
+         */
+        public static function setFormat($format, $mimeTypes){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setFormat($format, $mimeTypes);
+        }
+        
+        /**
+         * Gets the request format.
+         * 
+         * Here is the process to determine the format:
+         * 
+         *  * format defined by the user (with setRequestFormat())
+         *  * _format request parameter
+         *  * $default
+         *
+         * @param string $default The default format
+         * @return string The request format
+         * @static 
+         */
+        public static function getRequestFormat($default = 'html'){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRequestFormat($default);
+        }
+        
+        /**
+         * Sets the request format.
+         *
+         * @param string $format The request format.
+         * @static 
+         */
+        public static function setRequestFormat($format){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setRequestFormat($format);
+        }
+        
+        /**
+         * Gets the format associated with the request.
+         *
+         * @return string|null The format (null if no content type is present)
+         * @static 
+         */
+        public static function getContentType(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getContentType();
+        }
+        
+        /**
+         * Sets the default locale.
+         *
+         * @param string $locale
+         * @static 
+         */
+        public static function setDefaultLocale($locale){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setDefaultLocale($locale);
+        }
+        
+        /**
+         * Get the default locale.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultLocale(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getDefaultLocale();
+        }
+        
+        /**
+         * Sets the locale.
+         *
+         * @param string $locale
+         * @static 
+         */
+        public static function setLocale($locale){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setLocale($locale);
+        }
+        
+        /**
+         * Get the locale.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getLocale(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getLocale();
+        }
+        
+        /**
+         * Checks if the request method is of specified type.
+         *
+         * @param string $method Uppercase request method (GET, POST etc).
+         * @return bool 
+         * @static 
+         */
+        public static function isMethod($method){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isMethod($method);
+        }
+        
+        /**
+         * Checks whether the method is safe or not.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isMethodSafe(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isMethodSafe();
+        }
+        
+        /**
+         * Returns the request body content.
+         *
+         * @param bool $asResource If true, a resource will be returned
+         * @return string|resource The request body content or a resource to read the body stream.
+         * @throws \LogicException
+         * @static 
+         */
+        public static function getContent($asResource = false){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getContent($asResource);
+        }
+        
+        /**
+         * Gets the Etags.
+         *
+         * @return array The entity tags
+         * @static 
+         */
+        public static function getETags(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getETags();
+        }
+        
+        /**
+         * 
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isNoCache(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isNoCache();
+        }
+        
+        /**
+         * Returns the preferred language.
+         *
+         * @param array $locales An array of ordered available locales
+         * @return string|null The preferred locale
+         * @static 
+         */
+        public static function getPreferredLanguage($locales = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPreferredLanguage($locales);
+        }
+        
+        /**
+         * Gets a list of languages acceptable by the client browser.
+         *
+         * @return array Languages ordered in the user browser preferences
+         * @static 
+         */
+        public static function getLanguages(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getLanguages();
+        }
+        
+        /**
+         * Gets a list of charsets acceptable by the client browser.
+         *
+         * @return array List of charsets in preferable order
+         * @static 
+         */
+        public static function getCharsets(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getCharsets();
+        }
+        
+        /**
+         * Gets a list of encodings acceptable by the client browser.
+         *
+         * @return array List of encodings in preferable order
+         * @static 
+         */
+        public static function getEncodings(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getEncodings();
+        }
+        
+        /**
+         * Gets a list of content types acceptable by the client browser.
+         *
+         * @return array List of content types in preferable order
+         * @static 
+         */
+        public static function getAcceptableContentTypes(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getAcceptableContentTypes();
+        }
+        
+        /**
+         * Returns true if the request is a XMLHttpRequest.
+         * 
+         * It works if your JavaScript library sets an X-Requested-With HTTP header.
+         * It is known to work with common JavaScript frameworks:
+         *
+         * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
+         * @return bool true if the request is an XMLHttpRequest, false otherwise
+         * @static 
+         */
+        public static function isXmlHttpRequest(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isXmlHttpRequest();
+        }
+        
+    }
+
+
+    class Log extends \Illuminate\Support\Facades\Log{
+        
+        /**
+         * Adds a log record at the DEBUG level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function debug($message, $context = array()){
+            return \Monolog\Logger::debug($message, $context);
+        }
+        
+        /**
+         * Adds a log record at the INFO level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function info($message, $context = array()){
+            return \Monolog\Logger::info($message, $context);
+        }
+        
+        /**
+         * Adds a log record at the NOTICE level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function notice($message, $context = array()){
+            return \Monolog\Logger::notice($message, $context);
+        }
+        
+        /**
+         * Adds a log record at the WARNING level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function warning($message, $context = array()){
+            return \Monolog\Logger::warning($message, $context);
+        }
+        
+        /**
+         * Adds a log record at the ERROR level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function error($message, $context = array()){
+            return \Monolog\Logger::error($message, $context);
+        }
+        
+        /**
+         * Adds a log record at the CRITICAL level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function critical($message, $context = array()){
+            return \Monolog\Logger::critical($message, $context);
+        }
+        
+        /**
+         * Adds a log record at the ALERT level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function alert($message, $context = array()){
+            return \Monolog\Logger::alert($message, $context);
+        }
+        
+        /**
+         * Adds a log record at the EMERGENCY level.
+         *
+         * @param string $message The log message
+         * @param array $context The log context
+         * @return Boolean Whether the record has been processed
+         * @static 
+         */
+        public static function emergency($message, $context = array()){
+            return \Monolog\Logger::emergency($message, $context);
+        }
+        
+        /**
+         * Log a critical message to the logs.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */
+        public static function fatal($message, $context = array()){
+            \App\Support\Log\Writer::fatal($message, $context);
+        }
+        
+        /**
+         * Log a warning message to the logs.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */
+        public static function warn($message, $context = array()){
+            \App\Support\Log\Writer::warn($message, $context);
+        }
+        
+        /**
+         * Log an informational message to the logs.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */
+        public static function deprecated($message, $context = array()){
+            \App\Support\Log\Writer::deprecated($message, $context);
+        }
+        
+        /**
+         * Log a message to the logs.
+         *
+         * @param string $level
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */
+        public static function log($level, $message, $context = array()){
+            //Method inherited from \Illuminate\Log\Writer            
+            \App\Support\Log\Writer::log($level, $message, $context);
+        }
+        
+        /**
+         * Dynamically pass log calls into the writer.
+         *
+         * @param string $level
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */
+        public static function write($level, $message, $context = array()){
+            //Method inherited from \Illuminate\Log\Writer            
+            \App\Support\Log\Writer::write($level, $message, $context);
+        }
+        
+        /**
+         * Register a file log handler.
+         *
+         * @param string $path
+         * @param string $level
+         * @return void 
+         * @static 
+         */
+        public static function useFiles($path, $level = 'debug'){
+            //Method inherited from \Illuminate\Log\Writer            
+            \App\Support\Log\Writer::useFiles($path, $level);
+        }
+        
+        /**
+         * Register a daily file log handler.
+         *
+         * @param string $path
+         * @param int $days
+         * @param string $level
+         * @return void 
+         * @static 
+         */
+        public static function useDailyFiles($path, $days = 0, $level = 'debug'){
+            //Method inherited from \Illuminate\Log\Writer            
+            \App\Support\Log\Writer::useDailyFiles($path, $days, $level);
+        }
+        
+        /**
+         * Register a Syslog handler.
+         *
+         * @param string $name
+         * @param string $level
+         * @return \Psr\Log\LoggerInterface 
+         * @static 
+         */
+        public static function useSyslog($name = 'laravel', $level = 'debug'){
+            //Method inherited from \Illuminate\Log\Writer            
+            return \App\Support\Log\Writer::useSyslog($name, $level);
+        }
+        
+        /**
+         * Register an error_log handler.
+         *
+         * @param string $level
+         * @param int $messageType
+         * @return void 
+         * @static 
+         */
+        public static function useErrorLog($level = 'debug', $messageType = 0){
+            //Method inherited from \Illuminate\Log\Writer            
+            \App\Support\Log\Writer::useErrorLog($level, $messageType);
+        }
+        
+        /**
+         * Register a new callback handler for when a log event is triggered.
+         *
+         * @param \Closure $callback
+         * @return void 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function listen($callback){
+            //Method inherited from \Illuminate\Log\Writer            
+            \App\Support\Log\Writer::listen($callback);
+        }
+        
+        /**
+         * Get the underlying Monolog instance.
+         *
+         * @return \Monolog\Logger 
+         * @static 
+         */
+        public static function getMonolog(){
+            //Method inherited from \Illuminate\Log\Writer            
+            return \App\Support\Log\Writer::getMonolog();
+        }
+        
+        /**
+         * Get the event dispatcher instance.
+         *
+         * @return \Illuminate\Contracts\Events\Dispatcher 
+         * @static 
+         */
+        public static function getEventDispatcher(){
+            //Method inherited from \Illuminate\Log\Writer            
+            return \App\Support\Log\Writer::getEventDispatcher();
+        }
+        
+        /**
+         * Set the event dispatcher instance.
+         *
+         * @param \Illuminate\Contracts\Events\Dispatcher $dispatcher
+         * @return void 
+         * @static 
+         */
+        public static function setEventDispatcher($dispatcher){
+            //Method inherited from \Illuminate\Log\Writer            
+            \App\Support\Log\Writer::setEventDispatcher($dispatcher);
+        }
+        
+    }
+
+
+    class Mail extends \Illuminate\Support\Facades\Mail{
+        
+        /**
+         * Set the global from address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */
+        public static function alwaysFrom($address, $name = null){
+            \Illuminate\Mail\Mailer::alwaysFrom($address, $name);
+        }
+        
+        /**
+         * Set the global to address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */
+        public static function alwaysTo($address, $name = null){
+            \Illuminate\Mail\Mailer::alwaysTo($address, $name);
+        }
+        
+        /**
+         * Send a new message when only a raw text part.
+         *
+         * @param string $text
+         * @param mixed $callback
+         * @return int 
+         * @static 
+         */
+        public static function raw($text, $callback){
+            return \Illuminate\Mail\Mailer::raw($text, $callback);
+        }
+        
+        /**
+         * Send a new message when only a plain part.
+         *
+         * @param string $view
+         * @param array $data
+         * @param mixed $callback
+         * @return int 
+         * @static 
+         */
+        public static function plain($view, $data, $callback){
+            return \Illuminate\Mail\Mailer::plain($view, $data, $callback);
+        }
+        
+        /**
+         * Send a new message using a view.
+         *
+         * @param string|array $view
+         * @param array $data
+         * @param \Closure|string $callback
+         * @return void 
+         * @static 
+         */
+        public static function send($view, $data, $callback){
+            \Illuminate\Mail\Mailer::send($view, $data, $callback);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending.
+         *
+         * @param string|array $view
+         * @param array $data
+         * @param \Closure|string $callback
+         * @param string|null $queue
+         * @return mixed 
+         * @static 
+         */
+        public static function queue($view, $data, $callback, $queue = null){
+            return \Illuminate\Mail\Mailer::queue($view, $data, $callback, $queue);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending on the given queue.
+         *
+         * @param string $queue
+         * @param string|array $view
+         * @param array $data
+         * @param \Closure|string $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function onQueue($queue, $view, $data, $callback){
+            return \Illuminate\Mail\Mailer::onQueue($queue, $view, $data, $callback);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending on the given queue.
+         * 
+         * This method didn't match rest of framework's "onQueue" phrasing. Added "onQueue".
+         *
+         * @param string $queue
+         * @param string|array $view
+         * @param array $data
+         * @param \Closure|string $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function queueOn($queue, $view, $data, $callback){
+            return \Illuminate\Mail\Mailer::queueOn($queue, $view, $data, $callback);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending after (n) seconds.
+         *
+         * @param int $delay
+         * @param string|array $view
+         * @param array $data
+         * @param \Closure|string $callback
+         * @param string|null $queue
+         * @return mixed 
+         * @static 
+         */
+        public static function later($delay, $view, $data, $callback, $queue = null){
+            return \Illuminate\Mail\Mailer::later($delay, $view, $data, $callback, $queue);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending after (n) seconds on the given queue.
+         *
+         * @param string $queue
+         * @param int $delay
+         * @param string|array $view
+         * @param array $data
+         * @param \Closure|string $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function laterOn($queue, $delay, $view, $data, $callback){
+            return \Illuminate\Mail\Mailer::laterOn($queue, $delay, $view, $data, $callback);
+        }
+        
+        /**
+         * Handle a queued e-mail message job.
+         *
+         * @param \Illuminate\Contracts\Queue\Job $job
+         * @param array $data
+         * @return void 
+         * @static 
+         */
+        public static function handleQueuedMessage($job, $data){
+            \Illuminate\Mail\Mailer::handleQueuedMessage($job, $data);
+        }
+        
+        /**
+         * Get the view factory instance.
+         *
+         * @return \Illuminate\Contracts\View\Factory 
+         * @static 
+         */
+        public static function getViewFactory(){
+            return \Illuminate\Mail\Mailer::getViewFactory();
+        }
+        
+        /**
+         * Get the Swift Mailer instance.
+         *
+         * @return \Swift_Mailer 
+         * @static 
+         */
+        public static function getSwiftMailer(){
+            return \Illuminate\Mail\Mailer::getSwiftMailer();
+        }
+        
+        /**
+         * Get the array of failed recipients.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function failures(){
+            return \Illuminate\Mail\Mailer::failures();
+        }
+        
+        /**
+         * Set the Swift Mailer instance.
+         *
+         * @param \Swift_Mailer $swift
+         * @return void 
+         * @static 
+         */
+        public static function setSwiftMailer($swift){
+            \Illuminate\Mail\Mailer::setSwiftMailer($swift);
+        }
+        
+        /**
+         * Set the queue manager instance.
+         *
+         * @param \Illuminate\Contracts\Queue\Queue $queue
+         * @return $this 
+         * @static 
+         */
+        public static function setQueue($queue){
+            return \Illuminate\Mail\Mailer::setQueue($queue);
+        }
+        
+        /**
+         * Set the IoC container instance.
+         *
+         * @param \Illuminate\Contracts\Container\Container $container
+         * @return void 
+         * @static 
+         */
+        public static function setContainer($container){
+            \Illuminate\Mail\Mailer::setContainer($container);
+        }
+        
+    }
+
+
+    class Request extends \Illuminate\Support\Facades\Request{
+        
+        /**
+         * Create a new Illuminate HTTP request from server variables.
+         *
+         * @return static 
+         * @static 
+         */
+        public static function capture(){
+            return \Illuminate\Http\Request::capture();
+        }
+        
+        /**
+         * Return the Request instance.
+         *
+         * @return $this 
+         * @static 
+         */
+        public static function instance(){
+            return \Illuminate\Http\Request::instance();
+        }
+        
+        /**
+         * Get the request method.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function method(){
+            return \Illuminate\Http\Request::method();
+        }
+        
+        /**
+         * Get the root URL for the application.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function root(){
+            return \Illuminate\Http\Request::root();
+        }
+        
+        /**
+         * Get the URL (no query string) for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function url(){
+            return \Illuminate\Http\Request::url();
+        }
+        
+        /**
+         * Get the full URL for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function fullUrl(){
+            return \Illuminate\Http\Request::fullUrl();
+        }
+        
+        /**
+         * Get the current path info for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function path(){
+            return \Illuminate\Http\Request::path();
+        }
+        
+        /**
+         * Get the current encoded path info for the request.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function decodedPath(){
+            return \Illuminate\Http\Request::decodedPath();
+        }
+        
+        /**
+         * Get a segment from the URI (1 based index).
+         *
+         * @param int $index
+         * @param string|null $default
+         * @return string|null 
+         * @static 
+         */
+        public static function segment($index, $default = null){
+            return \Illuminate\Http\Request::segment($index, $default);
+        }
+        
+        /**
+         * Get all of the segments for the request path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function segments(){
+            return \Illuminate\Http\Request::segments();
+        }
+        
+        /**
+         * Determine if the current request URI matches a pattern.
+         *
+         * @param mixed  string
+         * @return bool 
+         * @static 
+         */
+        public static function is(){
+            return \Illuminate\Http\Request::is();
+        }
+        
+        /**
+         * Determine if the request is the result of an AJAX call.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function ajax(){
+            return \Illuminate\Http\Request::ajax();
+        }
+        
+        /**
+         * Determine if the request is the result of an PJAX call.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function pjax(){
+            return \Illuminate\Http\Request::pjax();
+        }
+        
+        /**
+         * Determine if the request is over HTTPS.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function secure(){
+            return \Illuminate\Http\Request::secure();
+        }
+        
+        /**
+         * Returns the client IP address.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function ip(){
+            return \Illuminate\Http\Request::ip();
+        }
+        
+        /**
+         * Returns the client IP addresses.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function ips(){
+            return \Illuminate\Http\Request::ips();
+        }
+        
+        /**
+         * Determine if the request contains a given input item key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */
+        public static function exists($key){
+            return \Illuminate\Http\Request::exists($key);
+        }
+        
+        /**
+         * Determine if the request contains a non-empty value for an input item.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */
+        public static function has($key){
+            return \Illuminate\Http\Request::has($key);
+        }
+        
+        /**
+         * Get all of the input and files for the request.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function all(){
+            return \Illuminate\Http\Request::all();
+        }
+        
+        /**
+         * Retrieve an input item from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function input($key = null, $default = null){
+            return \Illuminate\Http\Request::input($key, $default);
+        }
+        
+        /**
+         * Get a subset of the items from the input data.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */
+        public static function only($keys){
+            return \Illuminate\Http\Request::only($keys);
+        }
+        
+        /**
+         * Get all of the input except for a specified array of items.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */
+        public static function except($keys){
+            return \Illuminate\Http\Request::except($keys);
+        }
+        
+        /**
+         * Retrieve a query string item from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function query($key = null, $default = null){
+            return \Illuminate\Http\Request::query($key, $default);
+        }
+        
+        /**
+         * Determine if a cookie is set on the request.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasCookie($key){
+            return \Illuminate\Http\Request::hasCookie($key);
+        }
+        
+        /**
+         * Retrieve a cookie from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function cookie($key = null, $default = null){
+            return \Illuminate\Http\Request::cookie($key, $default);
+        }
+        
+        /**
+         * Retrieve a file from the request.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Symfony\Component\HttpFoundation\File\UploadedFile|array|null 
+         * @static 
+         */
+        public static function file($key = null, $default = null){
+            return \Illuminate\Http\Request::file($key, $default);
+        }
+        
+        /**
+         * Determine if the uploaded data contains a file.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasFile($key){
+            return \Illuminate\Http\Request::hasFile($key);
+        }
+        
+        /**
+         * Retrieve a header from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function header($key = null, $default = null){
+            return \Illuminate\Http\Request::header($key, $default);
+        }
+        
+        /**
+         * Retrieve a server variable from the request.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function server($key = null, $default = null){
+            return \Illuminate\Http\Request::server($key, $default);
+        }
+        
+        /**
+         * Retrieve an old input item.
+         *
+         * @param string $key
+         * @param string|array|null $default
+         * @return string|array 
+         * @static 
+         */
+        public static function old($key = null, $default = null){
+            return \Illuminate\Http\Request::old($key, $default);
+        }
+        
+        /**
+         * Flash the input for the current request to the session.
+         *
+         * @param string $filter
+         * @param array $keys
+         * @return void 
+         * @static 
+         */
+        public static function flash($filter = null, $keys = array()){
+            \Illuminate\Http\Request::flash($filter, $keys);
+        }
+        
+        /**
+         * Flash only some of the input to the session.
+         *
+         * @param array|mixed $keys
+         * @return void 
+         * @static 
+         */
+        public static function flashOnly($keys){
+            \Illuminate\Http\Request::flashOnly($keys);
+        }
+        
+        /**
+         * Flash only some of the input to the session.
+         *
+         * @param array|mixed $keys
+         * @return void 
+         * @static 
+         */
+        public static function flashExcept($keys){
+            \Illuminate\Http\Request::flashExcept($keys);
+        }
+        
+        /**
+         * Flush all of the old input from the session.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function flush(){
+            \Illuminate\Http\Request::flush();
+        }
+        
+        /**
+         * Merge new input into the current request's input array.
+         *
+         * @param array $input
+         * @return void 
+         * @static 
+         */
+        public static function merge($input){
+            \Illuminate\Http\Request::merge($input);
+        }
+        
+        /**
+         * Replace the input for the current request.
+         *
+         * @param array $input
+         * @return void 
+         * @static 
+         */
+        public static function replace($input){
+            \Illuminate\Http\Request::replace($input);
+        }
+        
+        /**
+         * Get the JSON payload for the request.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */
+        public static function json($key = null, $default = null){
+            return \Illuminate\Http\Request::json($key, $default);
+        }
+        
+        /**
+         * Determine if the given content types match.
+         *
+         * @param string $actual
+         * @param string $type
+         * @return bool 
+         * @static 
+         */
+        public static function matchesType($actual, $type){
+            return \Illuminate\Http\Request::matchesType($actual, $type);
+        }
+        
+        /**
+         * Determine if the request is sending JSON.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isJson(){
+            return \Illuminate\Http\Request::isJson();
+        }
+        
+        /**
+         * Determine if the current request is asking for JSON in return.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function wantsJson(){
+            return \Illuminate\Http\Request::wantsJson();
+        }
+        
+        /**
+         * Determines whether the current requests accepts a given content type.
+         *
+         * @param string|array $contentTypes
+         * @return bool 
+         * @static 
+         */
+        public static function accepts($contentTypes){
+            return \Illuminate\Http\Request::accepts($contentTypes);
+        }
+        
+        /**
+         * Return the most suitable content type from the given array based on content negotiation.
+         *
+         * @param string|array $contentTypes
+         * @return string|null 
+         * @static 
+         */
+        public static function prefers($contentTypes){
+            return \Illuminate\Http\Request::prefers($contentTypes);
+        }
+        
+        /**
+         * Determines whether a request accepts JSON.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function acceptsJson(){
+            return \Illuminate\Http\Request::acceptsJson();
+        }
+        
+        /**
+         * Determines whether a request accepts HTML.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function acceptsHtml(){
+            return \Illuminate\Http\Request::acceptsHtml();
+        }
+        
+        /**
+         * Get the data format expected in the response.
+         *
+         * @param string $default
+         * @return string 
+         * @static 
+         */
+        public static function format($default = 'html'){
+            return \Illuminate\Http\Request::format($default);
+        }
+        
+        /**
+         * Get the bearer token from the request headers.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function bearerToken(){
+            return \Illuminate\Http\Request::bearerToken();
+        }
+        
+        /**
+         * Create an Illuminate request from a Symfony instance.
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @return \Illuminate\Http\Request 
+         * @static 
+         */
+        public static function createFromBase($request){
+            return \Illuminate\Http\Request::createFromBase($request);
+        }
+        
+        /**
+         * Clones a request and overrides some of its parameters.
+         *
+         * @param array $query The GET parameters
+         * @param array $request The POST parameters
+         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array $cookies The COOKIE parameters
+         * @param array $files The FILES parameters
+         * @param array $server The SERVER parameters
+         * @return \Symfony\Component\HttpFoundation\Request The duplicated request
+         * @static 
+         */
+        public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null){
+            return \Illuminate\Http\Request::duplicate($query, $request, $attributes, $cookies, $files, $server);
+        }
+        
+        /**
+         * Get the session associated with the request.
+         *
+         * @return \Illuminate\Session\Store 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function session(){
+            return \Illuminate\Http\Request::session();
+        }
+        
+        /**
+         * Get the user making the request.
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function user(){
+            return \Illuminate\Http\Request::user();
+        }
+        
+        /**
+         * Get the route handling the request.
+         *
+         * @param string|null $param
+         * @return \Illuminate\Routing\Route|object|string 
+         * @static 
+         */
+        public static function route($param = null){
+            return \Illuminate\Http\Request::route($param);
+        }
+        
+        /**
+         * Get a unique fingerprint for the request / route / IP address.
+         *
+         * @return string 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function fingerprint(){
+            return \Illuminate\Http\Request::fingerprint();
+        }
+        
+        /**
+         * Get the user resolver callback.
+         *
+         * @return \Closure 
+         * @static 
+         */
+        public static function getUserResolver(){
+            return \Illuminate\Http\Request::getUserResolver();
+        }
+        
+        /**
+         * Set the user resolver callback.
+         *
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function setUserResolver($callback){
+            return \Illuminate\Http\Request::setUserResolver($callback);
+        }
+        
+        /**
+         * Get the route resolver callback.
+         *
+         * @return \Closure 
+         * @static 
+         */
+        public static function getRouteResolver(){
+            return \Illuminate\Http\Request::getRouteResolver();
+        }
+        
+        /**
+         * Set the route resolver callback.
+         *
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function setRouteResolver($callback){
+            return \Illuminate\Http\Request::setRouteResolver($callback);
+        }
+        
+        /**
+         * Get all of the input and files for the request.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function toArray(){
+            return \Illuminate\Http\Request::toArray();
+        }
+        
+        /**
+         * Determine if the given offset exists.
+         *
+         * @param string $offset
+         * @return bool 
+         * @static 
+         */
+        public static function offsetExists($offset){
+            return \Illuminate\Http\Request::offsetExists($offset);
+        }
+        
+        /**
+         * Get the value at the given offset.
+         *
+         * @param string $offset
+         * @return mixed 
+         * @static 
+         */
+        public static function offsetGet($offset){
+            return \Illuminate\Http\Request::offsetGet($offset);
+        }
+        
+        /**
+         * Set the value at the given offset.
+         *
+         * @param string $offset
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function offsetSet($offset, $value){
+            \Illuminate\Http\Request::offsetSet($offset, $value);
+        }
+        
+        /**
+         * Remove the value at the given offset.
+         *
+         * @param string $offset
+         * @return void 
+         * @static 
+         */
+        public static function offsetUnset($offset){
+            \Illuminate\Http\Request::offsetUnset($offset);
+        }
+        
+        /**
+         * Sets the parameters for this request.
+         * 
+         * This method also re-initializes all properties.
+         *
+         * @param array $query The GET parameters
+         * @param array $request The POST parameters
+         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array $cookies The COOKIE parameters
+         * @param array $files The FILES parameters
+         * @param array $server The SERVER parameters
+         * @param string|resource $content The raw body data
+         * @static 
+         */
+        public static function initialize($query = array(), $request = array(), $attributes = array(), $cookies = array(), $files = array(), $server = array(), $content = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::initialize($query, $request, $attributes, $cookies, $files, $server, $content);
+        }
+        
+        /**
+         * Creates a new request with values from PHP's super globals.
+         *
+         * @return \Symfony\Component\HttpFoundation\Request A new request
+         * @static 
+         */
+        public static function createFromGlobals(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::createFromGlobals();
+        }
+        
+        /**
+         * Creates a Request based on a given URI and configuration.
+         * 
+         * The information contained in the URI always take precedence
+         * over the other information (server and parameters).
+         *
+         * @param string $uri The URI
+         * @param string $method The HTTP method
+         * @param array $parameters The query (GET) or request (POST) parameters
+         * @param array $cookies The request cookies ($_COOKIE)
+         * @param array $files The request files ($_FILES)
+         * @param array $server The server parameters ($_SERVER)
+         * @param string $content The raw body data
+         * @return \Symfony\Component\HttpFoundation\Request A Request instance
+         * @static 
+         */
+        public static function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::create($uri, $method, $parameters, $cookies, $files, $server, $content);
+        }
+        
+        /**
+         * Sets a callable able to create a Request instance.
+         * 
+         * This is mainly useful when you need to override the Request class
+         * to keep BC with an existing system. It should not be used for any
+         * other purpose.
+         *
+         * @param callable|null $callable A PHP callable
+         * @static 
+         */
+        public static function setFactory($callable){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setFactory($callable);
+        }
+        
+        /**
+         * Overrides the PHP global variables according to this request instance.
+         * 
+         * It overrides $_GET, $_POST, $_REQUEST, $_SERVER, $_COOKIE.
+         * $_FILES is never overridden, see rfc1867
+         *
+         * @static 
+         */
+        public static function overrideGlobals(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::overrideGlobals();
+        }
+        
+        /**
+         * Sets a list of trusted proxies.
+         * 
+         * You should only list the reverse proxies that you manage directly.
+         *
+         * @param array $proxies A list of trusted proxies
+         * @static 
+         */
+        public static function setTrustedProxies($proxies){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setTrustedProxies($proxies);
+        }
+        
+        /**
+         * Gets the list of trusted proxies.
+         *
+         * @return array An array of trusted proxies.
+         * @static 
+         */
+        public static function getTrustedProxies(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getTrustedProxies();
+        }
+        
+        /**
+         * Sets a list of trusted host patterns.
+         * 
+         * You should only list the hosts you manage using regexs.
+         *
+         * @param array $hostPatterns A list of trusted host patterns
+         * @static 
+         */
+        public static function setTrustedHosts($hostPatterns){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setTrustedHosts($hostPatterns);
+        }
+        
+        /**
+         * Gets the list of trusted host patterns.
+         *
+         * @return array An array of trusted host patterns.
+         * @static 
+         */
+        public static function getTrustedHosts(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getTrustedHosts();
+        }
+        
+        /**
+         * Sets the name for trusted headers.
+         * 
+         * The following header keys are supported:
+         * 
+         *  * Request::HEADER_CLIENT_IP:    defaults to X-Forwarded-For   (see getClientIp())
+         *  * Request::HEADER_CLIENT_HOST:  defaults to X-Forwarded-Host  (see getHost())
+         *  * Request::HEADER_CLIENT_PORT:  defaults to X-Forwarded-Port  (see getPort())
+         *  * Request::HEADER_CLIENT_PROTO: defaults to X-Forwarded-Proto (see getScheme() and isSecure())
+         * 
+         * Setting an empty value allows to disable the trusted header for the given key.
+         *
+         * @param string $key The header key
+         * @param string $value The header name
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function setTrustedHeaderName($key, $value){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setTrustedHeaderName($key, $value);
+        }
+        
+        /**
+         * Gets the trusted proxy header name.
+         *
+         * @param string $key The header key
+         * @return string The header name
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function getTrustedHeaderName($key){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getTrustedHeaderName($key);
+        }
+        
+        /**
+         * Normalizes a query string.
+         * 
+         * It builds a normalized query string, where keys/value pairs are alphabetized,
+         * have consistent escaping and unneeded delimiters are removed.
+         *
+         * @param string $qs Query string
+         * @return string A normalized query string for the Request
+         * @static 
+         */
+        public static function normalizeQueryString($qs){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::normalizeQueryString($qs);
+        }
+        
+        /**
+         * Enables support for the _method request parameter to determine the intended HTTP method.
+         * 
+         * Be warned that enabling this feature might lead to CSRF issues in your code.
+         * Check that you are using CSRF tokens when required.
+         * If the HTTP method parameter override is enabled, an html-form with method "POST" can be altered
+         * and used to send a "PUT" or "DELETE" request via the _method request parameter.
+         * If these methods are not protected against CSRF, this presents a possible vulnerability.
+         * 
+         * The HTTP method can only be overridden when the real HTTP method is POST.
+         *
+         * @static 
+         */
+        public static function enableHttpMethodParameterOverride(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::enableHttpMethodParameterOverride();
+        }
+        
+        /**
+         * Checks whether support for the _method request parameter is enabled.
+         *
+         * @return bool True when the _method request parameter is enabled, false otherwise
+         * @static 
+         */
+        public static function getHttpMethodParameterOverride(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getHttpMethodParameterOverride();
+        }
+        
+        /**
+         * Gets a "parameter" value from any bag.
+         * 
+         * This method is mainly useful for libraries that want to provide some flexibility. If you don't need the
+         * flexibility in controllers, it is better to explicitly get request parameters from the appropriate
+         * public property instead (attributes, query, request).
+         * 
+         * Order of precedence: PATH (routing placeholders or custom attributes), GET, BODY
+         *
+         * @param string $key the key
+         * @param mixed $default the default value
+         * @return mixed 
+         * @static 
+         */
+        public static function get($key, $default = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::get($key, $default);
+        }
+        
+        /**
+         * Gets the Session.
+         *
+         * @return \Symfony\Component\HttpFoundation\SessionInterface|null The session
+         * @static 
+         */
+        public static function getSession(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getSession();
+        }
+        
+        /**
+         * Whether the request contains a Session which was started in one of the
+         * previous requests.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasPreviousSession(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::hasPreviousSession();
+        }
+        
+        /**
+         * Whether the request contains a Session object.
+         * 
+         * This method does not give any information about the state of the session object,
+         * like whether the session is started or not. It is just a way to check if this Request
+         * is associated with a Session instance.
+         *
+         * @return bool true when the Request contains a Session object, false otherwise
+         * @static 
+         */
+        public static function hasSession(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::hasSession();
+        }
+        
+        /**
+         * Sets the Session.
+         *
+         * @param \Symfony\Component\HttpFoundation\SessionInterface $session The Session
+         * @static 
+         */
+        public static function setSession($session){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setSession($session);
+        }
+        
+        /**
+         * Returns the client IP addresses.
+         * 
+         * In the returned array the most trusted IP address is first, and the
+         * least trusted one last. The "real" client IP address is the last one,
+         * but this is also the least trusted one. Trusted proxies are stripped.
+         * 
+         * Use this method carefully; you should use getClientIp() instead.
+         *
+         * @return array The client IP addresses
+         * @see getClientIp()
+         * @static 
+         */
+        public static function getClientIps(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getClientIps();
+        }
+        
+        /**
+         * Returns the client IP address.
+         * 
+         * This method can read the client IP address from the "X-Forwarded-For" header
+         * when trusted proxies were set via "setTrustedProxies()". The "X-Forwarded-For"
+         * header value is a comma+space separated list of IP addresses, the left-most
+         * being the original client, and each successive proxy that passed the request
+         * adding the IP address where it received the request from.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-For",
+         * ("Client-Ip" for instance), configure it via "setTrustedHeaderName()" with
+         * the "client-ip" key.
+         *
+         * @return string The client IP address
+         * @see getClientIps()
+         * @see http://en.wikipedia.org/wiki/X-Forwarded-For
+         * @static 
+         */
+        public static function getClientIp(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getClientIp();
+        }
+        
+        /**
+         * Returns current script name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getScriptName(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getScriptName();
+        }
+        
+        /**
+         * Returns the path being requested relative to the executed script.
+         * 
+         * The path info always starts with a /.
+         * 
+         * Suppose this request is instantiated from /mysite on localhost:
+         * 
+         *  * http://localhost/mysite              returns an empty string
+         *  * http://localhost/mysite/about        returns '/about'
+         *  * http://localhost/mysite/enco%20ded   returns '/enco%20ded'
+         *  * http://localhost/mysite/about?var=1  returns '/about'
+         *
+         * @return string The raw path (i.e. not urldecoded)
+         * @static 
+         */
+        public static function getPathInfo(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPathInfo();
+        }
+        
+        /**
+         * Returns the root path from which this request is executed.
+         * 
+         * Suppose that an index.php file instantiates this request object:
+         * 
+         *  * http://localhost/index.php         returns an empty string
+         *  * http://localhost/index.php/page    returns an empty string
+         *  * http://localhost/web/index.php     returns '/web'
+         *  * http://localhost/we%20b/index.php  returns '/we%20b'
+         *
+         * @return string The raw path (i.e. not urldecoded)
+         * @static 
+         */
+        public static function getBasePath(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getBasePath();
+        }
+        
+        /**
+         * Returns the root URL from which this request is executed.
+         * 
+         * The base URL never ends with a /.
+         * 
+         * This is similar to getBasePath(), except that it also includes the
+         * script filename (e.g. index.php) if one exists.
+         *
+         * @return string The raw URL (i.e. not urldecoded)
+         * @static 
+         */
+        public static function getBaseUrl(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getBaseUrl();
+        }
+        
+        /**
+         * Gets the request's scheme.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getScheme(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getScheme();
+        }
+        
+        /**
+         * Returns the port on which the request is made.
+         * 
+         * This method can read the client port from the "X-Forwarded-Port" header
+         * when trusted proxies were set via "setTrustedProxies()".
+         * 
+         * The "X-Forwarded-Port" header must contain the client port.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-Port",
+         * configure it via "setTrustedHeaderName()" with the "client-port" key.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getPort(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPort();
+        }
+        
+        /**
+         * Returns the user.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function getUser(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUser();
+        }
+        
+        /**
+         * Returns the password.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function getPassword(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPassword();
+        }
+        
+        /**
+         * Gets the user info.
+         *
+         * @return string A user name and, optionally, scheme-specific information about how to gain authorization to access the server
+         * @static 
+         */
+        public static function getUserInfo(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUserInfo();
+        }
+        
+        /**
+         * Returns the HTTP host being requested.
+         * 
+         * The port name will be appended to the host if it's non-standard.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getHttpHost(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getHttpHost();
+        }
+        
+        /**
+         * Returns the requested URI (path and query string).
+         *
+         * @return string The raw URI (i.e. not URI decoded)
+         * @static 
+         */
+        public static function getRequestUri(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRequestUri();
+        }
+        
+        /**
+         * Gets the scheme and HTTP host.
+         * 
+         * If the URL was called with basic authentication, the user
+         * and the password are not added to the generated string.
+         *
+         * @return string The scheme and HTTP host
+         * @static 
+         */
+        public static function getSchemeAndHttpHost(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getSchemeAndHttpHost();
+        }
+        
+        /**
+         * Generates a normalized URI (URL) for the Request.
+         *
+         * @return string A normalized URI (URL) for the Request
+         * @see getQueryString()
+         * @static 
+         */
+        public static function getUri(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUri();
+        }
+        
+        /**
+         * Generates a normalized URI for the given path.
+         *
+         * @param string $path A path to use instead of the current one
+         * @return string The normalized URI for the path
+         * @static 
+         */
+        public static function getUriForPath($path){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getUriForPath($path);
+        }
+        
+        /**
+         * Returns the path as relative reference from the current Request path.
+         * 
+         * Only the URIs path component (no schema, host etc.) is relevant and must be given.
+         * Both paths must be absolute and not contain relative parts.
+         * Relative URLs from one resource to another are useful when generating self-contained downloadable document archives.
+         * Furthermore, they can be used to reduce the link size in documents.
+         * 
+         * Example target paths, given a base path of "/a/b/c/d":
+         * - "/a/b/c/d"     -> ""
+         * - "/a/b/c/"      -> "./"
+         * - "/a/b/"        -> "../"
+         * - "/a/b/c/other" -> "other"
+         * - "/a/x/y"       -> "../../x/y"
+         *
+         * @param string $path The target path
+         * @return string The relative target path
+         * @static 
+         */
+        public static function getRelativeUriForPath($path){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRelativeUriForPath($path);
+        }
+        
+        /**
+         * Generates the normalized query string for the Request.
+         * 
+         * It builds a normalized query string, where keys/value pairs are alphabetized
+         * and have consistent escaping.
+         *
+         * @return string|null A normalized query string for the Request
+         * @static 
+         */
+        public static function getQueryString(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getQueryString();
+        }
+        
+        /**
+         * Checks whether the request is secure or not.
+         * 
+         * This method can read the client protocol from the "X-Forwarded-Proto" header
+         * when trusted proxies were set via "setTrustedProxies()".
+         * 
+         * The "X-Forwarded-Proto" header must contain the protocol: "https" or "http".
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-Proto"
+         * ("SSL_HTTPS" for instance), configure it via "setTrustedHeaderName()" with
+         * the "client-proto" key.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isSecure(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isSecure();
+        }
+        
+        /**
+         * Returns the host name.
+         * 
+         * This method can read the client host name from the "X-Forwarded-Host" header
+         * when trusted proxies were set via "setTrustedProxies()".
+         * 
+         * The "X-Forwarded-Host" header must contain the client host name.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-Host",
+         * configure it via "setTrustedHeaderName()" with the "client-host" key.
+         *
+         * @return string 
+         * @throws \UnexpectedValueException when the host name is invalid
+         * @static 
+         */
+        public static function getHost(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getHost();
+        }
+        
+        /**
+         * Sets the request method.
+         *
+         * @param string $method
+         * @static 
+         */
+        public static function setMethod($method){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setMethod($method);
+        }
+        
+        /**
+         * Gets the request "intended" method.
+         * 
+         * If the X-HTTP-Method-Override header is set, and if the method is a POST,
+         * then it is used to determine the "real" intended HTTP method.
+         * 
+         * The _method request parameter can also be used to determine the HTTP method,
+         * but only if enableHttpMethodParameterOverride() has been called.
+         * 
+         * The method is always an uppercased string.
+         *
+         * @return string The request method
+         * @see getRealMethod()
+         * @static 
+         */
+        public static function getMethod(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getMethod();
+        }
+        
+        /**
+         * Gets the "real" request method.
+         *
+         * @return string The request method
+         * @see getMethod()
+         * @static 
+         */
+        public static function getRealMethod(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRealMethod();
+        }
+        
+        /**
+         * Gets the mime type associated with the format.
+         *
+         * @param string $format The format
+         * @return string The associated mime type (null if not found)
+         * @static 
+         */
+        public static function getMimeType($format){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getMimeType($format);
+        }
+        
+        /**
+         * Gets the format associated with the mime type.
+         *
+         * @param string $mimeType The associated mime type
+         * @return string|null The format (null if not found)
+         * @static 
+         */
+        public static function getFormat($mimeType){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getFormat($mimeType);
+        }
+        
+        /**
+         * Associates a format with mime types.
+         *
+         * @param string $format The format
+         * @param string|array $mimeTypes The associated mime types (the preferred one must be the first as it will be used as the content type)
+         * @static 
+         */
+        public static function setFormat($format, $mimeTypes){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setFormat($format, $mimeTypes);
+        }
+        
+        /**
+         * Gets the request format.
+         * 
+         * Here is the process to determine the format:
+         * 
+         *  * format defined by the user (with setRequestFormat())
+         *  * _format request parameter
+         *  * $default
+         *
+         * @param string $default The default format
+         * @return string The request format
+         * @static 
+         */
+        public static function getRequestFormat($default = 'html'){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getRequestFormat($default);
+        }
+        
+        /**
+         * Sets the request format.
+         *
+         * @param string $format The request format.
+         * @static 
+         */
+        public static function setRequestFormat($format){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setRequestFormat($format);
+        }
+        
+        /**
+         * Gets the format associated with the request.
+         *
+         * @return string|null The format (null if no content type is present)
+         * @static 
+         */
+        public static function getContentType(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getContentType();
+        }
+        
+        /**
+         * Sets the default locale.
+         *
+         * @param string $locale
+         * @static 
+         */
+        public static function setDefaultLocale($locale){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setDefaultLocale($locale);
+        }
+        
+        /**
+         * Get the default locale.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultLocale(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getDefaultLocale();
+        }
+        
+        /**
+         * Sets the locale.
+         *
+         * @param string $locale
+         * @static 
+         */
+        public static function setLocale($locale){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setLocale($locale);
+        }
+        
+        /**
+         * Get the locale.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getLocale(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getLocale();
+        }
+        
+        /**
+         * Checks if the request method is of specified type.
+         *
+         * @param string $method Uppercase request method (GET, POST etc).
+         * @return bool 
+         * @static 
+         */
+        public static function isMethod($method){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isMethod($method);
+        }
+        
+        /**
+         * Checks whether the method is safe or not.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isMethodSafe(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isMethodSafe();
+        }
+        
+        /**
+         * Returns the request body content.
+         *
+         * @param bool $asResource If true, a resource will be returned
+         * @return string|resource The request body content or a resource to read the body stream.
+         * @throws \LogicException
+         * @static 
+         */
+        public static function getContent($asResource = false){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getContent($asResource);
+        }
+        
+        /**
+         * Gets the Etags.
+         *
+         * @return array The entity tags
+         * @static 
+         */
+        public static function getETags(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getETags();
+        }
+        
+        /**
+         * 
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isNoCache(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isNoCache();
+        }
+        
+        /**
+         * Returns the preferred language.
+         *
+         * @param array $locales An array of ordered available locales
+         * @return string|null The preferred locale
+         * @static 
+         */
+        public static function getPreferredLanguage($locales = null){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getPreferredLanguage($locales);
+        }
+        
+        /**
+         * Gets a list of languages acceptable by the client browser.
+         *
+         * @return array Languages ordered in the user browser preferences
+         * @static 
+         */
+        public static function getLanguages(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getLanguages();
+        }
+        
+        /**
+         * Gets a list of charsets acceptable by the client browser.
+         *
+         * @return array List of charsets in preferable order
+         * @static 
+         */
+        public static function getCharsets(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getCharsets();
+        }
+        
+        /**
+         * Gets a list of encodings acceptable by the client browser.
+         *
+         * @return array List of encodings in preferable order
+         * @static 
+         */
+        public static function getEncodings(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getEncodings();
+        }
+        
+        /**
+         * Gets a list of content types acceptable by the client browser.
+         *
+         * @return array List of content types in preferable order
+         * @static 
+         */
+        public static function getAcceptableContentTypes(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getAcceptableContentTypes();
+        }
+        
+        /**
+         * Returns true if the request is a XMLHttpRequest.
+         * 
+         * It works if your JavaScript library sets an X-Requested-With HTTP header.
+         * It is known to work with common JavaScript frameworks:
+         *
+         * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
+         * @return bool true if the request is an XMLHttpRequest, false otherwise
+         * @static 
+         */
+        public static function isXmlHttpRequest(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isXmlHttpRequest();
+        }
+        
+    }
+
+
+    class Response extends \Illuminate\Support\Facades\Response{
+        
+        /**
+         * Return a new response from the application.
+         *
+         * @param string $content
+         * @param int $status
+         * @param array $headers
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function make($content = '', $status = 200, $headers = array()){
+            return \Illuminate\Routing\ResponseFactory::make($content, $status, $headers);
+        }
+        
+        /**
+         * Return a new view response from the application.
+         *
+         * @param string $view
+         * @param array $data
+         * @param int $status
+         * @param array $headers
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function view($view, $data = array(), $status = 200, $headers = array()){
+            return \Illuminate\Routing\ResponseFactory::view($view, $data, $status, $headers);
+        }
+        
+        /**
+         * Return a new JSON response from the application.
+         *
+         * @param string|array $data
+         * @param int $status
+         * @param array $headers
+         * @param int $options
+         * @return \Illuminate\Http\JsonResponse 
+         * @static 
+         */
+        public static function json($data = array(), $status = 200, $headers = array(), $options = 0){
+            return \Illuminate\Routing\ResponseFactory::json($data, $status, $headers, $options);
+        }
+        
+        /**
+         * Return a new JSONP response from the application.
+         *
+         * @param string $callback
+         * @param string|array $data
+         * @param int $status
+         * @param array $headers
+         * @param int $options
+         * @return \Illuminate\Http\JsonResponse 
+         * @static 
+         */
+        public static function jsonp($callback, $data = array(), $status = 200, $headers = array(), $options = 0){
+            return \Illuminate\Routing\ResponseFactory::jsonp($callback, $data, $status, $headers, $options);
+        }
+        
+        /**
+         * Return a new streamed response from the application.
+         *
+         * @param \Closure $callback
+         * @param int $status
+         * @param array $headers
+         * @return \Symfony\Component\HttpFoundation\StreamedResponse 
+         * @static 
+         */
+        public static function stream($callback, $status = 200, $headers = array()){
+            return \Illuminate\Routing\ResponseFactory::stream($callback, $status, $headers);
+        }
+        
+        /**
+         * Create a new file download response.
+         *
+         * @param \SplFileInfo|string $file
+         * @param string $name
+         * @param array $headers
+         * @param string|null $disposition
+         * @return \Symfony\Component\HttpFoundation\BinaryFileResponse 
+         * @static 
+         */
+        public static function download($file, $name = null, $headers = array(), $disposition = 'attachment'){
+            return \Illuminate\Routing\ResponseFactory::download($file, $name, $headers, $disposition);
+        }
+        
+        /**
+         * Create a new redirect response to the given path.
+         *
+         * @param string $path
+         * @param int $status
+         * @param array $headers
+         * @param bool|null $secure
+         * @return \Illuminate\Http\RedirectResponse 
+         * @static 
+         */
+        public static function redirectTo($path, $status = 302, $headers = array(), $secure = null){
+            return \Illuminate\Routing\ResponseFactory::redirectTo($path, $status, $headers, $secure);
+        }
+        
+        /**
+         * Create a new redirect response to a named route.
+         *
+         * @param string $route
+         * @param array $parameters
+         * @param int $status
+         * @param array $headers
+         * @return \Illuminate\Http\RedirectResponse 
+         * @static 
+         */
+        public static function redirectToRoute($route, $parameters = array(), $status = 302, $headers = array()){
+            return \Illuminate\Routing\ResponseFactory::redirectToRoute($route, $parameters, $status, $headers);
+        }
+        
+        /**
+         * Create a new redirect response to a controller action.
+         *
+         * @param string $action
+         * @param array $parameters
+         * @param int $status
+         * @param array $headers
+         * @return \Illuminate\Http\RedirectResponse 
+         * @static 
+         */
+        public static function redirectToAction($action, $parameters = array(), $status = 302, $headers = array()){
+            return \Illuminate\Routing\ResponseFactory::redirectToAction($action, $parameters, $status, $headers);
+        }
+        
+        /**
+         * Create a new redirect response, while putting the current URL in the session.
+         *
+         * @param string $path
+         * @param int $status
+         * @param array $headers
+         * @param bool|null $secure
+         * @return \Illuminate\Http\RedirectResponse 
+         * @static 
+         */
+        public static function redirectGuest($path, $status = 302, $headers = array(), $secure = null){
+            return \Illuminate\Routing\ResponseFactory::redirectGuest($path, $status, $headers, $secure);
+        }
+        
+        /**
+         * Create a new redirect response to the previously intended location.
+         *
+         * @param string $default
+         * @param int $status
+         * @param array $headers
+         * @param bool|null $secure
+         * @return \Illuminate\Http\RedirectResponse 
+         * @static 
+         */
+        public static function redirectToIntended($default = '/', $status = 302, $headers = array(), $secure = null){
+            return \Illuminate\Routing\ResponseFactory::redirectToIntended($default, $status, $headers, $secure);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Illuminate\Routing\ResponseFactory::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Illuminate\Routing\ResponseFactory::hasMacro($name);
+        }
+        
+    }
+
+
+    class Route extends \Illuminate\Support\Facades\Route{
+        
+        /**
+         * Register a new GET route with the router.
+         *
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function get($uri, $action){
+            return \Illuminate\Routing\Router::get($uri, $action);
+        }
+        
+        /**
+         * Register a new POST route with the router.
+         *
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function post($uri, $action){
+            return \Illuminate\Routing\Router::post($uri, $action);
+        }
+        
+        /**
+         * Register a new PUT route with the router.
+         *
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function put($uri, $action){
+            return \Illuminate\Routing\Router::put($uri, $action);
+        }
+        
+        /**
+         * Register a new PATCH route with the router.
+         *
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function patch($uri, $action){
+            return \Illuminate\Routing\Router::patch($uri, $action);
+        }
+        
+        /**
+         * Register a new DELETE route with the router.
+         *
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function delete($uri, $action){
+            return \Illuminate\Routing\Router::delete($uri, $action);
+        }
+        
+        /**
+         * Register a new OPTIONS route with the router.
+         *
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function options($uri, $action){
+            return \Illuminate\Routing\Router::options($uri, $action);
+        }
+        
+        /**
+         * Register a new route responding to all verbs.
+         *
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function any($uri, $action){
+            return \Illuminate\Routing\Router::any($uri, $action);
+        }
+        
+        /**
+         * Register a new route with the given verbs.
+         *
+         * @param array|string $methods
+         * @param string $uri
+         * @param \Closure|array|string $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function match($methods, $uri, $action){
+            return \Illuminate\Routing\Router::match($methods, $uri, $action);
+        }
+        
+        /**
+         * Register an array of controllers with wildcard routing.
+         *
+         * @param array $controllers
+         * @return void 
+         * @deprecated since version 5.2.
+         * @static 
+         */
+        public static function controllers($controllers){
+            \Illuminate\Routing\Router::controllers($controllers);
+        }
+        
+        /**
+         * Route a controller to a URI with wildcard routing.
+         *
+         * @param string $uri
+         * @param string $controller
+         * @param array $names
+         * @return void 
+         * @deprecated since version 5.2.
+         * @static 
+         */
+        public static function controller($uri, $controller, $names = array()){
+            \Illuminate\Routing\Router::controller($uri, $controller, $names);
+        }
+        
+        /**
+         * Register an array of resource controllers.
+         *
+         * @param array $resources
+         * @return void 
+         * @static 
+         */
+        public static function resources($resources){
+            \Illuminate\Routing\Router::resources($resources);
+        }
+        
+        /**
+         * Route a resource to a controller.
+         *
+         * @param string $name
+         * @param string $controller
+         * @param array $options
+         * @return void 
+         * @static 
+         */
+        public static function resource($name, $controller, $options = array()){
+            \Illuminate\Routing\Router::resource($name, $controller, $options);
+        }
+        
+        /**
+         * Register the typical authentication routes for an application.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function auth(){
+            \Illuminate\Routing\Router::auth();
+        }
+        
+        /**
+         * Create a route group with shared attributes.
+         *
+         * @param array $attributes
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+        public static function group($attributes, $callback){
+            \Illuminate\Routing\Router::group($attributes, $callback);
+        }
+        
+        /**
+         * Merge the given array with the last group stack.
+         *
+         * @param array $new
+         * @return array 
+         * @static 
+         */
+        public static function mergeWithLastGroup($new){
+            return \Illuminate\Routing\Router::mergeWithLastGroup($new);
+        }
+        
+        /**
+         * Merge the given group attributes.
+         *
+         * @param array $new
+         * @param array $old
+         * @return array 
+         * @static 
+         */
+        public static function mergeGroup($new, $old){
+            return \Illuminate\Routing\Router::mergeGroup($new, $old);
+        }
+        
+        /**
+         * Get the prefix from the last group on the stack.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getLastGroupPrefix(){
+            return \Illuminate\Routing\Router::getLastGroupPrefix();
+        }
+        
+        /**
+         * Dispatch the request to the application.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function dispatch($request){
+            return \Illuminate\Routing\Router::dispatch($request);
+        }
+        
+        /**
+         * Dispatch the request to a route and return the response.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @return mixed 
+         * @static 
+         */
+        public static function dispatchToRoute($request){
+            return \Illuminate\Routing\Router::dispatchToRoute($request);
+        }
+        
+        /**
+         * Gather the middleware for the given route.
+         *
+         * @param \Illuminate\Routing\Route $route
+         * @return array 
+         * @static 
+         */
+        public static function gatherRouteMiddlewares($route){
+            return \Illuminate\Routing\Router::gatherRouteMiddlewares($route);
+        }
+        
+        /**
+         * Resolve the middleware name to a class name(s) preserving passed parameters.
+         *
+         * @param string $name
+         * @return string|array 
+         * @static 
+         */
+        public static function resolveMiddlewareClassName($name){
+            return \Illuminate\Routing\Router::resolveMiddlewareClassName($name);
+        }
+        
+        /**
+         * Register a route matched event listener.
+         *
+         * @param string|callable $callback
+         * @return void 
+         * @static 
+         */
+        public static function matched($callback){
+            \Illuminate\Routing\Router::matched($callback);
+        }
+        
+        /**
+         * Get all of the defined middleware short-hand names.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getMiddleware(){
+            return \Illuminate\Routing\Router::getMiddleware();
+        }
+        
+        /**
+         * Register a short-hand name for a middleware.
+         *
+         * @param string $name
+         * @param string $class
+         * @return $this 
+         * @static 
+         */
+        public static function middleware($name, $class){
+            return \Illuminate\Routing\Router::middleware($name, $class);
+        }
+        
+        /**
+         * Register a group of middleware.
+         *
+         * @param string $name
+         * @param array $middleware
+         * @return $this 
+         * @static 
+         */
+        public static function middlewareGroup($name, $middleware){
+            return \Illuminate\Routing\Router::middlewareGroup($name, $middleware);
+        }
+        
+        /**
+         * Register a model binder for a wildcard.
+         *
+         * @param string $key
+         * @param string $class
+         * @param \Closure|null $callback
+         * @return void 
+         * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+         * @static 
+         */
+        public static function model($key, $class, $callback = null){
+            \Illuminate\Routing\Router::model($key, $class, $callback);
+        }
+        
+        /**
+         * Add a new route parameter binder.
+         *
+         * @param string $key
+         * @param string|callable $binder
+         * @return void 
+         * @static 
+         */
+        public static function bind($key, $binder){
+            \Illuminate\Routing\Router::bind($key, $binder);
+        }
+        
+        /**
+         * Create a class based binding using the IoC container.
+         *
+         * @param string $binding
+         * @return \Closure 
+         * @static 
+         */
+        public static function createClassBinding($binding){
+            return \Illuminate\Routing\Router::createClassBinding($binding);
+        }
+        
+        /**
+         * Set a global where pattern on all routes.
+         *
+         * @param string $key
+         * @param string $pattern
+         * @return void 
+         * @static 
+         */
+        public static function pattern($key, $pattern){
+            \Illuminate\Routing\Router::pattern($key, $pattern);
+        }
+        
+        /**
+         * Set a group of global where patterns on all routes.
+         *
+         * @param array $patterns
+         * @return void 
+         * @static 
+         */
+        public static function patterns($patterns){
+            \Illuminate\Routing\Router::patterns($patterns);
+        }
+        
+        /**
+         * Create a response instance from the given value.
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @param mixed $response
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function prepareResponse($request, $response){
+            return \Illuminate\Routing\Router::prepareResponse($request, $response);
+        }
+        
+        /**
+         * Determine if the router currently has a group stack.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasGroupStack(){
+            return \Illuminate\Routing\Router::hasGroupStack();
+        }
+        
+        /**
+         * Get the current group stack for the router.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getGroupStack(){
+            return \Illuminate\Routing\Router::getGroupStack();
+        }
+        
+        /**
+         * Get a route parameter for the current route.
+         *
+         * @param string $key
+         * @param string $default
+         * @return mixed 
+         * @static 
+         */
+        public static function input($key, $default = null){
+            return \Illuminate\Routing\Router::input($key, $default);
+        }
+        
+        /**
+         * Get the currently dispatched route instance.
+         *
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function getCurrentRoute(){
+            return \Illuminate\Routing\Router::getCurrentRoute();
+        }
+        
+        /**
+         * Get the currently dispatched route instance.
+         *
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */
+        public static function current(){
+            return \Illuminate\Routing\Router::current();
+        }
+        
+        /**
+         * Check if a route with the given name exists.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function has($name){
+            return \Illuminate\Routing\Router::has($name);
+        }
+        
+        /**
+         * Get the current route name.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function currentRouteName(){
+            return \Illuminate\Routing\Router::currentRouteName();
+        }
+        
+        /**
+         * Alias for the "currentRouteNamed" method.
+         *
+         * @param mixed  string
+         * @return bool 
+         * @static 
+         */
+        public static function is(){
+            return \Illuminate\Routing\Router::is();
+        }
+        
+        /**
+         * Determine if the current route matches a given name.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function currentRouteNamed($name){
+            return \Illuminate\Routing\Router::currentRouteNamed($name);
+        }
+        
+        /**
+         * Get the current route action.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function currentRouteAction(){
+            return \Illuminate\Routing\Router::currentRouteAction();
+        }
+        
+        /**
+         * Alias for the "currentRouteUses" method.
+         *
+         * @param mixed  string
+         * @return bool 
+         * @static 
+         */
+        public static function uses(){
+            return \Illuminate\Routing\Router::uses();
+        }
+        
+        /**
+         * Determine if the current route action matches a given action.
+         *
+         * @param string $action
+         * @return bool 
+         * @static 
+         */
+        public static function currentRouteUses($action){
+            return \Illuminate\Routing\Router::currentRouteUses($action);
+        }
+        
+        /**
+         * Get the request currently being dispatched.
+         *
+         * @return \Illuminate\Http\Request 
+         * @static 
+         */
+        public static function getCurrentRequest(){
+            return \Illuminate\Routing\Router::getCurrentRequest();
+        }
+        
+        /**
+         * Get the underlying route collection.
+         *
+         * @return \Illuminate\Routing\RouteCollection 
+         * @static 
+         */
+        public static function getRoutes(){
+            return \Illuminate\Routing\Router::getRoutes();
+        }
+        
+        /**
+         * Set the route collection instance.
+         *
+         * @param \Illuminate\Routing\RouteCollection $routes
+         * @return void 
+         * @static 
+         */
+        public static function setRoutes($routes){
+            \Illuminate\Routing\Router::setRoutes($routes);
+        }
+        
+        /**
+         * Get the global "where" patterns.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getPatterns(){
+            return \Illuminate\Routing\Router::getPatterns();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Illuminate\Routing\Router::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Illuminate\Routing\Router::hasMacro($name);
+        }
+        
+    }
+
+
+    class Session extends \Illuminate\Support\Facades\Session{
+        
+        /**
+         * Get the session configuration.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getSessionConfig(){
+            return \Illuminate\Session\SessionManager::getSessionConfig();
+        }
+        
+        /**
+         * Get the default session driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \Illuminate\Session\SessionManager::getDefaultDriver();
+        }
+        
+        /**
+         * Set the default session driver name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultDriver($name){
+            \Illuminate\Session\SessionManager::setDefaultDriver($name);
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Illuminate\Session\SessionManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Illuminate\Session\SessionManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Illuminate\Session\SessionManager::getDrivers();
+        }
+        
+        /**
+         * Starts the session storage.
+         *
+         * @return bool True if session started.
+         * @throws \RuntimeException If session fails to start.
+         * @static 
+         */
+        public static function start(){
+            return \Illuminate\Session\Store::start();
+        }
+        
+        /**
+         * Returns the session ID.
+         *
+         * @return string The session ID.
+         * @static 
+         */
+        public static function getId(){
+            return \Illuminate\Session\Store::getId();
+        }
+        
+        /**
+         * Sets the session ID.
+         *
+         * @param string $id
+         * @static 
+         */
+        public static function setId($id){
+            return \Illuminate\Session\Store::setId($id);
+        }
+        
+        /**
+         * Determine if this is a valid session ID.
+         *
+         * @param string $id
+         * @return bool 
+         * @static 
+         */
+        public static function isValidId($id){
+            return \Illuminate\Session\Store::isValidId($id);
+        }
+        
+        /**
+         * Returns the session name.
+         *
+         * @return mixed The session name.
+         * @static 
+         */
+        public static function getName(){
+            return \Illuminate\Session\Store::getName();
+        }
+        
+        /**
+         * Sets the session name.
+         *
+         * @param string $name
+         * @static 
+         */
+        public static function setName($name){
+            return \Illuminate\Session\Store::setName($name);
+        }
+        
+        /**
+         * Invalidates the current session.
+         * 
+         * Clears all session attributes and flashes and regenerates the
+         * session and deletes the old session from persistence.
+         *
+         * @param int $lifetime Sets the cookie lifetime for the session cookie. A null value
+         *                      will leave the system settings unchanged, 0 sets the cookie
+         *                      to expire with browser session. Time is in seconds, and is
+         *                      not a Unix timestamp.
+         * @return bool True if session invalidated, false if error.
+         * @static 
+         */
+        public static function invalidate($lifetime = null){
+            return \Illuminate\Session\Store::invalidate($lifetime);
+        }
+        
+        /**
+         * Migrates the current session to a new session id while maintaining all
+         * session attributes.
+         *
+         * @param bool $destroy Whether to delete the old session or leave it to garbage collection.
+         * @param int $lifetime Sets the cookie lifetime for the session cookie. A null value
+         *                       will leave the system settings unchanged, 0 sets the cookie
+         *                       to expire with browser session. Time is in seconds, and is
+         *                       not a Unix timestamp.
+         * @return bool True if session migrated, false if error.
+         * @static 
+         */
+        public static function migrate($destroy = false, $lifetime = null){
+            return \Illuminate\Session\Store::migrate($destroy, $lifetime);
+        }
+        
+        /**
+         * Generate a new session identifier.
+         *
+         * @param bool $destroy
+         * @return bool 
+         * @static 
+         */
+        public static function regenerate($destroy = false){
+            return \Illuminate\Session\Store::regenerate($destroy);
+        }
+        
+        /**
+         * Force the session to be saved and closed.
+         * 
+         * This method is generally not required for real sessions as
+         * the session will be automatically saved at the end of
+         * code execution.
+         *
+         * @static 
+         */
+        public static function save(){
+            return \Illuminate\Session\Store::save();
+        }
+        
+        /**
+         * Age the flash data for the session.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function ageFlashData(){
+            \Illuminate\Session\Store::ageFlashData();
+        }
+        
+        /**
+         * Checks if an attribute is defined.
+         *
+         * @param string $name The attribute name
+         * @return bool true if the attribute is defined, false otherwise
+         * @static 
+         */
+        public static function has($name){
+            return \Illuminate\Session\Store::has($name);
+        }
+        
+        /**
+         * Returns an attribute.
+         *
+         * @param string $name The attribute name
+         * @param mixed $default The default value if not found.
+         * @return mixed 
+         * @static 
+         */
+        public static function get($name, $default = null){
+            return \Illuminate\Session\Store::get($name, $default);
+        }
+        
+        /**
+         * Get the value of a given key and then forget it.
+         *
+         * @param string $key
+         * @param string $default
+         * @return mixed 
+         * @static 
+         */
+        public static function pull($key, $default = null){
+            return \Illuminate\Session\Store::pull($key, $default);
+        }
+        
+        /**
+         * Determine if the session contains old input.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasOldInput($key = null){
+            return \Illuminate\Session\Store::hasOldInput($key);
+        }
+        
+        /**
+         * Get the requested item from the flashed input array.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */
+        public static function getOldInput($key = null, $default = null){
+            return \Illuminate\Session\Store::getOldInput($key, $default);
+        }
+        
+        /**
+         * Sets an attribute.
+         *
+         * @param string $name
+         * @param mixed $value
+         * @static 
+         */
+        public static function set($name, $value){
+            return \Illuminate\Session\Store::set($name, $value);
+        }
+        
+        /**
+         * Put a key / value pair or array of key / value pairs in the session.
+         *
+         * @param string|array $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function put($key, $value = null){
+            \Illuminate\Session\Store::put($key, $value);
+        }
+        
+        /**
+         * Push a value onto a session array.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function push($key, $value){
+            \Illuminate\Session\Store::push($key, $value);
+        }
+        
+        /**
+         * Flash a key / value pair to the session.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function flash($key, $value){
+            \Illuminate\Session\Store::flash($key, $value);
+        }
+        
+        /**
+         * Flash a key / value pair to the session
+         * for immediate use.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function now($key, $value){
+            \Illuminate\Session\Store::now($key, $value);
+        }
+        
+        /**
+         * Flash an input array to the session.
+         *
+         * @param array $value
+         * @return void 
+         * @static 
+         */
+        public static function flashInput($value){
+            \Illuminate\Session\Store::flashInput($value);
+        }
+        
+        /**
+         * Reflash all of the session flash data.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function reflash(){
+            \Illuminate\Session\Store::reflash();
+        }
+        
+        /**
+         * Reflash a subset of the current flash data.
+         *
+         * @param array|mixed $keys
+         * @return void 
+         * @static 
+         */
+        public static function keep($keys = null){
+            \Illuminate\Session\Store::keep($keys);
+        }
+        
+        /**
+         * Returns attributes.
+         *
+         * @return array Attributes
+         * @static 
+         */
+        public static function all(){
+            return \Illuminate\Session\Store::all();
+        }
+        
+        /**
+         * Sets attributes.
+         *
+         * @param array $attributes Attributes
+         * @static 
+         */
+        public static function replace($attributes){
+            return \Illuminate\Session\Store::replace($attributes);
+        }
+        
+        /**
+         * Removes an attribute.
+         *
+         * @param string $name
+         * @return mixed The removed value or null when it does not exist
+         * @static 
+         */
+        public static function remove($name){
+            return \Illuminate\Session\Store::remove($name);
+        }
+        
+        /**
+         * Remove one or many items from the session.
+         *
+         * @param string|array $keys
+         * @return void 
+         * @static 
+         */
+        public static function forget($keys){
+            \Illuminate\Session\Store::forget($keys);
+        }
+        
+        /**
+         * Clears all attributes.
+         *
+         * @static 
+         */
+        public static function clear(){
+            return \Illuminate\Session\Store::clear();
+        }
+        
+        /**
+         * Remove all of the items from the session.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function flush(){
+            \Illuminate\Session\Store::flush();
+        }
+        
+        /**
+         * Checks if the session was started.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isStarted(){
+            return \Illuminate\Session\Store::isStarted();
+        }
+        
+        /**
+         * Registers a SessionBagInterface with the session.
+         *
+         * @param \Symfony\Component\HttpFoundation\Session\SessionBagInterface $bag
+         * @static 
+         */
+        public static function registerBag($bag){
+            return \Illuminate\Session\Store::registerBag($bag);
+        }
+        
+        /**
+         * Gets a bag instance by name.
+         *
+         * @param string $name
+         * @return \Symfony\Component\HttpFoundation\Session\SessionBagInterface 
+         * @static 
+         */
+        public static function getBag($name){
+            return \Illuminate\Session\Store::getBag($name);
+        }
+        
+        /**
+         * Gets session meta.
+         *
+         * @return \Symfony\Component\HttpFoundation\Session\MetadataBag 
+         * @static 
+         */
+        public static function getMetadataBag(){
+            return \Illuminate\Session\Store::getMetadataBag();
+        }
+        
+        /**
+         * Get the raw bag data array for a given bag.
+         *
+         * @param string $name
+         * @return array 
+         * @static 
+         */
+        public static function getBagData($name){
+            return \Illuminate\Session\Store::getBagData($name);
+        }
+        
+        /**
+         * Get the CSRF token value.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function token(){
+            return \Illuminate\Session\Store::token();
+        }
+        
+        /**
+         * Get the CSRF token value.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getToken(){
+            return \Illuminate\Session\Store::getToken();
+        }
+        
+        /**
+         * Regenerate the CSRF token value.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function regenerateToken(){
+            \Illuminate\Session\Store::regenerateToken();
+        }
+        
+        /**
+         * Get the previous URL from the session.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function previousUrl(){
+            return \Illuminate\Session\Store::previousUrl();
+        }
+        
+        /**
+         * Set the "previous" URL in the session.
+         *
+         * @param string $url
+         * @return void 
+         * @static 
+         */
+        public static function setPreviousUrl($url){
+            \Illuminate\Session\Store::setPreviousUrl($url);
+        }
+        
+        /**
+         * Set the existence of the session on the handler if applicable.
+         *
+         * @param bool $value
+         * @return void 
+         * @static 
+         */
+        public static function setExists($value){
+            \Illuminate\Session\Store::setExists($value);
+        }
+        
+        /**
+         * Get the underlying session handler implementation.
+         *
+         * @return \SessionHandlerInterface 
+         * @static 
+         */
+        public static function getHandler(){
+            return \Illuminate\Session\Store::getHandler();
+        }
+        
+        /**
+         * Determine if the session handler needs a request.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function handlerNeedsRequest(){
+            return \Illuminate\Session\Store::handlerNeedsRequest();
+        }
+        
+        /**
+         * Set the request on the handler instance.
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @return void 
+         * @static 
+         */
+        public static function setRequestOnHandler($request){
+            \Illuminate\Session\Store::setRequestOnHandler($request);
+        }
+        
+    }
+
+
+    class Storage extends \Illuminate\Support\Facades\Storage{
+        
+        /**
+         * Get a filesystem instance.
+         *
+         * @param string $name
+         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         * @static 
+         */
+        public static function drive($name = null){
+            return \Illuminate\Filesystem\FilesystemManager::drive($name);
+        }
+        
+        /**
+         * Get a filesystem instance.
+         *
+         * @param string $name
+         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         * @static 
+         */
+        public static function disk($name = null){
+            return \Illuminate\Filesystem\FilesystemManager::disk($name);
+        }
+        
+        /**
+         * Create an instance of the local driver.
+         *
+         * @param array $config
+         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         * @static 
+         */
+        public static function createLocalDriver($config){
+            return \Illuminate\Filesystem\FilesystemManager::createLocalDriver($config);
+        }
+        
+        /**
+         * Create an instance of the ftp driver.
+         *
+         * @param array $config
+         * @return \Illuminate\Contracts\Filesystem\Filesystem 
+         * @static 
+         */
+        public static function createFtpDriver($config){
+            return \Illuminate\Filesystem\FilesystemManager::createFtpDriver($config);
+        }
+        
+        /**
+         * Create an instance of the Amazon S3 driver.
+         *
+         * @param array $config
+         * @return \Illuminate\Contracts\Filesystem\Cloud 
+         * @static 
+         */
+        public static function createS3Driver($config){
+            return \Illuminate\Filesystem\FilesystemManager::createS3Driver($config);
+        }
+        
+        /**
+         * Create an instance of the Rackspace driver.
+         *
+         * @param array $config
+         * @return \Illuminate\Contracts\Filesystem\Cloud 
+         * @static 
+         */
+        public static function createRackspaceDriver($config){
+            return \Illuminate\Filesystem\FilesystemManager::createRackspaceDriver($config);
+        }
+        
+        /**
+         * Get the default driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \Illuminate\Filesystem\FilesystemManager::getDefaultDriver();
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            return \Illuminate\Filesystem\FilesystemManager::extend($driver, $callback);
+        }
+        
+    }
+
+
+    class CLI extends \App\Console\CLI{
+        
+    }
+
+
+    class SugarException extends \App\Exceptions\SugarException{
+        
+    }
+
+
+    class Arr extends \Illuminate\Support\Arr{
+        
+    }
+
+
+    class Str extends \Illuminate\Support\Str{
+        
+    }
 
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses_primary;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $members;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $member_of;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $documents;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospect_lists;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $invalid_email;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $email_opt_out;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string The zip code used for the shipping address
-	 */
-	 public $shipping_address_postalcode;
-
-	/** 
-	 * @var string The country used for the shipping address
-	 */
-	 public $shipping_address_country;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email1;
-
-	/** 
-	 * @var string Campaign that generated Account
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string Account ID of the parent of this account
-	 */
-	 public $parent_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email;
-
-	/** 
-	 * @var string SIC code of the account
-	 */
-	 public $sic_code;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email_addresses_non_primary;
-
-	/** 
-	 * @var string 
-	 */
-	 public $shipping_address_street_2;
-
-	/** 
-	 * @var string The fax phone number of this company
-	 */
-	 public $phone_fax;
-
-	/** 
-	 * @var string Annual revenue for this company
-	 */
-	 public $annual_revenue;
-
-	/** 
-	 * @var string The street address used for billing address
-	 */
-	 public $billing_address_street;
-
-	/** 
-	 * @var string 
-	 */
-	 public $billing_address_street_2;
-
-	/** 
-	 * @var string 
-	 */
-	 public $billing_address_street_4;
-
-	/** 
-	 * @var string 
-	 */
-	 public $billing_address_street_3;
-
-	/** 
-	 * @var string The company belongs in this industry
-	 */
-	 public $industry;
-
-	/** 
-	 * @var string The Company is of this type
-	 */
-	 public $account_type;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Name of the Company
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string The city used for billing address
-	 */
-	 public $billing_address_city;
-
-	/** 
-	 * @var string The state used for billing address
-	 */
-	 public $billing_address_state;
-
-	/** 
-	 * @var string The street address used for for shipping purposes
-	 */
-	 public $shipping_address_street;
-
-	/** 
-	 * @var string The stock trading (ticker) symbol for the company
-	 */
-	 public $ticker_symbol;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $shipping_address_street_3;
-
-	/** 
-	 * @var string The city used for the shipping address
-	 */
-	 public $shipping_address_city;
-
-	/** 
-	 * @var string 
-	 */
-	 public $shipping_address_street_4;
-
-	/** 
-	 * @var string Number of employees, varchar to accomodate for both number (100) or range (50-100)
-	 */
-	 public $employees;
-
-	/** 
-	 * @var string 
-	 */
-	 public $ownership;
-
-	/** 
-	 * @var string The country used for the billing address
-	 */
-	 public $billing_address_country;
-
-	/** 
-	 * @var string The postal code used for billing address
-	 */
-	 public $billing_address_postalcode;
-
-	/** 
-	 * @var string An arbitrary rating for this company for use in comparisons with others
-	 */
-	 public $rating;
-
-	/** 
-	 * @var string The office phone number
-	 */
-	 public $phone_office;
-
-	/** 
-	 * @var string URL of website for the company
-	 */
-	 public $website;
-
-	/** 
-	 * @var string An alternate phone number
-	 */
-	 public $phone_alternate;
-
-	/** 
-	 * @var string The state used for the shipping address
-	 */
-	 public $shipping_address_state;
-
-	public $relationship_fields = [
-		'parent_id' => 'member_of',
-		'campaign_id' => 'campaign_accounts',
-		'created_by' => 'created_by_link',
-		'assigned_user_id' => 'assigned_user_link',
-		'modified_user_id' => 'modified_user_link',
-	];
-
-}
-
-/**
- * Class ACLAction
- *
- * @property Link2 roles 
- * @property bool deleted Record deletion indicator
- * @property string acltype Specifier for Category, usually "module"
- * @property string aclaccess Number specifying access priority; highest access "wins"
- * @property string category Category of the allowable action (usually the name of a module)
- * @property string name Name of the allowable action (view, list, delete, edit)
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string created_by User ID who created record
- * @property string id Unique identifier
- *
- *
- */
-class ACLAction {
-	/** 
-	 * @var Link2 
-	 */
-	 public $roles;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string Specifier for Category, usually "module"
-	 */
-	 public $acltype;
-
-	/** 
-	 * @var string Number specifying access priority; highest access "wins"
-	 */
-	 public $aclaccess;
-
-	/** 
-	 * @var string Category of the allowable action (usually the name of a module)
-	 */
-	 public $category;
-
-	/** 
-	 * @var string Name of the allowable action (view, list, delete, edit)
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User ID who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class ACLRole
- *
- * @property Link2 actions 
- * @property Link2 users 
- * @property bool deleted Record deletion indicator
- * @property string description The role description
- * @property string name The role name
- * @property string created_by User who created record
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string id Unique identifier
- *
- *
- */
-class ACLRole {
-	/** 
-	 * @var Link2 
-	 */
-	 public $actions;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $users;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string The role description
-	 */
-	 public $description;
-
-	/** 
-	 * @var string The role name
-	 */
-	 public $name;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Administration
- *
- * @property string value The value given to the setting
- * @property string name The name given to the setting
- * @property string category Settings are grouped under this category; arbitraily defined based on requirements
- *
- *
- */
-class Administration {
-	/** 
-	 * @var string The value given to the setting
-	 */
-	 public $value;
-
-	/** 
-	 * @var string The name given to the setting
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Settings are grouped under this category; arbitraily defined based on requirements
-	 */
-	 public $category;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Bug
- *
- * @property Link2 emails 
- * @property Link2 documents 
- * @property Link2 assigned_user_link 
- * @property Link2 calls 
- * @property Link2 meetings 
- * @property Link2 tasks 
- * @property Link2 notes 
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property Link2 fixed_in_release_link 
- * @property Link2 release_link 
- * @property Link2 cases 
- * @property Link2 project 
- * @property Link2 contacts 
- * @property Link2 accounts 
- * @property Release release_name 
- * @property Release fixed_in_release_name 
- * @property User modified_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User assigned_user_name 
- * @property User created_by_name 
- * @property bool deleted Record deletion indicator
- * @property string source An indicator of how the bug was entered (ex: via web, email, etc.)
- * @property string product_category Where the bug was discovered (ex: Accounts, Contacts, Leads)
- * @property string resolution An indication of how the issue was resolved
- * @property string created_by User who created record
- * @property string description Full text of the note
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string name The short description of the bug
- * @property string date_entered Date record created
- * @property string bug_number Visual unique identifier
- * @property string type The type of issue (ex: issue, feature)
- * @property string work_log Free-form text used to denote activities of interest
- * @property string found_in_release The software or service release that manifested the bug
- * @property string id Unique identifier
- * @property string priority An indication of the priorty of the issue
- * @property string status The status of the issue
- * @property string fixed_in_release The software or service release that corrected the bug
- *
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method Release[] getRelatedFixed_in_release_link
- * @method Release[] getRelatedRelease_link
- * @method Release getRelatedRelease_name
- * @method Release getRelatedFixed_in_release_name
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedCreated_by_name
- *
- */
-class Bug {
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $documents;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $fixed_in_release_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $release_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Release 
-	 */
-	 public $release_name;
-
-	/** 
-	 * @var Release 
-	 */
-	 public $fixed_in_release_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string An indicator of how the bug was entered (ex: via web, email, etc.)
-	 */
-	 public $source;
-
-	/** 
-	 * @var string Where the bug was discovered (ex: Accounts, Contacts, Leads)
-	 */
-	 public $product_category;
-
-	/** 
-	 * @var string An indication of how the issue was resolved
-	 */
-	 public $resolution;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string The short description of the bug
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Visual unique identifier
-	 */
-	 public $bug_number;
-
-	/** 
-	 * @var string The type of issue (ex: issue, feature)
-	 */
-	 public $type;
-
-	/** 
-	 * @var string Free-form text used to denote activities of interest
-	 */
-	 public $work_log;
-
-	/** 
-	 * @var string The software or service release that manifested the bug
-	 */
-	 public $found_in_release;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string An indication of the priorty of the issue
-	 */
-	 public $priority;
-
-	/** 
-	 * @var string The status of the issue
-	 */
-	 public $status;
-
-	/** 
-	 * @var string The software or service release that corrected the bug
-	 */
-	 public $fixed_in_release;
-
-	public $relationship_fields = [
-		'found_in_release' => 'release_link',
-		'fixed_in_release' => 'fixed_in_release_link',
-		'modified_user_id' => 'modified_user_link',
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class Call
- *
- * @property Contact contact_name 
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property Link2 opportunities 
- * @property Link2 leads 
- * @property Link2 assigned_user_link 
- * @property Link2 project 
- * @property Link2 accounts 
- * @property Link2 contacts 
- * @property Link2 users 
- * @property Link2 case 
- * @property Link2 notes 
- * @property User assigned_user_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User created_by_name 
- * @property User modified_by_name 
- * @property bool email_reminder_sent Whether email reminder is already sent
- * @property bool email_reminder_checked checkbox indicating whether or not the email reminder value is set (Meta-data only)
- * @property bool reminder_checked checkbox indicating whether or not the reminder value is set (Meta-data only)
- * @property bool deleted Record deletion indicator
- * @property string date_entered Date record created
- * @property string name Brief description of the call
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string description Full text of the note
- * @property string created_by User who created record
- * @property string contact_id 
- * @property string repeat_type Type of recurrence
- * @property string repeat_parent_id Id of the first element of recurring records
- * @property string recurring_source Source of recurring call
- * @property string repeat_count Number of recurrence
- * @property string repeat_until Repeat until specified date
- * @property string repeat_dow Days of week in recurrence
- * @property string repeat_interval Interval of recurrence
- * @property string duration_hours Call duration, hours portion
- * @property string id Unique identifier
- * @property string reminder_time Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
- * @property string parent_id The ID of the parent Sugar object identified by parent_type
- * @property string direction Indicates whether call is inbound or outbound
- * @property string parent_name 
- * @property string status The status of the call (Held, Not Held, etc.)
- * @property string date_end Date is which call is scheduled to (or did) end
- * @property string email_reminder_time Specifies when a email reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
- * @property string accept_status 
- * @property string duration_minutes Call duration, minutes portion
- * @property string accept_status 
- * @property string outlook_id When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
- * @property string date_start Date in which call is schedule to (or did) start
- * @property string parent_type The Sugar object to which the call is related
- *
- * @method Contact getRelatedContact_name
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedAssigned_user_link
- * @method Account[] getRelatedAccounts
- * @method Note[] getRelatedNotes
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedCreated_by_name
- * @method User getRelatedModified_by_name
- *
- */
-class Call {
-	/** 
-	 * @var Contact 
-	 */
-	 public $contact_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $users;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $case;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var bool Whether email reminder is already sent
-	 */
-	 public $email_reminder_sent;
-
-	/** 
-	 * @var bool checkbox indicating whether or not the email reminder value is set (Meta-data only)
-	 */
-	 public $email_reminder_checked;
-
-	/** 
-	 * @var bool checkbox indicating whether or not the reminder value is set (Meta-data only)
-	 */
-	 public $reminder_checked;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Brief description of the call
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contact_id;
-
-	/** 
-	 * @var string Type of recurrence
-	 */
-	 public $repeat_type;
-
-	/** 
-	 * @var string Id of the first element of recurring records
-	 */
-	 public $repeat_parent_id;
-
-	/** 
-	 * @var string Source of recurring call
-	 */
-	 public $recurring_source;
-
-	/** 
-	 * @var string Number of recurrence
-	 */
-	 public $repeat_count;
-
-	/** 
-	 * @var string Repeat until specified date
-	 */
-	 public $repeat_until;
-
-	/** 
-	 * @var string Days of week in recurrence
-	 */
-	 public $repeat_dow;
-
-	/** 
-	 * @var string Interval of recurrence
-	 */
-	 public $repeat_interval;
-
-	/** 
-	 * @var string Call duration, hours portion
-	 */
-	 public $duration_hours;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
-	 */
-	 public $reminder_time;
-
-	/** 
-	 * @var string The ID of the parent Sugar object identified by parent_type
-	 */
-	 public $parent_id;
-
-	/** 
-	 * @var string Indicates whether call is inbound or outbound
-	 */
-	 public $direction;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_name;
-
-	/** 
-	 * @var string The status of the call (Held, Not Held, etc.)
-	 */
-	 public $status;
-
-	/** 
-	 * @var string Date is which call is scheduled to (or did) end
-	 */
-	 public $date_end;
-
-	/** 
-	 * @var string Specifies when a email reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
-	 */
-	 public $email_reminder_time;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status;
-
-	/** 
-	 * @var string Call duration, minutes portion
-	 */
-	 public $duration_minutes;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status;
-
-	/** 
-	 * @var string When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
-	 */
-	 public $outlook_id;
-
-	/** 
-	 * @var string Date in which call is schedule to (or did) start
-	 */
-	 public $date_start;
-
-	/** 
-	 * @var string The Sugar object to which the call is related
-	 */
-	 public $parent_type;
-
-	public $relationship_fields = [
-		'contact_id' => 'contacts',
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-	];
-
-}
-
-/**
- * Class CampaignLog
- *
- * @property Campaign campaign_name1 
- * @property Link2 campaign 
- * @property Link2 created_lead 
- * @property Link2 created_contact 
- * @property Link2 sent_email 
- * @property Link2 created_opportunities 
- * @property Link2 targeted_user 
- * @property bool deleted Record deletion indicator
- * @property bool archived Indicates if item has been archived
- * @property string campaign_objective 
- * @property string campaign_content 
- * @property string campaign_name 
- * @property string more_information 
- * @property string marketing_id ID of marketing email this entry is associated with
- * @property string date_modified 
- * @property string related_name 
- * @property string recipient_email 
- * @property string target_type Descriptor of the target record type (e.g., Contact, Lead)
- * @property string activity_type The activity that occurred (e.g., Viewed Message, Bounced, Opted out)
- * @property string target_id Identifier of target record
- * @property string target_tracker_key Identifier of Tracker URL
- * @property string campaign_id Campaign identifier
- * @property string activity_date The date the activity occurred
- * @property string related_id 
- * @property string recipient_name 
- * @property string id Unique identifier
- * @property string list_id The target list from which item originated
- * @property string hits Number of times the item has been invoked (e.g., multiple click-thrus)
- * @property string related_type 
- * @property string marketing_name 
- *
- * @method Campaign getRelatedCampaign_name1
- *
- */
-class CampaignLog {
-	/** 
-	 * @var Campaign 
-	 */
-	 public $campaign_name1;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_lead;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_contact;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $sent_email;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $targeted_user;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool Indicates if item has been archived
-	 */
-	 public $archived;
-
-	/** 
-	 * @var string 
-	 */
-	 public $campaign_objective;
-
-	/** 
-	 * @var string 
-	 */
-	 public $campaign_content;
-
-	/** 
-	 * @var string 
-	 */
-	 public $campaign_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $more_information;
-
-	/** 
-	 * @var string ID of marketing email this entry is associated with
-	 */
-	 public $marketing_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $related_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $recipient_email;
-
-	/** 
-	 * @var string Descriptor of the target record type (e.g., Contact, Lead)
-	 */
-	 public $target_type;
-
-	/** 
-	 * @var string The activity that occurred (e.g., Viewed Message, Bounced, Opted out)
-	 */
-	 public $activity_type;
-
-	/** 
-	 * @var string Identifier of target record
-	 */
-	 public $target_id;
-
-	/** 
-	 * @var string Identifier of Tracker URL
-	 */
-	 public $target_tracker_key;
-
-	/** 
-	 * @var string Campaign identifier
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string The date the activity occurred
-	 */
-	 public $activity_date;
-
-	/** 
-	 * @var string 
-	 */
-	 public $related_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $recipient_name;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string The target list from which item originated
-	 */
-	 public $list_id;
-
-	/** 
-	 * @var string Number of times the item has been invoked (e.g., multiple click-thrus)
-	 */
-	 public $hits;
-
-	/** 
-	 * @var string 
-	 */
-	 public $related_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $marketing_name;
-
-	public $relationship_fields = [
-		'campaign_id' => 'campaign',
-	];
-
-}
-
-/**
- * Class Campaign
- *
- * @property Link2 assigned_user_link 
- * @property Link2 created_by_link 
- * @property Link2 log_entries 
- * @property Link2 queueitems 
- * @property Link2 prospectlists 
- * @property Link2 emailmarketing 
- * @property Link2 tracked_urls 
- * @property Link2 modified_user_link 
- * @property Link2 opportunities 
- * @property ProspectLink contacts 
- * @property ProspectLink accounts 
- * @property ProspectLink leads 
- * @property User assigned_user_id User ID assigned to record
- * @property User modified_by_name 
- * @property User created_by_name 
- * @property User assigned_user_name 
- * @property bool deleted Record deletion indicator
- * @property string expected_revenue Expected revenue stemming from the campaign
- * @property string campaign_type The type of campaign
- * @property string actual_cost Actual cost of the campaign
- * @property string frequency Frequency of the campaign
- * @property string expected_cost Expected cost of the campaign
- * @property string content The campaign description
- * @property string objective The objective of the campaign
- * @property string end_date Ending date of the campaign
- * @property string created_by User who created record
- * @property string description inhertied but not used
- * @property string tracker_key The internal ID of the tracker used in a campaign; no longer used as of 4.2 (see campaign_trkrs)
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string name The name of the campaign
- * @property string date_entered Date record created
- * @property string tracker_count The number of accesses made to the tracker URL; no longer used as of 4.2 (see campaign_trkrs)
- * @property string refer_url The URL referenced in the tracker URL; no longer used as of 4.2 (see campaign_trkrs)
- * @property string impressions Expected Click throughs manually entered by Campaign Manager
- * @property string currency_id Currency in use for the campaign
- * @property string status Status of the campaign
- * @property string id Unique identifier
- * @property string tracker_text The text that appears in the tracker URL; no longer used as of 4.2 (see campaign_trkrs)
- * @property string start_date Starting date of the campaign
- * @property string budget Budgeted amount for the campaign
- *
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedModified_by_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_name
- *
- */
-class Campaign {
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $log_entries;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $queueitems;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospectlists;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emailmarketing;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tracked_urls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var ProspectLink 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var ProspectLink 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var ProspectLink 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string Expected revenue stemming from the campaign
-	 */
-	 public $expected_revenue;
-
-	/** 
-	 * @var string The type of campaign
-	 */
-	 public $campaign_type;
-
-	/** 
-	 * @var string Actual cost of the campaign
-	 */
-	 public $actual_cost;
-
-	/** 
-	 * @var string Frequency of the campaign
-	 */
-	 public $frequency;
-
-	/** 
-	 * @var string Expected cost of the campaign
-	 */
-	 public $expected_cost;
-
-	/** 
-	 * @var string The campaign description
-	 */
-	 public $content;
-
-	/** 
-	 * @var string The objective of the campaign
-	 */
-	 public $objective;
-
-	/** 
-	 * @var string Ending date of the campaign
-	 */
-	 public $end_date;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string inhertied but not used
-	 */
-	 public $description;
-
-	/** 
-	 * @var string The internal ID of the tracker used in a campaign; no longer used as of 4.2 (see campaign_trkrs)
-	 */
-	 public $tracker_key;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string The name of the campaign
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string The number of accesses made to the tracker URL; no longer used as of 4.2 (see campaign_trkrs)
-	 */
-	 public $tracker_count;
-
-	/** 
-	 * @var string The URL referenced in the tracker URL; no longer used as of 4.2 (see campaign_trkrs)
-	 */
-	 public $refer_url;
-
-	/** 
-	 * @var string Expected Click throughs manually entered by Campaign Manager
-	 */
-	 public $impressions;
-
-	/** 
-	 * @var string Currency in use for the campaign
-	 */
-	 public $currency_id;
-
-	/** 
-	 * @var string Status of the campaign
-	 */
-	 public $status;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string The text that appears in the tracker URL; no longer used as of 4.2 (see campaign_trkrs)
-	 */
-	 public $tracker_text;
-
-	/** 
-	 * @var string Starting date of the campaign
-	 */
-	 public $start_date;
-
-	/** 
-	 * @var string Budgeted amount for the campaign
-	 */
-	 public $budget;
-
-	public $relationship_fields = [
-		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class CampaignTracker
- *
- * @property Link2 campaign 
- * @property bool is_optout Indicator whether tracker URL represents an opt-out link
- * @property bool deleted Record deletion indicator
- * @property string modified_user_id User who last modified record
- * @property string created_by User ID who created record
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string tracker_name The name of the campaign tracker
- * @property string tracker_url The URL that represents the landing page when the tracker URL in the campaign email is clicked
- * @property string tracker_key Internal key to uniquely identifier the tracker URL
- * @property string campaign_id The ID of the campaign
- * @property string id Unique identifier
- *
- *
- */
-class CampaignTracker {
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign;
-
-	/** 
-	 * @var bool Indicator whether tracker URL represents an opt-out link
-	 */
-	 public $is_optout;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User ID who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string The name of the campaign tracker
-	 */
-	 public $tracker_name;
-
-	/** 
-	 * @var string The URL that represents the landing page when the tracker URL in the campaign email is clicked
-	 */
-	 public $tracker_url;
-
-	/** 
-	 * @var string Internal key to uniquely identifier the tracker URL
-	 */
-	 public $tracker_key;
-
-	/** 
-	 * @var string The ID of the campaign
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Case
- *
- * @property Account account_name The name of the account represented by the account_id field
- * @property Account account_id The account to which the case is associated
- * @property Link2 documents 
- * @property Link2 assigned_user_link 
- * @property Link2 emails 
- * @property Link2 notes 
- * @property Link2 tasks 
- * @property Link2 modified_user_link 
- * @property Link2 meetings 
- * @property Link2 created_by_link 
- * @property Link2 bugs 
- * @property Link2 calls 
- * @property Link2 kbdocuments 
- * @property Link2 contacts 
- * @property Link2 project 
- * @property Link2 accounts 
- * @property User modified_by_name 
- * @property User created_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User assigned_user_name 
- * @property bool deleted Record deletion indicator
- * @property string account_name1 
- * @property string status The status of the case
- * @property string modified_user_id User who last modified record
- * @property string created_by User who created record
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string name The short description of the bug
- * @property string description Full text of the note
- * @property string case_number Visual unique identifier
- * @property string resolution The resolution of the case
- * @property string priority The priority of the case
- * @property string id Unique identifier
- * @property string type The type of issue (ex: issue, feature)
- * @property string work_log Free-form text used to denote activities of interest
- *
- * @method Account getRelatedAccount_name
- * @method Account getRelatedAccount_id
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedCreated_by_link
- * @method Array[] getRelatedAccounts
- * @method User getRelatedModified_by_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedAssigned_user_name
- *
- */
-class Case {
-	/** 
-	 * @var Account The name of the account represented by the account_id field
-	 */
-	 public $account_name;
-
-	/** 
-	 * @var Account The account to which the case is associated
-	 */
-	 public $account_id;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $documents;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $kbdocuments;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $account_name1;
-
-	/** 
-	 * @var string The status of the case
-	 */
-	 public $status;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string The short description of the bug
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string Visual unique identifier
-	 */
-	 public $case_number;
-
-	/** 
-	 * @var string The resolution of the case
-	 */
-	 public $resolution;
-
-	/** 
-	 * @var string The priority of the case
-	 */
-	 public $priority;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string The type of issue (ex: issue, feature)
-	 */
-	 public $type;
-
-	/** 
-	 * @var string Free-form text used to denote activities of interest
-	 */
-	 public $work_log;
-
-	public $relationship_fields = [
-		'account_id' => 'accounts',
-		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class Contact
- *
- * @property  c_accept_status_fields 
- * @property  opportunity_role_fields 
- * @property  m_accept_status_fields 
- * @property Account account_id 
- * @property Account account_name 
- * @property Campaign campaign_name The first campaign name for Contact (Meta-data only)
- * @property Contact report_to_name 
- * @property Link2 documents 
- * @property Link2 emails 
- * @property Link2 leads 
- * @property Link2 project_resource 
- * @property Link2 notes 
- * @property Link2 direct_reports 
- * @property Link2 meetings 
- * @property Link2 opportunities 
- * @property Link2 accounts 
- * @property Link2 email_addresses_primary 
- * @property Link2 email_addresses 
- * @property Link2 reports_to_link 
- * @property Link2 tasks 
- * @property Link2 calls 
- * @property Link2 bugs 
- * @property Link2 cases 
- * @property Link2 project 
- * @property Link2 assigned_user_link 
- * @property Link2 campaign_contacts 
- * @property Link2 tasks_parent 
- * @property Link2 created_by_link 
- * @property Link2 prospect_lists 
- * @property Link2 campaigns 
- * @property Link2 modified_user_link 
- * @property Link2 notes_parent 
- * @property Link2 user_sync 
- * @property User modified_by_name 
- * @property User created_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User assigned_user_name 
- * @property bool email_opt_out 
- * @property bool sync_contact Synch to outlook?  (Meta-Data only)
- * @property bool do_not_call An indicator of whether contact can be called
- * @property bool deleted Record deletion indicator
- * @property bool invalid_email 
- * @property string accept_status_name 
- * @property string lead_source How did the contact come about
- * @property string accept_status_id 
- * @property string email_and_name1 
- * @property string birthdate The birthdate of the contact
- * @property string campaign_id Campaign that generated lead
- * @property string reports_to_id The contact this contact reports to
- * @property string opportunity_role 
- * @property string opportunity_role_id 
- * @property string alt_address_postalcode Postal code for alternate address
- * @property string department The department of the contact
- * @property string title The title of the contact
- * @property string full_name 
- * @property string phone_home Home phone number of the contact
- * @property string email 
- * @property string phone_other Other phone number for the contact
- * @property string phone_work Work phone number of the contact
- * @property string phone_mobile Mobile phone number of the contact
- * @property string last_name Last name of the contact
- * @property string first_name First name of the contact
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string name 
- * @property string modified_user_id User who last modified record
- * @property string created_by User who created record
- * @property string salutation Contact salutation (e.g., Mr, Ms)
- * @property string description Full text of the note
- * @property string phone_fax Contact fax number
- * @property string email1 
- * @property string alt_address_city City for alternate address
- * @property string alt_address_street_3 
- * @property string alt_address_street_2 
- * @property string alt_address_state State for alternate address
- * @property string id Unique identifier
- * @property string assistant_phone Phone number of the assistant of the contact
- * @property string assistant Name of the assistant of the contact
- * @property string alt_address_country Country for alternate address
- * @property string alt_address_street Street address for alternate address
- * @property string primary_address_country Country for primary address
- * @property string primary_address_street_2 
- * @property string primary_address_street Street address for primary address
- * @property string email2 
- * @property string primary_address_street_3 
- * @property string primary_address_city City for primary address
- * @property string primary_address_postalcode Postal code for primary address
- * @property string primary_address_state State for primary address
- * @property string email_addresses_non_primary 
- *
- * @method  getRelatedC_accept_status_fields
- * @method  getRelatedOpportunity_role_fields
- * @method  getRelatedM_accept_status_fields
- * @method Account getRelatedAccount_id
- * @method Account getRelatedAccount_name
- * @method Campaign getRelatedCampaign_name
- * @method Contact getRelatedReport_to_name
- * @method Opportunity[] getRelatedOpportunities
- * @method Array[] getRelatedReports_to_link
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedCreated_by_link
- * @method ProspectList[] getRelatedProspect_lists
- * @method CampaignLog[] getRelatedCampaigns
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedModified_by_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedAssigned_user_name
- *
- */
-class Contact {
-	/** 
-	 * @var  
-	 */
-	 public $c_accept_status_fields;
-
-	/** 
-	 * @var  
-	 */
-	 public $opportunity_role_fields;
-
-	/** 
-	 * @var  
-	 */
-	 public $m_accept_status_fields;
-
-	/** 
-	 * @var Account 
-	 */
-	 public $account_id;
-
-	/** 
-	 * @var Account 
-	 */
-	 public $account_name;
-
-	/** 
-	 * @var Campaign The first campaign name for Contact (Meta-data only)
-	 */
-	 public $campaign_name;
-
-	/** 
-	 * @var Contact 
-	 */
-	 public $report_to_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $documents;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project_resource;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $direct_reports;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses_primary;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reports_to_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks_parent;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospect_lists;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes_parent;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $user_sync;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $email_opt_out;
-
-	/** 
-	 * @var bool Synch to outlook?  (Meta-Data only)
-	 */
-	 public $sync_contact;
-
-	/** 
-	 * @var bool An indicator of whether contact can be called
-	 */
-	 public $do_not_call;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $invalid_email;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_name;
-
-	/** 
-	 * @var string How did the contact come about
-	 */
-	 public $lead_source;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email_and_name1;
-
-	/** 
-	 * @var string The birthdate of the contact
-	 */
-	 public $birthdate;
-
-	/** 
-	 * @var string Campaign that generated lead
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string The contact this contact reports to
-	 */
-	 public $reports_to_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $opportunity_role;
-
-	/** 
-	 * @var string 
-	 */
-	 public $opportunity_role_id;
-
-	/** 
-	 * @var string Postal code for alternate address
-	 */
-	 public $alt_address_postalcode;
-
-	/** 
-	 * @var string The department of the contact
-	 */
-	 public $department;
-
-	/** 
-	 * @var string The title of the contact
-	 */
-	 public $title;
-
-	/** 
-	 * @var string 
-	 */
-	 public $full_name;
-
-	/** 
-	 * @var string Home phone number of the contact
-	 */
-	 public $phone_home;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email;
-
-	/** 
-	 * @var string Other phone number for the contact
-	 */
-	 public $phone_other;
-
-	/** 
-	 * @var string Work phone number of the contact
-	 */
-	 public $phone_work;
-
-	/** 
-	 * @var string Mobile phone number of the contact
-	 */
-	 public $phone_mobile;
-
-	/** 
-	 * @var string Last name of the contact
-	 */
-	 public $last_name;
-
-	/** 
-	 * @var string First name of the contact
-	 */
-	 public $first_name;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Contact salutation (e.g., Mr, Ms)
-	 */
-	 public $salutation;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string Contact fax number
-	 */
-	 public $phone_fax;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email1;
-
-	/** 
-	 * @var string City for alternate address
-	 */
-	 public $alt_address_city;
-
-	/** 
-	 * @var string 
-	 */
-	 public $alt_address_street_3;
-
-	/** 
-	 * @var string 
-	 */
-	 public $alt_address_street_2;
-
-	/** 
-	 * @var string State for alternate address
-	 */
-	 public $alt_address_state;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Phone number of the assistant of the contact
-	 */
-	 public $assistant_phone;
-
-	/** 
-	 * @var string Name of the assistant of the contact
-	 */
-	 public $assistant;
-
-	/** 
-	 * @var string Country for alternate address
-	 */
-	 public $alt_address_country;
-
-	/** 
-	 * @var string Street address for alternate address
-	 */
-	 public $alt_address_street;
-
-	/** 
-	 * @var string Country for primary address
-	 */
-	 public $primary_address_country;
-
-	/** 
-	 * @var string 
-	 */
-	 public $primary_address_street_2;
-
-	/** 
-	 * @var string Street address for primary address
-	 */
-	 public $primary_address_street;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email2;
-
-	/** 
-	 * @var string 
-	 */
-	 public $primary_address_street_3;
-
-	/** 
-	 * @var string City for primary address
-	 */
-	 public $primary_address_city;
-
-	/** 
-	 * @var string Postal code for primary address
-	 */
-	 public $primary_address_postalcode;
-
-	/** 
-	 * @var string State for primary address
-	 */
-	 public $primary_address_state;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email_addresses_non_primary;
-
-	public $relationship_fields = [
-		'account_id' => 'accounts',
-		'campaign_id' => 'campaign_contacts',
-		'reports_to_id' => 'reports_to_link',
-		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class Currency
- *
- * @property bool deleted Record deletion indicator
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string created_by User ID who created record
- * @property string status Currency status
- * @property string conversion_rate Conversion rate factor (relative to stored value)
- * @property string name Name of the currency
- * @property string symbol Symbol representing the currency
- * @property string iso4217 3-letter identifier specified by ISO 4217 (ex: USD)
- * @property string id Unique identifer
- *
- *
- */
-class Currency {
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User ID who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Currency status
-	 */
-	 public $status;
-
-	/** 
-	 * @var string Conversion rate factor (relative to stored value)
-	 */
-	 public $conversion_rate;
-
-	/** 
-	 * @var string Name of the currency
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Symbol representing the currency
-	 */
-	 public $symbol;
-
-	/** 
-	 * @var string 3-letter identifier specified by ISO 4217 (ex: USD)
-	 */
-	 public $iso4217;
-
-	/** 
-	 * @var string Unique identifer
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class DocumentRevision
- *
- * @property Link2 documents 
- * @property Link2 created_by_link 
- * @property User created_by_name 
- * @property bool deleted 
- * @property string revision 
- * @property string date_modified 
- * @property string latest_revision 
- * @property string file_mime_type 
- * @property string document_name 
- * @property string latest_revision_id 
- * @property string file_ext 
- * @property string doc_id Document ID from documents web server provider
- * @property string document_id 
- * @property string change_log 
- * @property string doc_type Document type (ex: Google, box.net, IBM SmartCloud)
- * @property string doc_url Document URL from documents web server provider
- * @property string filename 
- * @property string created_by 
- * @property string date_entered 
- * @property string id 
- *
- * @method User[] getRelatedCreated_by_link
- * @method User getRelatedCreated_by_name
- *
- */
-class DocumentRevision {
-	/** 
-	 * @var Link2 
-	 */
-	 public $documents;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $revision;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $latest_revision;
-
-	/** 
-	 * @var string 
-	 */
-	 public $file_mime_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $document_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $latest_revision_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $file_ext;
-
-	/** 
-	 * @var string Document ID from documents web server provider
-	 */
-	 public $doc_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $document_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $change_log;
-
-	/** 
-	 * @var string Document type (ex: Google, box.net, IBM SmartCloud)
-	 */
-	 public $doc_type;
-
-	/** 
-	 * @var string Document URL from documents web server provider
-	 */
-	 public $doc_url;
-
-	/** 
-	 * @var string 
-	 */
-	 public $filename;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class Document
- *
- * @property Document related_doc_name The related document name for Meta-Data framework
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property Link2 cases 
- * @property Link2 bugs 
- * @property Link2 assigned_user_link 
- * @property Link2 opportunities 
- * @property Link2 leads 
- * @property Link2 contracts 
- * @property Link2 accounts 
- * @property Link2 revisions 
- * @property Link2 contacts 
- * @property User modified_by_name 
- * @property User assigned_user_name 
- * @property User created_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property bool is_template 
- * @property bool deleted Record deletion indicator
- * @property string related_doc_rev_id 
- * @property string related_doc_id 
- * @property string selected_revision_name 
- * @property string linked_id 
- * @property string selected_revision_id 
- * @property string latest_revision_id 
- * @property string selected_revision_filename 
- * @property string contract_name 
- * @property string contract_status 
- * @property string template_type 
- * @property string latest_revision_name 
- * @property string last_rev_create_date 
- * @property string related_doc_rev_number The related document version number for Meta-Data framework
- * @property string document_revision_id 
- * @property string document_name 
- * @property string doc_id Document ID from documents web server provider
- * @property string doc_type Document type (ex: Google, box.net, IBM SmartCloud)
- * @property string doc_url Document URL from documents web server provider
- * @property string description Full text of the note
- * @property string created_by User who created record
- * @property string name 
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string filename The filename of the document attachment
- * @property string active_date 
- * @property string id Unique identifier
- * @property string revision 
- * @property string last_rev_created_name 
- * @property string last_rev_mime_type 
- * @property string status Document status for Meta-Data framework
- * @property string status_id 
- * @property string exp_date 
- * @property string category_id 
- * @property string subcategory_id 
- * @property string latest_revision 
- *
- * @method Document getRelatedRelated_doc_name
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedAssigned_user_link
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_id
- *
- */
-class Document {
-	/** 
-	 * @var Document The related document name for Meta-Data framework
-	 */
-	 public $related_doc_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contracts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $revisions;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $is_template;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $related_doc_rev_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $related_doc_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $selected_revision_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $linked_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $selected_revision_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $latest_revision_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $selected_revision_filename;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contract_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contract_status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $template_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $latest_revision_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $last_rev_create_date;
-
-	/** 
-	 * @var string The related document version number for Meta-Data framework
-	 */
-	 public $related_doc_rev_number;
-
-	/** 
-	 * @var string 
-	 */
-	 public $document_revision_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $document_name;
-
-	/** 
-	 * @var string Document ID from documents web server provider
-	 */
-	 public $doc_id;
-
-	/** 
-	 * @var string Document type (ex: Google, box.net, IBM SmartCloud)
-	 */
-	 public $doc_type;
-
-	/** 
-	 * @var string Document URL from documents web server provider
-	 */
-	 public $doc_url;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string The filename of the document attachment
-	 */
-	 public $filename;
-
-	/** 
-	 * @var string 
-	 */
-	 public $active_date;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $revision;
-
-	/** 
-	 * @var string 
-	 */
-	 public $last_rev_created_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $last_rev_mime_type;
-
-	/** 
-	 * @var string Document status for Meta-Data framework
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $exp_date;
-
-	/** 
-	 * @var string 
-	 */
-	 public $category_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $subcategory_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $latest_revision;
-
-	public $relationship_fields = [
-		'modified_user_id' => 'modified_user_link',
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class EAPM
- *
- * @property Link2 created_by_link 
- * @property Link2 assigned_user_link 
- * @property Link2 modified_user_link 
- * @property User assigned_user_name 
- * @property User created_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User modified_by_name 
- * @property bool deleted Record deletion indicator
- * @property bool validated 
- * @property string consumer_key 
- * @property string api_data Any API data that the external API may wish to store on a per-user basis
- * @property string consumer_secret 
- * @property string oauth_token 
- * @property string application 
- * @property string oauth_secret 
- * @property string note 
- * @property string password 
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string description Full text of the note
- * @property string id Unique identifier
- * @property string date_entered Date record created
- * @property string created_by User who created record
- * @property string name 
- * @property string url 
- *
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedModified_by_name
- *
- */
-class EAPM {
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $validated;
-
-	/** 
-	 * @var string 
-	 */
-	 public $consumer_key;
-
-	/** 
-	 * @var string Any API data that the external API may wish to store on a per-user basis
-	 */
-	 public $api_data;
-
-	/** 
-	 * @var string 
-	 */
-	 public $consumer_secret;
-
-	/** 
-	 * @var string 
-	 */
-	 public $oauth_token;
-
-	/** 
-	 * @var string 
-	 */
-	 public $application;
-
-	/** 
-	 * @var string 
-	 */
-	 public $oauth_secret;
-
-	/** 
-	 * @var string 
-	 */
-	 public $note;
-
-	/** 
-	 * @var string 
-	 */
-	 public $password;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $url;
-
-	public $relationship_fields = [
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-	];
-
-}
-
-/**
- * Class EmailMan
- *
- * @property bool deleted Record deletion indicator
- * @property bool in_queue Flag indicating if item still in queue
- * @property string related_type Descriptor of the Sugar object indicated by related_id
- * @property string related_id ID of Sugar object to which this item is related
- * @property string date_modified Date record last modified
- * @property string recipient_name 
- * @property string recipient_email 
- * @property string campaign_name 
- * @property string message_name 
- * @property string send_attempts Number of attempts made to send this item
- * @property string in_queue_date Datetime in which item entered queue
- * @property string marketing_id 
- * @property string campaign_id ID of related campaign
- * @property string id Unique identifier
- * @property string list_id Associated list
- * @property string send_date_time 
- * @property string date_entered Date record created
- * @property string modified_user_id User ID who last modified record
- * @property string user_id User ID representing assigned-to user
- *
- *
- */
-class EmailMan {
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool Flag indicating if item still in queue
-	 */
-	 public $in_queue;
-
-	/** 
-	 * @var string Descriptor of the Sugar object indicated by related_id
-	 */
-	 public $related_type;
-
-	/** 
-	 * @var string ID of Sugar object to which this item is related
-	 */
-	 public $related_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $recipient_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $recipient_email;
-
-	/** 
-	 * @var string 
-	 */
-	 public $campaign_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $message_name;
-
-	/** 
-	 * @var string Number of attempts made to send this item
-	 */
-	 public $send_attempts;
-
-	/** 
-	 * @var string Datetime in which item entered queue
-	 */
-	 public $in_queue_date;
-
-	/** 
-	 * @var string 
-	 */
-	 public $marketing_id;
-
-	/** 
-	 * @var string ID of related campaign
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Associated list
-	 */
-	 public $list_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $send_date_time;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string User ID who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User ID representing assigned-to user
-	 */
-	 public $user_id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class EmailMarketing
- *
- * @property EmailTemplate template_name 
- * @property Link2 emailtemplate 
- * @property Link2 prospectlists 
- * @property bool all_prospect_lists 
- * @property bool deleted 
- * @property string template_id 
- * @property string date_start 
- * @property string status 
- * @property string inbound_email_id 
- * @property string prospect_list_name 
- * @property string campaign_id 
- * @property string reply_to_addr 
- * @property string modified_user_id 
- * @property string date_modified 
- * @property string date_entered 
- * @property string created_by 
- * @property string name 
- * @property string reply_to_name 
- * @property string from_addr 
- * @property string from_name 
- * @property string id 
- *
- * @method EmailTemplate getRelatedTemplate_name
- *
- */
-class EmailMarketing {
-	/** 
-	 * @var EmailTemplate 
-	 */
-	 public $template_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emailtemplate;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospectlists;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $all_prospect_lists;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $template_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_start;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $inbound_email_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $prospect_list_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $reply_to_addr;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $reply_to_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $from_addr;
-
-	/** 
-	 * @var string 
-	 */
-	 public $from_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-		'template_id' => 'emailtemplate',
-	];
-
-}
-
-/**
- * Class Email
- *
- * @property Link2 bugs 
- * @property Link2 cases 
- * @property Link2 contacts 
- * @property Link2 accounts 
- * @property Link2 assigned_user_link 
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property Link2 leads 
- * @property Link2 opportunities 
- * @property Link2 users 
- * @property Link2 notes 
- * @property Link2 meetings 
- * @property Link2 tasks 
- * @property Link2 prospects 
- * @property Link2 project 
- * @property Link2 projecttask 
- * @property bool reply_to_status I you reply to an email then reply to status of original email is set
- * @property bool flagged flagged status
- * @property bool deleted Record deletion indicator
- * @property string from_addr_name 
- * @property string reply_to_addr 
- * @property string cc_addrs_names 
- * @property string bcc_addrs_names 
- * @property string to_addrs_names 
- * @property string created_by User name who created record
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string assigned_user_id User ID that last modified record
- * @property string assigned_user_name 
- * @property string modified_user_id User ID that last modified record
- * @property string raw_source 
- * @property string parent_id ID of Sugar object referenced by parent_type (deprecated as of 4.2)
- * @property string message_id ID of the email item obtained from the email transport system
- * @property string intent Target of action used in Inbound Email assignment
- * @property string id Unique identifier
- * @property string status 
- * @property string type Type of email (ex: draft)
- * @property string mailbox_id 
- * @property string date_sent 
- * @property string parent_type Identifier of Sugar module to which this email is associated (deprecated as of 4.2)
- * @property string parent_name 
- * @property string description_html 
- * @property string description 
- * @property string name The subject of the email
- *
- * @method Bug[] getRelatedBugs
- * @method aCase[] getRelatedCases
- * @method Contact[] getRelatedContacts
- * @method Account[] getRelatedAccounts
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method Lead[] getRelatedLeads
- * @method Opportunity[] getRelatedOpportunities
- * @method User[] getRelatedUsers
- * @method Note[] getRelatedNotes
- * @method Meeting[] getRelatedMeetings
- * @method Task[] getRelatedTasks
- * @method Prospect[] getRelatedProspects
- * @method Project[] getRelatedProject
- * @method ProjectTask[] getRelatedProjecttask
- *
- */
-class Email {
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $users;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospects;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $projecttask;
-
-	/** 
-	 * @var bool I you reply to an email then reply to status of original email is set
-	 */
-	 public $reply_to_status;
-
-	/** 
-	 * @var bool flagged status
-	 */
-	 public $flagged;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $from_addr_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $reply_to_addr;
-
-	/** 
-	 * @var string 
-	 */
-	 public $cc_addrs_names;
-
-	/** 
-	 * @var string 
-	 */
-	 public $bcc_addrs_names;
-
-	/** 
-	 * @var string 
-	 */
-	 public $to_addrs_names;
-
-	/** 
-	 * @var string User name who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string User ID that last modified record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var string User ID that last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $raw_source;
-
-	/** 
-	 * @var string ID of Sugar object referenced by parent_type (deprecated as of 4.2)
-	 */
-	 public $parent_id;
-
-	/** 
-	 * @var string ID of the email item obtained from the email transport system
-	 */
-	 public $message_id;
-
-	/** 
-	 * @var string Target of action used in Inbound Email assignment
-	 */
-	 public $intent;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string Type of email (ex: draft)
-	 */
-	 public $type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $mailbox_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_sent;
-
-	/** 
-	 * @var string Identifier of Sugar module to which this email is associated (deprecated as of 4.2)
-	 */
-	 public $parent_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description_html;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description;
-
-	/** 
-	 * @var string The subject of the email
-	 */
-	 public $name;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class EmailTemplate
- *
- * @property Link2 assigned_user_link 
- * @property User assigned_user_id User ID assigned to record
- * @property User assigned_user_name 
- * @property bool deleted Record deletion indicator
- * @property bool text_only Should be checked if email template is to be sent in text only
- * @property string body_html HTML formatted email body to be used in resulting email
- * @property string type Type of the email template
- * @property string body Plain text body to be used in resulting email
- * @property string subject Email subject to be used in resulting email
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string created_by User who created record
- * @property string published 
- * @property string description Email template description
- * @property string name Email template name
- * @property string id Unique identifier
- *
- * @method User[] getRelatedAssigned_user_link
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedAssigned_user_name
- *
- */
-class EmailTemplate {
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool Should be checked if email template is to be sent in text only
-	 */
-	 public $text_only;
-
-	/** 
-	 * @var string HTML formatted email body to be used in resulting email
-	 */
-	 public $body_html;
-
-	/** 
-	 * @var string Type of the email template
-	 */
-	 public $type;
-
-	/** 
-	 * @var string Plain text body to be used in resulting email
-	 */
-	 public $body;
-
-	/** 
-	 * @var string Email subject to be used in resulting email
-	 */
-	 public $subject;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $published;
-
-	/** 
-	 * @var string Email template description
-	 */
-	 public $description;
-
-	/** 
-	 * @var string Email template name
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class EmailText
- *
- * @property bool deleted 
- * @property string description Email body in plain text
- * @property string description_html Email body in HTML format
- * @property string raw_source Full raw source of email
- * @property string bcc_addrs Email address(es) of person(s) to receive a blind carbon copy of the email
- * @property string cc_addrs Email address(es) of person(s) to receive a carbon copy of the email
- * @property string from_addr Email address of person who send the email
- * @property string reply_to_addr reply to email address
- * @property string to_addrs Email address(es) of person(s) to receive the email
- * @property string email_id Foriegn key to emails table
- *
- *
- */
-class EmailText {
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string Email body in plain text
-	 */
-	 public $description;
-
-	/** 
-	 * @var string Email body in HTML format
-	 */
-	 public $description_html;
-
-	/** 
-	 * @var string Full raw source of email
-	 */
-	 public $raw_source;
-
-	/** 
-	 * @var string Email address(es) of person(s) to receive a blind carbon copy of the email
-	 */
-	 public $bcc_addrs;
-
-	/** 
-	 * @var string Email address(es) of person(s) to receive a carbon copy of the email
-	 */
-	 public $cc_addrs;
-
-	/** 
-	 * @var string Email address of person who send the email
-	 */
-	 public $from_addr;
-
-	/** 
-	 * @var string reply to email address
-	 */
-	 public $reply_to_addr;
-
-	/** 
-	 * @var string Email address(es) of person(s) to receive the email
-	 */
-	 public $to_addrs;
-
-	/** 
-	 * @var string Foriegn key to emails table
-	 */
-	 public $email_id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Employee
- *
- * @property  m_accept_status_fields 
- * @property  c_accept_status_fields 
- * @property Link2 contacts_sync 
- * @property Link2 meetings 
- * @property Link2 reports_to_link 
- * @property Link2 email_addresses 
- * @property Link2 reportees 
- * @property Link2 email_addresses_primary 
- * @property Link2 aclroles 
- * @property Link2 calls 
- * @property Link2 eapm 
- * @property Link2 oauth_tokens 
- * @property Link2 project_resource 
- * @property Link2 prospect_lists 
- * @property Link2 holidays 
- * @property Link2 emails_users 
- * @property User reports_to_name 
- * @property bool portal_only 
- * @property bool show_on_employees 
- * @property bool is_group 
- * @property bool sugar_login 
- * @property bool system_generated_password 
- * @property bool external_auth_only 
- * @property bool is_admin 
- * @property bool receive_notifications 
- * @property bool deleted 
- * @property string email1 
- * @property string employee_status 
- * @property string messenger_id 
- * @property string accept_status_name 
- * @property string reports_to_id 
- * @property string email_link_type 
- * @property string accept_status_id 
- * @property string messenger_type 
- * @property string address_state 
- * @property string description 
- * @property string name 
- * @property string date_entered 
- * @property string date_modified 
- * @property string modified_by_name 
- * @property string modified_user_id 
- * @property string full_name 
- * @property string last_name 
- * @property string user_hash 
- * @property string user_name 
- * @property string pwd_last_changed 
- * @property string authenticate_id 
- * @property string first_name 
- * @property string created_by 
- * @property string created_by_name 
- * @property string address_street 
- * @property string status 
- * @property string address_city 
- * @property string id 
- * @property string address_postalcode 
- * @property string address_country 
- * @property string phone_fax 
- * @property string phone_other 
- * @property string department 
- * @property string title 
- * @property string phone_home 
- * @property string phone_mobile 
- * @property string phone_work 
- * @property string UserType 
- *
- * @method  getRelatedM_accept_status_fields
- * @method  getRelatedC_accept_status_fields
- * @method Array[] getRelatedReports_to_link
- * @method Array[] getRelatedReportees
- * @method User[] getRelatedAclroles
- * @method OAuthToken[] getRelatedOauth_tokens
- * @method ProspectList[] getRelatedProspect_lists
- * @method Array[] getRelatedHolidays
- * @method Email[] getRelatedEmails_users
- * @method User getRelatedReports_to_name
- *
- */
-class Employee {
-	/** 
-	 * @var  
-	 */
-	 public $m_accept_status_fields;
-
-	/** 
-	 * @var  
-	 */
-	 public $c_accept_status_fields;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts_sync;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reports_to_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reportees;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses_primary;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $aclroles;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $eapm;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $oauth_tokens;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project_resource;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospect_lists;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $holidays;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails_users;
-
-	/** 
-	 * @var User 
-	 */
-	 public $reports_to_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $portal_only;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $show_on_employees;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $is_group;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $sugar_login;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $system_generated_password;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $external_auth_only;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $is_admin;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $receive_notifications;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email1;
-
-	/** 
-	 * @var string 
-	 */
-	 public $employee_status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $messenger_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $reports_to_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email_link_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $messenger_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_state;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $full_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $last_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $user_hash;
-
-	/** 
-	 * @var string 
-	 */
-	 public $user_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $pwd_last_changed;
-
-	/** 
-	 * @var string 
-	 */
-	 public $authenticate_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $first_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_street;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_city;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_postalcode;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_country;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_fax;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_other;
-
-	/** 
-	 * @var string 
-	 */
-	 public $department;
-
-	/** 
-	 * @var string 
-	 */
-	 public $title;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_home;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_mobile;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_work;
-
-	/** 
-	 * @var string 
-	 */
-	 public $UserType;
-
-	public $relationship_fields = [
-		'reports_to_id' => 'reports_to_link',
-	];
-
-}
-
-/**
- * Class ImportMap
- *
- * @property bool deleted Record deletion indicator
- * @property bool has_header Indicator if source file contains a header row
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string is_published Indicator if mapping is published
- * @property string assigned_user_id Assigned-to user
- * @property string default_values Default Values for all columns
- * @property string content Mappings for all columns
- * @property string source 
- * @property string name Name of import map
- * @property string enclosure 
- * @property string delimiter 
- * @property string module Module used for import
- * @property string id Unique identifier
- *
- *
- */
-class ImportMap {
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool Indicator if source file contains a header row
-	 */
-	 public $has_header;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Indicator if mapping is published
-	 */
-	 public $is_published;
-
-	/** 
-	 * @var string Assigned-to user
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string Default Values for all columns
-	 */
-	 public $default_values;
-
-	/** 
-	 * @var string Mappings for all columns
-	 */
-	 public $content;
-
-	/** 
-	 * @var string 
-	 */
-	 public $source;
-
-	/** 
-	 * @var string Name of import map
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $enclosure;
-
-	/** 
-	 * @var string 
-	 */
-	 public $delimiter;
-
-	/** 
-	 * @var string Module used for import
-	 */
-	 public $module;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class ImportMap
- *
- * @property bool deleted Record deletion indicator
- * @property bool has_header Indicator if source file contains a header row
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string is_published Indicator if mapping is published
- * @property string assigned_user_id Assigned-to user
- * @property string default_values Default Values for all columns
- * @property string content Mappings for all columns
- * @property string source 
- * @property string name Name of import map
- * @property string enclosure 
- * @property string delimiter 
- * @property string module Module used for import
- * @property string id Unique identifier
- *
- *
- */
-class ImportMap {
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool Indicator if source file contains a header row
-	 */
-	 public $has_header;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Indicator if mapping is published
-	 */
-	 public $is_published;
-
-	/** 
-	 * @var string Assigned-to user
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string Default Values for all columns
-	 */
-	 public $default_values;
-
-	/** 
-	 * @var string Mappings for all columns
-	 */
-	 public $content;
-
-	/** 
-	 * @var string 
-	 */
-	 public $source;
-
-	/** 
-	 * @var string Name of import map
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $enclosure;
-
-	/** 
-	 * @var string 
-	 */
-	 public $delimiter;
-
-	/** 
-	 * @var string Module used for import
-	 */
-	 public $module;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class InboundEmail
- *
- * @property Link2 modified_user_id_link 
- * @property Link2 created_by_link 
- * @property bool delete_seen Delete email from server once read (seen)
- * @property bool is_personal Personal account flag
- * @property bool deleted Record deltion indicator
- * @property string service 
- * @property string mailbox_type 
- * @property string mailbox 
- * @property string stored_options 
- * @property string groupfolder_id Unique identifier
- * @property string group_id Group ID (unused)
- * @property string port Port used to access mail server
- * @property string template_id Template used for auto-reply
- * @property string email_user User name allowed access to mail server
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string created_by User who created record
- * @property string name Name given to the inbound email mailbox
- * @property string id Unique identifier
- * @property string server_url Mail server URL
- * @property string status Status of the inbound email mailbox (ex: Active or Inactive)
- * @property string email_password Password of user identified by email_user
- *
- * @method User[] getRelatedModified_user_id_link
- * @method User[] getRelatedCreated_by_link
- *
- */
-class InboundEmail {
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_id_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var bool Delete email from server once read (seen)
-	 */
-	 public $delete_seen;
-
-	/** 
-	 * @var bool Personal account flag
-	 */
-	 public $is_personal;
-
-	/** 
-	 * @var bool Record deltion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $service;
-
-	/** 
-	 * @var string 
-	 */
-	 public $mailbox_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $mailbox;
-
-	/** 
-	 * @var string 
-	 */
-	 public $stored_options;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $groupfolder_id;
-
-	/** 
-	 * @var string Group ID (unused)
-	 */
-	 public $group_id;
-
-	/** 
-	 * @var string Port used to access mail server
-	 */
-	 public $port;
-
-	/** 
-	 * @var string Template used for auto-reply
-	 */
-	 public $template_id;
-
-	/** 
-	 * @var string User name allowed access to mail server
-	 */
-	 public $email_user;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Name given to the inbound email mailbox
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Mail server URL
-	 */
-	 public $server_url;
-
-	/** 
-	 * @var string Status of the inbound email mailbox (ex: Active or Inactive)
-	 */
-	 public $status;
-
-	/** 
-	 * @var string Password of user identified by email_user
-	 */
-	 public $email_password;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Lead
- *
- * @property  m_accept_status_fields 
- * @property  c_accept_status_fields 
- * @property Campaign campaign_name 
- * @property Contact report_to_name 
- * @property Link2 prospect_lists 
- * @property Link2 oldcalls 
- * @property Link2 contact 
- * @property Link2 contacts 
- * @property Link2 accounts 
- * @property Link2 campaign_leads 
- * @property Link2 campaigns 
- * @property Link2 reportees 
- * @property Link2 emails 
- * @property Link2 email_addresses_primary 
- * @property Link2 email_addresses 
- * @property Link2 reports_to_link 
- * @property Link2 tasks 
- * @property Link2 notes 
- * @property Link2 opportunity 
- * @property Link2 calls 
- * @property Link2 oldmeetings 
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property Link2 meetings 
- * @property Link2 assigned_user_link 
- * @property User modified_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User created_by_name 
- * @property User assigned_user_name 
- * @property bool email_opt_out 
- * @property bool converted Has Lead been converted to a Contact (and other Sugar objects)
- * @property bool invalid_email 
- * @property bool deleted Record deletion indicator
- * @property bool do_not_call An indicator of whether contact can be called
- * @property bool webtolead_invalid_email Indicator that email address for lead is invalid
- * @property bool webtolead_email_opt_out Indicator signaling if lead elects to opt out of email campaigns
- * @property string account_description Description of lead account
- * @property string contact_id If converted, Contact ID resulting from the conversion
- * @property string reports_to_id ID of Contact the Lead reports to
- * @property string account_name Account name for lead
- * @property string status_description Description of the status of the lead
- * @property string accept_status_name 
- * @property string birthdate The birthdate of the contact
- * @property string webtolead_email2 Secondary email address of lead
- * @property string portal_name Portal user name when lead created via lead portal
- * @property string portal_app Portal application that resulted in created of lead
- * @property string website URL of website for the company
- * @property string webtolead_email1 Main email address of lead
- * @property string status Status of the lead
- * @property string opportunity_name Opportunity name associated with lead
- * @property string opportunity_id If converted, Opportunity ID resulting from the conversion
- * @property string opportunity_amount Amount of the opportunity
- * @property string campaign_id Campaign that generated lead
- * @property string accept_status_id 
- * @property string account_id If converted, Account ID resulting from the conversion
- * @property string assistant_phone Phone number of the assistant of the contact
- * @property string email 
- * @property string phone_home Home phone number of the contact
- * @property string department Department the lead belongs to
- * @property string title The title of the contact
- * @property string phone_mobile Mobile phone number of the contact
- * @property string phone_work Work phone number of the contact
- * @property string email1 
- * @property string phone_fax Contact fax number
- * @property string phone_other Other phone number for the contact
- * @property string full_name 
- * @property string last_name Last name of the contact
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string name 
- * @property string modified_user_id User who last modified record
- * @property string created_by User who created record
- * @property string first_name First name of the contact
- * @property string salutation Contact salutation (e.g., Mr, Ms)
- * @property string description Full text of the note
- * @property string email2 
- * @property string primary_address_street Street address for primary address
- * @property string alt_address_country Country for alternate address
- * @property string alt_address_postalcode Postal code for alternate address
- * @property string alt_address_state State for alternate address
- * @property string assistant Name of the assistant of the contact
- * @property string id Unique identifier
- * @property string lead_source Lead source (ex: Web, print)
- * @property string refered_by Identifies who refered the lead
- * @property string email_addresses_non_primary 
- * @property string alt_address_city City for alternate address
- * @property string alt_address_street_3 
- * @property string primary_address_city City for primary address
- * @property string primary_address_street_3 
- * @property string primary_address_street_2 
- * @property string primary_address_state State for primary address
- * @property string primary_address_postalcode Postal code for primary address
- * @property string alt_address_street_2 
- * @property string alt_address_street Street address for alternate address
- * @property string primary_address_country Country for primary address
- * @property string lead_source_description Description of the lead source
- *
- * @method  getRelatedM_accept_status_fields
- * @method  getRelatedC_accept_status_fields
- * @method Campaign getRelatedCampaign_name
- * @method Contact getRelatedReport_to_name
- * @method ProspectList[] getRelatedProspect_lists
- * @method Contact[] getRelatedContacts
- * @method CampaignLog[] getRelatedCampaigns
- * @method Array[] getRelatedReportees
- * @method Array[] getRelatedReports_to_link
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedAssigned_user_link
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_name
- *
- */
-class Lead {
-	/** 
-	 * @var  
-	 */
-	 public $m_accept_status_fields;
-
-	/** 
-	 * @var  
-	 */
-	 public $c_accept_status_fields;
-
-	/** 
-	 * @var Campaign 
-	 */
-	 public $campaign_name;
-
-	/** 
-	 * @var Contact 
-	 */
-	 public $report_to_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospect_lists;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $oldcalls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contact;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reportees;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses_primary;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reports_to_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunity;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $oldmeetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $email_opt_out;
-
-	/** 
-	 * @var bool Has Lead been converted to a Contact (and other Sugar objects)
-	 */
-	 public $converted;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $invalid_email;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool An indicator of whether contact can be called
-	 */
-	 public $do_not_call;
-
-	/** 
-	 * @var bool Indicator that email address for lead is invalid
-	 */
-	 public $webtolead_invalid_email;
-
-	/** 
-	 * @var bool Indicator signaling if lead elects to opt out of email campaigns
-	 */
-	 public $webtolead_email_opt_out;
-
-	/** 
-	 * @var string Description of lead account
-	 */
-	 public $account_description;
-
-	/** 
-	 * @var string If converted, Contact ID resulting from the conversion
-	 */
-	 public $contact_id;
-
-	/** 
-	 * @var string ID of Contact the Lead reports to
-	 */
-	 public $reports_to_id;
-
-	/** 
-	 * @var string Account name for lead
-	 */
-	 public $account_name;
-
-	/** 
-	 * @var string Description of the status of the lead
-	 */
-	 public $status_description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_name;
-
-	/** 
-	 * @var string The birthdate of the contact
-	 */
-	 public $birthdate;
-
-	/** 
-	 * @var string Secondary email address of lead
-	 */
-	 public $webtolead_email2;
-
-	/** 
-	 * @var string Portal user name when lead created via lead portal
-	 */
-	 public $portal_name;
-
-	/** 
-	 * @var string Portal application that resulted in created of lead
-	 */
-	 public $portal_app;
-
-	/** 
-	 * @var string URL of website for the company
-	 */
-	 public $website;
-
-	/** 
-	 * @var string Main email address of lead
-	 */
-	 public $webtolead_email1;
-
-	/** 
-	 * @var string Status of the lead
-	 */
-	 public $status;
-
-	/** 
-	 * @var string Opportunity name associated with lead
-	 */
-	 public $opportunity_name;
-
-	/** 
-	 * @var string If converted, Opportunity ID resulting from the conversion
-	 */
-	 public $opportunity_id;
-
-	/** 
-	 * @var string Amount of the opportunity
-	 */
-	 public $opportunity_amount;
-
-	/** 
-	 * @var string Campaign that generated lead
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_id;
-
-	/** 
-	 * @var string If converted, Account ID resulting from the conversion
-	 */
-	 public $account_id;
-
-	/** 
-	 * @var string Phone number of the assistant of the contact
-	 */
-	 public $assistant_phone;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email;
-
-	/** 
-	 * @var string Home phone number of the contact
-	 */
-	 public $phone_home;
-
-	/** 
-	 * @var string Department the lead belongs to
-	 */
-	 public $department;
-
-	/** 
-	 * @var string The title of the contact
-	 */
-	 public $title;
-
-	/** 
-	 * @var string Mobile phone number of the contact
-	 */
-	 public $phone_mobile;
-
-	/** 
-	 * @var string Work phone number of the contact
-	 */
-	 public $phone_work;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email1;
-
-	/** 
-	 * @var string Contact fax number
-	 */
-	 public $phone_fax;
-
-	/** 
-	 * @var string Other phone number for the contact
-	 */
-	 public $phone_other;
-
-	/** 
-	 * @var string 
-	 */
-	 public $full_name;
-
-	/** 
-	 * @var string Last name of the contact
-	 */
-	 public $last_name;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string First name of the contact
-	 */
-	 public $first_name;
-
-	/** 
-	 * @var string Contact salutation (e.g., Mr, Ms)
-	 */
-	 public $salutation;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email2;
-
-	/** 
-	 * @var string Street address for primary address
-	 */
-	 public $primary_address_street;
-
-	/** 
-	 * @var string Country for alternate address
-	 */
-	 public $alt_address_country;
-
-	/** 
-	 * @var string Postal code for alternate address
-	 */
-	 public $alt_address_postalcode;
-
-	/** 
-	 * @var string State for alternate address
-	 */
-	 public $alt_address_state;
-
-	/** 
-	 * @var string Name of the assistant of the contact
-	 */
-	 public $assistant;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Lead source (ex: Web, print)
-	 */
-	 public $lead_source;
-
-	/** 
-	 * @var string Identifies who refered the lead
-	 */
-	 public $refered_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email_addresses_non_primary;
-
-	/** 
-	 * @var string City for alternate address
-	 */
-	 public $alt_address_city;
-
-	/** 
-	 * @var string 
-	 */
-	 public $alt_address_street_3;
-
-	/** 
-	 * @var string City for primary address
-	 */
-	 public $primary_address_city;
-
-	/** 
-	 * @var string 
-	 */
-	 public $primary_address_street_3;
-
-	/** 
-	 * @var string 
-	 */
-	 public $primary_address_street_2;
-
-	/** 
-	 * @var string State for primary address
-	 */
-	 public $primary_address_state;
-
-	/** 
-	 * @var string Postal code for primary address
-	 */
-	 public $primary_address_postalcode;
-
-	/** 
-	 * @var string 
-	 */
-	 public $alt_address_street_2;
-
-	/** 
-	 * @var string Street address for alternate address
-	 */
-	 public $alt_address_street;
-
-	/** 
-	 * @var string Country for primary address
-	 */
-	 public $primary_address_country;
-
-	/** 
-	 * @var string Description of the lead source
-	 */
-	 public $lead_source_description;
-
-	public $relationship_fields = [
-		'campaign_id' => 'campaign_leads',
-		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class Meeting
- *
- * @property Contact contact_name 
- * @property Link2 notes 
- * @property Link2 contacts 
- * @property Link2 case 
- * @property Link2 assigned_user_link 
- * @property Link2 opportunity 
- * @property Link2 users 
- * @property Link2 accounts 
- * @property Link2 leads 
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property User modified_by_name 
- * @property User assigned_user_name 
- * @property User created_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property bool email_reminder_sent Whether email reminder is already sent
- * @property bool deleted Record deletion indicator
- * @property bool email_reminder_checked checkbox indicating whether or not the email reminder value is set (Meta-data only)
- * @property bool reminder_checked checkbox indicating whether or not the reminder value is set (Meta-data only)
- * @property string reminder_time Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
- * @property string email_reminder_time Specifies when a email reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
- * @property string outlook_id When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
- * @property string sequence Meeting update sequence for meetings as per iCalendar standards
- * @property string parent_name 
- * @property string repeat_type Type of recurrence
- * @property string repeat_parent_id Id of the first element of recurring records
- * @property string recurring_source Source of recurring meeting
- * @property string duration Duration handler dropdown
- * @property string repeat_count Number of recurrence
- * @property string repeat_until Repeat until specified date
- * @property string repeat_interval Interval of recurrence
- * @property string repeat_dow Days of week in recurrence
- * @property string contact_id 
- * @property string parent_type Module meeting is associated with
- * @property string accept_status 
- * @property string accept_status 
- * @property string location Meeting location
- * @property string password Meeting password
- * @property string join_url Join URL
- * @property string description Full text of the note
- * @property string created_by User who created record
- * @property string name Meeting name
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string host_url Host URL
- * @property string displayed_url Meeting URL
- * @property string id Unique identifier
- * @property string status Meeting status (ex: Planned, Held, Not held)
- * @property string type Meeting type (ex: WebEx, Other)
- * @property string direction Indicates whether call is inbound or outbound
- * @property string date_end Date meeting ends
- * @property string date_start Date of start of meeting
- * @property string creator Meeting creator
- * @property string external_id Meeting ID for external app API
- * @property string duration_hours Duration (hours)
- * @property string duration_minutes Duration (minutes)
- * @property string parent_id ID of item indicated by parent_type
- *
- * @method Contact getRelatedContact_name
- * @method Note[] getRelatedNotes
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_id
- *
- */
-class Meeting {
-	/** 
-	 * @var Contact 
-	 */
-	 public $contact_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $case;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunity;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $users;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var bool Whether email reminder is already sent
-	 */
-	 public $email_reminder_sent;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool checkbox indicating whether or not the email reminder value is set (Meta-data only)
-	 */
-	 public $email_reminder_checked;
-
-	/** 
-	 * @var bool checkbox indicating whether or not the reminder value is set (Meta-data only)
-	 */
-	 public $reminder_checked;
-
-	/** 
-	 * @var string Specifies when a reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
-	 */
-	 public $reminder_time;
-
-	/** 
-	 * @var string Specifies when a email reminder alert should be issued; -1 means no alert; otherwise the number of seconds prior to the start
-	 */
-	 public $email_reminder_time;
-
-	/** 
-	 * @var string When the Sugar Plug-in for Microsoft Outlook syncs an Outlook appointment, this is the Outlook appointment item ID
-	 */
-	 public $outlook_id;
-
-	/** 
-	 * @var string Meeting update sequence for meetings as per iCalendar standards
-	 */
-	 public $sequence;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_name;
-
-	/** 
-	 * @var string Type of recurrence
-	 */
-	 public $repeat_type;
-
-	/** 
-	 * @var string Id of the first element of recurring records
-	 */
-	 public $repeat_parent_id;
-
-	/** 
-	 * @var string Source of recurring meeting
-	 */
-	 public $recurring_source;
-
-	/** 
-	 * @var string Duration handler dropdown
-	 */
-	 public $duration;
-
-	/** 
-	 * @var string Number of recurrence
-	 */
-	 public $repeat_count;
-
-	/** 
-	 * @var string Repeat until specified date
-	 */
-	 public $repeat_until;
-
-	/** 
-	 * @var string Interval of recurrence
-	 */
-	 public $repeat_interval;
-
-	/** 
-	 * @var string Days of week in recurrence
-	 */
-	 public $repeat_dow;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contact_id;
-
-	/** 
-	 * @var string Module meeting is associated with
-	 */
-	 public $parent_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status;
-
-	/** 
-	 * @var string Meeting location
-	 */
-	 public $location;
-
-	/** 
-	 * @var string Meeting password
-	 */
-	 public $password;
-
-	/** 
-	 * @var string Join URL
-	 */
-	 public $join_url;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Meeting name
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Host URL
-	 */
-	 public $host_url;
-
-	/** 
-	 * @var string Meeting URL
-	 */
-	 public $displayed_url;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Meeting status (ex: Planned, Held, Not held)
-	 */
-	 public $status;
-
-	/** 
-	 * @var string Meeting type (ex: WebEx, Other)
-	 */
-	 public $type;
-
-	/** 
-	 * @var string Indicates whether call is inbound or outbound
-	 */
-	 public $direction;
-
-	/** 
-	 * @var string Date meeting ends
-	 */
-	 public $date_end;
-
-	/** 
-	 * @var string Date of start of meeting
-	 */
-	 public $date_start;
-
-	/** 
-	 * @var string Meeting creator
-	 */
-	 public $creator;
-
-	/** 
-	 * @var string Meeting ID for external app API
-	 */
-	 public $external_id;
-
-	/** 
-	 * @var string Duration (hours)
-	 */
-	 public $duration_hours;
-
-	/** 
-	 * @var string Duration (minutes)
-	 */
-	 public $duration_minutes;
-
-	/** 
-	 * @var string ID of item indicated by parent_type
-	 */
-	 public $parent_id;
-
-	public $relationship_fields = [
-		'contact_id' => 'contacts',
-		'modified_user_id' => 'modified_user_link',
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class MergeRecord
- *
- *
- *
- */
-class MergeRecord {
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Note
- *
- * @property Contact contact_name 
- * @property Link2 accounts 
- * @property Link2 opportunities 
- * @property Link2 cases 
- * @property Link2 bugs 
- * @property Link2 contact 
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property Link2 emails 
- * @property Link2 leads 
- * @property Link2 calls 
- * @property Link2 assigned_user_link 
- * @property Link2 tasks 
- * @property Link2 meetings 
- * @property Link2 project_tasks 
- * @property Link2 projects 
- * @property User assigned_user_name 
- * @property User created_by_name 
- * @property User modified_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property bool portal_flag Portal flag indicator determines if note created via portal
- * @property bool deleted Record deletion indicator
- * @property bool embed_flag Embed flag indicator determines if note embedded in email
- * @property string acase_id 
- * @property string opportunity_id 
- * @property string lead_id 
- * @property string parent_name 
- * @property string created_by User who created record
- * @property string name Name of the note
- * @property string file_mime_type Attachment MIME type
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string id Unique identifier
- * @property string date_entered Date record created
- * @property string file_url Path to file (can be URL)
- * @property string filename File name associated with the note (attachment)
- * @property string contact_phone 
- * @property string contact_email 
- * @property string description Full text of the note
- * @property string contact_id Contact ID note is associated with
- * @property string parent_type Sugar module the Note is associated with
- * @property string parent_id The ID of the Sugar item specified in parent_type
- * @property string account_id 
- *
- * @method Contact getRelatedContact_name
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedAssigned_user_link
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_id
- *
- */
-class Note {
-	/** 
-	 * @var Contact 
-	 */
-	 public $contact_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contact;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project_tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $projects;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var bool Portal flag indicator determines if note created via portal
-	 */
-	 public $portal_flag;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool Embed flag indicator determines if note embedded in email
-	 */
-	 public $embed_flag;
-
-	/** 
-	 * @var string 
-	 */
-	 public $acase_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $opportunity_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $lead_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_name;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Name of the note
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Attachment MIME type
-	 */
-	 public $file_mime_type;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Path to file (can be URL)
-	 */
-	 public $file_url;
-
-	/** 
-	 * @var string File name associated with the note (attachment)
-	 */
-	 public $filename;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contact_phone;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contact_email;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string Contact ID note is associated with
-	 */
-	 public $contact_id;
-
-	/** 
-	 * @var string Sugar module the Note is associated with
-	 */
-	 public $parent_type;
-
-	/** 
-	 * @var string The ID of the Sugar item specified in parent_type
-	 */
-	 public $parent_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $account_id;
-
-	public $relationship_fields = [
-		'contact_id' => 'contact',
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-	];
-
-}
-
-/**
- * Class OAuthKey
- *
- * @property Link2 modified_user_link 
- * @property Link2 assigned_user_link 
- * @property Link2 created_by_link 
- * @property Link2 tokens 
- * @property User created_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User modified_by_name 
- * @property User assigned_user_name 
- * @property bool deleted Record deletion indicator
- * @property string c_secret Consumer secret key
- * @property string c_key Consumer public key
- * @property string description Full text of the note
- * @property string date_entered Date record created
- * @property string name 
- * @property string date_modified Date record last modified
- * @property string modified_user_id User who last modified record
- * @property string created_by User who created record
- * @property string id Unique identifier
- *
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedCreated_by_link
- * @method OAuthToken[] getRelatedTokens
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_name
- *
- */
-class OAuthKey {
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tokens;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string Consumer secret key
-	 */
-	 public $c_secret;
-
-	/** 
-	 * @var string Consumer public key
-	 */
-	 public $c_key;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class OAuthToken
- *
- * @property Link2 consumer_link 
- * @property Link2 assigned_user_link 
- * @property OAuthKey consumer_name 
- * @property User assigned_user_name 
- * @property User assigned_user_id User ID assigned to record
- * @property bool deleted Record deletion indicator
- * @property string tstate Token state
- * @property string secret Secret key
- * @property string consumer Token related to the consumer
- * @property string token_ts Token timestamp
- * @property string callback_url Callback URL for Authorization
- * @property string verify Token verification info
- * @property string id Unique identifier
- *
- * @method OAuthKey[] getRelatedConsumer_link
- * @method User[] getRelatedAssigned_user_link
- * @method OAuthKey getRelatedConsumer_name
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedAssigned_user_id
- *
- */
-class OAuthToken {
-	/** 
-	 * @var Link2 
-	 */
-	 public $consumer_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var OAuthKey 
-	 */
-	 public $consumer_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string Token state
-	 */
-	 public $tstate;
-
-	/** 
-	 * @var string Secret key
-	 */
-	 public $secret;
-
-	/** 
-	 * @var string Token related to the consumer
-	 */
-	 public $consumer;
-
-	/** 
-	 * @var string Token timestamp
-	 */
-	 public $token_ts;
-
-	/** 
-	 * @var string Callback URL for Authorization
-	 */
-	 public $callback_url;
-
-	/** 
-	 * @var string Token verification info
-	 */
-	 public $verify;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-		'consumer' => 'consumer_link',
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class Opportunity
- *
- * @property Account account_name 
- * @property Campaign campaign_name 
- * @property Currency currency_name 
- * @property Currency currency_symbol 
- * @property Link2 assigned_user_link 
- * @property Link2 tasks 
- * @property Link2 emails 
- * @property Link2 campaign_opportunities 
- * @property Link2 contacts 
- * @property Link2 meetings 
- * @property Link2 calls 
- * @property Link2 created_by_link 
- * @property Link2 campaigns 
- * @property Link2 campaign_link 
- * @property Link2 currencies 
- * @property Link2 leads 
- * @property Link2 project 
- * @property Link2 notes 
- * @property Link2 accounts 
- * @property Link2 documents 
- * @property Link2 modified_user_link 
- * @property User assigned_user_name 
- * @property User modified_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User created_by_name 
- * @property bool deleted Record deletion indicator
- * @property string probability The probability of closure
- * @property string sales_stage Indication of progression towards closure
- * @property string lead_source Source of the opportunity
- * @property string created_by User who created record
- * @property string description Full text of the note
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string name Name of the opportunity
- * @property string date_entered Date record created
- * @property string opportunity_type Type of opportunity (ex: Existing, New)
- * @property string account_id 
- * @property string currency_id Currency used for display purposes
- * @property string date_closed Expected or actual date the oppportunity will close
- * @property string amount_usdollar Formatted amount of the opportunity
- * @property string amount Unconverted amount of the opportunity
- * @property string campaign_id Campaign that generated lead
- * @property string id Unique identifier
- * @property string next_step The next step in the sales process
- *
- * @method Account getRelatedAccount_name
- * @method Campaign getRelatedCampaign_name
- * @method Currency getRelatedCurrency_name
- * @method Currency getRelatedCurrency_symbol
- * @method User[] getRelatedAssigned_user_link
- * @method Contact[] getRelatedContacts
- * @method User[] getRelatedCreated_by_link
- * @method CampaignLog[] getRelatedCampaigns
- * @method Campaign[] getRelatedCampaign_link
- * @method Account[] getRelatedAccounts
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedCreated_by_name
- *
- */
-class Opportunity {
-	/** 
-	 * @var Account 
-	 */
-	 public $account_name;
-
-	/** 
-	 * @var Campaign 
-	 */
-	 public $campaign_name;
-
-	/** 
-	 * @var Currency 
-	 */
-	 public $currency_name;
-
-	/** 
-	 * @var Currency 
-	 */
-	 public $currency_symbol;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaign_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $currencies;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $documents;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string The probability of closure
-	 */
-	 public $probability;
-
-	/** 
-	 * @var string Indication of progression towards closure
-	 */
-	 public $sales_stage;
-
-	/** 
-	 * @var string Source of the opportunity
-	 */
-	 public $lead_source;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Name of the opportunity
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Type of opportunity (ex: Existing, New)
-	 */
-	 public $opportunity_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $account_id;
-
-	/** 
-	 * @var string Currency used for display purposes
-	 */
-	 public $currency_id;
-
-	/** 
-	 * @var string Expected or actual date the oppportunity will close
-	 */
-	 public $date_closed;
-
-	/** 
-	 * @var string Formatted amount of the opportunity
-	 */
-	 public $amount_usdollar;
-
-	/** 
-	 * @var string Unconverted amount of the opportunity
-	 */
-	 public $amount;
-
-	/** 
-	 * @var string Campaign that generated lead
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string The next step in the sales process
-	 */
-	 public $next_step;
-
-	public $relationship_fields = [
-		'account_id' => 'accounts',
-		'campaign_id' => 'campaign_opportunities',
-		'assigned_user_id' => 'assigned_user_link',
-		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class Project
- *
- * @property Link2 meetings 
- * @property Link2 calls 
- * @property Link2 emails 
- * @property Link2 tasks 
- * @property Link2 notes 
- * @property Link2 contacts 
- * @property Link2 quotes 
- * @property Link2 accounts 
- * @property Link2 projecttask 
- * @property Link2 created_by_link 
- * @property Link2 bugs 
- * @property Link2 products 
- * @property Link2 cases 
- * @property Link2 assigned_user_link 
- * @property Link2 modified_user_link 
- * @property Link2 opportunities 
- * @property User created_by_name 
- * @property User assigned_user_name 
- * @property User modified_by_name 
- * @property bool deleted Record deletion indicator
- * @property string total_actual_effort 
- * @property string modified_user_id User who last modified record
- * @property string created_by User who created record
- * @property string assigned_user_id User assigned to this record
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string name Project name
- * @property string description Project description
- * @property string priority 
- * @property string total_estimated_effort 
- * @property string status 
- * @property string estimated_end_date 
- * @property string estimated_start_date 
- * @property string id Unique identifier
- *
- * @method User[] getRelatedCreated_by_link
- * @method Bug[] getRelatedBugs
- * @method [] getRelatedProducts
- * @method aCase[] getRelatedCases
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedModified_by_name
- *
- */
-class Project {
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $quotes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $projecttask;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $products;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $total_actual_effort;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string User assigned to this record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Project name
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Project description
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $priority;
-
-	/** 
-	 * @var string 
-	 */
-	 public $total_estimated_effort;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $estimated_end_date;
-
-	/** 
-	 * @var string 
-	 */
-	 public $estimated_start_date;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-		'created_by' => 'created_by_link',
-		'assigned_user_id' => 'users',
-		'modified_user_id' => 'modified_user_link',
-	];
-
-}
-
-/**
- * Class ProjectTask
- *
- * @property Link2 calls 
- * @property Link2 meetings 
- * @property Link2 tasks 
- * @property Link2 notes 
- * @property Link2 emails 
- * @property Link2 projects 
- * @property Link2 assigned_user_link 
- * @property Link2 modified_user_link 
- * @property Link2 project_name_link 
- * @property Link2 created_by_link 
- * @property Project project_name 
- * @property User assigned_user_name 
- * @property User created_by_name 
- * @property User modified_by_name 
- * @property bool milestone_flag 
- * @property bool deleted 
- * @property string time_start 
- * @property string date_start 
- * @property string time_finish 
- * @property string date_finish 
- * @property string utilization 
- * @property string predecessors 
- * @property string description 
- * @property string date_modified 
- * @property string date_entered 
- * @property string project_id 
- * @property string project_task_id 
- * @property string status 
- * @property string name 
- * @property string actual_effort 
- * @property string estimated_effort 
- * @property string parent_task_id 
- * @property string assigned_user_id 
- * @property string time_due 
- * @property string date_due 
- * @property string actual_duration 
- * @property string percent_complete 
- * @property string modified_user_id 
- * @property string id 
- * @property string order_number 
- * @property string task_number 
- * @property string duration 
- * @property string created_by 
- * @property string priority 
- * @property string duration_unit 
- *
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedModified_user_link
- * @method Project[] getRelatedProject_name_link
- * @method User[] getRelatedCreated_by_link
- * @method Project getRelatedProject_name
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedCreated_by_name
- * @method User getRelatedModified_by_name
- *
- */
-class ProjectTask {
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $projects;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project_name_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Project 
-	 */
-	 public $project_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $milestone_flag;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_start;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_start;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_finish;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_finish;
-
-	/** 
-	 * @var string 
-	 */
-	 public $utilization;
-
-	/** 
-	 * @var string 
-	 */
-	 public $predecessors;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $project_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $project_task_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $actual_effort;
-
-	/** 
-	 * @var string 
-	 */
-	 public $estimated_effort;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_task_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_due;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_due;
-
-	/** 
-	 * @var string 
-	 */
-	 public $actual_duration;
-
-	/** 
-	 * @var string 
-	 */
-	 public $percent_complete;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $order_number;
-
-	/** 
-	 * @var string 
-	 */
-	 public $task_number;
-
-	/** 
-	 * @var string 
-	 */
-	 public $duration;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $priority;
-
-	/** 
-	 * @var string 
-	 */
-	 public $duration_unit;
-
-	public $relationship_fields = [
-		'project_id' => 'project_name_link',
-		'assigned_user_id' => 'users',
-		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-	];
-
-}
-
-/**
- * Class ProspectList
- *
- * @property Link2 leads 
- * @property Link2 contacts 
- * @property Link2 prospects 
- * @property Link2 accounts 
- * @property Link2 campaigns 
- * @property Link2 email_marketing 
- * @property Link2 assigned_user_link 
- * @property Link2 users 
- * @property User created_by_name 
- * @property User assigned_user_name 
- * @property User modified_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property bool deleted 
- * @property string name 
- * @property string list_type 
- * @property string id 
- * @property string marketing_id 
- * @property string marketing_name 
- * @property string date_entered 
- * @property string date_modified 
- * @property string domain_name 
- * @property string entry_count 
- * @property string created_by 
- * @property string modified_user_id 
- * @property string description 
- *
- * @method User[] getRelatedAssigned_user_link
- * @method User getRelatedCreated_by_name
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_id
- *
- */
-class ProspectList {
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospects;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_marketing;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $users;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $list_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $marketing_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $marketing_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $domain_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $entry_count;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description;
-
-	public $relationship_fields = [
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class Prospect
- *
- * @property Link2 modified_user_link 
- * @property Link2 created_by_link 
- * @property Link2 assigned_user_link 
- * @property Link2 email_addresses 
- * @property Link2 email_addresses_primary 
- * @property Link2 campaigns 
- * @property Link2 prospect_lists 
- * @property Link2 meetings 
- * @property Link2 notes 
- * @property Link2 tasks 
- * @property Link2 calls 
- * @property Link2 emails 
- * @property User assigned_user_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User created_by_name 
- * @property User modified_by_name 
- * @property bool invalid_email 
- * @property bool do_not_call 
- * @property bool email_opt_out 
- * @property bool deleted Record deletion indicator
- * @property string first_name First name of the contact
- * @property string salutation Contact salutation (e.g., Mr, Ms)
- * @property string email_addresses_non_primary 
- * @property string assistant_phone Phone number of the assistant of the contact
- * @property string assistant Name of the assistant of the contact
- * @property string alt_address_city City for alternate address
- * @property string alt_address_state State for alternate address
- * @property string alt_address_postalcode Postal code for alternate address
- * @property string alt_address_country Country for alternate address
- * @property string tracker_key 
- * @property string lead_id 
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string date_entered Date record created
- * @property string name 
- * @property string created_by User who created record
- * @property string description Full text of the note
- * @property string alt_address_street_3 
- * @property string account_name 
- * @property string campaign_id Campaign that generated lead
- * @property string birthdate 
- * @property string alt_address_street_2 
- * @property string phone_work Work phone number of the contact
- * @property string phone_other Other phone number for the contact
- * @property string phone_fax Contact fax number
- * @property string email1 
- * @property string phone_mobile Mobile phone number of the contact
- * @property string email 
- * @property string department The department of the contact
- * @property string full_name 
- * @property string phone_home Home phone number of the contact
- * @property string email2 
- * @property string last_name Last name of the contact
- * @property string primary_address_state State for primary address
- * @property string primary_address_postalcode Postal code for primary address
- * @property string primary_address_country Country for primary address
- * @property string alt_address_street Street address for alternate address
- * @property string primary_address_city City for primary address
- * @property string primary_address_street_3 
- * @property string id Unique identifier
- * @property string primary_address_street Street address for primary address
- * @property string primary_address_street_2 
- * @property string title The title of the contact
- *
- * @method User[] getRelatedModified_user_link
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedAssigned_user_link
- * @method CampaignLog[] getRelatedCampaigns
- * @method ProspectList[] getRelatedProspect_lists
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedCreated_by_name
- * @method User getRelatedModified_by_name
- *
- */
-class Prospect {
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses_primary;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $campaigns;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospect_lists;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $invalid_email;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $do_not_call;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $email_opt_out;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string First name of the contact
-	 */
-	 public $first_name;
-
-	/** 
-	 * @var string Contact salutation (e.g., Mr, Ms)
-	 */
-	 public $salutation;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email_addresses_non_primary;
-
-	/** 
-	 * @var string Phone number of the assistant of the contact
-	 */
-	 public $assistant_phone;
-
-	/** 
-	 * @var string Name of the assistant of the contact
-	 */
-	 public $assistant;
-
-	/** 
-	 * @var string City for alternate address
-	 */
-	 public $alt_address_city;
-
-	/** 
-	 * @var string State for alternate address
-	 */
-	 public $alt_address_state;
-
-	/** 
-	 * @var string Postal code for alternate address
-	 */
-	 public $alt_address_postalcode;
-
-	/** 
-	 * @var string Country for alternate address
-	 */
-	 public $alt_address_country;
-
-	/** 
-	 * @var string 
-	 */
-	 public $tracker_key;
-
-	/** 
-	 * @var string 
-	 */
-	 public $lead_id;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $alt_address_street_3;
-
-	/** 
-	 * @var string 
-	 */
-	 public $account_name;
-
-	/** 
-	 * @var string Campaign that generated lead
-	 */
-	 public $campaign_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $birthdate;
-
-	/** 
-	 * @var string 
-	 */
-	 public $alt_address_street_2;
-
-	/** 
-	 * @var string Work phone number of the contact
-	 */
-	 public $phone_work;
-
-	/** 
-	 * @var string Other phone number for the contact
-	 */
-	 public $phone_other;
-
-	/** 
-	 * @var string Contact fax number
-	 */
-	 public $phone_fax;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email1;
-
-	/** 
-	 * @var string Mobile phone number of the contact
-	 */
-	 public $phone_mobile;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email;
-
-	/** 
-	 * @var string The department of the contact
-	 */
-	 public $department;
-
-	/** 
-	 * @var string 
-	 */
-	 public $full_name;
-
-	/** 
-	 * @var string Home phone number of the contact
-	 */
-	 public $phone_home;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email2;
-
-	/** 
-	 * @var string Last name of the contact
-	 */
-	 public $last_name;
-
-	/** 
-	 * @var string State for primary address
-	 */
-	 public $primary_address_state;
-
-	/** 
-	 * @var string Postal code for primary address
-	 */
-	 public $primary_address_postalcode;
-
-	/** 
-	 * @var string Country for primary address
-	 */
-	 public $primary_address_country;
-
-	/** 
-	 * @var string Street address for alternate address
-	 */
-	 public $alt_address_street;
-
-	/** 
-	 * @var string City for primary address
-	 */
-	 public $primary_address_city;
-
-	/** 
-	 * @var string 
-	 */
-	 public $primary_address_street_3;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string Street address for primary address
-	 */
-	 public $primary_address_street;
-
-	/** 
-	 * @var string 
-	 */
-	 public $primary_address_street_2;
-
-	/** 
-	 * @var string The title of the contact
-	 */
-	 public $title;
-
-	public $relationship_fields = [
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-		'modified_user_id' => 'modified_user_link',
-	];
-
-}
-
-/**
- * Class Relationship
- *
- * @property bool deleted 
- * @property bool reverse 
- * @property string join_key_rhs 
- * @property string join_key_lhs 
- * @property string relationship_type 
- * @property string relationship_role_column_value 
- * @property string join_table 
- * @property string relationship_role_column 
- * @property string rhs_key 
- * @property string lhs_module 
- * @property string relationship_name 
- * @property string lhs_table 
- * @property string lhs_key 
- * @property string rhs_table 
- * @property string rhs_module 
- * @property string id 
- *
- *
- */
-class Relationship {
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $reverse;
-
-	/** 
-	 * @var string 
-	 */
-	 public $join_key_rhs;
-
-	/** 
-	 * @var string 
-	 */
-	 public $join_key_lhs;
-
-	/** 
-	 * @var string 
-	 */
-	 public $relationship_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $relationship_role_column_value;
-
-	/** 
-	 * @var string 
-	 */
-	 public $join_table;
-
-	/** 
-	 * @var string 
-	 */
-	 public $relationship_role_column;
-
-	/** 
-	 * @var string 
-	 */
-	 public $rhs_key;
-
-	/** 
-	 * @var string 
-	 */
-	 public $lhs_module;
-
-	/** 
-	 * @var string 
-	 */
-	 public $relationship_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $lhs_table;
-
-	/** 
-	 * @var string 
-	 */
-	 public $lhs_key;
-
-	/** 
-	 * @var string 
-	 */
-	 public $rhs_table;
-
-	/** 
-	 * @var string 
-	 */
-	 public $rhs_module;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Release
- *
- * @property bool deleted 
- * @property string name 
- * @property string list_order 
- * @property string status 
- * @property string created_by 
- * @property string modified_user_id 
- * @property string date_entered 
- * @property string date_modified 
- * @property string id 
- *
- *
- */
-class Release {
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $list_order;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Role
- *
- * @property Link2 users 
- * @property bool deleted 
- * @property string description 
- * @property string modules 
- * @property string name 
- * @property string created_by 
- * @property string date_entered 
- * @property string date_modified 
- * @property string modified_user_id 
- * @property string id 
- *
- *
- */
-class Role {
-	/** 
-	 * @var Link2 
-	 */
-	 public $users;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modules;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class SavedSearch
- *
- * @property Link2 assigned_user_link 
- * @property bool deleted 
- * @property string assigned_user_name 
- * @property string contents 
- * @property string description 
- * @property string assigned_user_id 
- * @property string date_modified 
- * @property string name 
- * @property string search_module 
- * @property string date_entered 
- * @property string id 
- *
- * @method User[] getRelatedAssigned_user_link
- *
- */
-class SavedSearch {
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contents;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $search_module;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Scheduler
- *
- * @property Link2 schedulers_times 
- * @property Link2 created_by_link 
- * @property Link2 modified_user_link 
- * @property User modified_by_name 
- * @property User created_by_name 
- * @property bool adv_interval 
- * @property bool catch_up 
- * @property bool deleted 
- * @property string date_time_end 
- * @property string job_interval 
- * @property string time_from 
- * @property string time_to 
- * @property string status 
- * @property string last_run 
- * @property string job 
- * @property string created_by 
- * @property string date_modified 
- * @property string date_entered 
- * @property string modified_user_id 
- * @property string name 
- * @property string job_function 
- * @property string job_url 
- * @property string id 
- * @property string date_time_start 
- *
- * @method SchedulersJob[] getRelatedSchedulers_times
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedModified_by_name
- * @method User getRelatedCreated_by_name
- *
- */
-class Scheduler {
-	/** 
-	 * @var Link2 
-	 */
-	 public $schedulers_times;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $adv_interval;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $catch_up;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_time_end;
-
-	/** 
-	 * @var string 
-	 */
-	 public $job_interval;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_from;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_to;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $last_run;
-
-	/** 
-	 * @var string 
-	 */
-	 public $job;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $job_function;
-
-	/** 
-	 * @var string 
-	 */
-	 public $job_url;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_time_start;
-
-	public $relationship_fields = [
-		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class SchedulersJob
- *
- * @property Link2 assigned_user_link 
- * @property Link2 schedulers 
- * @property User assigned_user_name 
- * @property User assigned_user_id User ID assigned to record
- * @property bool deleted 
- * @property bool requeue 
- * @property string data 
- * @property string retry_count 
- * @property string client 
- * @property string percent_complete 
- * @property string target 
- * @property string job_delay 
- * @property string failure_count 
- * @property string status 
- * @property string date_entered 
- * @property string name 
- * @property string id 
- * @property string date_modified 
- * @property string scheduler_id 
- * @property string resolution 
- * @property string execute_time 
- * @property string message 
- *
- * @method User[] getRelatedAssigned_user_link
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedAssigned_user_id
- *
- */
-class SchedulersJob {
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $schedulers;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $requeue;
-
-	/** 
-	 * @var string 
-	 */
-	 public $data;
-
-	/** 
-	 * @var string 
-	 */
-	 public $retry_count;
-
-	/** 
-	 * @var string 
-	 */
-	 public $client;
-
-	/** 
-	 * @var string 
-	 */
-	 public $percent_complete;
-
-	/** 
-	 * @var string 
-	 */
-	 public $target;
-
-	/** 
-	 * @var string 
-	 */
-	 public $job_delay;
-
-	/** 
-	 * @var string 
-	 */
-	 public $failure_count;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $scheduler_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $resolution;
-
-	/** 
-	 * @var string 
-	 */
-	 public $execute_time;
-
-	/** 
-	 * @var string 
-	 */
-	 public $message;
-
-	public $relationship_fields = [
-		'assigned_user_id' => 'assigned_user_link',
-	];
-
-}
-
-/**
- * Class SugarFeed
- *
- * @property Link2 created_by_link 
- * @property Link2 assigned_user_link 
- * @property Link2 modified_user_link 
- * @property User modified_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User assigned_user_name 
- * @property User created_by_name 
- * @property bool deleted Record deletion indicator
- * @property string related_module related module
- * @property string related_id related module
- * @property string link_url Name of the feed
- * @property string link_type Name of the feed
- * @property string name Name of the feed
- * @property string date_entered Date record created
- * @property string id Unique identifier
- * @property string created_by User who created record
- * @property string modified_user_id User who last modified record
- * @property string date_modified Date record last modified
- * @property string description Name of the feed
- *
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedAssigned_user_link
- * @method User[] getRelatedModified_user_link
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedCreated_by_name
- *
- */
-class SugarFeed {
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string related module
-	 */
-	 public $related_module;
-
-	/** 
-	 * @var string related module
-	 */
-	 public $related_id;
-
-	/** 
-	 * @var string Name of the feed
-	 */
-	 public $link_url;
-
-	/** 
-	 * @var string Name of the feed
-	 */
-	 public $link_type;
-
-	/** 
-	 * @var string Name of the feed
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string Name of the feed
-	 */
-	 public $description;
-
-	public $relationship_fields = [
-		'modified_user_id' => 'modified_user_link',
-		'assigned_user_id' => 'assigned_user_link',
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class Task
- *
- * @property Contact contact_name 
- * @property Link2 created_by_link 
- * @property Link2 cases 
- * @property Link2 modified_user_link 
- * @property Link2 opportunities 
- * @property Link2 contacts 
- * @property Link2 accounts 
- * @property Link2 assigned_user_link 
- * @property Link2 bugs 
- * @property Link2 project_tasks 
- * @property Link2 notes 
- * @property Link2 contact_parent 
- * @property Link2 leads 
- * @property Link2 projects 
- * @property User assigned_user_name 
- * @property User modified_by_name 
- * @property User assigned_user_id User ID assigned to record
- * @property User created_by_name 
- * @property bool date_start_flag 
- * @property bool deleted Record deletion indicator
- * @property bool date_due_flag 
- * @property string description Full text of the note
- * @property string status 
- * @property string created_by User who created record
- * @property string modified_user_id User who last modified record
- * @property string name 
- * @property string date_entered Date record created
- * @property string date_modified Date record last modified
- * @property string date_due 
- * @property string priority 
- * @property string parent_name 
- * @property string parent_type The Sugar object to which the call is related
- * @property string date_start 
- * @property string parent_id 
- * @property string contact_id 
- * @property string contact_email 
- * @property string contact_phone 
- * @property string time_due 
- * @property string id Unique identifier
- *
- * @method Contact getRelatedContact_name
- * @method User[] getRelatedCreated_by_link
- * @method User[] getRelatedModified_user_link
- * @method Array[] getRelatedContacts
- * @method User[] getRelatedAssigned_user_link
- * @method Note[] getRelatedNotes
- * @method User getRelatedAssigned_user_name
- * @method User getRelatedModified_by_name
- * @method User getRelatedAssigned_user_id
- * @method User getRelatedCreated_by_name
- *
- */
-class Task {
-	/** 
-	 * @var Contact 
-	 */
-	 public $contact_name;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $created_by_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $cases;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $modified_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $opportunities;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $accounts;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $bugs;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project_tasks;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $notes;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contact_parent;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $leads;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $projects;
-
-	/** 
-	 * @var User 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var User 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var User User ID assigned to record
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var User 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $date_start_flag;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $date_due_flag;
-
-	/** 
-	 * @var string Full text of the note
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string User who created record
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string User who last modified record
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string Date record created
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string Date record last modified
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_due;
-
-	/** 
-	 * @var string 
-	 */
-	 public $priority;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_name;
-
-	/** 
-	 * @var string The Sugar object to which the call is related
-	 */
-	 public $parent_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_start;
-
-	/** 
-	 * @var string 
-	 */
-	 public $parent_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contact_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contact_email;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contact_phone;
-
-	/** 
-	 * @var string 
-	 */
-	 public $time_due;
-
-	/** 
-	 * @var string Unique identifier
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-		'contact_id' => 'contacts',
-		'assigned_user_id' => 'assigned_user_link',
-		'modified_user_id' => 'modified_user_link',
-		'created_by' => 'created_by_link',
-	];
-
-}
-
-/**
- * Class Tracker
- *
- * @property Link2 monitor_id_link 
- * @property Link2 assigned_user_link 
- * @property bool visible 
- * @property bool deleted Record deletion indicator
- * @property string session_id 
- * @property string action 
- * @property string date_modified 
- * @property string user_id 
- * @property string monitor_id 
- * @property string module_name 
- * @property string item_id 
- * @property string item_summary 
- * @property string id 
- *
- * @method User[] getRelatedAssigned_user_link
- *
- */
-class Tracker {
-	/** 
-	 * @var Link2 
-	 */
-	 public $monitor_id_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $assigned_user_link;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $visible;
-
-	/** 
-	 * @var bool Record deletion indicator
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $session_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $action;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $monitor_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $module_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $item_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $item_summary;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class UserPreference
- *
- * @property bool deleted 
- * @property string assigned_user_name 
- * @property string contents 
- * @property string assigned_user_id 
- * @property string date_entered 
- * @property string category 
- * @property string id 
- * @property string date_modified 
- *
- *
- */
-class UserPreference {
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $assigned_user_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $contents;
-
-	/** 
-	 * @var string 
-	 */
-	 public $assigned_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $category;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class User
- *
- * @property  m_accept_status_fields 
- * @property  c_accept_status_fields 
- * @property Link2 contacts_sync 
- * @property Link2 meetings 
- * @property Link2 reports_to_link 
- * @property Link2 email_addresses 
- * @property Link2 reportees 
- * @property Link2 email_addresses_primary 
- * @property Link2 aclroles 
- * @property Link2 calls 
- * @property Link2 eapm 
- * @property Link2 oauth_tokens 
- * @property Link2 project_resource 
- * @property Link2 prospect_lists 
- * @property Link2 holidays 
- * @property Link2 emails_users 
- * @property User reports_to_name 
- * @property bool portal_only 
- * @property bool show_on_employees 
- * @property bool is_group 
- * @property bool sugar_login 
- * @property bool system_generated_password 
- * @property bool external_auth_only 
- * @property bool is_admin 
- * @property bool receive_notifications 
- * @property bool deleted 
- * @property string email1 
- * @property string employee_status 
- * @property string messenger_id 
- * @property string accept_status_name 
- * @property string reports_to_id 
- * @property string email_link_type 
- * @property string accept_status_id 
- * @property string messenger_type 
- * @property string address_state 
- * @property string description 
- * @property string name 
- * @property string date_entered 
- * @property string date_modified 
- * @property string modified_by_name 
- * @property string modified_user_id 
- * @property string full_name 
- * @property string last_name 
- * @property string user_hash 
- * @property string user_name 
- * @property string pwd_last_changed 
- * @property string authenticate_id 
- * @property string first_name 
- * @property string created_by 
- * @property string created_by_name 
- * @property string address_street 
- * @property string status 
- * @property string address_city 
- * @property string id 
- * @property string address_postalcode 
- * @property string address_country 
- * @property string phone_fax 
- * @property string phone_other 
- * @property string department 
- * @property string title 
- * @property string phone_home 
- * @property string phone_mobile 
- * @property string phone_work 
- * @property string UserType 
- *
- * @method  getRelatedM_accept_status_fields
- * @method  getRelatedC_accept_status_fields
- * @method Array[] getRelatedReports_to_link
- * @method Array[] getRelatedReportees
- * @method User[] getRelatedAclroles
- * @method OAuthToken[] getRelatedOauth_tokens
- * @method ProspectList[] getRelatedProspect_lists
- * @method Array[] getRelatedHolidays
- * @method Email[] getRelatedEmails_users
- * @method User getRelatedReports_to_name
- *
- */
-class User {
-	/** 
-	 * @var  
-	 */
-	 public $m_accept_status_fields;
-
-	/** 
-	 * @var  
-	 */
-	 public $c_accept_status_fields;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $contacts_sync;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $meetings;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reports_to_link;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $reportees;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $email_addresses_primary;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $aclroles;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $calls;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $eapm;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $oauth_tokens;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $project_resource;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $prospect_lists;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $holidays;
-
-	/** 
-	 * @var Link2 
-	 */
-	 public $emails_users;
-
-	/** 
-	 * @var User 
-	 */
-	 public $reports_to_name;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $portal_only;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $show_on_employees;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $is_group;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $sugar_login;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $system_generated_password;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $external_auth_only;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $is_admin;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $receive_notifications;
-
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email1;
-
-	/** 
-	 * @var string 
-	 */
-	 public $employee_status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $messenger_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $reports_to_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $email_link_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $accept_status_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $messenger_type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_state;
-
-	/** 
-	 * @var string 
-	 */
-	 public $description;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_by_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $full_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $last_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $user_hash;
-
-	/** 
-	 * @var string 
-	 */
-	 public $user_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $pwd_last_changed;
-
-	/** 
-	 * @var string 
-	 */
-	 public $authenticate_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $first_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by_name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_street;
-
-	/** 
-	 * @var string 
-	 */
-	 public $status;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_city;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_postalcode;
-
-	/** 
-	 * @var string 
-	 */
-	 public $address_country;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_fax;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_other;
-
-	/** 
-	 * @var string 
-	 */
-	 public $department;
-
-	/** 
-	 * @var string 
-	 */
-	 public $title;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_home;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_mobile;
-
-	/** 
-	 * @var string 
-	 */
-	 public $phone_work;
-
-	/** 
-	 * @var string 
-	 */
-	 public $UserType;
-
-	public $relationship_fields = [
-		'reports_to_id' => 'reports_to_link',
-	];
-
-}
-
-/**
- * Class vCal
- *
- * @property bool deleted 
- * @property string source 
- * @property string content 
- * @property string type 
- * @property string date_modified 
- * @property string date_entered 
- * @property string id 
- * @property string user_id 
- *
- *
- */
-class vCal {
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $source;
-
-	/** 
-	 * @var string 
-	 */
-	 public $content;
-
-	/** 
-	 * @var string 
-	 */
-	 public $type;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $user_id;
-
-	public $relationship_fields = [
-	];
-
-}
-
-/**
- * Class Version
- *
- * @property bool deleted 
- * @property string name 
- * @property string file_version 
- * @property string db_version 
- * @property string created_by 
- * @property string modified_user_id 
- * @property string date_entered 
- * @property string date_modified 
- * @property string id 
- *
- *
- */
-class Version {
-	/** 
-	 * @var bool 
-	 */
-	 public $deleted;
-
-	/** 
-	 * @var string 
-	 */
-	 public $name;
-
-	/** 
-	 * @var string 
-	 */
-	 public $file_version;
-
-	/** 
-	 * @var string 
-	 */
-	 public $db_version;
-
-	/** 
-	 * @var string 
-	 */
-	 public $created_by;
-
-	/** 
-	 * @var string 
-	 */
-	 public $modified_user_id;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_entered;
-
-	/** 
-	 * @var string 
-	 */
-	 public $date_modified;
-
-	/** 
-	 * @var string 
-	 */
-	 public $id;
-
-	public $relationship_fields = [
-	];
 
 }
 
