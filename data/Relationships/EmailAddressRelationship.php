@@ -62,7 +62,7 @@ class EmailAddressRelationship extends M2MRelationship
 
         if (empty($lhs->$lhsLinkName) && ! $lhs->load_relationship($lhsLinkName)) {
             $lhsClass = get_class($lhs);
-            $GLOBALS['log']->fatal("could not load LHS $lhsLinkName in $lhsClass");
+            Log::fatal("could not load LHS $lhsLinkName in $lhsClass");
 
             return false;
         }
@@ -102,17 +102,17 @@ class EmailAddressRelationship extends M2MRelationship
         $lhsLinkName = $this->lhsLink;
 
         if (! ($lhs instanceof SugarBean)) {
-            $GLOBALS['log']->fatal("LHS is not a SugarBean object");
+            Log::fatal("LHS is not a SugarBean object");
 
             return false;
         }
         if (! ($rhs instanceof SugarBean)) {
-            $GLOBALS['log']->fatal("RHS is not a SugarBean object");
+            Log::fatal("RHS is not a SugarBean object");
 
             return false;
         }
         if (empty($lhs->$lhsLinkName) && ! $lhs->load_relationship($lhsLinkName)) {
-            $GLOBALS['log']->fatal("could not load LHS $lhsLinkName");
+            Log::fatal("could not load LHS $lhsLinkName");
 
             return false;
         }

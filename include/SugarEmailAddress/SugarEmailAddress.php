@@ -363,10 +363,10 @@ class SugarEmailAddress extends SugarBean
 
                     $ret[] = $bean;
                 } else {
-                    $GLOBALS['log']->fatal("SUGAREMAILADDRESS: could not find valid class file for [ {$className} ]");
+                    Log::fatal("SUGAREMAILADDRESS: could not find valid class file for [ {$className} ]");
                 }
             } else {
-                $GLOBALS['log']->fatal("SUGAREMAILADDRESS: could not find valid class [ {$a['bean_module']} ]");
+                Log::fatal("SUGAREMAILADDRESS: could not find valid class [ {$a['bean_module']} ]");
             }
         }
 
@@ -574,7 +574,7 @@ class SugarEmailAddress extends SugarBean
                 'email_address_id' => $email_id,
             ];
         } else {
-            $GLOBALS['log']->fatal("SUGAREMAILADDRESS: address did not validate [ {$addr} ]");
+            Log::fatal("SUGAREMAILADDRESS: address did not validate [ {$addr} ]");
         }
     }
 

@@ -774,7 +774,7 @@ class EditViewMerge{
 			fwrite($this->fp, $message. "\n");
 		}else{
 			if(!empty($GLOBALS['log'])){
-				$GLOBALS['log']->debug($message . "\n");
+				Log::debug($message . "\n");
 			}
 		}
 		

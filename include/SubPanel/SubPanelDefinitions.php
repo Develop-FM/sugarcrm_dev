@@ -123,7 +123,7 @@ class aSubPanel
 
 			if (!$loaded)
 			{
-				$GLOBALS['log']->fatal("Failed to load original or custom subpanel data for $name in $def_path");
+				Log::fatal("Failed to load original or custom subpanel data for $name in $def_path");
                 $this->canDisplay = false;
 			}
 
@@ -632,7 +632,7 @@ class SubPanelDefinitions
 
 				// make sure the module attribute is set, else none of this works...
 				if ( !isset($values_array [ 'module' ])) {
-					$GLOBALS['log']->debug("SubPanelDefinitions->get_available_tabs(): no module defined in subpaneldefs for '$key' =>" . var_export_helper($values_array,true) . " - ingoring subpanel defintion") ;
+					Log::debug("SubPanelDefinitions->get_available_tabs(): no module defined in subpaneldefs for '$key' =>" . var_export_helper($values_array,true) . " - ingoring subpanel defintion") ;
 					continue;
 				}
 

@@ -106,10 +106,10 @@ if(is_admin($current_user) || isset($from_sync_client)){
 	        if($execute) {
 	           $fh = sugar_fopen('restoreExpand.sql', 'w');
 	           if(-1 == fwrite($fh, $theRestoreQueries)) {
-	           	  $GLOBALS['log']->error($mod_strings['ERR_CANNOT_CREATE_RESTORE_FILE']);
+	           	  Log::error($mod_strings['ERR_CANNOT_CREATE_RESTORE_FILE']);
 	           	  echo($mod_strings['ERR_CANNOT_CREATE_RESTORE_FILE']);
 	           } else {
-	           	  $GLOBALS['log']->info($mod_strings['LBL_CREATE_RESOTRE_FILE']);
+	           	  Log::info($mod_strings['LBL_CREATE_RESOTRE_FILE']);
 	           	  echo($mod_strings['LBL_CREATE_RESOTRE_FILE']);
 	           }
 

@@ -81,7 +81,7 @@ function sugar_mkdir($pathname, $mode=null, $recursive=false, $context='') {
 		}
 	}
 	else {
-	    $GLOBALS['log']->error("Cannot create directory $pathname cannot be touched");
+	    Log::error("Cannot create directory $pathname cannot be touched");
 	}
 
 	return $result;
@@ -135,7 +135,7 @@ function sugar_file_put_contents($filename, $data, $flags=null, $context=null){
 	}
 
 	if ( !is_writable($filename) ) {
-	    $GLOBALS['log']->error("File $filename cannot be written to");
+	    Log::error("File $filename cannot be written to");
 	    return false;
 	}
 
@@ -213,7 +213,7 @@ function sugar_file_get_contents($filename, $use_include_path=false, $context=nu
 	}
 
 	if ( !is_readable($filename) ) {
-	    $GLOBALS['log']->error("File $filename cannot be read");
+	    Log::error("File $filename cannot be read");
 	    return false;
 	}
 
@@ -251,7 +251,7 @@ function sugar_touch($filename, $time=null, $atime=null) {
    }
 
    if(!$result) {
-       $GLOBALS['log']->error("File $filename cannot be touched");
+       Log::error("File $filename cannot be touched");
        return $result;
    }
 	if(!empty($GLOBALS['sugar_config']['default_permissions']['file_mode'])){

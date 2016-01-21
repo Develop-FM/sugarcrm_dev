@@ -1241,7 +1241,7 @@ EOQ;
         $where_clauses = $searchForm->generateSearchWhere(true, $module);
         if (count($where_clauses) > 0 ) {
             $this->where_clauses = '('. implode(' ) AND ( ', $where_clauses) . ')';
-            $GLOBALS['log']->info("MassUpdate Where Clause: {$this->where_clauses}");
+            Log::info("MassUpdate Where Clause: {$this->where_clauses}");
         } else {
             $this->where_clauses = '';
         }

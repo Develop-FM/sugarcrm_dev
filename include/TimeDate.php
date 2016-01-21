@@ -222,7 +222,7 @@ class TimeDate
                     $tz = "UTC"; // guess failed, switch to UTC
                 }
                 if(isset($GLOBALS['log'])) {
-                    $GLOBALS['log']->fatal("Configuration variable date.timezone is not set, guessed timezone $tz. Please set date.timezone=\"$tz\" in php.ini!");
+                    Log::fatal("Configuration variable date.timezone is not set, guessed timezone $tz. Please set date.timezone=\"$tz\" in php.ini!");
                 }
                 date_default_timezone_set($tz);
             }
@@ -289,7 +289,7 @@ class TimeDate
         try {
             $tz = new DateTimeZone($usertimezone);
         } catch (Exception $e) {
-            $GLOBALS['log']->fatal('Unknown timezone: ' . $usertimezone);
+            Log::fatal('Unknown timezone: ' . $usertimezone);
             return self::$gmtTimezone;
         }
 
@@ -353,7 +353,7 @@ class TimeDate
     {
         if(is_bool($user) || func_num_args() > 1) {
             // BC dance - old signature was boolean, User
-            $GLOBALS['log']->fatal('TimeDate::get_time_format(): Deprecated API used, please update you code - get_time_format() now has one argument of type User');
+            Log::fatal('TimeDate::get_time_format(): Deprecated API used, please update you code - get_time_format() now has one argument of type User');
             if(func_num_args() > 1) {
                 $user = func_get_arg(1);
             } else {
@@ -680,7 +680,7 @@ class TimeDate
         try {
             return SugarDateTime::createFromFormat(self::DB_DATETIME_FORMAT, $date, self::$gmtTimezone);
         } catch (Exception $e) {
-            $GLOBALS['log']->error("fromDb: Conversion of $date from DB format failed: {$e->getMessage()}");
+            Log::error("fromDb: Conversion of $date from DB format failed: {$e->getMessage()}");
             return null;
         }
     }
@@ -719,7 +719,7 @@ class TimeDate
         try {
             return SugarDateTime::createFromFormat(self::DB_DATE_FORMAT, $date, self::$gmtTimezone);
         } catch (Exception $e) {
-            $GLOBALS['log']->error("fromDbDate: Conversion of $date from DB format failed: {$e->getMessage()}");
+            Log::error("fromDbDate: Conversion of $date from DB format failed: {$e->getMessage()}");
             return null;
         }
     }
@@ -738,7 +738,7 @@ class TimeDate
         try {
             return SugarDateTime::createFromFormat($format, $date, self::$gmtTimezone);
         } catch (Exception $e) {
-            $GLOBALS['log']->error("fromDbFormat: Conversion of $date from DB format $format failed: {$e->getMessage()}");
+            Log::error("fromDbFormat: Conversion of $date from DB format $format failed: {$e->getMessage()}");
             return null;
         }
     }
@@ -756,11 +756,11 @@ class TimeDate
         try {
             $res = SugarDateTime::createFromFormat($this->get_date_time_format($user), $date, $this->_getUserTZ($user));
         } catch (Exception $e) {
-            $GLOBALS['log']->error("fromUser: Conversion of $date exception: {$e->getMessage()}");
+            Log::error("fromUser: Conversion of $date exception: {$e->getMessage()}");
         }
         if(!($res instanceof DateTime)) {
             $uf = $this->get_date_time_format($user);
-            $GLOBALS['log']->error("fromUser: Conversion of $date from user format $uf failed");
+            Log::error("fromUser: Conversion of $date from user format $uf failed");
             return null;
         }
         return $res;
@@ -803,7 +803,7 @@ class TimeDate
             return SugarDateTime::createFromFormat($this->get_time_format($user), $date, $this->_getUserTZ($user));
         } catch (Exception $e) {
             $uf = $this->get_time_format($user);
-            $GLOBALS['log']->error("fromUserTime: Conversion of $date from user format $uf failed: {$e->getMessage()}");
+            Log::error("fromUserTime: Conversion of $date from user format $uf failed: {$e->getMessage()}");
             return null;
         }
     }
@@ -823,7 +823,7 @@ class TimeDate
             return SugarDateTime::createFromFormat($this->get_date_format($user), $date, $convert_tz?$this->_getUserTZ($user):self::$gmtTimezone);
         } catch (Exception $e) {
             $uf = $this->get_date_format($user);
-            $GLOBALS['log']->error("fromUserDate: Conversion of $date from user format $uf failed: {$e->getMessage()}");
+            Log::error("fromUserDate: Conversion of $date from user format $uf failed: {$e->getMessage()}");
             return null;
         }
     }
@@ -842,7 +842,7 @@ class TimeDate
         try {
             return new SugarDateTime($date, $this->_getUserTZ($user));
         } catch (Exception $e) {
-            $GLOBALS['log']->error("fromString: Conversion of $date from string failed: {$e->getMessage()}");
+            Log::error("fromString: Conversion of $date from string failed: {$e->getMessage()}");
             return null;
         }
     }
@@ -916,7 +916,7 @@ class TimeDate
             }
             $phpdate = SugarDateTime::createFromFormat($fromFormat, $date, $fromTZ);
             if ($phpdate == false) {
-                $GLOBALS['log']->error("convert: Conversion of $date from $fromFormat to $toFormat failed");
+                Log::error("convert: Conversion of $date from $fromFormat to $toFormat failed");
                 return '';
             }
             if ($fromTZ !== $toTZ && $toTZ != null) {
@@ -924,7 +924,7 @@ class TimeDate
             }
             return $phpdate->format($toFormat);
         } catch (Exception $e) {
-            $GLOBALS['log']->error("Conversion of $date from $fromFormat to $toFormat failed: {$e->getMessage()}");
+            Log::error("Conversion of $date from $fromFormat to $toFormat failed: {$e->getMessage()}");
             return '';
         }
     }
@@ -1126,7 +1126,7 @@ class TimeDate
             }
             return array($this->asDbDate($phpdate), $this->asDbTime($phpdate));
         } catch (Exception $e) {
-            $GLOBALS['log']->error("Conversion of $date,$time failed");
+            Log::error("Conversion of $date,$time failed");
             return array('', '');
         }
     }

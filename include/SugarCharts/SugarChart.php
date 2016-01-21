@@ -723,17 +723,17 @@ class SugarChart {
 
 		// open file
 		if (!$fh = sugar_fopen($xmlFilename, 'w')) {
-			$GLOBALS['log']->debug("Cannot open file ($xmlFilename)");
+			Log::debug("Cannot open file ($xmlFilename)");
 			return;
 		}
 
 		// write the contents to the file
 		if (fwrite($fh,$xmlContents) === FALSE) {
-			$GLOBALS['log']->debug("Cannot write to file ($xmlFilename)");
+			Log::debug("Cannot write to file ($xmlFilename)");
 			return false;
 		}
 
-		$GLOBALS['log']->debug("Success, wrote ($xmlContents) to file ($xmlFilename)");
+		Log::debug("Success, wrote ($xmlContents) to file ($xmlFilename)");
 
 		fclose($fh);
 		return true;

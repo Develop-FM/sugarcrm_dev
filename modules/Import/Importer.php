@@ -877,7 +877,7 @@ class Importer
      */
     public static function handleImportErrors($errno, $errstr, $errfile, $errline)
     {
-        $GLOBALS['log']->fatal("Caught error: $errstr");
+        Log::fatal("Caught error: $errstr");
 
         if ( !defined('E_DEPRECATED') )
             define('E_DEPRECATED','8192');

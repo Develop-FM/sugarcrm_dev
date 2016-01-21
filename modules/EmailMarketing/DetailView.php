@@ -67,7 +67,7 @@ global $theme;
 
 
 
-$GLOBALS['log']->info("EmailMarketing Edit View");
+Log::info("EmailMarketing Edit View");
 
 $xtpl=new XTemplate ('modules/EmailMarketing/DetailView.html');
 

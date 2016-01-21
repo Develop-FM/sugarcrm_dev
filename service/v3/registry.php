@@ -46,7 +46,7 @@ class registry_v3 extends registry {
 	 */
 	protected function registerFunction() {
 		
-		$GLOBALS['log']->info('Begin: registry->registerFunction');
+		Log::info('Begin: registry->registerFunction');
 		parent::registerFunction();
 
 		$this->serviceClass->registerFunction(
@@ -79,7 +79,7 @@ class registry_v3 extends registry {
 		    array('session'=>'xsd:string', 'module_name'=>'xsd:string', 'module_id'=>'xsd:string', 'link_field_name'=>'xsd:string', 'related_module_query'=>'xsd:string', 'related_fields'=>'tns:select_fields', 'related_module_link_name_to_fields_array'=>'tns:link_names_to_fields_array', 'deleted'=>'xsd:int', 'order_by'=>'xsd:string',),
 		    array('return'=>'tns:get_entry_result_version2'));
 		            
-	    $GLOBALS['log']->info('END: registry->registerFunction');
+	    Log::info('END: registry->registerFunction');
 	        
 		// END OF REGISTER FUNCTIONS
 	}

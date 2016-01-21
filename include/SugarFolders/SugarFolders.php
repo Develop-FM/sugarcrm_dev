@@ -186,7 +186,7 @@ class SugarFolder {
 		global $current_user;
 
 		if(empty($current_user->id)) {
-			$GLOBALS['log']->fatal("*** FOLDERS: tried to update folder subscriptions for a user with no ID");
+			Log::fatal("*** FOLDERS: tried to update folder subscriptions for a user with no ID");
 			return false;
 		}
 
@@ -448,10 +448,10 @@ ENDQ;
 	 */
 	function addBean($bean, $user=null) {
 		if(empty($bean->id) || empty($bean->module_dir)) {
-			$GLOBALS['log']->fatal("*** FOLDERS: addBean() got empty bean - not saving");
+			Log::fatal("*** FOLDERS: addBean() got empty bean - not saving");
 			return false;
 		} elseif(empty($this->id)) {
-			$GLOBALS['log']->fatal("*** FOLDERS: addBean() is trying to save to a non-saved or non-existent folder");
+			Log::fatal("*** FOLDERS: addBean() is trying to save to a non-saved or non-existent folder");
 			return false;
 		}
 

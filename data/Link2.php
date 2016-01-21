@@ -142,7 +142,7 @@ class Link2
             }
 
             if (empty($this->def['name'])) {
-                $GLOBALS['log']->fatal("failed to find link for $linkName");
+                Log::fatal("failed to find link for $linkName");
 
                 return false;
             }
@@ -161,7 +161,7 @@ class Link2
         $this->relationship_fields = (! empty($this->def['rel_fields'])) ? $this->def['rel_fields'] : [];
 
         if (! $this->loadedSuccesfully()) {
-            $GLOBALS['log']->fatal("{$this->name} for {$this->def['relationship']} failed to load\n");
+            Log::fatal("{$this->name} for {$this->def['relationship']} failed to load\n");
         }
 
         // Following behavior is tied to a property(ignore_role) value in the vardef.
@@ -371,7 +371,7 @@ class Link2
             }
         }
 
-        $GLOBALS['log']->error("Unable to get proper side for link {$this->name}");
+        Log::error("Unable to get proper side for link {$this->name}");
     }
 
     /**
@@ -550,7 +550,7 @@ class Link2
             if (! ($key instanceof SugarBean)) {
                 $key = $this->getRelatedBean($key);
                 if (! ($key instanceof SugarBean)) {
-                    $GLOBALS['log']->error("Unable to load related bean by id");
+                    Log::error("Unable to load related bean by id");
 
                     return false;
                 }
@@ -710,7 +710,7 @@ class Link2
         //find the key values for the table.
         $dup_keys = $this->_get_alternate_key_fields($table_name);
         if (empty($dup_keys)) {
-            $GLOBALS['log']->debug("No alternate key define, skipping duplicate check..");
+            Log::debug("No alternate key define, skipping duplicate check..");
 
             return false;
         }
@@ -724,7 +724,7 @@ class Link2
                 $this->_duplicate_where .= $delimiter.' '.$field."='".$join_key_values[$field]."'";
                 $delimiter = 'AND';
             } else {
-                $GLOBALS['log']->error('Duplicate checking aborted, Please supply a value for this column '.$field);
+                Log::error('Duplicate checking aborted, Please supply a value for this column '.$field);
 
                 return false;
             }
@@ -735,7 +735,7 @@ class Link2
 
         $query = 'SELECT id FROM '.$table_name.$this->_duplicate_where;
 
-        $GLOBALS['log']->debug("relationship_exists query(".$query.')');
+        Log::debug("relationship_exists query(".$query.')');
 
         $result = $this->_db->query($query, true);
         $row    = $this->_db->fetchByAssoc($result);

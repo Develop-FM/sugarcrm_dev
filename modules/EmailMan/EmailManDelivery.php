@@ -130,11 +130,11 @@ do {
         //verify the queue item before further processing.
         //we have found cases where users have taken away access to email templates while them message is in queue.
         if (empty($row['campaign_id'])) {
-            $GLOBALS['log']->fatal('Skipping emailman entry with empty campaign id' . print_r($row,true));
+            Log::fatal('Skipping emailman entry with empty campaign id' . print_r($row,true));
             continue;
         }
         if (empty($row['marketing_id'])) {
-            $GLOBALS['log']->fatal('Skipping emailman entry with empty marketing id' . print_r($row,true));
+            Log::fatal('Skipping emailman entry with empty marketing id' . print_r($row,true));
             continue;  //do not process this row .
         }
 
@@ -144,7 +144,7 @@ do {
         }
 
         if (!$emailman->verify_campaign($row['marketing_id'])) {
-            $GLOBALS['log']->fatal('Error verifying templates for the campaign, exiting');
+            Log::fatal('Error verifying templates for the campaign, exiting');
             continue;
         }
 
@@ -181,7 +181,7 @@ do {
 
 		//do not process the message if unable to acquire lock.
 		if ($lock_count!= 1) {
-			$GLOBALS['log']->fatal("Error acquiring lock for the emailman entry, skipping email delivery. lock status=$lock_count " . print_r($row,true));
+			Log::fatal("Error acquiring lock for the emailman entry, skipping email delivery. lock status=$lock_count " . print_r($row,true));
 			continue;  //do not process this row we will examine it after 24 hrs. the email address based dupe check is in place too.
 		}
 
@@ -228,12 +228,12 @@ do {
 		}
 
 		if(!$emailman->sendEmail($mail,$massemailer_email_copy,$test)){
-			$GLOBALS['log']->fatal("Email delivery FAILURE:" . print_r($row,true));
+			Log::fatal("Email delivery FAILURE:" . print_r($row,true));
 		} else {
-			$GLOBALS['log']->debug("Email delivery SUCCESS:" . print_r($row,true));
+			Log::debug("Email delivery SUCCESS:" . print_r($row,true));
 	 	}
 		if($mail->isError()){
-			$GLOBALS['log']->fatal("Email delivery error:" . print_r($row,true). $mail->ErrorInfo);
+			Log::fatal("Email delivery error:" . print_r($row,true). $mail->ErrorInfo);
 		}
 	}
 

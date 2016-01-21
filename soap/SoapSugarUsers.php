@@ -105,7 +105,7 @@ function login($user_auth, $application){
 	if ($isLoginSuccess) {
 		if ($_SESSION['hasExpiredPassword'] =='1') {
 			$error->set_error('password_expired');
-			$GLOBALS['log']->fatal('password expired for user ' . $user_auth['user_name']);
+			Log::fatal('password expired for user ' . $user_auth['user_name']);
 			LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 			return array('id'=>-1, 'error'=>$error);
 		} // if
@@ -116,7 +116,7 @@ function login($user_auth, $application){
 		} // if
 	} else if($usr_id && isset($user->user_name) && ($user->getPreference('lockout') == '1')) {
 			$error->set_error('lockout_reached');
-			$GLOBALS['log']->fatal('Lockout reached for user ' . $user_auth['user_name']);
+			Log::fatal('Lockout reached for user ' . $user_auth['user_name']);
 			LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 			return array('id'=>-1, 'error'=>$error);
 	} else if(function_exists('mcrypt_cbc')){
@@ -145,7 +145,7 @@ function login($user_auth, $application){
 		return array('id'=>session_id(), 'error'=>$error);
 	}
 	$error->set_error('invalid_login');
-	$GLOBALS['log']->fatal('SECURITY: User authentication for '. $user_auth['user_name']. ' failed');
+	Log::fatal('SECURITY: User authentication for '. $user_auth['user_name']. ' failed');
 	LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 	return array('id'=>-1, 'error'=>$error);
 
@@ -196,7 +196,7 @@ function validate_authenticated($session_id){
 		session_destroy();
 	}
 
-	$GLOBALS['log']->fatal('SECURITY: The session ID is invalid');
+	Log::fatal('SECURITY: The session ID is invalid');
 	LogicHook::instance()->call_custom_logic('Users', 'login_failed');
 	return false;
 }
@@ -235,7 +235,7 @@ function is_valid_ip_address($session_var){
                 }
 				// we have a different IP address
 				if ($_SESSION[$session_var] != $clientIP && empty ($classCheck)) {
-					$GLOBALS['log']->fatal("IP Address mismatch: SESSION IP: {$_SESSION[$session_var]} CLIENT IP: {$clientIP}");
+					Log::fatal("IP Address mismatch: SESSION IP: {$_SESSION[$session_var]} CLIENT IP: {$clientIP}");
 					return false;
 				}
 			} else {
@@ -335,7 +335,7 @@ function get_entry_list($session, $module_name, $query, $order_by,$offset, $sele
 	require_once 'include/SugarSQLValidate.php';
 	$valid = new SugarSQLValidate();
 	if(!$valid->validateQueryClauses($query, $order_by)) {
-        $GLOBALS['log']->error("Bad query: $query $order_by");
+        Log::error("Bad query: $query $order_by");
 	    $error->set_error('no_access');
 	    return array(
     			'result_count' => -1,
@@ -587,7 +587,7 @@ function set_entry($session,$module_name, $name_value_list){
 		}
 	}
 	foreach($name_value_list as $value){
-        $GLOBALS['log']->debug($value['name']." : ".$value['value']);
+        Log::debug($value['name']." : ".$value['value']);
 		$seed->$value['name'] = $value['value'];
 	}
 	if(! $seed->ACLAccess('Save') || ($seed->deleted == 1  &&  !$seed->ACLAccess('Delete')))
@@ -1169,7 +1169,7 @@ function get_relationships($session, $module_name, $module_id, $related_module, 
 	require_once 'include/SugarSQLValidate.php';
 	$valid = new SugarSQLValidate();
 	if(!$valid->validateQueryClauses($related_module_query)) {
-        $GLOBALS['log']->error("Bad query: $related_module_query");
+        Log::error("Bad query: $related_module_query");
         $error->set_error('no_access');
 	    return array(
     			'result_count' => -1,
@@ -1357,8 +1357,8 @@ function handle_set_relationship($set_relationship_value, $session='')
 
                 $query = "SELECT MAX(bundle_index)+1 AS idx FROM product_bundle_quote WHERE quote_id = '{$module1_id}' AND deleted='0'";
                 $result = $GLOBALS['db']->query($query, true, "Error getting bundle_index");
-                $GLOBALS['log']->debug("*********** Getting max bundle_index");
-                $GLOBALS['log']->debug($query);
+                Log::debug("*********** Getting max bundle_index");
+                Log::debug($query);
                 $row = $GLOBALS['db']->fetchByAssoc($result);
 
                 $idx = 0;
@@ -1386,8 +1386,8 @@ function handle_set_relationship($set_relationship_value, $session='')
 
                 $query = "SELECT MAX(product_index)+1 AS idx FROM product_bundle_product WHERE bundle_id='{$module1_id}'";
                 $result = $GLOBALS['db']->query($query, true, "Error getting bundle_index");
-                $GLOBALS['log']->debug("*********** Getting max bundle_index");
-                $GLOBALS['log']->debug($query);
+                Log::debug("*********** Getting max bundle_index");
+                Log::debug($query);
                 $row = $GLOBALS['db']->fetchByAssoc($result);
 
                 $idx = 0;
@@ -1804,12 +1804,12 @@ function get_mailmerge_document2($session, $file_name, $fields)
     $error = new SoapError();
     if(!validate_authenticated($session))
     {
-        $GLOBALS['log']->error('invalid_login');
+        Log::error('invalid_login');
         $error->set_error('invalid_login');
         return array('result'=>'', 'error'=>$error->get_soap_array());
     }
     if(!preg_match('/^sugardata[\.\d\s]+\.php$/', $file_name)) {
-        $GLOBALS['log']->error($app_strings['ERR_NO_SUCH_FILE'] . " ({$file_name})");
+        Log::error($app_strings['ERR_NO_SUCH_FILE'] . " ({$file_name})");
         $error->set_error('no_records');
         return array('result'=>'', 'error'=>$error->get_soap_array());
     }
@@ -2009,7 +2009,7 @@ function set_campaign_merge($session,$targets, $campaign_id){
         return $error->get_soap_array();
     }
     if (empty($campaign_id) or !is_array($targets) or count($targets) == 0) {
-        $GLOBALS['log']->debug('set_campaign_merge: Merge action status will not be updated, because, campaign_id is null or no targets were selected.');
+        Log::debug('set_campaign_merge: Merge action status will not be updated, because, campaign_id is null or no targets were selected.');
     } else {
         require_once('modules/Campaigns/utils.php');
         campaign_log_mail_merge($campaign_id,$targets);
@@ -2086,7 +2086,7 @@ function get_entries_count($session, $module_name, $query, $deleted) {
 	    require_once 'include/SugarSQLValidate.php';
 	    $valid = new SugarSQLValidate();
 	    if(!$valid->validateQueryClauses($query)) {
-            $GLOBALS['log']->error("Bad query: $query");
+            Log::error("Bad query: $query");
 	        $error->set_error('no_access');
 	        return array(
     			'result_count' => -1,
@@ -2242,7 +2242,7 @@ function handle_set_entries($module_name, $name_value_lists, $select_fields = FA
 
 		//Add the account to a contact
 		if($module_name == 'Contacts'){
-			$GLOBALS['log']->debug('Creating Contact Account');
+			Log::debug('Creating Contact Account');
 			add_create_account($seed);
 			$duplicate_id = check_for_duplicate_contacts($seed);
 			if($duplicate_id == null)
@@ -2285,7 +2285,7 @@ function handle_set_entries($module_name, $name_value_lists, $select_fields = FA
                     // If it's a new one, and we have outlook_id set
                     // which means we're syncing from OPI check if it already exists
                     if (!empty($seed->outlook_id)) {
-                        $GLOBALS['log']->debug(
+                        Log::debug(
                             'Looking for ' . $module_name . ' with outlook_id ' . $seed->outlook_id
                         );
 
@@ -2300,7 +2300,7 @@ function handle_set_entries($module_name, $name_value_lists, $select_fields = FA
                         if (!empty($temp)) {
                             $seed->id = $temp->id;
                         } else {
-                            $GLOBALS['log']->debug(
+                            Log::debug(
                                 'Looking for ' . $module_name .
                                 ' with name/date_start/duration_hours/duration_minutes ' .
                                 $seed->name . '/' . $seed->date_start . '/' .
@@ -2322,7 +2322,7 @@ function handle_set_entries($module_name, $name_value_lists, $select_fields = FA
                                 $seed->id = $temp->id;
                             }
                         }
-                        $GLOBALS['log']->debug(
+                        Log::debug(
                             $module_name . ' found: ' . !empty($seed->id)
                         );
                     }

@@ -730,7 +730,7 @@ function get_user_array(
 		}
 
 		$query = $query.' ORDER BY '.$order_by_string;
-		$GLOBALS['log']->debug("get_user_array query: $query");
+		Log::debug("get_user_array query: $query");
 		$result = $db->query($query, true, "Error filling in user array: ");
 
 		if ($add_blank == true) {
@@ -868,7 +868,7 @@ function safe_map($request_var, & $focus, $always_copy = false)
 function safe_map_named($request_var, & $focus, $member_var, $always_copy)
 {
 	if (isset($_REQUEST[$request_var]) && ($always_copy || is_null($focus->$member_var))) {
-		$GLOBALS['log']->debug("safe map named called assigning '{$_REQUEST[$request_var]}' to $member_var");
+		Log::debug("safe map named called assigning '{$_REQUEST[$request_var]}' to $member_var");
 		$focus->$member_var = $_REQUEST[$request_var];
 	}
 }
@@ -912,15 +912,15 @@ function return_app_list_strings_language($language)
 		$app_list_strings = [];
 		if (file_exists("include/language/$lang.lang.php")) {
 			include("include/language/$lang.lang.php");
-			$GLOBALS['log']->info("Found language file: $lang.lang.php");
+			Log::info("Found language file: $lang.lang.php");
 		}
 		if (file_exists("include/language/$lang.lang.override.php")) {
 			include("include/language/$lang.lang.override.php");
-			$GLOBALS['log']->info("Found override language file: $lang.lang.override.php");
+			Log::info("Found override language file: $lang.lang.override.php");
 		}
 		if (file_exists("include/language/$lang.lang.php.override")) {
 			include("include/language/$lang.lang.php.override");
-			$GLOBALS['log']->info("Found override language file: $lang.lang.php.override");
+			Log::info("Found override language file: $lang.lang.php.override");
 		}
 
 		$app_list_strings_array[] = $app_list_strings;
@@ -934,16 +934,16 @@ function return_app_list_strings_language($language)
 	foreach ($langs as $lang) {
 		if (file_exists("custom/application/Ext/Language/$lang.lang.ext.php")) {
 			$app_list_strings = _mergeCustomAppListStrings("custom/application/Ext/Language/$lang.lang.ext.php", $app_list_strings);
-			$GLOBALS['log']->info("Found extended language file: $lang.lang.ext.php");
+			Log::info("Found extended language file: $lang.lang.ext.php");
 		}
 		if (file_exists("custom/include/language/$lang.lang.php")) {
 			include("custom/include/language/$lang.lang.php");
-			$GLOBALS['log']->info("Found custom language file: $lang.lang.php");
+			Log::info("Found custom language file: $lang.lang.php");
 		}
 	}
 
 	if (! isset($app_list_strings)) {
-		$GLOBALS['log']->fatal("Unable to load the application language file for the selected language ($language) or the default language ($default_language) or the en_us language");
+		Log::fatal("Unable to load the application language file for the selected language ($language) or the default language ($default_language) or the en_us language");
 
 		return null;
 	}
@@ -1033,23 +1033,23 @@ function return_application_language($language)
 		$app_strings = [];
 		if (file_exists("include/language/$lang.lang.php")) {
 			include("include/language/$lang.lang.php");
-			$GLOBALS['log']->info("Found language file: $lang.lang.php");
+			Log::info("Found language file: $lang.lang.php");
 		}
 		if (file_exists("include/language/$lang.lang.override.php")) {
 			include("include/language/$lang.lang.override.php");
-			$GLOBALS['log']->info("Found override language file: $lang.lang.override.php");
+			Log::info("Found override language file: $lang.lang.override.php");
 		}
 		if (file_exists("include/language/$lang.lang.php.override")) {
 			include("include/language/$lang.lang.php.override");
-			$GLOBALS['log']->info("Found override language file: $lang.lang.php.override");
+			Log::info("Found override language file: $lang.lang.php.override");
 		}
 		if (file_exists("custom/application/Ext/Language/$lang.lang.ext.php")) {
 			include("custom/application/Ext/Language/$lang.lang.ext.php");
-			$GLOBALS['log']->info("Found extended language file: $lang.lang.ext.php");
+			Log::info("Found extended language file: $lang.lang.ext.php");
 		}
 		if (file_exists("custom/include/language/$lang.lang.php")) {
 			include("custom/include/language/$lang.lang.php");
-			$GLOBALS['log']->info("Found custom language file: $lang.lang.php");
+			Log::info("Found custom language file: $lang.lang.php");
 		}
 		$app_strings_array[] = $app_strings;
 	}
@@ -1060,7 +1060,7 @@ function return_application_language($language)
 	}
 
 	if (! isset($app_strings)) {
-		$GLOBALS['log']->fatal("Unable to load the application language strings");
+		Log::fatal("Unable to load the application language strings");
 
 		return null;
 	}
@@ -1106,7 +1106,7 @@ function return_module_language($language, $module, $refresh = false)
 	// Jenny - Bug 8119: Need to check if $module is not empty
 	if (empty($module)) {
 		$stack = debug_backtrace();
-		$GLOBALS['log']->warn("Variable module is not in return_module_language ".var_export_helper($stack));
+		Log::warn("Variable module is not in return_module_language ".var_export_helper($stack));
 
 		return [];
 	}
@@ -1221,7 +1221,7 @@ function return_mod_list_strings_language($language, $module)
 
 	// if we still don't have a language pack, then log an error
 	if (! isset($mod_list_strings)) {
-		$GLOBALS['log']->fatal("Unable to load the application list language file for the selected language($language) or the default language($default_language) for module({$module})");
+		Log::fatal("Unable to load the application list language file for the selected language($language) or the default language($default_language) for module({$module})");
 
 		return null;
 	}
@@ -1255,13 +1255,13 @@ function return_theme_language($language, $theme)
 		include(SugarThemeRegistry::get($theme)->getFilePath()."/language/$current_language.lang.php.override");
 	}
 	if (! isset($theme_strings)) {
-		$GLOBALS['log']->warn("Unable to find the theme file for language: ".$language." and theme: ".$theme);
+		Log::warn("Unable to find the theme file for language: ".$language." and theme: ".$theme);
 		require(SugarThemeRegistry::get($theme)->getFilePath()."/language/$default_language.lang.php");
 		$language_used = $default_language;
 	}
 
 	if (! isset($theme_strings)) {
-		$GLOBALS['log']->fatal("Unable to load the theme($theme) language file for the selected language($language) or the default language($default_language)");
+		Log::fatal("Unable to load the theme($theme) language file for the selected language($language) or the default language($default_language)");
 
 		return null;
 	}
@@ -1332,7 +1332,7 @@ function generate_where_statement($where_clauses)
 		$where .= $clause;
 	}
 
-	$GLOBALS['log']->info("Here is the where clause for the list view: $where");
+	Log::info("Here is the where clause for the list view: $where");
 
 	return $where;
 }
@@ -1441,7 +1441,7 @@ function displayWorkflowForCurrentUser()
 // return an array with all modules where the user is an admin.
 function get_admin_modules_for_user($user)
 {
-	$GLOBALS['log']->deprecated("get_admin_modules_for_user() is deprecated as of 6.2.2 and may disappear in the future, use Users->getDeveloperModules() instead");
+	Log::deprecated("get_admin_modules_for_user() is deprecated as of 6.2.2 and may disappear in the future, use Users->getDeveloperModules() instead");
 
 	if (! isset($user)) {
 		$modules = [];
@@ -2015,7 +2015,7 @@ function clean_string($str, $filter = "STANDARD", $dieOnBadData = true)
 
 	if (preg_match($filters[$filter], $str)) {
 		if (isset($GLOBALS['log']) && is_object($GLOBALS['log'])) {
-			$GLOBALS['log']->fatal("SECURITY[$filter]: bad data passed in; string: {$str}");
+			Log::fatal("SECURITY[$filter]: bad data passed in; string: {$str}");
 		}
 		if ($dieOnBadData) {
 			die("Bad data passed in; <a href=\"{$sugar_config['site_url']}\">Return to Home</a>");
@@ -2562,7 +2562,7 @@ function get_emails_by_assign_or_link($params)
 		$bean->load_relationship($relation);
 	}
 	if (empty($bean->$relation)) {
-		$GLOBALS['log']->error("Bad relation '$relation' for bean '{$bean->object_name}' id '{$bean->id}'");
+		Log::error("Bad relation '$relation' for bean '{$bean->object_name}' id '{$bean->id}'");
 
 		return [];
 	}
@@ -2698,7 +2698,7 @@ function get_bean_select_array(
 			$query .= " order by {$focus->table_name}.{$order_by}";
 		}
 
-		$GLOBALS['log']->debug("get_user_array query: $query");
+		Log::debug("get_user_array query: $query");
 		$result = $db->query($query, true, "Error filling in user array: ");
 
 		if ($add_blank == true) {
@@ -4179,7 +4179,7 @@ function getJavascriptSiteURL()
 			$site_url = preg_replace('/^http\:/', 'https:', $site_url);
 		}
 	}
-	$GLOBALS['log']->debug("getJavascriptSiteURL(), site_url=".$site_url);
+	Log::debug("getJavascriptSiteURL(), site_url=".$site_url);
 
 	return $site_url;
 }
@@ -4838,7 +4838,7 @@ function verify_image_file($path, $jpeg = false)
 
 		fclose($fp);
 		if (preg_match("/<(\?php|html|!doctype|script|body|head|plaintext|table|img |pre(>| )|frameset|iframe|object|link|base|style|font|applet|meta|center|form|isindex)/i", $data, $m)) {
-			$GLOBALS['log']->fatal("Found {$m[0]} in $path, not allowing upload");
+			Log::fatal("Found {$m[0]} in $path, not allowing upload");
 
 			return false;
 		}

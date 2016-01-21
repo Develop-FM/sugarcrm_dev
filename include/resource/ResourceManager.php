@@ -135,7 +135,7 @@ public function notifyObservers($msg) {
 	    $limit = $observer->limit;
 	    $module = $observer->module;
 	    eval("\$limitMsg = \"$limitMsg\";");
-	    $GLOBALS['log']->fatal($limitMsg);
+	    Log::fatal($limitMsg);
 	    $observer->notify($limitMsg);
     }		
 }

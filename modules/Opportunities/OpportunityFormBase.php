@@ -455,7 +455,7 @@ function handleSave($prefix,$redirect=true, $useRequired=false){
 	}
 	$return_id = $focus->id;
 	
-	$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+	Log::debug("Saved record with id of ".$return_id);
 	if($redirect){
 		handleRedirect($return_id,"Opportunities" );
 	}else{

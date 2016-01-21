@@ -183,7 +183,7 @@ if($master !='save'){
 }
 
 $header_URL = "Location: index.php?action=WizardHome&module=Campaigns&record=".$marketing->campaign_id;
-$GLOBALS['log']->debug("about to post header URL of: $header_URL");
+Log::debug("about to post header URL of: $header_URL");
 header($header_URL);
 
 ?>

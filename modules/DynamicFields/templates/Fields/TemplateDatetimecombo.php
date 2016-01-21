@@ -179,7 +179,7 @@ class TemplateDatetimecombo extends TemplateRange
 				}
 			}
 		}
-		$GLOBALS['log']->debug('populate: '.print_r($this,true));
+		Log::debug('populate: '.print_r($this,true));
 	}
 	
 }

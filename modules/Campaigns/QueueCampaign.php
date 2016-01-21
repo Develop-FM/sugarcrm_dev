@@ -191,6 +191,6 @@ if ($test) {
 	$header_URL = "Location: index.php?action={$return_action}&module={$return_module}&record={$return_id}";
     if($from_wiz){$header_URL .= "&from=send";}
 }
-$GLOBALS['log']->debug("about to post header URL of: $header_URL");
+Log::debug("about to post header URL of: $header_URL");
 header($header_URL);
 ?>

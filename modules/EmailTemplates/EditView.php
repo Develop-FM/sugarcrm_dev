@@ -115,7 +115,7 @@ if (!$focus->ACLAccess('EditView')) {
     sugar_cleanup(true);
 }
 
-$GLOBALS['log']->info("EmailTemplate detail view");
+Log::info("EmailTemplate detail view");
 
 if($has_campaign || $inboundEmail) {
 	$xtpl=new XTemplate ('modules/EmailTemplates/EditView.html');

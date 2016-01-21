@@ -130,7 +130,7 @@ class quicksearchQuery
             $data['fields']     = $api->searchDoc($_REQUEST['query']);
             $data['totalCount'] = count($data['fields']);
         } catch(Exception $ex) {
-            $GLOBALS['log']->error($ex->getMessage());
+            Log::error($ex->getMessage());
         }
 
         return $this->getJsonEncodedData($data);

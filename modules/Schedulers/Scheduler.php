@@ -154,7 +154,7 @@ class Scheduler extends SugarBean
 			if ($adminId) {// Get admin user
 				$user->retrieve($adminId);
 			} else {// Return false and log error
-				$GLOBALS['log']->fatal('No Admin account found!');
+				Log::fatal('No Admin account found!');
 
 				return false;
 			}
@@ -175,7 +175,7 @@ class Scheduler extends SugarBean
 	public function fireQualified()
 	{
 		if (empty($this->id)) { // execute only if we have an instance
-			$GLOBALS['log']->fatal('Scheduler called fireQualified() in a non-instance');
+			Log::fatal('Scheduler called fireQualified() in a non-instance');
 
 			return false;
 		}
@@ -185,11 +185,11 @@ class Scheduler extends SugarBean
 		$validTimes = $this->deriveDBDateTimes($this);
 
 		if (is_array($validTimes) && in_array($now, $validTimes)) {
-			$GLOBALS['log']->debug('----->Scheduler found valid job ('.$this->name.') for time GMT('.$now.')');
+			Log::debug('----->Scheduler found valid job ('.$this->name.') for time GMT('.$now.')');
 
 			return true;
 		} else {
-			$GLOBALS['log']->debug('----->Scheduler did NOT find valid job ('.$this->name.') for time GMT('.$now.')');
+			Log::debug('----->Scheduler did NOT find valid job ('.$this->name.') for time GMT('.$now.')');
 
 			return false;
 		}
@@ -220,7 +220,7 @@ class Scheduler extends SugarBean
 	{
 		$allSchedulers = $this->get_full_list('', "schedulers.status='Active' AND NOT EXISTS(SELECT id FROM {$this->job_queue_table} WHERE scheduler_id=schedulers.id AND status!='".SchedulersJob::JOB_STATUS_DONE."')");
 
-		$GLOBALS['log']->info('-----> Scheduler found [ '.count($allSchedulers).' ] ACTIVE jobs');
+		Log::info('-----> Scheduler found [ '.count($allSchedulers).' ] ACTIVE jobs');
 
 		if (! empty($allSchedulers)) {
 			foreach ($allSchedulers as $focus) {
@@ -230,7 +230,7 @@ class Scheduler extends SugarBean
 				}
 			}
 		} else {
-			$GLOBALS['log']->debug('----->No Schedulers found');
+			Log::debug('----->No Schedulers found');
 		}
 	}
 
@@ -249,7 +249,7 @@ class Scheduler extends SugarBean
 	function deriveDBDateTimes($focus)
 	{
 		global $timedate;
-		$GLOBALS['log']->debug('----->Schedulers->deriveDBDateTimes() got an object of type: '.$focus->object_name);
+		Log::debug('----->Schedulers->deriveDBDateTimes() got an object of type: '.$focus->object_name);
 		/* [min][hr][dates][mon][days] */
 		$dateTimes = [];
 		$ints      = explode('::', str_replace(' ', '', $focus->job_interval));
@@ -263,7 +263,7 @@ class Scheduler extends SugarBean
 		// derive day part
 		$dayName = [];
 		if ($days == '*') {
-			$GLOBALS['log']->debug('----->got * day');
+			Log::debug('----->got * day');
 		} elseif (strstr($days, '*/')) {
 			// the "*/x" format is nonsensical for this field
 			// do basically nothing.
@@ -301,7 +301,7 @@ class Scheduler extends SugarBean
 
 		// derive months part
 		if ($mons == '*') {
-			$GLOBALS['log']->debug('----->got * months');
+			Log::debug('----->got * months');
 		} elseif (strstr($mons, '*/')) {
 			$mult      = str_replace('*/', '', $mons);
 			$startMon  = $timedate->fromDb(date_time_start)->month;
@@ -348,7 +348,7 @@ class Scheduler extends SugarBean
 		// derive dates part
 		$dateName = [];
 		if ($dates == '*') {
-			$GLOBALS['log']->debug('----->got * dates');
+			Log::debug('----->got * dates');
 		} elseif (strstr($dates, '*/')) {
 			$mult      = str_replace('*/', '', $dates);
 			$startDate = $timedate->fromDb($focus->date_time_start)->day;
@@ -395,7 +395,7 @@ class Scheduler extends SugarBean
 		//$currentHour = date('G', strtotime('00:00'));
 		$hrName = [];
 		if ($hrs == '*') {
-			$GLOBALS['log']->debug('----->got * hours');
+			Log::debug('----->got * hours');
 			for ($i = 0; $i < 24; $i++) {
 				$hrName[] = $i;
 			}
@@ -436,7 +436,7 @@ class Scheduler extends SugarBean
 			$currentMin = substr($currentMin, 1, 1);
 		}
 		if ($mins == '*') {
-			$GLOBALS['log']->debug('----->got * mins');
+			Log::debug('----->got * mins');
 			for ($i = 0; $i < 60; $i++) {
 				if (($currentMin + $i) > 59) {
 					$minName[] = ($i + $currentMin - 60);
@@ -514,7 +514,7 @@ class Scheduler extends SugarBean
 		/*_pp('hours:'); _pp($hrName);_pp('mins:'); _pp($minName);*/
 		$dateobj = $timedate->getNow();
 		$nowTs   = $dateobj->ts;
-		$GLOBALS['log']->debug(sprintf("Constraints: start: %s from: %s end: %s to: %s now: %s", gmdate('Y-m-d H:i:s', $timeStartTs), gmdate('Y-m-d H:i:s', $timeFromTs), gmdate('Y-m-d H:i:s', $timeEndTs), gmdate('Y-m-d H:i:s', $timeToTs), $timedate->nowDb()));
+		Log::debug(sprintf("Constraints: start: %s from: %s end: %s to: %s now: %s", gmdate('Y-m-d H:i:s', $timeStartTs), gmdate('Y-m-d H:i:s', $timeFromTs), gmdate('Y-m-d H:i:s', $timeEndTs), gmdate('Y-m-d H:i:s', $timeToTs), $timedate->nowDb()));
 //		_pp('currentHour: '. $currentHour);
 //		_pp('timeStartTs: '.date('r',$timeStartTs));
 //		_pp('timeFromTs: '.date('r',$timeFromTs));

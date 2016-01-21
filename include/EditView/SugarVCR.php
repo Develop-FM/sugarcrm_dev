@@ -152,7 +152,7 @@
     }
 
  	function record($module, $offset){
- 		$GLOBALS['log']->debug('SUGARVCR is recording more records');
+ 		Log::debug('SUGARVCR is recording more records');
  		$start = max(0, $offset - VCRSTART);
  		$index = $start;
 	    $db = DBManagerFactory::getInstance();

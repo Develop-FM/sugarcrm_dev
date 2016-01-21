@@ -70,7 +70,7 @@ function mkdir_recursive($path, $check_is_parent_dir = false)
 	}
 	if(sugar_is_file($path, 'instance')) {
 	    if(!empty($GLOBALS['log'])) {
-		    $GLOBALS['log']->fatal("ERROR: mkdir_recursive(): argument $path is already a file.");
+		    Log::fatal("ERROR: mkdir_recursive(): argument $path is already a file.");
 	    }
 		return false;
 	}
@@ -125,7 +125,7 @@ function rmdir_recursive( $path ){
     }
     if( !is_dir( $path ) ){
        	if(!empty($GLOBALS['log'])) {
-            $GLOBALS['log']->fatal( "ERROR: rmdir_recursive(): argument $path is not a file or a dir." );
+            Log::fatal( "ERROR: rmdir_recursive(): argument $path is not a file or a dir." );
        	}
         return false;
     }
@@ -143,7 +143,7 @@ function rmdir_recursive( $path ){
     $d->close();
     $rmOk = @rmdir($path);
     if($rmOk === FALSE){
-        $GLOBALS['log']->error("ERROR: Unable to remove directory $path");
+        Log::error("ERROR: Unable to remove directory $path");
     }
     return( $status );
 }
@@ -177,7 +177,7 @@ function findTextFiles( $the_dir, $the_array ){
                 case "text/rtf":
                     break;
                 default:
-                    $GLOBALS['log']->info( "no type handler for $the_dir/$f with mime_content_type: " . mime_content_type( "$the_dir/$f" ) . "\n" );
+                    Log::info( "no type handler for $the_dir/$f with mime_content_type: " . mime_content_type( "$the_dir/$f" ) . "\n" );
             }
         }
     }

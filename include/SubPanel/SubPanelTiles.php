@@ -280,7 +280,7 @@ if(document.DetailView != null &&
 
 				if (!isset($this->focus->field_defs[$thisPanel->_instance_properties['get_subpanel_data']])) {
 					if (stripos($thisPanel->_instance_properties['get_subpanel_data'],'function:') === false) {
-						$GLOBALS['log']->fatal("Bad subpanel definition, it has incorrect value for get_subpanel_data property " .$tab);
+						Log::fatal("Bad subpanel definition, it has incorrect value for get_subpanel_data property " .$tab);
 						continue;
 					}
 				} else {
@@ -290,7 +290,7 @@ if(document.DetailView != null &&
 					}
 
 					if (empty($rel_name) or !isset($GLOBALS['relationships'][$rel_name])) {
-						$GLOBALS['log']->fatal("Missing relationship definition " .$rel_name. ". skipping " .$tab ." subpanel");
+						Log::fatal("Missing relationship definition " .$rel_name. ". skipping " .$tab ." subpanel");
 						continue;
 					}
 				}

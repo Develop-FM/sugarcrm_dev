@@ -154,7 +154,7 @@ class Note extends SugarBean
 				$removeFile = "upload://$id";
 				if (file_exists($removeFile)) {
 					if (! unlink($removeFile)) {
-						$GLOBALS['log']->error("*** Could not unlink() file: [ {$removeFile} ]");
+						Log::error("*** Could not unlink() file: [ {$removeFile} ]");
 					}
 				}
 			}
@@ -175,7 +175,7 @@ class Note extends SugarBean
 
 		if (file_exists($removeFile)) {
 			if (! unlink($removeFile)) {
-				$GLOBALS['log']->error("*** Could not unlink() file: [ {$removeFile} ]");
+				Log::error("*** Could not unlink() file: [ {$removeFile} ]");
 			} else {
 				$this->filename       = '';
 				$this->file_mime_type = '';

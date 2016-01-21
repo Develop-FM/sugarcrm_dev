@@ -90,7 +90,7 @@ class SugarAuthenticateUser{
 	function loadUserOnLogin($name, $password, $fallback = false, $PARAMS = array()) {
 		global $login_error;
 
-		$GLOBALS['log']->debug("Starting user load for ". $name);
+		Log::debug("Starting user load for ". $name);
 		if(empty($name) || empty($password)) return false;
 		$input_hash = $password;
 		$passwordEncrypted = false;
@@ -102,7 +102,7 @@ class SugarAuthenticateUser{
 		} // if
 		$user_id = $this->authenticateUser($name, $input_hash, $fallback);
 		if(empty($user_id)) {
-			$GLOBALS['log']->fatal('SECURITY: User authentication for '.$name.' failed');
+			Log::fatal('SECURITY: User authentication for '.$name.' failed');
 			return false;
 		}
 		$this->loadUserOnSession($user_id);

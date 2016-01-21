@@ -297,7 +297,7 @@ class SubPanel
         //tyoung 10.12.07 pushed panel->name to lowercase to match case in subpaneldefs.php files -
         //gave error on bad index 'module' as this override key didn't match the key in the subpaneldefs
   		$name = "layout_defs['".  $panel->parent_bean->module_dir. "']['subpanel_setup']['" .strtolower($panel->name). "']";
-//  	$GLOBALS['log']->debug('SubPanel.php->saveSubPanelDefOverride(): '.$name);
+//  	Log::debug('SubPanel.php->saveSubPanelDefOverride(): '.$name);
   		$newValue = override_value_to_string($name, 'override_subpanel_name', $filename);
   		mkdir_recursive('custom/Extension/modules/'. $panel->parent_bean->module_dir . '/Ext/Layoutdefs', true);
   		$fp = sugar_fopen('custom/Extension/modules/'. $panel->parent_bean->module_dir . "/Ext/Layoutdefs/$extname.php", 'w');

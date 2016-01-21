@@ -54,7 +54,7 @@ class EmployeesController extends SugarController{
             $u->employee_status = 'Terminated';
             $u->save();
             $u->mark_deleted($u->id);
-            $GLOBALS['log']->info("User id: {$GLOBALS['current_user']->id} deleted user record: {$_REQUEST['record']}");
+            Log::info("User id: {$GLOBALS['current_user']->id} deleted user record: {$_REQUEST['record']}");
             
                 SugarApplication::redirect("index.php?module=Employees&action=index");
         }

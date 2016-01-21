@@ -148,7 +148,7 @@ function create_field_label($module, $language, $key, $value, $overwrite=false)
 
    if(isset($mod_strings[$key]) && !$overwrite)
    {
-      $GLOBALS['log']->info("Tried to create a key that already exists: $key");
+      Log::info("Tried to create a key that already exists: $key");
    }
    else
    {
@@ -181,19 +181,19 @@ function create_field_label($module, $language, $key, $value, $overwrite=false)
             if(fwrite($handle, $contents))
             {
                $return_value = true;
-               $GLOBALS['log']->info("Successful write to: $filename");
+               Log::info("Successful write to: $filename");
             }
 
             fclose($handle);
          }
          else
          {
-            $GLOBALS['log']->info("Unable to write edited language pak to file: $filename");
+            Log::info("Unable to write edited language pak to file: $filename");
          }
       }
       else
       {
-          $GLOBALS['log']->info("Unable to create dir: $dirname");
+          Log::info("Unable to create dir: $dirname");
       }
    }
 
@@ -251,19 +251,19 @@ function save_custom_app_list_strings_contents(&$contents, $language, $custom_di
          if(fwrite($handle, $contents))
          {
             $return_value = true;
-            $GLOBALS['log']->info("Successful write to: $filename");
+            Log::info("Successful write to: $filename");
          }
 
          fclose($handle);
       }
       else
       {
-         $GLOBALS['log']->info("Unable to write edited language pak to file: $filename");
+         Log::info("Unable to write edited language pak to file: $filename");
       }
    }
    else
    {
-      $GLOBALS['log']->info("Unable to create dir: $dirname");
+      Log::info("Unable to create dir: $dirname");
    }
 if($return_value){
    	$cache_key = 'app_list_strings.'.$language;
@@ -303,19 +303,19 @@ function save_custom_app_list_strings(&$app_list_strings, $language)
          if(fwrite($handle, $contents))
          {
             $return_value = true;
-            $GLOBALS['log']->info("Successful write to: $filename");
+            Log::info("Successful write to: $filename");
          }
 
          fclose($handle);
       }
       else
       {
-         $GLOBALS['log']->info("Unable to write edited language pak to file: $filename");
+         Log::info("Unable to write edited language pak to file: $filename");
       }
    }
    else
    {
-      $GLOBALS['log']->info("Unable to create dir: $dirname");
+      Log::info("Unable to create dir: $dirname");
    }
 if($return_value){
    	$cache_key = 'app_list_strings.'.$language;
@@ -353,7 +353,7 @@ function create_dropdown_type($dropdown_name, $language)
 
    if(isset($app_list_strings[$dropdown_name]))
    {
-      $GLOBALS['log']->info("Tried to create a dropdown list key that already exists: $dropdown_name");
+      Log::info("Tried to create a dropdown list key that already exists: $dropdown_name");
    }
    else
    {

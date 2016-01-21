@@ -122,7 +122,7 @@ class ImportViewConfirm extends ImportView
 
         if( $this->shouldAutoDetectProperties($importSource) )
         {
-            $GLOBALS['log']->debug("Auto detecing csv properties...");
+            Log::debug("Auto detecing csv properties...");
             $autoDetectOk = $importFile->autoDetectCSVProperties();
             $importFileMap = array();
             $this->ss->assign("SOURCE", 'csv');

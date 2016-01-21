@@ -42,7 +42,7 @@ global $mod_strings;
 
 
 /* start standard DetailView layout process */
-$GLOBALS['log']->info("Groups DetailView");
+Log::info("Groups DetailView");
 $focus = new Group();
 $focus->retrieve($_REQUEST['record']);
 $detailView = new DetailView();

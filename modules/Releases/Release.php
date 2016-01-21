@@ -86,7 +86,7 @@ class Release extends SugarBean
 		}
 		$query .= " order by list_order asc";
 		$result = $this->db->query($query, false);
-		$GLOBALS['log']->debug("get_releases: result is ".var_export($result, true));
+		Log::debug("get_releases: result is ".var_export($result, true));
 
 		$list = [];
 		if ($add_blank) {
@@ -97,8 +97,8 @@ class Release extends SugarBean
 		while (($row = $this->db->fetchByAssoc($result)) != null) {
 			//while ($row = $this->db->fetchByAssoc($result)) {
 			$list[$row['id']] = $row['name'];
-			$GLOBALS['log']->debug("row id is:".$row['id']);
-			$GLOBALS['log']->debug("row name is:".$row['name']);
+			Log::debug("row id is:".$row['id']);
+			Log::debug("row name is:".$row['name']);
 		}
 
 		//}

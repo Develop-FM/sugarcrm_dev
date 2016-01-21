@@ -533,7 +533,7 @@ function process_subscriptions($subscription_string_to_parse) {
             //--grab all the lists for the passed in campaign id
             $pl_qry ="select id, list_type from prospect_lists where id in (select prospect_list_id from prospect_list_campaigns ";
             $pl_qry .= "where campaign_id = '$campaign') and deleted = 0 ";
-            $GLOBALS['log']->debug("In Campaigns Util: subscribe function, about to run query: ".$pl_qry );
+            Log::debug("In Campaigns Util: subscribe function, about to run query: ".$pl_qry );
             $pl_qry_result = $focus->db->query($pl_qry);
 
             //build the array of all prospect_lists
@@ -543,7 +543,7 @@ function process_subscriptions($subscription_string_to_parse) {
             //--grab all the prospect_lists this user belongs to
             $curr_pl_qry ="select prospect_list_id, related_id  from prospect_lists_prospects ";
             $curr_pl_qry .="where related_id = '$focus->id'  and deleted = 0 ";
-            $GLOBALS['log']->debug("In Campaigns Util: subscribe function, about to run query: ".$curr_pl_qry );
+            Log::debug("In Campaigns Util: subscribe function, about to run query: ".$curr_pl_qry );
             $curr_pl_qry_result = $focus->db->query($curr_pl_qry);
 
             //build the array of all prospect lists that this current user belongs to
@@ -607,7 +607,7 @@ function process_subscriptions($subscription_string_to_parse) {
                     return;
                 }
                 //load subscription list and add this user
-                $GLOBALS['log']->debug("In Campaigns Util, loading relationship: ".$relationship);
+                Log::debug("In Campaigns Util, loading relationship: ".$relationship);
                 $subscription_list->load_relationship($relationship);
                 $subscription_list->$relationship->add($focus->id);
             }
@@ -626,13 +626,13 @@ function process_subscriptions($subscription_string_to_parse) {
         $pl_qry_result = $focus->db->query($pl_qry);
         //build the array with list information
         $pl_arr = array();
-        $GLOBALS['log']->debug("In Campaigns Util, about to run query: ".$pl_qry);
+        Log::debug("In Campaigns Util, about to run query: ".$pl_qry);
     	while ($row = $focus->db->fetchByAssoc($pl_qry_result)){$pl_arr[] = $row;}
 
         //retrieve lists that this user belongs to
         $curr_pl_qry ="select prospect_list_id, related_id  from prospect_lists_prospects ";
         $curr_pl_qry .="where related_id = '$focus->id'  and deleted = 0 ";
-        $GLOBALS['log']->debug("In Campaigns Util, unsubscribe function about to run query: ".$curr_pl_qry );
+        Log::debug("In Campaigns Util, unsubscribe function about to run query: ".$curr_pl_qry );
         $curr_pl_qry_result = $focus->db->query($curr_pl_qry);
 
         //build the array with current user list information
@@ -687,7 +687,7 @@ function process_subscriptions($subscription_string_to_parse) {
             {//error happened while retrieving this list
                 return;
             }
-            $GLOBALS['log']->debug("In Campaigns Util, loading relationship: ".$relationship);
+            Log::debug("In Campaigns Util, loading relationship: ".$relationship);
             $exempt_list->load_relationship($relationship);
             $exempt_list->$relationship->add($focus->id);
         }
@@ -822,7 +822,7 @@ function process_subscriptions($subscription_string_to_parse) {
     $campaign->retrieve($campaign_id);
 
     if (empty($campaign->id)) {
-        $GLOBALS['log']->debug('set_campaign_merge: Invalid campaign id'. $campaign_id);
+        Log::debug('set_campaign_merge: Invalid campaign id'. $campaign_id);
     } else {
         foreach ($targets as $target_list_id) {
             $pl_query = "select * from prospect_lists_prospects where id='".$GLOBALS['db']->quote($target_list_id)."'";

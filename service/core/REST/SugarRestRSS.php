@@ -149,9 +149,9 @@ EORSS;
 		echo '<item><name>';
 		if(is_object($errorObject)){
 			$error = $errorObject->number . ': ' . $errorObject->name . '<br>' . $errorObject->description;
-			$GLOBALS['log']->error($error);
+			Log::error($error);
 		}else{
-			$GLOBALS['log']->error(var_export($errorObject, true));
+			Log::error(var_export($errorObject, true));
 			$error = var_export($errorObject, true);
 		} // else
 		echo $error;

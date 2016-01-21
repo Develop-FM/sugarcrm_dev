@@ -134,7 +134,7 @@ class Sugar_PHPUnit_Framework_TestCase extends PHPUnit_Framework_TestCase
     protected function assertPreConditions()
     {
         if(isset($GLOBALS['log'])) {
-            $GLOBALS['log']->info("START TEST: {$this->getName(false)}");
+            Log::info("START TEST: {$this->getName(false)}");
         }
         SugarCache::instance()->flush();
     }
@@ -158,7 +158,7 @@ class Sugar_PHPUnit_Framework_TestCase extends PHPUnit_Framework_TestCase
 		    }
         }
         if(isset($GLOBALS['log'])) {
-            $GLOBALS['log']->info("DONE TEST: {$this->getName(false)}");
+            Log::info("DONE TEST: {$this->getName(false)}");
         }
         // reset error handler in case somebody set it
         restore_error_handler();
@@ -184,7 +184,7 @@ class Sugar_PHPUnit_Framework_OutputTestCase extends PHPUnit_Extensions_OutputTe
     protected function assertPreConditions()
     {
         if(isset($GLOBALS['log'])) {
-            $GLOBALS['log']->info("START TEST: {$this->getName(false)}");
+            Log::info("START TEST: {$this->getName(false)}");
         }
         SugarCache::instance()->flush();
     }
@@ -208,7 +208,7 @@ class Sugar_PHPUnit_Framework_OutputTestCase extends PHPUnit_Extensions_OutputTe
 		    }
         }
         if(isset($GLOBALS['log'])) {
-            $GLOBALS['log']->info("DONE TEST: {$this->getName(false)}");
+            Log::info("DONE TEST: {$this->getName(false)}");
         }
     }
 

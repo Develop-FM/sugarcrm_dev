@@ -352,7 +352,7 @@ class VardefManager
         }
 
         if (empty($dictionary[$object])) {
-            $GLOBALS['log']->debug("Failed to load vardefs for $module:$object in linkFieldsForModule<br/>");
+            Log::debug("Failed to load vardefs for $module:$object in linkFieldsForModule<br/>");
 
             return false;
         }

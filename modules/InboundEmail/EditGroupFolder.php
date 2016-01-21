@@ -52,7 +52,7 @@ $javascript = new Javascript();
 /* Start standard EditView setup logic */
 
 if(isset($_REQUEST['record'])) {
-	$GLOBALS['log']->debug("In EditGroupFolder view, about to retrieve record: ".$_REQUEST['record']);
+	Log::debug("In EditGroupFolder view, about to retrieve record: ".$_REQUEST['record']);
 	$result = $focus->retrieve($_REQUEST['record']);
     if($result == null)
     {
@@ -60,7 +60,7 @@ if(isset($_REQUEST['record'])) {
     }
 }
 
-$GLOBALS['log']->info("SugarFolder Edit View");
+Log::info("SugarFolder Edit View");
 /* End standard EditView setup logic */
 
 // TEMPLATE ASSIGNMENTS

@@ -89,7 +89,7 @@ class M2MRelationship extends SugarRelationship
             return $results;
         } //Multiple links with same relationship name
         else if (is_array($results)) {
-            $GLOBALS['log']->error("Warning: Multiple links found for relationship {$this->name} within module {$module}");
+            Log::error("Warning: Multiple links found for relationship {$this->name} within module {$module}");
 
             return $this->getMostAppropriateLinkedDefinition($results);
         } else {
@@ -122,7 +122,7 @@ class M2MRelationship extends SugarRelationship
         }
 
         //Unable to find an appropriate link, guess and use the first one
-        $GLOBALS['log']->error("Unable to determine best appropriate link for relationship {$this->name}");
+        Log::error("Unable to determine best appropriate link for relationship {$this->name}");
 
         return $links[0];
     }
@@ -141,14 +141,14 @@ class M2MRelationship extends SugarRelationship
 
         if (empty($lhs->$lhsLinkName) && ! $lhs->load_relationship($lhsLinkName)) {
             $lhsClass = get_class($lhs);
-            $GLOBALS['log']->fatal("could not load LHS $lhsLinkName in $lhsClass");
+            Log::fatal("could not load LHS $lhsLinkName in $lhsClass");
 
             return false;
         }
 
         if (empty($rhs->$rhsLinkName) && ! $rhs->load_relationship($rhsLinkName)) {
             $rhsClass = get_class($rhs);
-            $GLOBALS['log']->fatal("could not load RHS $rhsLinkName in $rhsClass");
+            Log::fatal("could not load RHS $rhsLinkName in $rhsClass");
 
             return false;
         }
@@ -239,7 +239,7 @@ class M2MRelationship extends SugarRelationship
     public function remove($lhs, $rhs)
     {
         if (! ($lhs instanceof SugarBean) || ! ($rhs instanceof SugarBean)) {
-            $GLOBALS['log']->fatal("LHS and RHS must be beans");
+            Log::fatal("LHS and RHS must be beans");
 
             return false;
         }
@@ -248,25 +248,25 @@ class M2MRelationship extends SugarRelationship
         $rhsLinkName = $this->rhsLink;
 
         if (! ($lhs instanceof SugarBean)) {
-            $GLOBALS['log']->fatal("LHS is not a SugarBean object");
+            Log::fatal("LHS is not a SugarBean object");
 
             return false;
         }
 
         if (! ($rhs instanceof SugarBean)) {
-            $GLOBALS['log']->fatal("RHS is not a SugarBean object");
+            Log::fatal("RHS is not a SugarBean object");
 
             return false;
         }
 
         if (empty($lhs->$lhsLinkName) && ! $lhs->load_relationship($lhsLinkName)) {
-            $GLOBALS['log']->fatal("could not load LHS $lhsLinkName");
+            Log::fatal("could not load LHS $lhsLinkName");
 
             return false;
         }
 
         if (empty($rhs->$rhsLinkName) && ! $rhs->load_relationship($rhsLinkName)) {
-            $GLOBALS['log']->fatal("could not load RHS $rhsLinkName");
+            Log::fatal("could not load RHS $rhsLinkName");
 
             return false;
         }

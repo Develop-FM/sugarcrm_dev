@@ -65,7 +65,7 @@ class SugarRestSerialize extends SugarRest{
 	 * @return unknown
 	 */
 	function serve(){
-		$GLOBALS['log']->info('Begin: SugarRestSerialize->serve');
+		Log::info('Begin: SugarRestSerialize->serve');
 		$data = !empty($_REQUEST['rest_data'])? $_REQUEST['rest_data']: '';
 		if(empty($_REQUEST['method']) || !method_exists($this->implementation, $_REQUEST['method'])){
 			$er = new SoapError();
@@ -75,7 +75,7 @@ class SugarRestSerialize extends SugarRest{
 			$method = $_REQUEST['method'];
 			$data = unserialize(from_html($data));
 			if(!is_array($data))$data = array($data);
-			$GLOBALS['log']->info('End: SugarRestSerialize->serve');
+			Log::info('End: SugarRestSerialize->serve');
 			return call_user_func_array(array( $this->implementation, $method),$data);
 		} // else
 	} // fn
@@ -92,7 +92,7 @@ class SugarRestSerialize extends SugarRest{
 
 	function generateFaultResponse($errorObject){
 		$error = $errorObject->number . ': ' . $errorObject->name . '<br>' . $errorObject->description;
-		$GLOBALS['log']->error($error);
+		Log::error($error);
 		ob_clean();
 		echo serialize($errorObject);
 	} // fn

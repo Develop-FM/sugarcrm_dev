@@ -159,16 +159,16 @@
             if(isset($_REQUEST['release_id'])) {
                 $release_id = nl2br($_REQUEST['release_id']);
             }
-            $GLOBALS['log']->debug("PACKAGE ID: ".$package_id);
-            $GLOBALS['log']->debug("CATEGORY ID: ".$category_id);
-            $GLOBALS['log']->debug("RELEASE ID: ".$release_id);
+            Log::debug("PACKAGE ID: ".$package_id);
+            Log::debug("CATEGORY ID: ".$category_id);
+            Log::debug("RELEASE ID: ".$release_id);
             $result = $this->_pm->download($category_id, $package_id, $release_id);
-            $GLOBALS['log']->debug("RESULT: ".print_r($result,true));
+            Log::debug("RESULT: ".print_r($result,true));
             $success = 'false';
             if($result != null){
-                $GLOBALS['log']->debug("Performing Setup");
+                Log::debug("Performing Setup");
                 $this->_pm->performSetup($result, 'module', false);
-                $GLOBALS['log']->debug("Complete Setup");
+                Log::debug("Complete Setup");
                 $success = 'true';
             }
             echo 'result = ' . $json->encode(array('success' => $success));
@@ -186,7 +186,7 @@
              if(isset($_REQUEST['category_id'])) {
                 $node_id = nl2br($_REQUEST['category_id']);
             }
-            $GLOBALS['log']->debug("NODE ID: ".$node_id);
+            Log::debug("NODE ID: ".$node_id);
             $nodes = PackageManager::getCategories($node_id);
             echo 'result = ' . $json->encode(array('nodes' => $nodes));
         }
@@ -197,9 +197,9 @@
              if(isset($_REQUEST['category_id'])) {
                 $category_id = nl2br($_REQUEST['category_id']);
             }
-            $GLOBALS['log']->debug("CATEGORY ID: ".$category_id);
+            Log::debug("CATEGORY ID: ".$category_id);
             $nodes = PackageManager::getModuleLoaderCategoryPackages($category_id);
-            $GLOBALS['log']->debug(var_export_helper($nodes, true));
+            Log::debug(var_export_helper($nodes, true));
             echo 'result = ' . $json->encode(array('nodes' => $nodes));
         }
 
@@ -245,7 +245,7 @@
             if(isset($_REQUEST['file'])) {
                 $file = hashToFile($_REQUEST['file']);
             }
-            $GLOBALS['log']->debug("FILE : ".$file);
+            Log::debug("FILE : ".$file);
             echo 'result = ' . $json->encode(array('license_display' => PackageManagerDisplay::buildLicenseOutput($file)));
         }
 
@@ -323,7 +323,7 @@
             }
 
             $documents = PackageManager::getDocumentation($package_id, $release_id);
-            $GLOBALS['log']->debug("DOCUMENTS: ".var_export_helper($documents, true));
+            Log::debug("DOCUMENTS: ".var_export_helper($documents, true));
             echo 'result = ' . $json->encode(array('documents' => $documents));
         }
 
@@ -334,7 +334,7 @@
             if(isset($_REQUEST['document_id'])) {
                 $document_id = nl2br($_REQUEST['document_id']);
             }
-             $GLOBALS['log']->debug("Downloading Document: ".$document_id);
+             Log::debug("Downloading Document: ".$document_id);
             PackageManagerComm::downloadedDocumentation($document_id);
             echo 'result = ' . $json->encode(array('result' => 'true'));
         }
@@ -360,7 +360,7 @@
             if(isset($_REQUEST['file'])) {
                  $file = urldecode(hashToFile($_REQUEST['file']));
             }
-            $GLOBALS['log']->debug("FILE TO REMOVE: ".$file);
+            Log::debug("FILE TO REMOVE: ".$file);
             if(!empty($file)){
             	unlink($file);
             	foreach(array("manifest", "icon") as $meta) {

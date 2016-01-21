@@ -140,7 +140,7 @@ class File extends Basic
 
         if (file_exists($removeFile)) {
             if (! unlink($removeFile)) {
-                $GLOBALS['log']->error("*** Could not unlink() file: [ {$removeFile} ]");
+                Log::error("*** Could not unlink() file: [ {$removeFile} ]");
             } else {
                 $this->uploadfile     = '';
                 $this->uploadfile     = '';

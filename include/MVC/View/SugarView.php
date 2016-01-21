@@ -1082,7 +1082,7 @@ EOHTML;
     {
         if (! empty($this->module) && ! file_exists('modules/'.$this->module)) {
             $error = str_replace("[module]", "$this->module", $GLOBALS['app_strings']['ERR_CANNOT_FIND_MODULE']);
-            $GLOBALS['log']->fatal($error);
+            Log::fatal($error);
             echo $error;
             die();
         }
@@ -1387,7 +1387,7 @@ EOHTML;
             $metadataFile = $coreMetaPath;
         }
 
-        $GLOBALS['log']->debug("metadatafile=".$metadataFile);
+        Log::debug("metadatafile=".$metadataFile);
 
         return $metadataFile;
     }
@@ -1703,7 +1703,7 @@ EOHTML;
         //if the referrer is post, and the post array is empty, then an error has occurred, most likely
         //while uploading a file that exceeds the post_max_size.
         if (empty($_FILES) && empty($_POST) && isset($_SERVER['REQUEST_METHOD']) && strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
-            $GLOBALS['log']->fatal($GLOBALS['app_strings']['UPLOAD_ERROR_HOME_TEXT']);
+            Log::fatal($GLOBALS['app_strings']['UPLOAD_ERROR_HOME_TEXT']);
 
             return true;
         }

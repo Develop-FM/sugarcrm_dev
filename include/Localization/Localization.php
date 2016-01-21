@@ -339,7 +339,7 @@ class Localization {
 	 */
     function translateCharset($string, $fromCharset, $toCharset='UTF-8', $forceIconv = false)
     {
-        $GLOBALS['log']->debug("Localization: translating [{$string}] from {$fromCharset} into {$toCharset}");
+        Log::debug("Localization: translating [{$string}] from {$fromCharset} into {$toCharset}");
 
         // Bug #35413 Function has to use iconv if $fromCharset is not in mb_list_encodings
         $isMb = function_exists('mb_convert_encoding') && !$forceIconv;
@@ -369,12 +369,12 @@ class Localization {
             $newFromCharset = $fromCharset;
             if (isset($this->iconvCharsetMap[$fromCharset])) {
                 $newFromCharset = $this->iconvCharsetMap[$fromCharset];
-                $GLOBALS['log']->debug("Localization: iconv using charset {$newFromCharset} instead of {$fromCharset}");
+                Log::debug("Localization: iconv using charset {$newFromCharset} instead of {$fromCharset}");
             }
             $newToCharset = $toCharset;
             if (isset($this->iconvCharsetMap[$toCharset])) {
                 $newToCharset = $this->iconvCharsetMap[$toCharset];
-                $GLOBALS['log']->debug("Localization: iconv using charset {$newToCharset} instead of {$toCharset}");
+                Log::debug("Localization: iconv using charset {$newToCharset} instead of {$toCharset}");
             }
             return iconv($newFromCharset, $newToCharset, $string);
         }

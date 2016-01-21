@@ -55,7 +55,7 @@ $email = new Email();
 $domMailBoxType = $app_list_strings['dom_mailbox_type'];
 
 if(isset($_REQUEST['record'])) {
-	$GLOBALS['log']->debug("In InboundEmail edit view, about to retrieve record: ".$_REQUEST['record']);
+	Log::debug("In InboundEmail edit view, about to retrieve record: ".$_REQUEST['record']);
 	$result = $focus->retrieve($_REQUEST['record']);
     if($result == null)
     {
@@ -81,12 +81,12 @@ else
 
 $isDuplicate = isset($_REQUEST['isDuplicate']) && $_REQUEST['isDuplicate'] == 'true';
 if($isDuplicate) {
-	$GLOBALS['log']->debug("isDuplicate found - duplicating record of id: ".$focus->id);
+	Log::debug("isDuplicate found - duplicating record of id: ".$focus->id);
 	$origin_id = $focus->id;
 	$focus->id = "";
 }
 
-$GLOBALS['log']->info("InboundEmail Edit View");
+Log::info("InboundEmail Edit View");
 /* End standard EditView setup logic */
 
 /* Start custom setup logic */

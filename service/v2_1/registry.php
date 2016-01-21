@@ -46,10 +46,10 @@ class registry_v2_1 extends registry {
 	 */
 	protected function registerFunction() {
 		
-		$GLOBALS['log']->info('Begin: registry->registerFunction');
+		Log::info('Begin: registry->registerFunction');
 		parent::registerFunction();
 		            
-	    $GLOBALS['log']->info('END: registry->registerFunction');
+	    Log::info('END: registry->registerFunction');
 	        
 		// END OF REGISTER FUNCTIONS
 	}

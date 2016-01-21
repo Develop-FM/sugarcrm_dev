@@ -52,10 +52,10 @@ $selectedTable = $json->decode(html_entity_decode($_REQUEST['selectedTable']));
  if(isset($tagArticleIds['jsonObject']) && $tagArticleIds['jsonObject'] != null){
 	$selectedTable = $selectedTable['jsonObject'];
   }
-$GLOBALS['log']->fatal('************ comes here *********');
-//$GLOBALS['log']->fatal($_REQUEST['selectedTable']);
+Log::fatal('************ comes here *********');
+//Log::fatal($_REQUEST['selectedTable']);
 function tableColumns($table_name){
-	$GLOBALS['log']->fatal('********TABLE PASSED******* '.$table_name);
+	Log::fatal('********TABLE PASSED******* '.$table_name);
 	global $sugar_config;
 	global $setup_db_database_name;
     global $setup_db_host_name;

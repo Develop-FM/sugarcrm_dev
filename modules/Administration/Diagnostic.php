@@ -69,7 +69,7 @@ echo getClassicModuleTitle(
 
 global $currentModule;
 
-$GLOBALS['log']->info("Administration Diagnostic");
+Log::info("Administration Diagnostic");
 
 $sugar_smarty = new Sugar_Smarty();
 $sugar_smarty->assign("MOD", $mod_strings);

@@ -554,7 +554,7 @@ class Contact extends Person
 		$where_clause = "(email1='$email' OR email2='$email') AND deleted=0";
 
 		$query = "SELECT id FROM $this->table_name WHERE $where_clause";
-		$GLOBALS['log']->debug("Retrieve $this->object_name: ".$query);
+		Log::debug("Retrieve $this->object_name: ".$query);
 		$result = $this->db->getOne($query, true, "Retrieving record $where_clause:");
 
 		return empty($result) ? null : $result;

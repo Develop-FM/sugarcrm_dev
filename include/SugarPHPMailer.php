@@ -407,7 +407,7 @@ eoq;
      */
     function SetError($msg)
     {
-        $GLOBALS['log']->fatal("SugarPHPMailer encountered an error: {$msg}");
+        Log::fatal("SugarPHPMailer encountered an error: {$msg}");
         parent::SetError($msg);
     }
 

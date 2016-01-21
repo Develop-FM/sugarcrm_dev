@@ -109,7 +109,7 @@ class SugarJobQueue
         $job = new SchedulersJob();
         $job->retrieve($jobId);
         if(empty($job->id)) {
-            $GLOBALS['log']->info("Job $jobId not found!");
+            Log::info("Job $jobId not found!");
             return null;
         }
         return $job;

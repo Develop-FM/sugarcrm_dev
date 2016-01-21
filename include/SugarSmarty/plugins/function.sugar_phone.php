@@ -107,7 +107,7 @@ function smarty_function_sugar_phone($params, &$smarty)
 	global $system_config;
     if(isset($system_config->settings['system_skypeout_on']) && $system_config->settings['system_skypeout_on'] == 1
     	&& isset($params['value']) && skype_formatted($params['value'])  ) {
-    		$GLOBALS['log']->debug($params['value']);
+    		Log::debug($params['value']);
 			return '<a href="callto:'.format_skype($params['value']).'">'.$params['value'].'</a>';
     } else {
     	return $params['value'];

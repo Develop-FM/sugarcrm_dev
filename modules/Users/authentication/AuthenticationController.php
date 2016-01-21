@@ -137,7 +137,7 @@ class AuthenticationController
 			loginLicense();
 			if(!empty($GLOBALS['login_error'])){
 				unset($_SESSION['authenticated_user_id']);
-				$GLOBALS['log']->fatal('FAILED LOGIN: potential hack attempt:'.$GLOBALS['login_error']);
+				Log::fatal('FAILED LOGIN: potential hack attempt:'.$GLOBALS['login_error']);
 				$this->loginSuccess = false;
 				return false;
 			}
@@ -172,7 +172,7 @@ class AuthenticationController
 		}else{
 			//kbrill bug #13225
 			LogicHook::instance()->call_custom_logic('Users', 'login_failed');
-			$GLOBALS['log']->fatal('FAILED LOGIN:attempts[' .$_SESSION['loginAttempts'] .'] - '. $username);
+			Log::fatal('FAILED LOGIN:attempts[' .$_SESSION['loginAttempts'] .'] - '. $username);
 		}
 		// if password has expired, set a session variable
 

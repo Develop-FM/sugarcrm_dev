@@ -145,7 +145,7 @@ class SugarFieldDatetimecombo extends SugarFieldBase {
                 $bean->$field = $timedate->to_db($inputData[$prefix.$field]);
             }
         } else {
-        	$GLOBALS['log']->error('Field ' . $prefix.$field . ' expecting datetime format, but got value: ' . $inputData[$prefix.$field]);
+        	Log::error('Field ' . $prefix.$field . ' expecting datetime format, but got value: ' . $inputData[$prefix.$field]);
 	        //Default to assume date format value
         	if ($timedate->check_matching_format($inputData[$prefix.$field], TimeDate::DB_DATE_FORMAT)) {
                 $bean->$field = $inputData[$prefix.$field];

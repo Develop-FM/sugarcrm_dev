@@ -111,7 +111,7 @@ class SugarCronJobs
     protected function markLastRun()
     {
         if(!file_put_contents($this->lockfile, time())) {
-            $GLOBALS['log']->fatal('Scheduler cannot write PID file.  Please check permissions on '.$this->lockfile);
+            Log::fatal('Scheduler cannot write PID file.  Please check permissions on '.$this->lockfile);
         }
     }
 
@@ -148,7 +148,7 @@ class SugarCronJobs
     {
         $this->runOk = false;
         if(!empty($job)) {
-            $GLOBALS['log']->fatal("Job {$job->id} ({$job->name}) failed in CRON run");
+            Log::fatal("Job {$job->id} ({$job->name}) failed in CRON run");
             if($this->verbose) {
                 printf(translate('ERR_JOB_FAILED_VERBOSE', 'SchedulersJobs'), $job->id, $job->name);
             }
@@ -202,7 +202,7 @@ class SugarCronJobs
     {
         // throttle
         if(!$this->throttle()) {
-            $GLOBALS['log']->fatal("Job runs too frequently, throttled to protect the system.");
+            Log::fatal("Job runs too frequently, throttled to protect the system.");
             return;
         }
         // clean old stale jobs

@@ -36,7 +36,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  ********************************************************************************/
 
 
-$GLOBALS['log']->info("Email edit view");
+Log::info("Email edit view");
 
 require_once('include/SugarTinyMCE.php');
 

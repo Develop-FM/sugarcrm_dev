@@ -261,7 +261,7 @@ class SugarFeed extends Basic
     ) {
         $feed = new SugarFeed();
         if ((empty($text) && empty($link_url)) || ! $feed->ACLAccess('save', true)) {
-            $GLOBALS['log']->error('Unable to save SugarFeed record (missing data or no ACL access)');
+            Log::error('Unable to save SugarFeed record (missing data or no ACL access)');
 
             return;
         }

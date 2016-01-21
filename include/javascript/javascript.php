@@ -159,7 +159,7 @@ class javascript{
 					$this->addFieldGeneric($dispField,$type,$vname,$required,$prefix );
 			}
 		}else{
-			$GLOBALS['log']->debug('No VarDef Label For ' . $field . ' in module ' . $this->sugarbean->module_dir );
+			Log::debug('No VarDef Label For ' . $field . ' in module ' . $this->sugarbean->module_dir );
 		}
 
 	}

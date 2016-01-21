@@ -66,7 +66,7 @@ if(isset($_REQUEST['isDuplicate']) && $_REQUEST['isDuplicate'] == 'true') {
 
 
 
-$GLOBALS['log']->info("Campaign Tracker Edit View");
+Log::info("Campaign Tracker Edit View");
 
 $xtpl=new XTemplate ('modules/CampaignTrackers/EditView.html');
 $xtpl->assign("MOD", $mod_strings);

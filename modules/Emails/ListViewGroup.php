@@ -108,7 +108,7 @@ if(isset($_REQUEST['query'])) {
 
 	$focus->custom_fields->setWhereClauses($whereClauses);
 	
-	$GLOBALS['log']->info("Here is the where clause for the list view: $where");
+	Log::info("Here is the where clause for the list view: $where");
 } // end isset($_REQUEST['query'])
 
 

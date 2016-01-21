@@ -48,7 +48,7 @@ $sugarbean = new ProjectTask();
 
 if(empty($_REQUEST['record']))
 {
-	$GLOBALS['log']->info('delete called without a record id specified');
+	Log::info('delete called without a record id specified');
 }
 else
 {
@@ -58,7 +58,7 @@ else
 		ACLController::displayNoAccess(true);
 		sugar_cleanup(true);
 	}
-	$GLOBALS['log']->info("deleting record: $record");
+	Log::info("deleting record: $record");
 	$sugarbean->mark_deleted($record);
 }
 

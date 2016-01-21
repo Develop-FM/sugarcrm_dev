@@ -66,7 +66,7 @@ class Monitor implements Trackable {
     function Monitor($name='', $monitorId='', $metadata='', $store='') {
 
     	if(empty($metadata) || !file_exists($metadata)) {
-    	   $GLOBALS['log']->error($GLOBALS['app_strings']['ERR_MONITOR_FILE_MISSING'] . "($metadata)");
+    	   Log::error($GLOBALS['app_strings']['ERR_MONITOR_FILE_MISSING'] . "($metadata)");
     	   throw new Exception($GLOBALS['app_strings']['ERR_MONITOR_FILE_MISSING'] . "($metadata)");
     	}
 
@@ -110,7 +110,7 @@ class Monitor implements Trackable {
      */
     public function setValue($name, $value) {
         if(!isset($this->metrics[$name])) {
-          $GLOBALS['log']->error($GLOBALS['app_strings']['ERR_UNDEFINED_METRIC'] . "($name)");
+          Log::error($GLOBALS['app_strings']['ERR_UNDEFINED_METRIC'] . "($name)");
           throw new Exception($GLOBALS['app_strings']['ERR_UNDEFINED_METRIC'] . "($name)");
         } else if($this->metrics[$name]->isMutable()) {
           $this->$name = is_object($value) ? get_class($value) : $value;
@@ -201,7 +201,7 @@ class Monitor implements Trackable {
 		}
 
         if(!file_exists("modules/Trackers/store/$store.php")) {
-           $GLOBALS['log']->error($GLOBALS['app_strings']['ERR_STORE_FILE_MISSING'] . "($store)");
+           Log::error($GLOBALS['app_strings']['ERR_STORE_FILE_MISSING'] . "($store)");
            throw new Exception($GLOBALS['app_strings']['ERR_STORE_FILE_MISSING'] . "($store)");
         }
 

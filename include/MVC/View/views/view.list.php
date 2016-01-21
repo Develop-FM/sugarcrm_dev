@@ -248,7 +248,7 @@ class ViewList extends SugarView
             if (count($where_clauses) > 0) {
                 $this->where = '('.implode(' ) AND ( ', $where_clauses).')';
             }
-            $GLOBALS['log']->info("List View Where Clause: $this->where");
+            Log::info("List View Where Clause: $this->where");
         }
         if ($this->use_old_search) {
             switch ($view) {

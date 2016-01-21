@@ -51,7 +51,7 @@ global $currentModule;
 switch ($_REQUEST['view']) {
 	case "support_portal":
 		if (!is_admin($current_user)) sugar_die("Unauthorized access to administration.");
-		$GLOBALS['log']->info("Administration SupportPortal");
+		Log::info("Administration SupportPortal");
 
 		$iframe_url = add_http("www.sugarcrm.com/network/redirect.php?tmpl=network");
         

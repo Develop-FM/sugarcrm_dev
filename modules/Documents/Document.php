@@ -193,7 +193,7 @@ class Document extends SugarBean
 				$oldDocument->retrieve($_REQUEST['duplicateId']);
 				$old_name = "upload://{$oldDocument->document_revision_id}";
 				$new_name = "upload://{$Revision->id}";
-				$GLOBALS['log']->debug("Attempting to copy from $old_name to $new_name");
+				Log::debug("Attempting to copy from $old_name to $new_name");
 				copy($old_name, $new_name);
 				$createRevision = true;
 			}

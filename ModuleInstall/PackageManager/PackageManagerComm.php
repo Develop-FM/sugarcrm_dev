@@ -47,7 +47,7 @@ class PackageManagerComm{
       */
      function initialize($login = true){
         if(empty($GLOBALS['SugarDepot'])){
-            $GLOBALS['log']->debug('USING HTTPS TO CONNECT TO HEARTBEAT');
+            Log::debug('USING HTTPS TO CONNECT TO HEARTBEAT');
             $soap_client = new nusoap_client(HTTPS_URL, false);
             $ping = $soap_client->call('sugarPing', array());
             $GLOBALS['SugarDepot'] = $soap_client;
@@ -63,8 +63,8 @@ class PackageManagerComm{
       */
      function errorCheck(){
      	if(!empty($GLOBALS['SugarDepot']->error_str)){
-     		$GLOBALS['log']->fatal($GLOBALS['SugarDepot']->error_str);
-     		$GLOBALS['log']->fatal($GLOBALS['SugarDepot']->response);
+     		Log::fatal($GLOBALS['SugarDepot']->error_str);
+     		Log::fatal($GLOBALS['SugarDepot']->response);
      	}
      }
 
@@ -98,7 +98,7 @@ class PackageManagerComm{
      function login($terms_checked = true){
       if(empty($_SESSION['SugarDepotSessionID'])){
 	      global $license;
-	        $GLOBALS['log']->debug("Begin SugarDepot Login");
+	        Log::debug("Begin SugarDepot Login");
 	        PackageManagerComm::initialize(false);
 	        require('sugar_version.php');
 	        require('config.php');
@@ -117,7 +117,7 @@ class PackageManagerComm{
 	        PackageManagerComm::errorCheck();
 	        if(!is_array($result))
 	        	$_SESSION['SugarDepotSessionID'] = $result;
-	        $GLOBALS['log']->debug("End SugarDepot Login");
+	        Log::debug("End SugarDepot Login");
 	        return $result;
       }
       else
@@ -237,7 +237,7 @@ class PackageManagerComm{
     static public function performDownload($filename){
         PackageManagerComm::initialize();
          //check for fault
-         $GLOBALS['log']->debug("Performing download from depot: Session ID: ".$_SESSION['SugarDepotSessionID']." Filename: ".$filename);
+         Log::debug("Performing download from depot: Session ID: ".$_SESSION['SugarDepotSessionID']." Filename: ".$filename);
          return PackageManagerDownloader::download($_SESSION['SugarDepotSessionID'], $filename);
     }
 
@@ -268,7 +268,7 @@ class PackageManagerComm{
     function downloadedDocumentation($document_id){
     	 PackageManagerComm::initialize();
          //check for fault
-         $GLOBALS['log']->debug("Logging Document: ".$document_id);
+         Log::debug("Logging Document: ".$document_id);
          $GLOBALS['SugarDepot']->call('depotDownloadedDocumentation', array('session_id' => $_SESSION['SugarDepotSessionID'], 'document_id' => $document_id));
     }
 

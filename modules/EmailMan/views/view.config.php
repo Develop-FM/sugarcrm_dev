@@ -82,7 +82,7 @@ class ViewConfig extends SugarView
 
         $focus = new Administration();
         $focus->retrieveSettings(); //retrieve all admin settings.
-        $GLOBALS['log']->info("Mass Emailer(EmailMan) ConfigureSettings view");
+        Log::info("Mass Emailer(EmailMan) ConfigureSettings view");
 
         $this->ss->assign("MOD", $mod_strings);
         $this->ss->assign("APP", $app_strings);

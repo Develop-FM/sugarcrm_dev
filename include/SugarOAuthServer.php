@@ -78,7 +78,7 @@ class SugarOAuthServer
         // check $provider->consumer_key
         // on unknown: Zend_Oauth_Provider::CONSUMER_KEY_UNKNOWN
         // on bad key: Zend_Oauth_Provider::CONSUMER_KEY_REFUSED
-        $GLOBALS['log']->debug("OAUTH: lookupConsumer, key={$provider->consumer_key}");
+        Log::debug("OAUTH: lookupConsumer, key={$provider->consumer_key}");
         $consumer = OAuthKey::fetchKey($provider->consumer_key);
         if(!$consumer) {
             return Zend_Oauth_Provider::CONSUMER_KEY_UNKNOWN;
@@ -110,7 +110,7 @@ class SugarOAuthServer
      */
     public function tokenHandler($provider)
     {
-        $GLOBALS['log']->debug("OAUTH: tokenHandler, token={$provider->token}, verify={$provider->verifier}");
+        Log::debug("OAUTH: tokenHandler, token={$provider->token}, verify={$provider->verifier}");
 
         $token = OAuthToken::load($provider->token);
         if(empty($token)) {
@@ -119,7 +119,7 @@ class SugarOAuthServer
         if($token->consumer != $this->consumer->id) {
             return Zend_Oauth_Provider::TOKEN_REJECTED;
         }
-        $GLOBALS['log']->debug("OAUTH: tokenHandler, found token=".var_export_helper($token->id, true));
+        Log::debug("OAUTH: tokenHandler, found token=".var_export_helper($token->id, true));
         if($token->tstate == OAuthToken::REQUEST) {
             if(!empty($token->verify) && $provider->verifier == $token->verify) {
                 $provider->token_secret = $token->secret;
@@ -159,7 +159,7 @@ class SugarOAuthServer
      */
     public function __construct($req_path = '')
     {
-        $GLOBALS['log']->debug("OAUTH: __construct($req_path): ".var_export_helper($_REQUEST, true));
+        Log::debug("OAUTH: __construct($req_path): ".var_export_helper($_REQUEST, true));
         $this->check();
         $this->provider = new Zend_Oauth_Provider();
         try {
@@ -175,7 +175,7 @@ class SugarOAuthServer
 	    	    OAuthToken::cleanup();
 	    	}
         } catch(Exception $e) {
-            $GLOBALS['log']->debug($this->reportProblem($e));
+            Log::debug($this->reportProblem($e));
             throw $e;
         }
     }
@@ -186,7 +186,7 @@ class SugarOAuthServer
      */
     public function requestToken()
     {
-        $GLOBALS['log']->debug("OAUTH: requestToken");
+        Log::debug("OAUTH: requestToken");
         $token = OAuthToken::generate();
         $token->setConsumer($this->consumer);
         $params = $this->provider->getOAuthParams();
@@ -203,7 +203,7 @@ class SugarOAuthServer
      */
     public function accessToken()
     {
-        $GLOBALS['log']->debug("OAUTH: accessToken");
+        Log::debug("OAUTH: accessToken");
         if(empty($this->token) || $this->token->tstate != OAuthToken::REQUEST) {
             return null;
         }

@@ -77,16 +77,16 @@ global $current_user;
 $user_tempx = $current_user->getPreference('pbls_lead_sources');
 if (!empty($user_tempx) && count($user_tempx) > 0 && !isset($_REQUEST['pbls_lead_sources'])) {
 	$tempx = $user_tempx;
-	$GLOBALS['log']->debug("USER PREFERENCES['pbls_lead_sources'] is:");
-	$GLOBALS['log']->debug($user_tempx);
+	Log::debug("USER PREFERENCES['pbls_lead_sources'] is:");
+	Log::debug($user_tempx);
 }
 elseif (isset($_REQUEST['pbls_lead_sources']) && count($_REQUEST['pbls_lead_sources']) > 0) {
 	$tempx = $_REQUEST['pbls_lead_sources'];
 	$current_user->setPreference('pbls_lead_sources', $_REQUEST['pbls_lead_sources']);
-	$GLOBALS['log']->debug("_REQUEST['pbls_lead_sources'] is:");
-	$GLOBALS['log']->debug($_REQUEST['pbls_lead_sources']);
-	$GLOBALS['log']->debug("USER PREFERENCES['pbls_lead_sources'] is:");
-	$GLOBALS['log']->debug($current_user->getPreference('pbls_lead_sources'));
+	Log::debug("_REQUEST['pbls_lead_sources'] is:");
+	Log::debug($_REQUEST['pbls_lead_sources']);
+	Log::debug("USER PREFERENCES['pbls_lead_sources'] is:");
+	Log::debug($current_user->getPreference('pbls_lead_sources'));
 }
 
 //set $datax using selected sales stage keys
@@ -100,24 +100,24 @@ else {
 	$datax = $app_list_strings['lead_source_dom'];
 	$selected_datax = array_keys($app_list_strings['lead_source_dom']);
 }
-$GLOBALS['log']->debug("datax is:");
-$GLOBALS['log']->debug($datax);
+Log::debug("datax is:");
+Log::debug($datax);
 
 $ids = array();
 $user_ids = $current_user->getPreference('pbls_ids');
 //get list of user ids for which to display data
 if (!empty($user_ids) && count($user_ids) != 0 && !isset($_REQUEST['pbls_ids'])) {
 	if(isset($_SESSION['pbls_ids'])) {$ids = $_SESSION['pbls_ids'];}
-	$GLOBALS['log']->debug("USER PREFERENCES['pbls_ids'] is:");
-	$GLOBALS['log']->debug($user_ids);
+	Log::debug("USER PREFERENCES['pbls_ids'] is:");
+	Log::debug($user_ids);
 }
 elseif (isset($_REQUEST['pbls_ids']) && count($_REQUEST['pbls_ids']) > 0) {
 	$ids = $_REQUEST['pbls_ids'];
 	$current_user->setPreference('pbls_ids', $ids);
-	$GLOBALS['log']->debug("_REQUEST['pbls_ids'] is:");
-	$GLOBALS['log']->debug($_REQUEST['pbls_ids']);
-	$GLOBALS['log']->debug("USER PREFERENCES['pbls_ids'] is:");
-	$GLOBALS['log']->debug($current_user->getPreference('pbls_ids'));
+	Log::debug("_REQUEST['pbls_ids'] is:");
+	Log::debug($_REQUEST['pbls_ids']);
+	Log::debug("USER PREFERENCES['pbls_ids'] is:");
+	Log::debug($current_user->getPreference('pbls_ids'));
 }
 else {
 	$ids = get_user_array(false);
@@ -134,8 +134,8 @@ if (isset($ids) && is_array($ids)) {
         $id_hash = $id_hash * -1;
 	}
 }
-$GLOBALS['log']->debug("ids is:");
-$GLOBALS['log']->debug($ids);
+Log::debug("ids is:");
+Log::debug($ids);
 $id_md5 = substr(md5($current_user->id),0,9);
 
 
@@ -144,7 +144,7 @@ $dates				= array(date($GLOBALS['timedate']->dbDayFormat), $GLOBALS['timedate']-
 $dateFileNameSafe	= str_replace($seps, "_", $dates);
 $cache_file_name	= sugar_cached("xml/").$current_user->getUserPrivGuid()."_pipeline_by_lead_source_".$dateFileNameSafe[0]."_".$dateFileNameSafe[1].".xml";
 
-$GLOBALS['log']->debug("cache file name is: $cache_file_name");
+Log::debug("cache file name is: $cache_file_name");
 global $currentModule,$action;
 $tools='<div align="right"><a href="index.php?module='.$currentModule.'&action='. $action .'&pbls_refresh=true" class="tabFormAdvLink">'.SugarThemeRegistry::current()->getImage('refresh','border="0" align="absmiddle"',null,null,'.gif',$mod_strings['LBL_REFRESH']).'&nbsp;'.$current_module_strings['LBL_REFRESH'].'</a>&nbsp;&nbsp;<a href="javascript: toggleDisplay(\'pbls_edit\');" class="tabFormAdvLink">'.SugarThemeRegistry::current()->getImage('edit','border="0"  align="absmiddle"',null,null,'.gif',$mod_strings['LBL_EDIT']).'&nbsp;'. $current_module_strings['LBL_EDIT'].'</a>&nbsp;&nbsp;'.$extra_tools.'</div>';
 ?>
@@ -213,12 +213,12 @@ global $timedate;
 
 		if (!file_exists($cache_file_name) || $refresh == true) {
 			;
-			$GLOBALS['log']->debug("starting pipeline chart");
-			$GLOBALS['log']->debug("legends is:");
-			$GLOBALS['log']->debug($legends);
-			$GLOBALS['log']->debug("user_id is: ");
-			$GLOBALS['log']->debug($user_id);
-			$GLOBALS['log']->debug("cache_file_name is: $cache_file_name");
+			Log::debug("starting pipeline chart");
+			Log::debug("legends is:");
+			Log::debug($legends);
+			Log::debug("user_id is: ");
+			Log::debug($user_id);
+			Log::debug("cache_file_name is: $cache_file_name");
 
 			$opp = new Opportunity;
 			//Now do the db queries
@@ -314,7 +314,7 @@ global $timedate;
 			$total = round($total, 2);
 			$title = $current_module_strings['LBL_TOTAL_PIPELINE'].currency_format_number($total, array('currency_symbol' => true)).$app_strings['LBL_THOUSANDS_SYMBOL'];
 			$fileContents = '<graphData title="'.$title.'" subtitle="'.$subtitle.'">'."\n" . $fileContents;
-			$GLOBALS['log']->debug("total is: $total");
+			Log::debug("total is: $total");
 			if ($total == 0) {
 				return ($current_module_strings['ERR_NO_OPPS']);
 			}
@@ -339,16 +339,16 @@ global $timedate;
 		$user_tempx = $current_user->getPreference('pbls_lead_sources');
 		if (!empty($user_tempx) && count($user_tempx) > 0 && !isset($_REQUEST['pbls_lead_sources'])) {
 			$tempx = $user_tempx;
-			$GLOBALS['log']->debug("USER PREFERENCES['pbls_lead_sources'] is:");
-			$GLOBALS['log']->debug($user_tempx);
+			Log::debug("USER PREFERENCES['pbls_lead_sources'] is:");
+			Log::debug($user_tempx);
 		}
 		elseif (isset($_REQUEST['pbls_lead_sources']) && count($_REQUEST['pbls_lead_sources']) > 0) {
 			$tempx = $_REQUEST['pbls_lead_sources'];
 			$current_user->setPreference('pbls_lead_sources', $_REQUEST['pbls_lead_sources']);
-			$GLOBALS['log']->debug("_REQUEST['pbls_lead_sources'] is:");
-			$GLOBALS['log']->debug($_REQUEST['pbls_lead_sources']);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbls_lead_sources'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('pbls_lead_sources'));
+			Log::debug("_REQUEST['pbls_lead_sources'] is:");
+			Log::debug($_REQUEST['pbls_lead_sources']);
+			Log::debug("USER PREFERENCES['pbls_lead_sources'] is:");
+			Log::debug($current_user->getPreference('pbls_lead_sources'));
 		}
 
 		//set $datax using selected sales stage keys
@@ -370,16 +370,16 @@ global $timedate;
 		//get list of user ids for which to display data
 		if (!empty($user_ids) && count($user_ids) != 0 && !isset($_REQUEST['pbls_ids'])) {
 			if(isset($_SESSION['pbls_ids'])) {$ids = $_SESSION['pbls_ids'];}
-			$GLOBALS['log']->debug("USER PREFERENCES['pbls_ids'] is:");
-			$GLOBALS['log']->debug($user_ids);
+			Log::debug("USER PREFERENCES['pbls_ids'] is:");
+			Log::debug($user_ids);
 		}
 		elseif (isset($_REQUEST['pbls_ids']) && count($_REQUEST['pbls_ids']) > 0) {
 			$ids = $_REQUEST['pbls_ids'];
 			$current_user->setPreference('pbls_ids', $ids);
-			$GLOBALS['log']->debug("_REQUEST['pbls_ids'] is:");
-			$GLOBALS['log']->debug($_REQUEST['pbls_ids']);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbls_ids'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('pbls_ids'));
+			Log::debug("_REQUEST['pbls_ids'] is:");
+			Log::debug($_REQUEST['pbls_ids']);
+			Log::debug("USER PREFERENCES['pbls_ids'] is:");
+			Log::debug($current_user->getPreference('pbls_ids'));
 		}
 		else {
 			$ids = get_user_array(false);

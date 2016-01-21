@@ -59,7 +59,7 @@ $mod_strings = return_module_language($current_language, 'Schedulers');
 $focus = new Scheduler();
 $focus->checkCurl();
 if(isset($_REQUEST['record'])) {
-	$GLOBALS['log']->debug("In Scheduler edit view, about to retrieve record: ".$_REQUEST['record']);
+	Log::debug("In Scheduler edit view, about to retrieve record: ".$_REQUEST['record']);
 	$result = $focus->retrieve($_REQUEST['record']);
     if($result == null)
     {
@@ -67,7 +67,7 @@ if(isset($_REQUEST['record'])) {
     }
 }
 if(isset($_REQUEST['isDuplicate']) && $_REQUEST['isDuplicate'] == 'true') {
-	$GLOBALS['log']->debug("isDuplicate found - duplicating record of id: ".$focus->id);
+	Log::debug("isDuplicate found - duplicating record of id: ".$focus->id);
 	$focus->id = "";
 }
 
@@ -83,7 +83,7 @@ if(empty($focus->id)){
 }
 echo getClassicModuleTitle("Schedulers", $params, true);
 
-$GLOBALS['log']->info("Scheduler Edit View");
+Log::info("Scheduler Edit View");
 /* End standard EditView setup logic */
 
 // javascript calls

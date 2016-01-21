@@ -138,7 +138,7 @@ if (!empty($focus->status)) {
 ////	OUTPUT
 ///////////////////////////////////////////////////////////////////////////////
 echo "\n<p>\n";
-$GLOBALS['log']->info("Email detail view");
+Log::info("Email detail view");
 $show_forward = true;
 if ($email_type == 'archived') {
 	echo getClassicModuleTitle('Emails', array($mod_strings['LBL_ARCHIVED_EMAIL'],$focus->name), true);

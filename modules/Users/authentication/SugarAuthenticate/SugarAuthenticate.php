@@ -174,7 +174,7 @@ class SugarAuthenticate{
 
 		$_SESSION['authenticated_user_language'] = $authenticated_user_language;
 
-		$GLOBALS['log']->debug("authenticated_user_language is $authenticated_user_language");
+		Log::debug("authenticated_user_language is $authenticated_user_language");
 
 		// Clear all uploaded import files for this user if it exists
         require_once('modules/Import/ImportCacheFiles.php');
@@ -198,15 +198,15 @@ class SugarAuthenticate{
 		$allowed_actions = array ("Authenticate", "Login"); // these are actions where the user/server keys aren't compared
 		if (isset ($_SESSION['authenticated_user_id'])) {
 
-			$GLOBALS['log']->debug("We have an authenticated user id: ".$_SESSION["authenticated_user_id"]);
+			Log::debug("We have an authenticated user id: ".$_SESSION["authenticated_user_id"]);
 
 			$authenticated = $this->postSessionAuthenticate();
 
 		} else
 		if (isset ($action) && isset ($module) && $action == "Authenticate" && $module == "Users") {
-			$GLOBALS['log']->debug("We are authenticating user now");
+			Log::debug("We are authenticating user now");
 		} else {
-			$GLOBALS['log']->debug("The current user does not have a session.  Going to the login page");
+			Log::debug("The current user does not have a session.  Going to the login page");
 			$action = "Login";
 			$module = "Users";
 			$_REQUEST['action'] = $action;
@@ -214,7 +214,7 @@ class SugarAuthenticate{
 		}
 		if (empty ($GLOBALS['current_user']->id) && !in_array($action, $allowed_actions)) {
 
-			$GLOBALS['log']->debug("The current user is not logged in going to login page");
+			Log::debug("The current user is not logged in going to login page");
 			$action = "Login";
 			$module = "Users";
 			$_REQUEST['action'] = $action;
@@ -247,7 +247,7 @@ class SugarAuthenticate{
 		//CHECK IF USER IS CROSSING SITES
 		if (($user_unique_key != $server_unique_key) && (!in_array($action, $allowed_actions)) && (!isset ($_SESSION['login_error']))) {
 
-			$GLOBALS['log']->debug('Destroying Session User has crossed Sites');
+			Log::debug('Destroying Session User has crossed Sites');
 		    session_destroy();
 			header("Location: index.php?action=Login&module=Users".$GLOBALS['app']->getLoginRedirect());
 			sugar_cleanup(true);
@@ -255,10 +255,10 @@ class SugarAuthenticate{
 		if (!$this->userAuthenticate->loadUserOnSession($_SESSION['authenticated_user_id'])) {
 			session_destroy();
 			header("Location: index.php?action=Login&module=Users&loginErrorMessage=LBL_SESSION_EXPIRED");
-			$GLOBALS['log']->debug('Current user session does not exist redirecting to login');
+			Log::debug('Current user session does not exist redirecting to login');
 			sugar_cleanup(true);
 		}
-		$GLOBALS['log']->debug('Current user is: '.$GLOBALS['current_user']->user_name);
+		Log::debug('Current user is: '.$GLOBALS['current_user']->user_name);
 		return true;
 	}
 
@@ -295,7 +295,7 @@ class SugarAuthenticate{
                 }
 				// we have a different IP address
 				if ($_SESSION["ipaddress"] != $clientIP && empty ($classCheck)) {
-					$GLOBALS['log']->fatal("IP Address mismatch: SESSION IP: {$_SESSION['ipaddress']} CLIENT IP: {$clientIP}");
+					Log::fatal("IP Address mismatch: SESSION IP: {$_SESSION['ipaddress']} CLIENT IP: {$clientIP}");
 					session_destroy();
 					die("Your session was terminated due to a significant change in your IP address.  <a href=\"{$sugar_config['site_url']}\">Return to Home</a>");
 				}

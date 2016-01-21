@@ -74,7 +74,7 @@ class SugarRestJSON extends SugarRestSerialize{
 	 * @return unknown
 	 */
 	function serve(){
-		$GLOBALS['log']->info('Begin: SugarRestJSON->serve');
+		Log::info('Begin: SugarRestJSON->serve');
 		$json_data = !empty($_REQUEST['rest_data'])? $GLOBALS['RAW_REQUEST']['rest_data']: '';
 		if(empty($_REQUEST['method']) || !method_exists($this->implementation, $_REQUEST['method'])){
 			$er = new SoapError();
@@ -86,7 +86,7 @@ class SugarRestJSON extends SugarRestSerialize{
 			$data = $json->decode($json_data);
 			if(!is_array($data))$data = array($data);
 			$res = call_user_func_array(array( $this->implementation, $method),$data);
-			$GLOBALS['log']->info('End: SugarRestJSON->serve');
+			Log::info('End: SugarRestJSON->serve');
 			return $res;
 		} // else
 	} // fn
@@ -103,7 +103,7 @@ class SugarRestJSON extends SugarRestSerialize{
 
 	function generateFaultResponse($errorObject){
 		$error = $errorObject->number . ': ' . $errorObject->name . '<br>' . $errorObject->description;
-		$GLOBALS['log']->error($error);
+		Log::error($error);
 		$json = getJSONObj();
 		ob_clean();
 		// JSONP support

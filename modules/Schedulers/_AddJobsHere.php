@@ -85,7 +85,7 @@ function refreshJobs() {
 function pollMonitoredInboxes() {
 
     $_bck_up = array('team_id' => $GLOBALS['current_user']->team_id, 'team_set_id' => $GLOBALS['current_user']->team_set_id);
-	$GLOBALS['log']->info('----->Scheduler fired job of type pollMonitoredInboxes()');
+	Log::info('----->Scheduler fired job of type pollMonitoredInboxes()');
 	global $dictionary;
 	global $app_strings;
 
@@ -95,10 +95,10 @@ function pollMonitoredInboxes() {
 	$ie = new InboundEmail();
 	$emailUI = new EmailUI();
 	$r = $ie->db->query('SELECT id, name FROM inbound_email WHERE is_personal = 0 AND deleted=0 AND status=\'Active\' AND mailbox_type != \'bounce\'');
-	$GLOBALS['log']->debug('Just got Result from get all Inbounds of Inbound Emails');
+	Log::debug('Just got Result from get all Inbounds of Inbound Emails');
 
 	while($a = $ie->db->fetchByAssoc($r)) {
-		$GLOBALS['log']->debug('In while loop of Inbound Emails');
+		Log::debug('In while loop of Inbound Emails');
 		$ieX = new InboundEmail();
 		$ieX->retrieve($a['id']);
         $GLOBALS['current_user']->team_id = $ieX->team_id;
@@ -118,9 +118,9 @@ function pollMonitoredInboxes() {
 				$connectToMailServer = true;
 			} // if
 
-			$GLOBALS['log']->debug('Trying to connect to mailserver for [ '.$a['name'].' ]');
+			Log::debug('Trying to connect to mailserver for [ '.$a['name'].' ]');
 			if($connectToMailServer) {
-				$GLOBALS['log']->debug('Connected to mailserver');
+				Log::debug('Connected to mailserver');
 				if (!$ieX->isPop3Protocol()) {
 					$newMsgs = $ieX->getNewMessageIds();
 				}
@@ -145,7 +145,7 @@ function pollMonitoredInboxes() {
 						} else {
 							$lastRobin = $emailUI->getLastRobin($ieX);
 						}
-						$GLOBALS['log']->debug('distribution method id [ '.$distributionMethod.' ]');
+						Log::debug('distribution method id [ '.$distributionMethod.' ]');
 					}
 					foreach($newMsgs as $k => $msgNo) {
 						$uid = $msgNo;
@@ -193,7 +193,7 @@ function pollMonitoredInboxes() {
 											$counts[$leastBusy] = $counts[$leastBusy] + 1;
 										}
 									} // else
-									$GLOBALS['log']->debug('userId [ '.$userId.' ]');
+									Log::debug('userId [ '.$userId.' ]');
 									$ieX->handleCreateCase($ieX->email, $userId);
 								} // if
 							} // if
@@ -218,7 +218,7 @@ function pollMonitoredInboxes() {
 										$ieX->handleAutoresponse($email, $contactAddr);
 								} // else
 						} // else
-						$GLOBALS['log']->debug('***** On message [ '.$current.' of '.$total.' ] *****');
+						Log::debug('***** On message [ '.$current.' of '.$total.' ] *****');
 						$current++;
 					} // foreach
 					// update Inbound Account with last robin
@@ -238,7 +238,7 @@ function pollMonitoredInboxes() {
 					}
 				}
 			} else {
-				$GLOBALS['log']->fatal("SCHEDULERS: could not get an IMAP connection resource for ID [ {$a['id']} ]. Skipping mailbox [ {$a['name']} ].");
+				Log::fatal("SCHEDULERS: could not get an IMAP connection resource for ID [ {$a['id']} ]. Skipping mailbox [ {$a['name']} ].");
 				// cn: bug 9171 - continue while
 			} // else
 		} // foreach
@@ -254,7 +254,7 @@ function pollMonitoredInboxes() {
  * Job 2
  */
 function runMassEmailCampaign() {
-	$GLOBALS['log']->debug('Called:runMassEmailCampaign');
+	Log::debug('Called:runMassEmailCampaign');
 
 	if (!class_exists('DBManagerFactory')){
 		require('include/database/DBManagerFactory.php');
@@ -276,7 +276,7 @@ function runMassEmailCampaign() {
  *  Job 3
  */
 function pruneDatabase() {
-	$GLOBALS['log']->info('----->Scheduler fired job of type pruneDatabase()');
+	Log::info('----->Scheduler fired job of type pruneDatabase()');
 	$backupDir	= sugar_cached('backups');
 	$backupFile	= 'backup-pruneDatabase-GMT0_'.gmdate('Y_m_d-H_i_s', strtotime('now')).'.php';
 
@@ -349,7 +349,7 @@ function pruneDatabase() {
 function trimTracker()
 {
     global $sugar_config, $timedate;
-	$GLOBALS['log']->info('----->Scheduler fired job of type trimTracker()');
+	Log::info('----->Scheduler fired job of type trimTracker()');
 	$db = DBManagerFactory::getInstance();
 
 	$admin = new Administration();
@@ -373,7 +373,7 @@ function trimTracker()
 		   $query = "DELETE FROM $tableName WHERE date_modified < $timeStamp";
 		}
 
-	    $GLOBALS['log']->info("----->Scheduler is about to trim the $tableName table by running the query $query");
+	    Log::info("----->Scheduler is about to trim the $tableName table by running the query $query");
 		$db->query($query);
 	} //foreach
     return true;
@@ -383,7 +383,7 @@ function trimTracker()
  *
  */
 function pollMonitoredInboxesForBouncedCampaignEmails() {
-	$GLOBALS['log']->info('----->Scheduler job of type pollMonitoredInboxesForBouncedCampaignEmails()');
+	Log::info('----->Scheduler job of type pollMonitoredInboxesForBouncedCampaignEmails()');
 	global $dictionary;
 
 
@@ -407,7 +407,7 @@ function pollMonitoredInboxesForBouncedCampaignEmails() {
  * Job 12
  */
 function sendEmailReminders(){
-	$GLOBALS['log']->info('----->Scheduler fired job of type sendEmailReminders()');
+	Log::info('----->Scheduler fired job of type sendEmailReminders()');
 	require_once("modules/Activities/EmailReminder.php");
 	$reminder = new EmailReminder();
 	return $reminder->process();
@@ -415,7 +415,7 @@ function sendEmailReminders(){
 
 function removeDocumentsFromFS()
 {
-    $GLOBALS['log']->info('Starting removal of documents if they are not present in DB');
+    Log::info('Starting removal of documents if they are not present in DB');
 
     /**
      * @var DBManager $db
@@ -480,7 +480,7 @@ function removeDocumentsFromFS()
 function trimSugarFeeds()
 {
     global $sugar_config, $timedate;
-    $GLOBALS['log']->info('----->Scheduler fired job of type trimSugarFeeds()');
+    Log::info('----->Scheduler fired job of type trimSugarFeeds()');
     $db = DBManagerFactory::getInstance();
 
     //get the pruning interval from globals if it's specified
@@ -492,7 +492,7 @@ function trimSugarFeeds()
     $query = "DELETE FROM sugarfeed WHERE date_modified < $timeStamp";
 
 
-    $GLOBALS['log']->info("----->Scheduler is about to trim the sugarfeed table by running the query $query");
+    Log::info("----->Scheduler is about to trim the sugarfeed table by running the query $query");
     $db->query($query);
 
     return true;

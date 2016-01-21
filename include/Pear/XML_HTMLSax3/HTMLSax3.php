@@ -508,7 +508,7 @@ class XML_HTMLSax3 {
             $this->state_parser->handler_default =& $object;
             return true;
         } else {
-            $GLOBALS['log']->info('XML_HTMLSax3::set_object requires '.
+            Log::info('XML_HTMLSax3::set_object requires '.
                 'an object instance');
         }
     }
@@ -545,7 +545,7 @@ class XML_HTMLSax3 {
             $this->state_parser->parser_options[$name] = $value;
             return true;
         } else {
-            $GLOBALS['log']->info('XML_HTMLSax3::set_option('.$name.') illegal');
+            Log::info('XML_HTMLSax3::set_option('.$name.') illegal');
         }
     }
 

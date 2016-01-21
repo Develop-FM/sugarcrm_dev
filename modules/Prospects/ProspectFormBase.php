@@ -476,7 +476,7 @@ function handleSave($prefix,$redirect=true, $useRequired=false){
 	$focus->save($GLOBALS['check_notify']);
 	$return_id = $focus->id;
     
-	$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+	Log::debug("Saved record with id of ".$return_id);
     if(isset($_POST['popup']) && $_POST['popup'] == 'true') {
         $get = '&module=';
         if(!empty($_POST['return_module'])) $get .= $_POST['return_module'];

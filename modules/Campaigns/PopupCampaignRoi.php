@@ -60,7 +60,7 @@ global $theme;
 
 
 
-$GLOBALS['log']->info("Campaign detail view");
+Log::info("Campaign detail view");
 
 $xtpl=new XTemplate ('modules/Campaigns/PopupCampaignRoi.html');
 

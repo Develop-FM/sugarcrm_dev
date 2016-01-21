@@ -73,7 +73,7 @@ global $theme;
 
 $json = getJSONobj();
 
-$GLOBALS['log']->info("Campaign NewsLetter Wizard");
+Log::info("Campaign NewsLetter Wizard");
 
 if( (isset($_REQUEST['wizardtype'])  && $_REQUEST['wizardtype']==1)  ||  ($focus->campaign_type=='NewsLetter')){
     echo getClassicModuleTitle($mod_strings['LBL_MODULE_NAME'], array($mod_strings['LBL_NEWSLETTER WIZARD_TITLE'].$focus->name), true, false);

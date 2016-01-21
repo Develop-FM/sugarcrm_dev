@@ -41,7 +41,7 @@ if (! defined('sugarEntry') || ! sugarEntry) {
 
 require_once('soap/SoapHelperFunctions.php');
 
-$GLOBALS['log']->debug("JSON_SERVER:");
+Log::debug("JSON_SERVER:");
 $global_registry_var_name = 'GLOBAL_REGISTRY';
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -213,7 +213,7 @@ function populateBean(&$focus)
 			$module_arr['fields'][$field] = $focus->$field;
 		}
 	}
-	$GLOBALS['log']->debug("JSON_SERVER:populate bean:");
+	Log::debug("JSON_SERVER:populate bean:");
 
 	return $module_arr;
 }
@@ -228,14 +228,14 @@ function authenticate()
 	$server_unique_key = (isset($sugar_config['unique_key'])) ? $sugar_config['unique_key'] : "";
 
 	if ($user_unique_key != $server_unique_key) {
-		$GLOBALS['log']->debug("JSON_SERVER: user_unique_key:".$user_unique_key."!=".$server_unique_key);
+		Log::debug("JSON_SERVER: user_unique_key:".$user_unique_key."!=".$server_unique_key);
 		session_destroy();
 
 		return null;
 	}
 
 	if (! isset($_SESSION['authenticated_user_id'])) {
-		$GLOBALS['log']->debug("JSON_SERVER: authenticated_user_id NOT SET. DESTROY");
+		Log::debug("JSON_SERVER: authenticated_user_id NOT SET. DESTROY");
 		session_destroy();
 
 		return null;
@@ -244,10 +244,10 @@ function authenticate()
 	$current_user = new User();
 
 	$result = $current_user->retrieve($_SESSION['authenticated_user_id']);
-	$GLOBALS['log']->debug("JSON_SERVER: retrieved user from SESSION");
+	Log::debug("JSON_SERVER: retrieved user from SESSION");
 
 	if ($result == null) {
-		$GLOBALS['log']->debug("JSON_SERVER: could get a user from SESSION. DESTROY");
+		Log::debug("JSON_SERVER: could get a user from SESSION. DESTROY");
 		session_destroy();
 
 		return null;
@@ -320,11 +320,11 @@ insert_charset_header();
 global $sugar_config;
 if (! empty($sugar_config['session_dir'])) {
 	session_save_path($sugar_config['session_dir']);
-	$GLOBALS['log']->debug("JSON_SERVER:session_save_path:".$sugar_config['session_dir']);
+	Log::debug("JSON_SERVER:session_save_path:".$sugar_config['session_dir']);
 }
 
 session_start();
-$GLOBALS['log']->debug("JSON_SERVER:session started");
+Log::debug("JSON_SERVER:session started");
 
 $current_language = 'en_us'; // defaulting - will be set by user, then sys prefs
 
@@ -340,7 +340,7 @@ if (isset($_SESSION['authenticated_user_language']) && $_SESSION['authenticated_
 
 $locale = new Localization();
 
-$GLOBALS['log']->debug("JSON_SERVER: current_language:".$current_language);
+Log::debug("JSON_SERVER: current_language:".$current_language);
 
 // if this is a get, than this is spitting out static javascript as if it was a file
 // wp: DO NOT USE THIS. Include the javascript inline using include/json_config.php

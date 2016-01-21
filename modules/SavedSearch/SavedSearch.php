@@ -361,7 +361,7 @@ class SavedSearch extends SugarBean
 
 		$saved_search_id = $focus->save();
 
-		$GLOBALS['log']->debug("Saved record with id of ".$focus->id);
+		Log::debug("Saved record with id of ".$focus->id);
 		$orderBy      = empty($contents['orderBy']) ? 'name' : $contents['orderBy'];
 		$search_query = "&orderBy=".$orderBy."&sortOrder=".$contents['sortOrder']."&query=".$_REQUEST['query']."&searchFormTab=".$_REQUEST['searchFormTab'].'&showSSDIV='.$contents['showSSDIV'];
 

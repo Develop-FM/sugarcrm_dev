@@ -94,9 +94,9 @@ $focus->job_interval = $_REQUEST['mins']."::".$_REQUEST['hours']."::".$_REQUEST[
 // deal with job types
 // neither
 if ( ($_REQUEST['job_function'] == 'url::') && ($_REQUEST['job_url'] == '' || $_REQUEST['job_url'] == 'http://') ) {
-	$GLOBALS['log']->fatal('Scheduler save did not get a job_url or job_function');
+	Log::fatal('Scheduler save did not get a job_url or job_function');
 } elseif ( ($_REQUEST['job_function'] != 'url::') && ($_REQUEST['job_url'] != '' && $_REQUEST['job_url'] != 'http://') ) {
-	$GLOBALS['log']->fatal('Scheduler got both a job_url and job_function');
+	Log::fatal('Scheduler got both a job_url and job_function');
 }
 //function
 if ( ($_REQUEST['job_function'] != 'url::')) {
@@ -120,7 +120,7 @@ if(!empty($_REQUEST['edit'])) {
 	$edit='edit=true';
 }
 
-$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+Log::debug("Saved record with id of ".$return_id);
 
 header("Location: index.php?action=$return_action&module=$return_module&record=$return_id&$edit");
 ?>

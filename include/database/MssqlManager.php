@@ -202,7 +202,7 @@ class MssqlManager extends DBManager
                     $configOptions['db_password']
                     );
             if(!$this->database){
-                $GLOBALS['log']->fatal("Could not connect to server ".$configOptions['db_host_name'].
+                Log::fatal("Could not connect to server ".$configOptions['db_host_name'].
                     " as ".$configOptions['db_user_name'].".");
                 if($dieOnError) {
                     sugar_die($GLOBALS['app_strings']['ERR_NO_DB']);
@@ -242,7 +242,7 @@ class MssqlManager extends DBManager
 				}
 			}
 			if(!$connected){
-			    $GLOBALS['log']->fatal( "Unable to select database {$configOptions['db_name']}");
+			    Log::fatal( "Unable to select database {$configOptions['db_name']}");
                 if($dieOnError) {
                     if(isset($GLOBALS['app_strings']['ERR_NO_DB'])) {
                         sugar_die($GLOBALS['app_strings']['ERR_NO_DB']);
@@ -256,11 +256,11 @@ class MssqlManager extends DBManager
          }
 
         if(!$this->checkError('Could Not Connect', $dieOnError))
-            $GLOBALS['log']->info("connected to db");
+            Log::info("connected to db");
 
         $this->connectOptions = $configOptions;
 
-        $GLOBALS['log']->info("Connect:".$this->database);
+        Log::info("Connect:".$this->database);
         return true;
     }
 
@@ -282,11 +282,11 @@ class MssqlManager extends DBManager
         }
         // Flag if there are odd number of single quotes
         if ((substr_count($sql, "'") & 1))
-            $GLOBALS['log']->error("SQL statement[" . $sql . "] has odd number of single quotes.");
+            Log::error("SQL statement[" . $sql . "] has odd number of single quotes.");
 
 		$sql = $this->_appendN($sql);
 
-        $GLOBALS['log']->info('Query:' . $sql);
+        Log::info('Query:' . $sql);
         $this->checkConnection();
         $this->countQuery($sql);
         $this->query_time = microtime(true);
@@ -306,9 +306,9 @@ class MssqlManager extends DBManager
 			$sqlpos3 = strpos($sqlmsg, 'Checking identity information:');
 
 			if ($sqlpos !== false || $sqlpos2 !== false || $sqlpos3 !== false)		// if sqlmsg has 'Changed database context to', just log it
-				$GLOBALS['log']->debug($sqlmsg . ": " . $sql );
+				Log::debug($sqlmsg . ": " . $sql );
 			else {
-				$GLOBALS['log']->fatal($sqlmsg . ": " . $sql );
+				Log::fatal($sqlmsg . ": " . $sql );
 				if($dieOnError)
 					sugar_die('SQL Error : ' . $sqlmsg);
 				else
@@ -317,7 +317,7 @@ class MssqlManager extends DBManager
         }
 
         $this->query_time = microtime(true) - $this->query_time;
-        $GLOBALS['log']->info('Query Execution Time:'.$this->query_time);
+        Log::info('Query Execution Time:'.$this->query_time);
 
 
         $this->checkError($msg.' Query Failed: ' . $sql, $dieOnError);
@@ -340,7 +340,7 @@ class MssqlManager extends DBManager
         if ($start < 0)
             $start=0;
 
-        $GLOBALS['log']->debug(print_r(func_get_args(),true));
+        Log::debug(print_r(func_get_args(),true));
 
         $this->lastsql = $sql;
 
@@ -438,7 +438,7 @@ class MssqlManager extends DBManager
         else {
             if ($start < 0)
                 $start = 0;
-            $GLOBALS['log']->debug(print_r(func_get_args(),true));
+            Log::debug(print_r(func_get_args(),true));
             $this->lastsql = $sql;
             $matches = array();
             preg_match('/^(.*SELECT\b)(.*?\bFROM\b.*\bWHERE\b)(.*)$/isU',$sql, $matches);
@@ -588,7 +588,7 @@ class MssqlManager extends DBManager
             }
         }
 
-        $GLOBALS['log']->debug('Limit Query: ' . $newSQL);
+        Log::debug('Limit Query: ' . $newSQL);
         if($execute) {
             $result =  $this->query($newSQL, $dieOnError, $msg);
             $this->dump_slow_queries($newSQL);
@@ -819,13 +819,13 @@ class MssqlManager extends DBManager
                 return $col_name;
             }
             //break out of here, log this
-            $GLOBALS['log']->debug("No match was found for order by, pass string back untouched as: $orig_order_match");
+            Log::debug("No match was found for order by, pass string back untouched as: $orig_order_match");
             return $orig_order_match;
         }
         else {
             //if found, then parse and return
             //grab string up to the aliased column
-            $GLOBALS['log']->debug("order by found, process sql string");
+            Log::debug("order by found, process sql string");
 
             $psql = (trim($this->getAliasFromSQL($sql, $orderMatch )));
             if (empty($psql))
@@ -857,7 +857,7 @@ class MssqlManager extends DBManager
             $col_name = $col_name. " ". $asc_desc;
 
             //pass in new order by
-            $GLOBALS['log']->debug("order by being returned is " . $col_name);
+            Log::debug("order by being returned is " . $col_name);
             return $col_name;
         }
     }
@@ -873,7 +873,7 @@ class MssqlManager extends DBManager
     {
 
         global $beanList, $beanFiles;
-        $GLOBALS['log']->debug("Module being processed is " . $module_str);
+        Log::debug("Module being processed is " . $module_str);
         //get the right module files
         //the module string exists in bean list, then process bean for correct table name
         //note that we exempt the reports module from this, as queries from reporting module should be parsed for
@@ -891,14 +891,14 @@ class MssqlManager extends DBManager
             $tbl_name = trim($tbl_name);
 
             if(empty($tbl_name)){
-                $GLOBALS['log']->debug("Could not find table name for module $module_str. ");
+                Log::debug("Could not find table name for module $module_str. ");
                 $tbl_name = $module_str;
             }
         }
         else {
             //since the module does NOT exist in beanlist, then we have to parse the string
             //and grab the table name from the passed in sql
-            $GLOBALS['log']->debug("Could not find table name from module in request, retrieve from passed in sql");
+            Log::debug("Could not find table name from module in request, retrieve from passed in sql");
             $tbl_name = $module_str;
             $sql = strtolower($sql);
 
@@ -921,7 +921,7 @@ class MssqlManager extends DBManager
                 if ($next_space > 0) {
                     $tbl_name= substr($tableEnd,0, $next_space);
                     if(empty($tbl_name)){
-                        $GLOBALS['log']->debug("Could not find table name sql either, return $module_str. ");
+                        Log::debug("Could not find table name sql either, return $module_str. ");
                         $tbl_name = $module_str;
                     }
                 }
@@ -959,7 +959,7 @@ class MssqlManager extends DBManager
             }
         }
         //return table name
-        $GLOBALS['log']->debug("Table name for module $module_str is: ".$tbl_name);
+        Log::debug("Table name for module $module_str is: ".$tbl_name);
         return $tbl_name;
     }
 
@@ -1036,7 +1036,7 @@ class MssqlManager extends DBManager
      */
     public function tableExists($tableName)
     {
-        $GLOBALS['log']->info("tableExists: $tableName");
+        Log::info("tableExists: $tableName");
 
         $this->checkConnection();
         $result = $this->getOne(
@@ -1071,7 +1071,7 @@ class MssqlManager extends DBManager
      */
     public function getTablesArray()
     {
-        $GLOBALS['log']->debug('MSSQL fetching table list');
+        Log::debug('MSSQL fetching table list');
 
         if($this->getDatabase()) {
             $tables = array();
@@ -1095,7 +1095,7 @@ class MssqlManager extends DBManager
      */
     public function full_text_indexing_setup()
     {
-        $GLOBALS['log']->debug('MSSQL about to wakeup FTS');
+        Log::debug('MSSQL about to wakeup FTS');
 
         if($this->getDatabase()) {
                 //create wakeup catalog
@@ -1599,7 +1599,7 @@ EOSQL;
     {
 		if ($this->full_text_indexing_enabled()) {
 		    $catalog = $this->ftsCatalogName();
-            $GLOBALS['log']->debug("Creating the default catalog for full-text indexing, $catalog");
+            Log::debug("Creating the default catalog for full-text indexing, $catalog");
 
             //drop catalog if exists.
 			$ret = $this->query("
@@ -1611,7 +1611,7 @@ EOSQL;
                 CREATE FULLTEXT CATALOG $catalog");
 
 			if (empty($ret)) {
-				$GLOBALS['log']->error("Error creating default full-text catalog, $catalog");
+				Log::error("Error creating default full-text catalog, $catalog");
 			}
 		}
 	}
@@ -1775,7 +1775,7 @@ EOQ;
      */
     public function disconnect()
     {
-    	$GLOBALS['log']->debug('Calling Mssql::disconnect()');
+    	Log::debug('Calling Mssql::disconnect()');
         if(!empty($this->database)){
             $this->freeResult();
             mssql_close($this->database);
@@ -1820,7 +1820,7 @@ EOQ;
             if (empty($app_strings) or !isset($app_strings['ERR_MSSQL_DB_CONTEXT'])) {
                 //ignore the message from sql-server if $app_strings array is empty. This will happen
                 //only if connection if made before languge is set.
-                $GLOBALS['log']->debug("Ignoring this database message: " . $sqlmsg);
+                Log::debug("Ignoring this database message: " . $sqlmsg);
                 return false;
             }
             else {
@@ -1876,7 +1876,7 @@ EOQ;
 
         // Flag if there are odd number of single quotes, just continue without trying to append N
         if ((substr_count($sql, "'") & 1)) {
-            $GLOBALS['log']->error("SQL statement[" . $sql . "] has odd number of single quotes.");
+            Log::error("SQL statement[" . $sql . "] has odd number of single quotes.");
             return $sql;
         }
 

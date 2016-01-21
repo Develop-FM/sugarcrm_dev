@@ -231,7 +231,7 @@ class UserPreference extends SugarBean
         if ($user->object_name != 'User' || empty($user->id) || empty($user->user_name)) {
             return false;
         }
-        $GLOBALS['log']->debug('Loading Preferences DB '.$user->user_name);
+        Log::debug('Loading Preferences DB '.$user->user_name);
         if (! isset($_SESSION[$user->user_name.'_PREFERENCES'])) {
             $_SESSION[$user->user_name.'_PREFERENCES'] = [];
         }
@@ -334,9 +334,9 @@ class UserPreference extends SugarBean
             return;
         }
 
-        $GLOBALS['log']->debug('Saving Preferences to DB '.$user->user_name);
+        Log::debug('Saving Preferences to DB '.$user->user_name);
         if (isset($_SESSION[$user->user_name.'_PREFERENCES']) && is_array($_SESSION[$user->user_name.'_PREFERENCES'])) {
-            $GLOBALS['log']->debug("Saving Preferences to DB: {$user->user_name}");
+            Log::debug("Saving Preferences to DB: {$user->user_name}");
             // only save the categories that have been modified or all?
             if (! $all && isset($GLOBALS['savePreferencesToDBCats']) && is_array($GLOBALS['savePreferencesToDBCats'])) {
                 $catsToSave = [];
@@ -374,7 +374,7 @@ class UserPreference extends SugarBean
     ) {
         $user = $this->_userFocus;
 
-        $GLOBALS['log']->debug('Reseting Preferences for user '.$user->user_name);
+        Log::debug('Reseting Preferences for user '.$user->user_name);
 
         $remove_tabs      = $this->getPreference('remove_tabs');
         $favorite_reports = $this->getPreference('favorites', 'Reports');

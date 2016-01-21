@@ -145,7 +145,7 @@ class SugarSpriteBuilder
                             {
                                 global $mod_strings;
                                 $msg = string_format($mod_strings['LBL_SPRITES_EXCLUDING_FILE'], array("{$dir}/{$file}"));
-								$GLOBALS['log']->debug($msg);
+								Log::debug($msg);
                                 $this->logMessage($msg);
 							} else {
 								// repeatable sprite ?
@@ -170,7 +170,7 @@ class SugarSpriteBuilder
                                 }
 							}
 						} else if(preg_match('/\.(jpg|jpeg|gif|png|bmp|ico)$/i', $file)) {
-                            $GLOBALS['log']->error('Unable to process image file ' . $file);
+                            Log::error('Unable to process image file ' . $file);
                             //$this->logMessage('Unable to process image file ' . $file);
                         }
 	   	     		}
@@ -243,7 +243,7 @@ class SugarSpriteBuilder
 				}
 			} else {
                 $msg = "Skipping unsupported image file type ({$info[2]}) for file {$file}";
-                $GLOBALS['log']->error($msg);
+                Log::error($msg);
                 $this->logMessage($msg."\n");
             }
 		}
@@ -267,7 +267,7 @@ class SugarSpriteBuilder
 			if(!$this->silentRun)
             {
                 $msg = $mod_strings['LBL_SPRITES_NOT_SUPPORTED'];
-                $GLOBALS['log']->warn($msg);
+                Log::warn($msg);
                 $this->logMessage($msg);
             }
 			return false;
@@ -284,7 +284,7 @@ class SugarSpriteBuilder
 			if(!$this->silentRun)
             {
                 $msg = string_format($mod_strings['LBL_SPRITES_CREATING_NAMESPACE'], array($name));
-                $GLOBALS['log']->debug($msg);
+                Log::debug($msg);
 				$this->logMessage($msg);
             }
 
@@ -325,7 +325,7 @@ class SugarSpriteBuilder
 					if(!$this->silentRun)
                     {
                         $msg = string_format($mod_strings['LBL_SPRITES_PROCESSING_DIR'], array($dir));
-                        $GLOBALS['log']->debug($msg);
+                        Log::debug($msg);
                         $this->logMessage($msg);
                     }
 
@@ -343,7 +343,7 @@ class SugarSpriteBuilder
 							if(!$this->silentRun)
                             {
                                 $msg = string_format($mod_strings['LBL_SPRITES_ADDED'], array("{$dir}/{$file}"));
-                                $GLOBALS['log']->debug($msg);
+                                Log::debug($msg);
                                 $this->logMessage($msg);
                             }
 						}
@@ -444,7 +444,7 @@ background-position: -{$offset_x}px -{$offset_y}px;
 				if(!$this->silentRun)
                 {
                     $msg = string_format($mod_strings['LBL_SPRITES_ADDED'], array($name));
-                    $GLOBALS['log']->debug($msg);
+                    Log::debug($msg);
                     $this->logMessage($msg);
                 }
 
@@ -610,7 +610,7 @@ class SpritePlacement
 				break;
 
 			default:
-				$GLOBALS['log']->warn(__CLASS__.": Unknown sprite placement algorithm -> {$this->config['type']}");
+				Log::warn(__CLASS__.": Unknown sprite placement algorithm -> {$this->config['type']}");
 				break;
 		}
 

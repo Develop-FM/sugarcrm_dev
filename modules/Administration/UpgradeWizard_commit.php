@@ -39,9 +39,8 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 require_once('modules/Administration/UpgradeWizardCommon.php');
 require_once('modules/Configurator/Configurator.php');
 function UWrebuild() {
-	global $log;
 	global $db;
-	$log->info('Deleting Relationship Cache. Relationships will automatically refresh.');
+    Log::info('Deleting Relationship Cache. Relationships will automatically refresh.');
 
 	echo "
 	<div id='rrresult'></div>
@@ -84,12 +83,12 @@ function UWrebuild() {
 		xmlhttp.send(null);
 		</script>";
 
-	$log->info('Rebuilding everything.');
+    Log::info('Rebuilding everything.');
 	require_once('ModuleInstall/ModuleInstaller.php');
 	$mi = new ModuleInstaller();
 	$mi->rebuild_all();
 	$query = "DELETE FROM versions WHERE name='Rebuild Extensions'";
-	$log->info($query);
+    Log::info($query);
 	$db->query($query);
 
 	// insert a new database row to show the rebuild extensions is done
@@ -98,7 +97,7 @@ function UWrebuild() {
 	$date_entered = db_convert("'$gmdate'", 'datetime');
 	$query = 'INSERT INTO versions (id, deleted, date_entered, date_modified, modified_user_id, created_by, name, file_version, db_version) '
 		. "VALUES ('$id', '0', $date_entered, $date_entered, '1', '1', 'Rebuild Extensions', '4.0.0', '4.0.0')";
-	$log->info($query);
+    Log::info($query);
 	$db->query($query);
 }
 
@@ -564,5 +563,5 @@ if ($install_type != "module" && $install_type != "langpack"){
 </form>
 
 <?php
-    $GLOBALS['log']->info( "Upgrade Wizard patches" );
+    Log::info( "Upgrade Wizard patches" );
 ?>

@@ -67,13 +67,13 @@ if(isset($_REQUEST['edit']) && $_REQUEST['edit']=='true') {
 	$is_edit=true;
 	//Only allow admins to enter this screen
 	if (!is_admin($current_user)&& !is_admin_for_module($GLOBALS['current_user'],'Bugs')) {
-		$GLOBALS['log']->error("Non-admin user ($current_user->user_name) attempted to enter the Releases edit screen");
+		Log::error("Non-admin user ($current_user->user_name) attempted to enter the Releases edit screen");
 		session_destroy();
 		include('modules/Users/Logout.php');
 	}
 }
 
-$GLOBALS['log']->info("Release list view");
+Log::info("Release list view");
 global $theme;
 
 $button  = "<form border='0' action='index.php' method='post' name='form'>\n";
@@ -120,7 +120,7 @@ if ($is_edit) {
 		echo get_form_header($mod_strings['LBL_RELEASE']." ".$focus->name . '&nbsp;' . $header_text,$edit_button , false);
 
 
-	$GLOBALS['log']->info("Releases edit view");
+	Log::info("Releases edit view");
 	$xtpl=new XTemplate ('modules/Releases/EditView.html');
 	$xtpl->assign("MOD", $mod_strings);
 	$xtpl->assign("APP", $app_strings);

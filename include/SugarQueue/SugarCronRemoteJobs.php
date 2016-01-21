@@ -101,12 +101,12 @@ class SugarCronRemoteJobs extends SugarCronJobs
         if(!empty($response)) {
             $result = json_decode($response, true);
             if(empty($result) || empty($result['ok']) || $result['ok'] != $job->id) {
-                $GLOBALS['log']->debug("CRON Remote: Job {$job->id} not accepted by server: $response");
+                Log::debug("CRON Remote: Job {$job->id} not accepted by server: $response");
                 $this->jobFailed($job);
                 $job->failJob("Job not accepted by server: $response");
             }
         } else {
-            $GLOBALS['log']->debug("CRON Remote: REST request failed for job {$job->id}");
+            Log::debug("CRON Remote: REST request failed for job {$job->id}");
             $this->jobFailed($job);
             $job->failJob("Could not connect to job server");
         }

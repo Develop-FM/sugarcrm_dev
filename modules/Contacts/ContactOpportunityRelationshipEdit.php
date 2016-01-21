@@ -70,7 +70,7 @@ safe_map('contact_id', $focus);
 safe_map('contact_role', $focus);
 
 
-$GLOBALS['log']->info("Contact opportunity relationship");
+Log::info("Contact opportunity relationship");
 
 $json = getJSONobj();
 require_once('include/QuickSearchDefaults.php');

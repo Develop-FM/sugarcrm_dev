@@ -155,7 +155,7 @@ EOQ;
 	
 		$return_id = $focus->save();
 		if($redirect){
-			$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+			Log::debug("Saved record with id of ".$return_id);
 			handleRedirect($return_id, "ProspectLists");
 		} else { 
 			return $focus;

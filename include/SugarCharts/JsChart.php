@@ -95,7 +95,7 @@ class JsChart extends SugarChart {
 		    $json = $this->buildJson($xmlStr);
         }
         catch(Exception $e) {
-            $GLOBALS['log']->fatal("Unable to return chart data, invalid xml for file {$this->xmlFile}");
+            Log::fatal("Unable to return chart data, invalid xml for file {$this->xmlFile}");
             return '';
         }
 		$this->saveJsonFile($json);
@@ -523,7 +523,7 @@ class JsChart extends SugarChart {
 		$path = SugarThemeRegistry::current()->getImageURL('sugarColors.xml',false);
 
 		if(!file_exists($path)) {
-			$GLOBALS['log']->debug("Cannot open file ($path)");
+			Log::debug("Cannot open file ($path)");
 		}
 		$xmlstr = file_get_contents($path);
 		$xml = new SimpleXMLElement($xmlstr);
@@ -666,17 +666,17 @@ class JsChart extends SugarChart {
 
 		// open file
 		if (!$fh = sugar_fopen($this->jsonFilename, 'w')) {
-			$GLOBALS['log']->debug("Cannot open file ($this->jsonFilename)");
+			Log::debug("Cannot open file ($this->jsonFilename)");
 			return;
 		}
 
 		// write the contents to the file
 		if (fwrite($fh,$jsonContents) === FALSE) {
-			$GLOBALS['log']->debug("Cannot write to file ($this->jsonFilename)");
+			Log::debug("Cannot write to file ($this->jsonFilename)");
 			return false;
 		}
 
-		$GLOBALS['log']->debug("Success, wrote ($jsonContents) to file ($this->jsonFilename)");
+		Log::debug("Success, wrote ($jsonContents) to file ($this->jsonFilename)");
 
 		fclose($fh);
 		return true;
@@ -705,7 +705,7 @@ class JsChart extends SugarChart {
 	function processXML($xmlFile) {
 
 		if(!file_exists($xmlFile)) {
-			$GLOBALS['log']->debug("Cannot open file ($xmlFile)");
+			Log::debug("Cannot open file ($xmlFile)");
 		}
 
 		$pattern = array();

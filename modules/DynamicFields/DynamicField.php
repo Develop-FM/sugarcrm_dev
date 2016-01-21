@@ -116,7 +116,7 @@ class DynamicField {
             $results = array ( ) ; // clear out results - if we remove a module we don't want to have its old vardefs hanging around
         }
 
-        $GLOBALS['log']->debug('rebuilding cache for ' . $module);
+        Log::debug('rebuilding cache for ' . $module);
         $query = "SELECT * FROM fields_meta_data WHERE $where deleted = 0";
 
         $result = $GLOBALS['db']->query ( $query );
@@ -526,7 +526,7 @@ class DynamicField {
      * @return boolean
      */
     function addFieldObject(&$field){
-        $GLOBALS['log']->debug('adding field');
+        Log::debug('adding field');
         $object_name = $this->module;
         $db_name = $field->name;
 
@@ -745,7 +745,7 @@ class DynamicField {
     function createCustomTable($execute = true){
         $out = "";
         if (!$GLOBALS['db']->tableExists($this->bean->table_name."_cstm")) {
-            $GLOBALS['log']->debug('creating custom table for '. $this->bean->table_name);
+            Log::debug('creating custom table for '. $this->bean->table_name);
             $iddef = array(
                 "id_c" => array(
                     "name" => "id_c",
@@ -927,7 +927,7 @@ class DynamicField {
     function retrieve()
     {
         if(!isset($this->bean)){
-            $GLOBALS['log']->fatal("DynamicField retrieve, bean not instantiated: ".var_export(debug_print_backtrace(), true));
+            Log::fatal("DynamicField retrieve, bean not instantiated: ".var_export(debug_print_backtrace(), true));
             return false;
         }
 

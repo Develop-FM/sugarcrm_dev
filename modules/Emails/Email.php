@@ -256,7 +256,7 @@ class Email extends SugarBean
 		if (! $upload->confirm_upload()) {
 			$err = $upload->get_upload_error();
 			if ($err) {
-				$GLOBALS['log']->error("Email Attachment could not be attached due to error: $err");
+				Log::error("Email Attachment could not be attached due to error: $err");
 			}
 
 			return [];
@@ -264,7 +264,7 @@ class Email extends SugarBean
 
 		$guid     = create_guid();
 		$fileName = $upload->create_stored_filename();
-		$GLOBALS['log']->debug("Email Attachment [$fileName]");
+		Log::debug("Email Attachment [$fileName]");
 		if ($upload->final_move($guid)) {
 			copy("upload://$guid", sugar_cached("$email_uploads/$guid"));
 
@@ -274,7 +274,7 @@ class Email extends SugarBean
 				'nameForDisplay' => $fileName
 			];
 		} else {
-			$GLOBALS['log']->debug("Email Attachment [$fileName] could not be moved to upload dir");
+			Log::debug("Email Attachment [$fileName] could not be moved to upload dir");
 
 			return [];
 		}
@@ -770,7 +770,7 @@ class Email extends SugarBean
 						$note->file_mime_type = $this->email2GetMime($fileLocation);
 						$dest                 = "upload://{$note->id}";
 						if (! copy($fileLocation, $dest)) {
-							$GLOBALS['log']->debug("EMAIL 2.0: could not copy attachment file to $fileLocation => $dest");
+							Log::debug("EMAIL 2.0: could not copy attachment file to $fileLocation => $dest");
 						}
 
 						$note->save();
@@ -809,7 +809,7 @@ class Email extends SugarBean
 						$note->file_mime_type = $mime_type;
 						$dest                 = "upload://{$note->id}";
 						if (! copy($fileLocation, $dest)) {
-							$GLOBALS['log']->debug("EMAIL 2.0: could not copy SugarDocument revision file $fileLocation => $dest");
+							Log::debug("EMAIL 2.0: could not copy SugarDocument revision file $fileLocation => $dest");
 						}
 
 						$note->save();
@@ -992,13 +992,13 @@ class Email extends SugarBean
 						$connectString = $ie->getConnectString($ie->getServiceString(), $ie->mailbox);
 						$returnData    = imap_append($ie->conn, $connectString, $data, "\\Seen");
 						if (! $returnData) {
-							$GLOBALS['log']->debug("could not copy email to {$ie->mailbox} for {$ie->name}");
+							Log::debug("could not copy email to {$ie->mailbox} for {$ie->name}");
 						} // if
 					} else {
-						$GLOBALS['log']->debug("could not connect to mail serve for folder {$ie->mailbox} for {$ie->name}");
+						Log::debug("could not connect to mail serve for folder {$ie->mailbox} for {$ie->name}");
 					} // else
 				} else {
-					$GLOBALS['log']->debug("could not copy email to {$ie->mailbox} sent folder as its empty");
+					Log::debug("could not copy email to {$ie->mailbox} sent folder as its empty");
 				} // else
 			} // if
 		} // if
@@ -1075,7 +1075,7 @@ class Email extends SugarBean
 		global $current_user;
 
 		if ($this->isDuplicate) {
-			$GLOBALS['log']->debug("EMAIL - tried to save a duplicate Email record");
+			Log::debug("EMAIL - tried to save a duplicate Email record");
 		} else {
 
 			if (empty($this->id)) {
@@ -1093,7 +1093,7 @@ class Email extends SugarBean
 			$this->saveEmailText();
 			$this->saveEmailAddresses();
 
-			$GLOBALS['log']->debug('-------------------------------> Email called save()');
+			Log::debug('-------------------------------> Email called save()');
 
 			// handle legacy concatenation of date and time fields
 			//Bug 39503 - SugarBean is not setting date_sent when seconds missing
@@ -1124,7 +1124,7 @@ class Email extends SugarBean
 				}
 			}
 		}
-		$GLOBALS['log']->debug('-------------------------------> Email save() done');
+		Log::debug('-------------------------------> Email save() done');
 	}
 
 	/**
@@ -1146,7 +1146,7 @@ class Email extends SugarBean
 		$tmpNote->file_mime_type = $mimeType;
 		$noteFile                = "upload://{$tmpNote->id}";
 		if (! copy($fileLocation, $noteFile)) {
-			$GLOBALS['log']->fatal("EMAIL 2.0: could not copy SugarDocument revision file $fileLocation => $noteFile");
+			Log::fatal("EMAIL 2.0: could not copy SugarDocument revision file $fileLocation => $noteFile");
 		}
 		$tmpNote->save();
 	}
@@ -1853,11 +1853,11 @@ class Email extends SugarBean
 		for ($i = 0; $i < $max_files_upload; $i++) {
 			// cn: Bug 5995 - rudimentary error checking
 			if (! isset($_FILES["email_attachment{$i}"])) {
-				$GLOBALS['log']->debug("Email Attachment {$i} does not exist.");
+				Log::debug("Email Attachment {$i} does not exist.");
 				continue;
 			}
 			if ($_FILES['email_attachment'.$i]['error'] != 0 && $_FILES['email_attachment'.$i]['error'] != 4) {
-				$GLOBALS['log']->debug('Email Attachment could not be attach due to error: '.$filesError[$_FILES['email_attachment'.$i]['error']]);
+				Log::debug('Email Attachment could not be attach due to error: '.$filesError[$_FILES['email_attachment'.$i]['error']]);
 				continue;
 			}
 
@@ -2259,7 +2259,7 @@ class Email extends SugarBean
 
 		$mail = $this->handleBody($mail);
 
-		$GLOBALS['log']->debug('Email sending --------------------- ');
+		Log::debug('Email sending --------------------- ');
 
 		///////////////////////////////////////////////////////////////////////
 		////	I18N TRANSLATION
@@ -2277,12 +2277,12 @@ class Email extends SugarBean
 				$ieMail->status = 'replied';
 				$ieMail->save();
 			}
-			$GLOBALS['log']->debug(' --------------------- buh bye -- sent successful');
+			Log::debug(' --------------------- buh bye -- sent successful');
 			////	END INBOUND EMAIL HANDLING
 			///////////////////////////////////////////////////////////////////
 			return true;
 		}
-		$GLOBALS['log']->debug($app_strings['LBL_EMAIL_ERROR_PREPEND'].$mail->ErrorInfo);
+		Log::debug($app_strings['LBL_EMAIL_ERROR_PREPEND'].$mail->ErrorInfo);
 
 		return false;
 	}
@@ -2434,10 +2434,10 @@ class Email extends SugarBean
 			$this->contact_email      = $contact->emailAddress->getPrimaryAddress($contact);
 			$this->contact_name_owner = $row['contact_name_owner'];
 			$this->contact_name_mod   = $row['contact_name_mod'];
-			$GLOBALS['log']->debug("Call($this->id): contact_name = $this->contact_name");
-			$GLOBALS['log']->debug("Call($this->id): contact_phone = $this->contact_phone");
-			$GLOBALS['log']->debug("Call($this->id): contact_id = $this->contact_id");
-			$GLOBALS['log']->debug("Call($this->id): contact_email1 = $this->contact_email");
+			Log::debug("Call($this->id): contact_name = $this->contact_name");
+			Log::debug("Call($this->id): contact_phone = $this->contact_phone");
+			Log::debug("Call($this->id): contact_id = $this->contact_id");
+			Log::debug("Call($this->id): contact_email1 = $this->contact_email");
 		} else {
 			$this->contact_name       = '';
 			$this->contact_phone      = '';
@@ -2445,10 +2445,10 @@ class Email extends SugarBean
 			$this->contact_email      = '';
 			$this->contact_name_owner = '';
 			$this->contact_name_mod   = '';
-			$GLOBALS['log']->debug("Call($this->id): contact_name = $this->contact_name");
-			$GLOBALS['log']->debug("Call($this->id): contact_phone = $this->contact_phone");
-			$GLOBALS['log']->debug("Call($this->id): contact_id = $this->contact_id");
-			$GLOBALS['log']->debug("Call($this->id): contact_email1 = $this->contact_email");
+			Log::debug("Call($this->id): contact_name = $this->contact_name");
+			Log::debug("Call($this->id): contact_phone = $this->contact_phone");
+			Log::debug("Call($this->id): contact_id = $this->contact_id");
+			Log::debug("Call($this->id): contact_email1 = $this->contact_email");
 		}
 		//}
 		$this->created_by_name  = get_assigned_user_name($this->created_by);
@@ -3111,7 +3111,7 @@ eoq;
 			return;
 		}
 
-		$GLOBALS['log']->debug("*** Email trying to guess Primary Parent from address [ {$this->from_addr} ]");
+		Log::debug("*** Email trying to guess Primary Parent from address [ {$this->from_addr} ]");
 
 		$tables = ['accounts'];
 		$ret    = [];

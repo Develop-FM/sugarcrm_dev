@@ -61,10 +61,10 @@ class campaign_charts {
 		$xmlFile = $sugarChart->getXMLFileName($campaign_id);
 
 		if (!file_exists($xmlFile) || $refresh == true) {
-			$GLOBALS['log']->debug("datay is:");
-			$GLOBALS['log']->debug($datay);
-			$GLOBALS['log']->debug("user_id is: ");
-			$GLOBALS['log']->debug("cache_file_name is: $xmlFile");
+			Log::debug("datay is:");
+			Log::debug($datay);
+			Log::debug("user_id is: ");
+			Log::debug("cache_file_name is: $xmlFile");
 
 			$focus = new Campaign();
 
@@ -185,10 +185,10 @@ class campaign_charts {
 		}
 
 		if (!file_exists($cache_file_name) || $refresh == true) {
-			$GLOBALS['log']->debug("datay is:");
-			$GLOBALS['log']->debug($datay);
-			$GLOBALS['log']->debug("user_id is: ");
-			$GLOBALS['log']->debug("cache_file_name is: $cache_file_name");
+			Log::debug("datay is:");
+			Log::debug($datay);
+			Log::debug("user_id is: ");
+			Log::debug("cache_file_name is: $cache_file_name");
 
 			$focus = new Campaign();
             $focus->retrieve($campaign_id);

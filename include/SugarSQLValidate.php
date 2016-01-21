@@ -80,22 +80,22 @@ class SugarSQLValidate
 		}
         // verify SELECT didn't change
         if(count($parsed["SELECT"]) != 1 || $parsed["SELECT"][0] !== array ('expr_type' => 'colref','alias' => '`dummy`', 'base_expr' => 'dummy', 'sub_tree' => false)) {
-            $GLOBALS['log']->debug("validation failed SELECT");
+            Log::debug("validation failed SELECT");
             return false;
         }
         // verify FROM didn't change
         if(count($parsed["FROM"]) != 1 || $parsed["FROM"][0] !== array ('table' => 'dummytable', 'alias' => 'dummytable', 'join_type' => 'JOIN', 'ref_type' => '', 'ref_clause' => '', 'base_expr' => false, 'sub_tree' => false)) {
-            $GLOBALS['log']->debug("validation failed FROM");
+            Log::debug("validation failed FROM");
             return false;
         }
         // check WHERE
         if(!$this->validateExpression($parsed["WHERE"], true)) {
-            $GLOBALS['log']->debug("validation failed WHERE");
+            Log::debug("validation failed WHERE");
             return false;
         }
         // check ORDER
         if(!empty($order_by) && !$this->validateExpression($parsed["ORDER"])) {
-            $GLOBALS['log']->debug("validation failed ORDER");
+            Log::debug("validation failed ORDER");
             return false;
         }
 		return true;
@@ -122,7 +122,7 @@ class SugarSQLValidate
 	        if(isset($term['expr_type']) &&  $term['expr_type'] == 'subquery') {
 	            if(!$allow_some_subqueries || !$this->allowedSubquery($term)) {
     	            // subqueries are verboten, except for some very special ones
-    	            $GLOBALS['log']->debug("validation failed subquery");
+    	            Log::debug("validation failed subquery");
     	            return false;
     	        }
 	        } else {
@@ -140,17 +140,17 @@ class SugarSQLValidate
 	        if($term['expr_type'] == 'function') {
 	            // prohibit some functions
 	            if(in_array(strtolower($term['base_expr']), $this->bad_functions)) {
-	                $GLOBALS['log']->debug("validation failed function");
+	                Log::debug("validation failed function");
 	                return false;
 	            }
 	        }
 	        if($term['expr_type'] == 'colref' && !$this->validateColumnName($term['base_expr'])) {
 	            // check column names
-	            $GLOBALS['log']->debug("validation failed column name");
+	            Log::debug("validation failed column name");
 	            return false;
 	        }
 	        if(!empty($term['alias']) && $term['alias'] != $term['base_expr'] && $term['alias'] != "`".$term['base_expr']."`") {
-	            $GLOBALS['log']->debug("validation failed alias: ".var_export_helper($term, true));
+	            Log::debug("validation failed alias: ".var_export_helper($term, true));
 	            return false;
 	        }
 	    }
@@ -179,7 +179,7 @@ class SugarSQLValidate
 	{
 	    // Must be SELECT ... FROM ... WHERE ...
 	    if(empty($term['sub_tree']) || empty($term['sub_tree']['SELECT']) || empty($term['sub_tree']['FROM']) || empty($term['sub_tree']['WHERE'])) {
-	        $GLOBALS['log']->debug("subquery validation failed: missing item");
+	        Log::debug("subquery validation failed: missing item");
 	        return false;
 	    }
 
@@ -188,7 +188,7 @@ class SugarSQLValidate
 	            continue;
 	        }
 	        if($select['expr_type'] != 'colref') {
-	            $GLOBALS['log']->debug("subquery validation failed: column: {$select['expr_type']}");
+	            Log::debug("subquery validation failed: column: {$select['expr_type']}");
 	            // allow only columns in select
 	            return false;
 	        }
@@ -196,20 +196,20 @@ class SugarSQLValidate
 
 	    foreach($term['sub_tree']['FROM'] as $from) {
 	        if(empty($this->subquery_allowed_tables[$from['table']])) {
-	            $GLOBALS['log']->debug("subquery validation failed: table: {$from['table']}");
+	            Log::debug("subquery validation failed: table: {$from['table']}");
 	            // only specific tables are allowed
 	            return false;
 	        }
 	        if(!empty($from['ref_clause']) && !$this->validateQueryClauses($from['ref_clause'])) {
                 // validate join condition, if bad, bail out
-                $GLOBALS['log']->debug("subquery validation failed: join: {$from['ref_clause']}");
+                Log::debug("subquery validation failed: join: {$from['ref_clause']}");
                 return false;
 	        }
 	    }
 
 	    if(!$this->validateExpression($term['sub_tree']['WHERE'])) {
 	        // validate where clause, no sub-subqueries allowed here
-	        $GLOBALS['log']->debug("subquery validation failed: where clause");
+	        Log::debug("subquery validation failed: where clause");
 	        return false;
 	    }
 

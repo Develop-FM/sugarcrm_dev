@@ -227,7 +227,7 @@ class TemplateField{
 	}
 
 	function get_db_default($modify=false){
-		$GLOBALS['log']->debug('get_db_default(): default_value='.$this->default_value);
+		Log::debug('get_db_default(): default_value='.$this->default_value);
 		if (!$modify or empty($this->new_field_definition['default_value']) or $this->new_field_definition['default_value'] != $this->default_value ) {
 			if(!is_null($this->default_value)){ // add a default value if it is not null - we want to set a default even if default_value is '0', which is not null, but which is empty()
 				if(NULL == trim($this->default_value)){
@@ -251,7 +251,7 @@ class TemplateField{
 	 */
 
 	function get_db_required($modify=false){
-		//		$GLOBALS['log']->debug('get_db_required required='.$this->required." and ".(($modify)?"true":"false")." and ".print_r($this->new_field_definition,true));
+		//		Log::debug('get_db_required required='.$this->required." and ".(($modify)?"true":"false")." and ".print_r($this->new_field_definition,true));
 		$req = "";
 
 		if ($modify) {
@@ -278,7 +278,7 @@ class TemplateField{
 	}
 
 	/*	function get_db_required($modify=false){
-		$GLOBALS['log']->debug('get_db_required required='.$this->required." and ".(($modify)?"true":"false")." and ".print_r($this->new_field_definition,true));
+		Log::debug('get_db_required required='.$this->required." and ".(($modify)?"true":"false")." and ".print_r($this->new_field_definition,true));
 		if ($modify) {
 		if (!empty($this->new_field_definition['required'])) {
 		if ($this->required and $this->new_field_definition['required'] != $this->required) {
@@ -457,7 +457,7 @@ class TemplateField{
 		$fmd_to_dyn_map = array('comments' => 'comment', 'require_option' => 'required', 'label' => 'vname',
 							    'mass_update' => 'massupdate', 'max_size' => 'len', 'default_value' => 'default', 'id_name' => 'ext3');
 		if(!is_array($row)) {
-			$GLOBALS['log']->error("Error: TemplateField->populateFromRow expecting Array");
+			Log::error("Error: TemplateField->populateFromRow expecting Array");
 		}
 		//Bug 24189: Copy fields from FMD format to Field objects and vice versa
 		foreach ($fmd_to_dyn_map as $fmd_key => $dyn_key) {
@@ -501,7 +501,7 @@ class TemplateField{
 			}
 		}
 		$this->applyVardefRules();
-		$GLOBALS['log']->debug('populate: '.print_r($this,true));
+		Log::debug('populate: '.print_r($this,true));
 
 	}
 
@@ -549,7 +549,7 @@ class TemplateField{
      * @param DynamicField $df
      */
 	function save($df){
-		//	    $GLOBALS['log']->debug('saving field: '.print_r($this,true));
+		//	    Log::debug('saving field: '.print_r($this,true));
 		$df->addFieldObject($this);
 
         require_once('modules/ModuleBuilder/parsers/parser.searchfields.php');

@@ -82,17 +82,17 @@ class PredefinedChart{
 
 		if (!empty($user_date_start) && !isset($_REQUEST['pbss_date_start'])) {
 			$date_start = $timedate->to_display_date($user_date_start, false);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_date_start'] is:");
-			$GLOBALS['log']->debug($user_date_start);
+			Log::debug("USER PREFERENCES['pbss_date_start'] is:");
+			Log::debug($user_date_start);
 		}
 		elseif (isset($_REQUEST['pbss_date_start']) && $_REQUEST['pbss_date_start'] != '') {
 			$date_start = $_REQUEST['pbss_date_start'];
 			$ds = $timedate->to_db_date($date_start, false);
 			$current_user->setPreference('pbss_date_start', $ds);
-			$GLOBALS['log']->debug("_REQUEST['pbss_date_start'] is:");
-			$GLOBALS['log']->debug($_REQUEST['pbss_date_start']);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_date_start'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('pbss_date_start'));
+			Log::debug("_REQUEST['pbss_date_start'] is:");
+			Log::debug($_REQUEST['pbss_date_start']);
+			Log::debug("USER PREFERENCES['pbss_date_start'] is:");
+			Log::debug($current_user->getPreference('pbss_date_start'));
 		}
 		else {
 			$date_start = $timedate->nowDate();
@@ -101,21 +101,21 @@ class PredefinedChart{
 		$user_date_end = $current_user->getPreference('pbss_date_end');
 		if (!empty($user_date_end) && !isset($_REQUEST['pbss_date_end'])) {
 			$date_end = $timedate->to_display_date($user_date_end, false);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_date_end'] is:");
-			$GLOBALS['log']->debug($user_date_end);
+			Log::debug("USER PREFERENCES['pbss_date_end'] is:");
+			Log::debug($user_date_end);
 		}
 		elseif (isset($_REQUEST['pbss_date_end']) && $_REQUEST['pbss_date_end'] != '') {
 			$date_end = $_REQUEST['pbss_date_end'];
 			$de = $timedate->to_db_date($date_end, false);
 		    $current_user->setPreference('pbss_date_end', $de);
-			$GLOBALS['log']->debug("_REQUEST['pbss_date_end'] is:");
-			$GLOBALS['log']->debug($_REQUEST['pbss_date_end']);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_date_end'] is:");
-			$GLOBALS['log']->debug( $current_user->getPreference('pbss_date_end'));
+			Log::debug("_REQUEST['pbss_date_end'] is:");
+			Log::debug($_REQUEST['pbss_date_end']);
+			Log::debug("USER PREFERENCES['pbss_date_end'] is:");
+			Log::debug( $current_user->getPreference('pbss_date_end'));
 		}
 		else {
 			$date_end = $timedate->asUserDate($timedate->fromString("2010-01-01"));
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_date_end'] not found. Using: ".$date_end);
+			Log::debug("USER PREFERENCES['pbss_date_end'] not found. Using: ".$date_end);
 		}
 
 		$tempx = array();
@@ -125,16 +125,16 @@ class PredefinedChart{
 		//get list of sales stage keys to display
 		if (!empty($user_tempx) && count($user_tempx) > 0 && !isset($_REQUEST['pbss_sales_stages'])) {
 			$tempx = $user_tempx ;
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_sales_stages'] is:");
-			$GLOBALS['log']->debug($user_tempx );
+			Log::debug("USER PREFERENCES['pbss_sales_stages'] is:");
+			Log::debug($user_tempx );
 		}
 		elseif (isset($_REQUEST['pbss_sales_stages']) && count($_REQUEST['pbss_sales_stages']) > 0) {
 			$tempx = $_REQUEST['pbss_sales_stages'];
 			$current_user->setPreference('pbss_sales_stages', $_REQUEST['pbss_sales_stages']);
-			$GLOBALS['log']->debug("_REQUEST['pbss_sales_stages'] is:");
-			$GLOBALS['log']->debug($_REQUEST['pbss_sales_stages']);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_sales_stages'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('pbss_sales_stages'));
+			Log::debug("_REQUEST['pbss_sales_stages'] is:");
+			Log::debug($_REQUEST['pbss_sales_stages']);
+			Log::debug("USER PREFERENCES['pbss_sales_stages'] is:");
+			Log::debug($current_user->getPreference('pbss_sales_stages'));
 		}
 
 		//set $datax using selected sales stage keys
@@ -148,8 +148,8 @@ class PredefinedChart{
 			$datax = $app_list_strings['sales_stage_dom'];
 			$datax_selected = array_keys($app_list_strings['sales_stage_dom']);
 		}
-		$GLOBALS['log']->debug("datax is:");
-		$GLOBALS['log']->debug($datax);
+		Log::debug("datax is:");
+		Log::debug($datax);
 
 		$ids = array();
 		$new_ids = array();
@@ -158,16 +158,16 @@ class PredefinedChart{
 		if (!empty($user_ids) && count($user_ids) != 0 && !isset($_REQUEST['pbss_ids'])) {
 			$ids = $user_ids;
 
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_ids'] is:");
-			$GLOBALS['log']->debug($user_ids);
+			Log::debug("USER PREFERENCES['pbss_ids'] is:");
+			Log::debug($user_ids);
 		}
 		elseif (isset($_REQUEST['pbss_ids']) && count($_REQUEST['pbss_ids']) > 0) {
 			$ids = $_REQUEST['pbss_ids'];
 			$current_user->setPreference('pbss_ids', $_REQUEST['pbss_ids']);
-			$GLOBALS['log']->debug("_REQUEST['pbss_ids'] is:");
-			$GLOBALS['log']->debug($_REQUEST['pbss_ids']);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbss_ids'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('pbss_ids'));
+			Log::debug("_REQUEST['pbss_ids'] is:");
+			Log::debug($_REQUEST['pbss_ids']);
+			Log::debug("USER PREFERENCES['pbss_ids'] is:");
+			Log::debug($current_user->getPreference('pbss_ids'));
 		}
 		else {
 			$ids = get_user_array(false);
@@ -243,16 +243,16 @@ class PredefinedChart{
 
 		$tempx = $filters['lsbo_lead_sources'];
 		if (!empty($lsbo_lead_sources) && count($lsbo_lead_sources) > 0 && !isset($_REQUEST['lsbo_lead_sources'])) {
-			$GLOBALS['log']->fatal("user->getPreference('lsbo_lead_sources') is:");
-			$GLOBALS['log']->fatal($tempx);
+			Log::fatal("user->getPreference('lsbo_lead_sources') is:");
+			Log::fatal($tempx);
 		}
 		elseif (isset($_REQUEST['lsbo_lead_sources']) && count($_REQUEST['lsbo_lead_sources']) > 0) {
 			$tempx = $_REQUEST['lsbo_lead_sources'];
 			$current_user->setPreference('lsbo_lead_sources', $_REQUEST['lsbo_lead_sources']);
-			$GLOBALS['log']->fatal("_REQUEST['lsbo_lead_sources'] is:");
-			$GLOBALS['log']->fatal($_REQUEST['lsbo_lead_sources']);
-			$GLOBALS['log']->fatal("user->getPreference('lsbo_lead_sources') is:");
-			$GLOBALS['log']->fatal($current_user->getPreference('lsbo_lead_sources'));
+			Log::fatal("_REQUEST['lsbo_lead_sources'] is:");
+			Log::fatal($_REQUEST['lsbo_lead_sources']);
+			Log::fatal("user->getPreference('lsbo_lead_sources') is:");
+			Log::fatal($current_user->getPreference('lsbo_lead_sources'));
 		}
 		//set $datax using selected sales stage keys
 		if (!empty($tempx) && sizeof($tempx) > 0) {
@@ -271,16 +271,16 @@ class PredefinedChart{
 		$ids = $filters['lsbo_ids'];
 		//get list of user ids for which to display data
 		if (!empty($ids) && count($ids) != 0 && !isset($_REQUEST['lsbo_ids'])) {
-			$GLOBALS['log']->debug("_SESSION['lsbo_ids'] is:");
-			$GLOBALS['log']->debug($ids);
+			Log::debug("_SESSION['lsbo_ids'] is:");
+			Log::debug($ids);
 		}
 		elseif (isset($_REQUEST['lsbo_ids']) && count($_REQUEST['lsbo_ids']) > 0) {
 			$ids = $_REQUEST['lsbo_ids'];
 			$current_user->setPreference('lsbo_ids', $_REQUEST['lsbo_ids']);
-			$GLOBALS['log']->debug("_REQUEST['lsbo_ids'] is:");
-			$GLOBALS['log']->debug($_REQUEST['lsbo_ids']);
-			$GLOBALS['log']->debug("user->getPreference('lsbo_ids') is:");
-			$GLOBALS['log']->debug($current_user->getPreference('lsbo_ids'));
+			Log::debug("_REQUEST['lsbo_ids'] is:");
+			Log::debug($_REQUEST['lsbo_ids']);
+			Log::debug("user->getPreference('lsbo_ids') is:");
+			Log::debug($current_user->getPreference('lsbo_ids'));
 		}
 		else {
 			$ids = get_user_array(false);
@@ -330,16 +330,16 @@ class PredefinedChart{
 		$user_date_start = $current_user->getPreference('obm_date_start');
 		if (!empty($user_date_start)  && !isset($_REQUEST['obm_date_start'])) {
 			$date_start =$user_date_start;
-			$GLOBALS['log']->debug("USER PREFERENCES['obm_date_start'] is:");
-			$GLOBALS['log']->debug($user_date_start);
+			Log::debug("USER PREFERENCES['obm_date_start'] is:");
+			Log::debug($user_date_start);
 		}
 		elseif (isset($_REQUEST['obm_year']) && $_REQUEST['obm_year'] != '') {
 			$date_start = $_REQUEST['obm_year'].'-01-01';
 			$current_user->setPreference('obm_date_start', $date_start);
-			$GLOBALS['log']->debug("_REQUEST['obm_date_start'] is:");
-			$GLOBALS['log']->debug($_REQUEST['obm_date_start']);
-			$GLOBALS['log']->debug("_SESSION['obm_date_start'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('obm_date_start'));
+			Log::debug("_REQUEST['obm_date_start'] is:");
+			Log::debug($_REQUEST['obm_date_start']);
+			Log::debug("_SESSION['obm_date_start'] is:");
+			Log::debug($current_user->getPreference('obm_date_start'));
 		}
 		else {
 			$date_start = date('Y').'-01-01';
@@ -347,16 +347,16 @@ class PredefinedChart{
 		$user_date_end = $current_user->getPreference('obm_date_end');
 		if (!empty($user_date_end) && !isset($_REQUEST['obm_date_end'])) {
 			$date_end =$user_date_end;
-			$GLOBALS['log']->debug("USER PREFERENCES['obm_date_end'] is:");
-			$GLOBALS['log']->debug($date_end);
+			Log::debug("USER PREFERENCES['obm_date_end'] is:");
+			Log::debug($date_end);
 		}
 		elseif (isset($_REQUEST['obm_year']) && $_REQUEST['obm_year'] != '') {
 			$date_end = $_REQUEST['obm_year'].'-12-31';
 			$current_user->setPreference('obm_date_end', $date_end );
-			$GLOBALS['log']->debug("_REQUEST['obm_date_end'] is:");
-			$GLOBALS['log']->debug($_REQUEST['obm_date_end']);
-			$GLOBALS['log']->debug("USER PREFERENCES['obm_date_end'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('obm_date_end'));
+			Log::debug("_REQUEST['obm_date_end'] is:");
+			Log::debug($_REQUEST['obm_date_end']);
+			Log::debug("USER PREFERENCES['obm_date_end'] is:");
+			Log::debug($current_user->getPreference('obm_date_end'));
 		}
 		else {
 			$date_end = date('Y').'-12-31';
@@ -367,16 +367,16 @@ class PredefinedChart{
 		$user_ids = $current_user->getPreference('obm_ids');
 		if (!empty($user_ids) && count($user_ids) != 0 && !isset($_REQUEST['obm_ids'])) {
 			$ids = $user_ids;
-			$GLOBALS['log']->debug("USER PREFERENCES['obm_ids'] is:");
-			$GLOBALS['log']->debug($user_ids);
+			Log::debug("USER PREFERENCES['obm_ids'] is:");
+			Log::debug($user_ids);
 		}
 		elseif (isset($_REQUEST['obm_ids']) && count($_REQUEST['obm_ids']) > 0) {
 			$ids = $_REQUEST['obm_ids'];
 			$current_user->setPreference('obm_ids', $_REQUEST['obm_ids']);
-			$GLOBALS['log']->debug("_REQUEST['obm_ids'] is:");
-			$GLOBALS['log']->debug($_REQUEST['obm_ids']);
-			$GLOBALS['log']->debug("USER PREFRENCES['obm_ids'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('obm_ids'));
+			Log::debug("_REQUEST['obm_ids'] is:");
+			Log::debug($_REQUEST['obm_ids']);
+			Log::debug("USER PREFRENCES['obm_ids'] is:");
+			Log::debug($current_user->getPreference('obm_ids'));
 		}
 		else {
 			$ids = get_user_array(false);
@@ -425,16 +425,16 @@ class PredefinedChart{
 		$user_tempx = $filters['pbls_lead_sources'];
 		if (!empty($user_tempx) && count($user_tempx) > 0 && !isset($_REQUEST['pbls_lead_sources'])) {
 			$tempx = $user_tempx;
-			$GLOBALS['log']->debug("USER PREFERENCES['pbls_lead_sources'] is:");
-			$GLOBALS['log']->debug($user_tempx);
+			Log::debug("USER PREFERENCES['pbls_lead_sources'] is:");
+			Log::debug($user_tempx);
 		}
 		elseif (isset($_REQUEST['pbls_lead_sources']) && count($_REQUEST['pbls_lead_sources']) > 0) {
 			$tempx = $_REQUEST['pbls_lead_sources'];
 			$current_user->setPreference('pbls_lead_sources', $_REQUEST['pbls_lead_sources']);
-			$GLOBALS['log']->debug("_REQUEST['pbls_lead_sources'] is:");
-			$GLOBALS['log']->debug($_REQUEST['pbls_lead_sources']);
-			$GLOBALS['log']->debug("USER PREFERENCES['pbls_lead_sources'] is:");
-			$GLOBALS['log']->debug($current_user->getPreference('pbls_lead_sources'));
+			Log::debug("_REQUEST['pbls_lead_sources'] is:");
+			Log::debug($_REQUEST['pbls_lead_sources']);
+			Log::debug("USER PREFERENCES['pbls_lead_sources'] is:");
+			Log::debug($current_user->getPreference('pbls_lead_sources'));
 		}
 
 		//set $datax using selected sales stage keys

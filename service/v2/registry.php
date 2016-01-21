@@ -69,7 +69,7 @@ class registry {
 	protected function registerFunction() {
 		// START OF REGISTER FUNCTIONS
 		
-		$GLOBALS['log']->info('Begin: registry->registerFunction');
+		Log::info('Begin: registry->registerFunction');
 		
 		$this->serviceClass->registerFunction(
 		  	'login',
@@ -186,7 +186,7 @@ class registry {
 	        array('return'=>'tns:get_entries_count_result'));
 
     		
-	    $GLOBALS['log']->info('END: registry->registerFunction');
+	    Log::info('END: registry->registerFunction');
 	        
 		// END OF REGISTER FUNCTIONS
 	} // fn	
@@ -199,7 +199,7 @@ class registry {
 		
 		// START OF REGISTER COMPLEX TYPES
 		
-		$GLOBALS['log']->info('Begin: registry->registerTypes');
+		Log::info('Begin: registry->registerTypes');
 
 		$this->serviceClass->registerType(
 		    'new_note_attachment',
@@ -646,7 +646,7 @@ class registry {
 		);
 				
 		
-		$GLOBALS['log']->info('End: registry->registerTypes');
+		Log::info('End: registry->registerTypes');
 
 		// END OF REGISTER COMPLEX TYPES
 	} // fn

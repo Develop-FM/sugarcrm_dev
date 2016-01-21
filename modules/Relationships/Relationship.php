@@ -240,7 +240,7 @@ class Relationship extends SugarBean
                 $this->$field = $value;
             }
         } else {
-            $GLOBALS['log']->fatal('Error fetching relationship from cache '.$relationship_name);
+            Log::fatal('Error fetching relationship from cache '.$relationship_name);
 
             return false;
         }

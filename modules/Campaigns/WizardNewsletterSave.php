@@ -63,7 +63,7 @@ global $mod_strings;
 
     //save here so we can link relationships
         $campaign_focus->save();
-        $GLOBALS['log']->debug("Saved record with id of ".$campaign_focus->id);
+        Log::debug("Saved record with id of ".$campaign_focus->id);
 
     //process prospect lists
 
@@ -216,7 +216,7 @@ if(isset($_REQUEST['wiz_direction'])  &&  $_REQUEST['wiz_direction']== 'continue
 }
 //require_once('modules/Campaigns/WizardMarketing.php');
 $header_URL = "Location: index.php?return_module=Campaigns&module=Campaigns&action=".$action."&campaign_id=".$campaign_focus->id."&return_action=WizardNewsLetter&return_id=".$campaign_focus->id;
-$GLOBALS['log']->debug("about to post header URL of: $header_URL");
+Log::debug("about to post header URL of: $header_URL");
  header($header_URL);
 
 

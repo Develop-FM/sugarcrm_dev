@@ -84,7 +84,7 @@ if ($appointment_filter == 'last this_month') {
 }
 
 $dayEnd = $timedate->asDb($laterDate->get_day_end_time());
-$GLOBALS['log']->debug("filter $appointment_filter date $dayEnd");
+Log::debug("filter $appointment_filter date $dayEnd");
 
 if(ACLController::checkAccess('Meetings', 'list', true)){
 	$meeting = new Meeting();
@@ -109,7 +109,7 @@ if(ACLController::checkAccess('Meetings', 'list', true)){
 		$where .= " AND meetings.date_start + ' ' +  meetings.time_start <= '$dayEnd' ";
 	}
 	else {
-		$GLOBALS['log']->fatal("No database type identified.");
+		Log::fatal("No database type identified.");
 	}
 
 	$meeting->disable_row_level_security = true;
@@ -140,7 +140,7 @@ if(ACLController::checkAccess('Calls', 'list', true)) {
 		//add condition for MS Sql server.
 		$where .= " AND calls.date_start + ' ' + calls.time_start <= '$dayEnd' ";
 	} else {
-		$GLOBALS['log']->fatal("No database type identified.");
+		Log::fatal("No database type identified.");
 	}
 
 	$call->disable_row_level_security = true;

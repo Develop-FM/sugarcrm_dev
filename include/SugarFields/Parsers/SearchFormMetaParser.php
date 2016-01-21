@@ -139,16 +139,16 @@ function processSection($section, $table, $filePath, $vardefs=array()) {
    $toptr = $this->getElementsByType("tr", $table);
    
    if(!is_array($toptr) || empty($toptr)) {
-   	  $GLOBALS['log']->error("Could not process top row (<tr>) for $section section");
-   	  $GLOBALS['log']->error($table);
+   	  Log::error("Could not process top row (<tr>) for $section section");
+   	  Log::error($table);
    	  return array(); 
    }
    
    $tabledata = $this->getElementsByType("table", $toptr[0]);
    
    if(empty($tabledata)) {
-   	  $GLOBALS['log']->error("Error: HTML format for SearchForm.html not as expected, results may not be accurate");
-   	  $GLOBALS['log']->error($toptr[0]);
+   	  Log::error("Error: HTML format for SearchForm.html not as expected, results may not be accurate");
+   	  Log::error($toptr[0]);
    	  $tabledata[0] = "<table>{$table}</table>";
    }
 
@@ -252,7 +252,7 @@ function applyRules($moduleDir, $section=array()) {
    require_once('include/SugarFields/Parsers/Rules/BaseRule.php');
    $baseRule = new BaseRule();
    if(!is_array($section)) {
-   	  $GLOBALS['log']->error("Error: SearchFormMetaParser->applyRules expects Array");
+   	  Log::error("Error: SearchFormMetaParser->applyRules expects Array");
    	  return $section;
    }
    

@@ -825,7 +825,7 @@ class SugarBean
             }
         }
         if (! is_array($dictionary) or ! array_key_exists($key, $dictionary)) {
-            $GLOBALS['log']->fatal("removeRelationshipMeta: Metadata for table ".$tablename." does not exist");
+            Log::fatal("removeRelationshipMeta: Metadata for table ".$tablename." does not exist");
             display_notice("meta data absent for table ".$tablename." keyed to $key ");
         } else {
             if (isset($dictionary[$key]['relationships'])) {
@@ -877,14 +877,14 @@ class SugarBean
                     $dictionary = $GLOBALS['dictionary'];
                 }
             } else {
-                $GLOBALS['log']->debug("createRelationshipMeta: no metadata file found".$filename);
+                Log::debug("createRelationshipMeta: no metadata file found".$filename);
 
                 return;
             }
         }
 
         if (! is_array($dictionary) or ! array_key_exists($key, $dictionary)) {
-            $GLOBALS['log']->fatal("createRelationshipMeta: Metadata for table ".$tablename." does not exist");
+            Log::fatal("createRelationshipMeta: Metadata for table ".$tablename." does not exist");
             display_notice("meta data absent for table ".$tablename." keyed to $key ");
         } else {
             if (isset($dictionary[$key]['relationships'])) {
@@ -896,17 +896,17 @@ class SugarBean
                 $beanList_ucase = array_change_key_case($beanList, CASE_UPPER);
                 foreach ($RelationshipDefs as $rel_name => $rel_def) {
                     if (isset($rel_def['lhs_module']) and ! isset($beanList_ucase[strtoupper($rel_def['lhs_module'])])) {
-                        $GLOBALS['log']->debug('skipping orphaned relationship record '.$rel_name.' lhs module is missing '.$rel_def['lhs_module']);
+                        Log::debug('skipping orphaned relationship record '.$rel_name.' lhs module is missing '.$rel_def['lhs_module']);
                         continue;
                     }
                     if (isset($rel_def['rhs_module']) and ! isset($beanList_ucase[strtoupper($rel_def['rhs_module'])])) {
-                        $GLOBALS['log']->debug('skipping orphaned relationship record '.$rel_name.' rhs module is missing '.$rel_def['rhs_module']);
+                        Log::debug('skipping orphaned relationship record '.$rel_name.' rhs module is missing '.$rel_def['rhs_module']);
                         continue;
                     }
 
                     //check whether relationship exists or not first.
                     if (Relationship::exists($rel_name, $db)) {
-                        $GLOBALS['log']->debug('Skipping, reltionship already exists '.$rel_name);
+                        Log::debug('Skipping, reltionship already exists '.$rel_name);
                     } else {
                         $seed     = BeanFactory::getBean("Relationships");
                         $keys     = array_keys($seed->field_defs);
@@ -966,10 +966,10 @@ class SugarBean
      */
     public function load_relationship($rel_name)
     {
-        $GLOBALS['log']->debug("SugarBean[{$this->object_name}].load_relationships, Loading relationship (".$rel_name.").");
+        Log::debug("SugarBean[{$this->object_name}].load_relationships, Loading relationship (".$rel_name.").");
 
         if (empty($rel_name)) {
-            $GLOBALS['log']->error("SugarBean.load_relationships, Null relationship name passed.");
+            Log::error("SugarBean.load_relationships, Null relationship name passed.");
             return false;
         }
 
@@ -1005,7 +1005,7 @@ class SugarBean
             }
         }
 
-        $GLOBALS['log']->debug("SugarBean.load_relationships, Error Loading relationship (".$rel_name.")");
+        Log::debug("SugarBean.load_relationships, Error Loading relationship (".$rel_name.")");
 
         return false;
     }
@@ -1020,7 +1020,7 @@ class SugarBean
      */
     final public function load_relationships()
     {
-        $GLOBALS['log']->debug("SugarBean.load_relationships, Loading all relationships of type link.");
+        Log::debug("SugarBean.load_relationships, Loading all relationships of type link.");
         $linked_fields = $this->get_linked_fields();
         foreach ($linked_fields as $name => $properties) {
             $this->load_relationship($name);
@@ -1188,7 +1188,7 @@ class SugarBean
             if ($this->load_relationship($name)) {
                 $this->$name->delete($id);
             } else {
-                $GLOBALS['log']->fatal("error loading relationship $name");
+                Log::fatal("error loading relationship $name");
             }
         }
     }
@@ -1203,7 +1203,7 @@ class SugarBean
 
         $key = $this->getObjectName();
         if (! array_key_exists($key, $dictionary)) {
-            $GLOBALS['log']->fatal("create_tables: Metadata for table ".$this->table_name." does not exist");
+            Log::fatal("create_tables: Metadata for table ".$this->table_name." does not exist");
             display_notice("meta data absent for table ".$this->table_name." keyed to $key ");
         } else {
             if (! $this->db->tableExists($this->table_name)) {
@@ -1238,7 +1238,7 @@ class SugarBean
         $key = $this->getObjectName();
 
         if (! array_key_exists($key, $dictionary)) {
-            $GLOBALS['log']->fatal("drop_tables: Metadata for table ".$this->table_name." does not exist");
+            Log::fatal("drop_tables: Metadata for table ".$this->table_name." does not exist");
             echo "meta data absent for table ".$this->table_name."<br>\n";
         } else {
             if (empty($this->table_name)) {
@@ -1403,7 +1403,7 @@ class SugarBean
         $auditDataChanges = [];
         if ($this->is_AuditEnabled()) {
             if ($isUpdate && ! isset($this->fetched_row)) {
-                $GLOBALS['log']->debug('Auditing: Retrieve was not called, audit record will not be created.');
+                Log::debug('Auditing: Retrieve was not called, audit record will not be created.');
             } else {
                 $auditDataChanges = $this->db->getAuditDataChanges($this);
             }
@@ -1480,7 +1480,7 @@ class SugarBean
         $notify_user->retrieve($this->assigned_user_id);
         $this->new_assigned_user_name = $notify_user->full_name;
 
-        $GLOBALS['log']->info("Notifications: recipient is $this->new_assigned_user_name");
+        Log::info("Notifications: recipient is $this->new_assigned_user_name");
 
         return [$notify_user];
     }
@@ -1499,7 +1499,7 @@ class SugarBean
             $sendToEmail = $notify_user->emailAddress->getPrimaryAddress($notify_user);
             $sendEmail   = true;
             if (empty($sendToEmail)) {
-                $GLOBALS['log']->warn("Notifications: no e-mail address set for user {$notify_user->user_name}, cancelling send");
+                Log::warn("Notifications: no e-mail address set for user {$notify_user->user_name}, cancelling send");
                 $sendEmail = false;
             }
 
@@ -1542,16 +1542,16 @@ class SugarBean
 
                 //if smtp was not verified against user or system, then do not send out email
                 if (! $smtpVerified) {
-                    $GLOBALS['log']->fatal("Notifications: error sending e-mail, smtp server was not found ");
+                    Log::fatal("Notifications: error sending e-mail, smtp server was not found ");
 
                     //break out
                     return;
                 }
 
                 if (! $notify_mail->Send()) {
-                    $GLOBALS['log']->fatal("Notifications: error sending e-mail (method: {$notify_mail->Mailer}), (error: {$notify_mail->ErrorInfo})");
+                    Log::fatal("Notifications: error sending e-mail (method: {$notify_mail->Mailer}), (error: {$notify_mail->ErrorInfo})");
                 } else {
-                    $GLOBALS['log']->info("Notifications: e-mail successfully sent");
+                    Log::info("Notifications: e-mail successfully sent");
                 }
             }
         }
@@ -1572,7 +1572,7 @@ class SugarBean
 
         $notify_address = $notify_user->emailAddress->getPrimaryAddress($notify_user);
         $notify_name    = $notify_user->full_name;
-        $GLOBALS['log']->debug("Notifications: user has e-mail defined");
+        Log::debug("Notifications: user has e-mail defined");
 
         $notify_mail = new SugarPHPMailer();
         $notify_mail->AddAddress($notify_address, $locale->translateCharsetMIME(trim($notify_name), 'UTF-8', $OBCharset));
@@ -1739,7 +1739,7 @@ class SugarBean
                     if ($rel_name == $new_rel_link && $this->$id != $new_rel_id) {
                         $new_rel_id = '';
                     }
-                    $GLOBALS['log']->debug('save_relationship_changes(): From relationship_field array - adding a relationship record: '.$rel_name.' = '.$this->$id);
+                    Log::debug('save_relationship_changes(): From relationship_field array - adding a relationship record: '.$rel_name.' = '.$this->$id);
                     //already related the new relationship id so let's set it to false so we don't add it again using the _REQUEST['relate_i'] mechanism in a later block
                     $this->load_relationship($rel_name);
                     $rel_add = $this->$rel_name->add($this->$id);
@@ -1750,7 +1750,7 @@ class SugarBean
                 } else {
                     //if before value is not empty then attempt to delete relationship
                     if (! empty($this->rel_fields_before_value[$id])) {
-                        $GLOBALS['log']->debug('save_relationship_changes(): From relationship_field array - attempting to remove the relationship record, using relationship attribute'.$rel_name);
+                        Log::debug('save_relationship_changes(): From relationship_field array - attempting to remove the relationship record, using relationship attribute'.$rel_name);
                         $this->load_relationship($rel_name);
                         $this->$rel_name->delete($this->id, $this->rel_fields_before_value[$id]);
                     }
@@ -1795,7 +1795,7 @@ class SugarBean
 
                         if (! empty($this->rel_fields_before_value[$idName]) && empty($this->$idName)) {
                             //if before value is not empty then attempt to delete relationship
-                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - attempting to remove the relationship record: {$def [ 'link' ]} = {$this->rel_fields_before_value[$def [ 'id_name' ]]}");
+                            Log::debug("save_relationship_changes(): From field_defs - attempting to remove the relationship record: {$def [ 'link' ]} = {$this->rel_fields_before_value[$def [ 'id_name' ]]}");
                             $success = $this->$def ['link']->delete($this->id, $this->rel_fields_before_value[$def ['id_name']]);
                             // just need to make sure it's true and not an array as it's possible to return an array
                             if ($success == true) {
@@ -1803,11 +1803,11 @@ class SugarBean
                             } else {
                                 $modified_relationships['remove']['failure'][] = $def['link'];
                             }
-                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - attempting to remove the relationship record returned ".var_export_helper($success, true));
+                            Log::debug("save_relationship_changes(): From field_defs - attempting to remove the relationship record returned ".var_export_helper($success, true));
                         }
 
                         if (! empty($this->$idName) && is_string($this->$idName)) {
-                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - attempting to add a relationship record - {$def [ 'link' ]} = {$this->$def [ 'id_name' ]}");
+                            Log::debug("save_relationship_changes(): From field_defs - attempting to add a relationship record - {$def [ 'link' ]} = {$this->$def [ 'id_name' ]}");
 
                             $success = $this->$linkField->add($this->$idName);
 
@@ -1818,10 +1818,10 @@ class SugarBean
                                 $modified_relationships['add']['failure'][] = $linkField;
                             }
 
-                            $GLOBALS['log']->debug("save_relationship_changes(): From field_defs - add a relationship record returned ".var_export_helper($success, true));
+                            Log::debug("save_relationship_changes(): From field_defs - add a relationship record returned ".var_export_helper($success, true));
                         }
                     } else {
-                        $GLOBALS['log']->fatal("Failed to load relationship {$linkField} while saving {$this->module_dir}");
+                        Log::fatal("Failed to load relationship {$linkField} while saving {$this->module_dir}");
                     }
                 }
             }
@@ -2132,7 +2132,7 @@ class SugarBean
             }
 
             if ($reformatted) {
-                $GLOBALS['log']->deprecated('Formatting correction: '.$this->module_dir.'->'.$field.' had formatting automatically corrected. This will be removed in the future, please upgrade your external code');
+                Log::deprecated('Formatting correction: '.$this->module_dir.'->'.$field.' had formatting automatically corrected. This will be removed in the future, please upgrade your external code');
             }
         }
     }
@@ -2168,7 +2168,7 @@ class SugarBean
             $query .= " AND $this->table_name.deleted=0";
         }
 
-        $GLOBALS['log']->debug("Retrieve $this->object_name : ".$query);
+        Log::debug("Retrieve $this->object_name : ".$query);
         $result = $this->db->limitQuery($query, 0, 1, true, "Retrieving record by id $this->table_name:$id found ");
         if (empty($result)) {
             return null;
@@ -2350,7 +2350,7 @@ class SugarBean
      */
     final public function get_list($order_by = "", $where = "", $row_offset = 0, $limit = -1, $max = -1, $show_deleted = 0, $singleSelect = false, $select_fields = [])
     {
-        $GLOBALS['log']->debug("get_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
+        Log::debug("get_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
         if (isset($_SESSION['show_deleted'])) {
             $show_deleted = 1;
         }
@@ -2436,13 +2436,13 @@ class SugarBean
                         case 'desc':
                             break;
                         default:
-                            $GLOBALS['log']->debug("process_order_by: ($list_column[1]) is not a valid order.");
+                            Log::debug("process_order_by: ($list_column[1]) is not a valid order.");
                             unset($list_column[1]);
                             break;
                     }
                 }
             } else {
-                $GLOBALS['log']->debug("process_order_by: ($list_column[0]) does not have a vardef entry.");
+                Log::debug("process_order_by: ($list_column[0]) does not have a vardef entry.");
             }
 
             if ($is_valid) {
@@ -2471,7 +2471,7 @@ class SugarBean
      */
     final public function get_detail($order_by = "", $where = "", $offset = 0, $row_offset = 0, $limit = -1, $max = -1, $show_deleted = 0)
     {
-        $GLOBALS['log']->debug("get_detail:  order_by = '$order_by' and where = '$where' and limit = '$limit' and offset = '$offset'");
+        Log::debug("get_detail:  order_by = '$order_by' and where = '$where' and limit = '$limit' and offset = '$offset'");
         if (isset($_SESSION['show_deleted'])) {
             $show_deleted = 1;
         }
@@ -2524,7 +2524,7 @@ class SugarBean
             return $response;
         }
 
-        $GLOBALS['log']->debug("get_related_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
+        Log::debug("get_related_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
         if (isset($_SESSION['show_deleted'])) {
             $show_deleted = 1;
         }
@@ -2853,7 +2853,7 @@ class SugarBean
      */
     public function get_full_list($order_by = "", $where = "", $check_dates = false, $show_deleted = 0)
     {
-        $GLOBALS['log']->debug("get_full_list:  order_by = '$order_by' and where = '$where'");
+        Log::debug("get_full_list:  order_by = '$order_by' and where = '$where'");
         if (isset($_SESSION['show_deleted'])) {
             $show_deleted = 1;
         }
@@ -3320,7 +3320,7 @@ class SugarBean
                         $class = $beanList[$child_info['parent_type']];
                         // Added to avoid error below; just silently fail and write message to log
                         if (empty($beanFiles[$class])) {
-                            $GLOBALS['log']->error($this->object_name.'::retrieve_parent_fields() - cannot load class "'.$class.'", skip loading.');
+                            Log::error($this->object_name.'::retrieve_parent_fields() - cannot load class "'.$class.'", skip loading.');
                             continue;
                         }
                         require_once($beanFiles[$class]);
@@ -3388,7 +3388,7 @@ class SugarBean
 
         // if the row_offset is set to 'end' go to the end of the list
         $toEnd = strval($row_offset) == 'end';
-        $GLOBALS['log']->debug("process_list_query: ".$query);
+        Log::debug("process_list_query: ".$query);
         if ($max_per_page == -1) {
             $max_per_page = $sugar_config['list_max_entries_per_page'];
         }
@@ -3454,7 +3454,7 @@ class SugarBean
                         $temp->$owner_field = $row[$owner_field];
                     }
 
-                    $GLOBALS['log']->debug("$temp->object_name({$row['id']}): ".$field." = ".$temp->$field);
+                    Log::debug("$temp->object_name({$row['id']}): ".$field." = ".$temp->$field);
                 } else if (isset($row[$this->table_name.'.'.$field])) {
                     $temp->$field = $row[$this->table_name.'.'.$field];
                 } else {
@@ -3553,7 +3553,7 @@ class SugarBean
         $use_count_query       = false;
         $processing_collection = $subpanel_def->isCollection();
 
-        $GLOBALS['log']->debug("process_union_list_query: ".$query);
+        Log::debug("process_union_list_query: ".$query);
         if ($max_per_page == -1) {
             $max_per_page = $sugar_config['list_max_entries_per_subpanel'];
         }
@@ -3792,7 +3792,7 @@ class SugarBean
     final public function process_detail_query($query, $row_offset, $limit = -1, $max_per_page = -1, $where = '', $offset = 0)
     {
         global $sugar_config;
-        $GLOBALS['log']->debug("process_detail_query: ".$query);
+        Log::debug("process_detail_query: ".$query);
 
         if ($max_per_page == -1) {
             $max_per_page = $sugar_config['list_max_entries_per_page'];
@@ -3846,9 +3846,9 @@ class SugarBean
      */
     final protected function process_full_list_query($query, $check_date = false)
     {
-        $GLOBALS['log']->debug("process_full_list_query: query is ".$query);
+        Log::debug("process_full_list_query: query is ".$query);
         $result = $this->db->query($query, false);
-        $GLOBALS['log']->debug("process_full_list_query: result is ".print_r($result, true));
+        Log::debug("process_full_list_query: result is ".print_r($result, true));
         $class       = get_class($this);
         $isFirstTime = true;
         $bean        = new $class();
@@ -3865,7 +3865,7 @@ class SugarBean
             foreach ($bean->field_defs as $field => $value) {
                 if (isset($row[$field])) {
                     $bean->$field = $row[$field];
-                    $GLOBALS['log']->debug("process_full_list: $bean->object_name({$row['id']}): ".$field." = ".$bean->$field);
+                    Log::debug("process_full_list: $bean->object_name({$row['id']}): ".$field." = ".$bean->$field);
                 } else {
                     $bean->$field = '';
                 }
@@ -4090,7 +4090,7 @@ class SugarBean
      */
     public function create_index($query)
     {
-        $GLOBALS['log']->info("create_index: $query");
+        Log::info("create_index: $query");
 
         $this->db->query($query, true, "Error creating index:");
     }
@@ -4223,7 +4223,7 @@ class SugarBean
         foreach ($files as $file) {
             if (file_exists('upload://'.$file)) {
                 if (! sugar_rename('upload://'.$file, 'upload://deleted/'.$directory.'/'.$file)) {
-                    $GLOBALS['log']->error('Could not move file '.$file.' to deleted directory');
+                    Log::error('Could not move file '.$file.' to deleted directory');
                 }
             }
         }
@@ -4277,7 +4277,7 @@ class SugarBean
         foreach ($files as $file) {
             if (sugar_is_file('upload://deleted/'.$directory.'/'.$file)) {
                 if (! sugar_rename('upload://deleted/'.$directory.'/'.$file, 'upload://'.$file)) {
-                    $GLOBALS['log']->error('Could not move file '.$directory.'/'.$file.' from deleted directory');
+                    Log::error('Could not move file '.$directory.'/'.$file.' from deleted directory');
                 }
             }
         }
@@ -4378,7 +4378,7 @@ class SugarBean
      */
     public function build_related_list($query, &$template, $row_offset = 0, $limit = -1)
     {
-        $GLOBALS['log']->debug("Finding linked records $this->object_name: ".$query);
+        Log::debug("Finding linked records $this->object_name: ".$query);
         $db = DBManagerFactory::getInstance('listviews');
 
         if (! empty($row_offset) && $row_offset != 0 && ! empty($limit) && $limit != -1) {
@@ -4426,7 +4426,7 @@ class SugarBean
     {
         $db = DBManagerFactory::getInstance('listviews');
         // No need to do an additional query
-        $GLOBALS['log']->debug("Finding linked records $this->object_name: ".$query);
+        Log::debug("Finding linked records $this->object_name: ".$query);
         if (empty($in) && ! empty($query)) {
             $idList = $this->build_related_in($query);
             $in     = $idList['in'];
@@ -4519,7 +4519,7 @@ class SugarBean
      */
     final protected function build_related_list2($query, &$template, &$field_list)
     {
-        $GLOBALS['log']->debug("Finding linked values $this->object_name: ".$query);
+        Log::debug("Finding linked values $this->object_name: ".$query);
 
         $result = $this->db->query($query, true);
 
@@ -4666,7 +4666,7 @@ class SugarBean
         $query        = "SELECT $this->table_name.*".$custom_join['select']." FROM $this->table_name ".$custom_join['join'];
         $query .= " $where_clause";
 
-        $GLOBALS['log']->debug("Retrieve $this->object_name: ".$query);
+        Log::debug("Retrieve $this->object_name: ".$query);
 
         $result = $this->db->limitQuery($query, 0, 1, true, "Retrieving record $where_clause:");
 
@@ -4979,7 +4979,7 @@ class SugarBean
         } elseif ($this->custom_fields->avail_fields[$name]['ext3']) {
             $realKey = 'ext3';
         } else {
-            $GLOBALS['log']->fatal("SUGARBEAN: cannot find Real Key for custom field of type dropdown - cannot return Value.");
+            Log::fatal("SUGARBEAN: cannot find Real Key for custom field of type dropdown - cannot return Value.");
 
             return false;
         }
@@ -5444,13 +5444,13 @@ class SugarBean
             $sendNotifications = false;
 
             if ($admin->settings['notify_on']) {
-                $GLOBALS['log']->info("Notifications: user assignment has changed, checking if user receives notifications");
+                Log::info("Notifications: user assignment has changed, checking if user receives notifications");
                 $sendNotifications = true;
             } elseif (isset($_REQUEST['send_invites']) && $_REQUEST['send_invites'] == 1) {
                 // cn: bug 5795 Send Invites failing for Contacts
                 $sendNotifications = true;
             } else {
-                $GLOBALS['log']->info("Notifications: not sending e-mail, notify_on is set to OFF");
+                Log::info("Notifications: not sending e-mail, notify_on is set to OFF");
             }
 
             if ($sendNotifications == true) {

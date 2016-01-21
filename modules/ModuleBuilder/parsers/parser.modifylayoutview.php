@@ -119,7 +119,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         {
             $this->_padFields(); // destined for a View, so we want to add in (empty) fields
         }
-//      $GLOBALS['log']->debug($this->_viewdefs['panels']);
+//      Log::debug($this->_viewdefs['panels']);
 
     }
 
@@ -128,7 +128,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         // Available fields are those that are in the Model and the original layout definition, but not already shown in the View
         // So, because the formats of the two are different we brute force loop through View and unset the fields we find in a copy of Model
         $availableFields = $this->_getModelFields();
-        $GLOBALS['log']->debug( get_class($this)."->getAvailableFields(): _getModelFields returns: ".implode(",",array_keys($availableFields)));
+        Log::debug( get_class($this)."->getAvailableFields(): _getModelFields returns: ".implode(",",array_keys($availableFields)));
         if (! empty($this->_viewdefs))
         {
             foreach ($this->_viewdefs ['panels'] as $panel)
@@ -140,7 +140,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                         if (isset($fieldArray ['name']))
                         {
                             unset($availableFields [$fieldArray ['name']]);
-                            $GLOBALS['log']->debug( get_class($this)."->getAvailableFields(): removing ".$fieldArray ['name'] );
+                            Log::debug( get_class($this)."->getAvailableFields(): removing ".$fieldArray ['name'] );
                         }
                     }
                 }
@@ -211,8 +211,8 @@ class ParserModifyLayoutView extends ModuleBuilderParser
 
         $olddefs = $this->_viewdefs ['panels'];
         $origFieldDefs = $this->_getOrigFieldViewDefs();
-//      $GLOBALS['log']->debug('origFieldDefs');
-//      $GLOBALS['log']->debug($origFieldDefs);
+//      Log::debug('origFieldDefs');
+//      Log::debug($origFieldDefs);
         $this->_viewdefs ['panels'] = null; // because the new field properties should replace the old fields, not be merged
 
         if ($this->maxColumns < 1)
@@ -368,7 +368,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
     {
         $modelFields = array();
         $origViewDefs = $this->_getOrigFieldViewDefs();
-//        $GLOBALS['log']->debug("Original viewdefs = ".print_r($origViewDefs,true));
+//        Log::debug("Original viewdefs = ".print_r($origViewDefs,true));
         foreach ($origViewDefs as $field => $def)
         {
             if (!empty($field))
@@ -390,7 +390,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                 $modelFields[$field] = array('name' => $field, 'label' => $def ['label']);
             }
         }
-        $GLOBALS['log']->debug(print_r($modelFields,true));
+        Log::debug(print_r($modelFields,true));
         foreach ($this->_fieldDefs as $field => $def)
         {
             if ((!empty($def['studio']) && $def['studio'] == 'visible')
@@ -401,10 +401,10 @@ class ParserModifyLayoutView extends ModuleBuilderParser
             }
             else
             {
-                $GLOBALS['log']->debug( get_class($this)."->_getModelFields(): skipping $field from modelFields as it fails the test for inclusion");
+                Log::debug( get_class($this)."->_getModelFields(): skipping $field from modelFields as it fails the test for inclusion");
             }
         }
-        $GLOBALS['log']->debug( get_class($this)."->_getModelFields(): remaining entries in modelFields are: ".implode(",",array_keys($modelFields)));
+        Log::debug( get_class($this)."->_getModelFields(): remaining entries in modelFields are: ".implode(",",array_keys($modelFields)));
         return $modelFields;
     }
 
@@ -476,12 +476,12 @@ class ParserModifyLayoutView extends ModuleBuilderParser
     function _getOrigFieldViewDefs ()
     {
         $origFieldDefs = array();
-        $GLOBALS['log']->debug("Original File = ".$this->_originalFile);
+        Log::debug("Original File = ".$this->_originalFile);
         if (file_exists($this->_originalFile))
         {
             include ($this->_originalFile);
             $origdefs = $viewdefs [$this->_module] [$this->_sourceView] ['panels'];
-//          $GLOBALS['log']->debug($origdefs);
+//          Log::debug($origdefs);
             // Fix for a flexibility in the format of the panel sections - if only one panel, then we don't have a panel level defined, it goes straight into rows
             // See EditView2 for similar treatment
             if (! empty($origdefs) && count($origdefs) > 0)

@@ -144,7 +144,7 @@ class TemplateRelatedTextField extends TemplateText{
         ),
         );
         
-        //$GLOBALS['log']->fatal($this->bean);
+        //Log::fatal($this->bean);
       
         $json = getJSONobj();
         $encoded_contact_popup_request_data = $json->encode($popup_request_data);
@@ -217,7 +217,7 @@ class TemplateRelatedTextField extends TemplateText{
         } elseif ($df instanceof MBModule) {
             $fieldId = $df->getField($this->id_name);
         } else {
-            $GLOBALS['log']->fatal('Unsupported DynamicField type');
+            Log::fatal('Unsupported DynamicField type');
         }
 
         $this->deleteIdLabel($fieldId, $df);
@@ -296,7 +296,7 @@ class TemplateRelatedTextField extends TemplateText{
         } elseif ($df instanceof MBModule) {
             $module = $df->name;
         }else{
-            $GLOBALS['log']->fatal('Unsupported DynamicField type');
+            Log::fatal('Unsupported DynamicField type');
         }
         $viewPackage = isset($df->package)?$df->package:null;
 

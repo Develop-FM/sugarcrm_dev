@@ -159,7 +159,7 @@ class AdministrationController extends SugarController
             }
         } else {
             echo $mod_strings['LBL_SPRITES_NOT_SUPPORTED'];
-            $GLOBALS['log']->error($mod_strings['LBL_SPRITES_NOT_SUPPORTED']);
+            Log::error($mod_strings['LBL_SPRITES_NOT_SUPPORTED']);
         }
     }
 }

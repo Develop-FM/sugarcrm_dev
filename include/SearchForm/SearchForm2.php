@@ -915,7 +915,7 @@ require_once('include/EditView/EditView2.php');
                                  //In the event that a date value is given that cannot be correctly processed by getDayStartEndGMT method,
                                  //just skip searching on this field and continue.  This may occur if user switches locale date formats
                                  //in another browser screen, but re-runs a search with the previous format on another screen
-                                 $GLOBALS['log']->error($timeException->getMessage());
+                                 Log::error($timeException->getMessage());
                                  continue;
                              }
                          }
@@ -1191,7 +1191,7 @@ require_once('include/EditView/EditView2.php');
     private function isEmptyDropdownField($name='', $value=array())
     {
     	$result = is_array($value) && isset($value[0]) && $value[0] == '';
-    	$GLOBALS['log']->debug("Found empty value for {$name} dropdown search key");
+    	Log::debug("Found empty value for {$name} dropdown search key");
     	return $result;
     }
 

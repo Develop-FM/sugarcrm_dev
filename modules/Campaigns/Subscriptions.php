@@ -65,7 +65,7 @@ if(isset($_REQUEST['return_module'])){
 }
 
 if(isset($_REQUEST['record'])) {
-    $GLOBALS['log']->debug("In Subscriptions, about to retrieve record: ".$_REQUEST['record']);
+    Log::debug("In Subscriptions, about to retrieve record: ".$_REQUEST['record']);
     $result = $focus->retrieve($_REQUEST['record']);
     if($result == null)
     {

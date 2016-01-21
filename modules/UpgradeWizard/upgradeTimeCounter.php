@@ -72,9 +72,9 @@ if(isset($tagdata['jsonObject']) && $tagdata['jsonObject'] != null){
  $_SESSION['totalUpgradeTime'] = $_SESSION['totalUpgradeTime']+$_REQUEST['upgradeStepTime'];
  $response = $_SESSION['totalUpgradeTime'];
 
-$GLOBALS['log']->fatal('TOTAL TIME .....'.$_SESSION['totalUpgradeTime']);
+Log::fatal('TOTAL TIME .....'.$_SESSION['totalUpgradeTime']);
  //$uptime = $uptime+$_REQUEST['upgradeStepTime'];
- $GLOBALS['log']->fatal($response);
+ Log::fatal($response);
 
 
  if (!empty($response)) {

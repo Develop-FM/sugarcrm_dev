@@ -81,12 +81,12 @@ if(is_dir($cachedir)){
 }
 
 $response = '';
-//$GLOBALS['log']->fatal('file name '.$file_name);
-//$GLOBALS['log']->fatal('file size loaded '.filesize($file_name));
+//Log::fatal('file name '.$file_name);
+//Log::fatal('file size loaded '.filesize($file_name));
 /*
 if($allModFiles != null){
 	foreach($allModFiles as $f){
-		$GLOBALS['log']->fatal('file name '.$f);
+		Log::fatal('file name '.$f);
 		$response .= $f;
 	}
 }

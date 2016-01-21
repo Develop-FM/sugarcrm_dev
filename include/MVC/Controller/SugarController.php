@@ -373,7 +373,7 @@ class SugarController
         $logicHook = LogicHook::instance();
         $dir       = '';
 
-        $GLOBALS['log']->fatal("Exception in Controller: [{$e->getMessage()}]:[File: {$e->getFile()}:{$e->getLine()}]");
+        Log::fatal("Exception in Controller: [{$e->getMessage()}]:[File: {$e->getFile()}:{$e->getLine()}]");
 
         if (isset($this->bean)) {
             $logicHook->setBean($this->bean);
@@ -475,7 +475,7 @@ class SugarController
     {
         $function = 'pre_'.$this->action;
         if ($this->hasFunction($function)) {
-            $GLOBALS['log']->debug('Performing pre_action');
+            Log::debug('Performing pre_action');
             $this->$function();
 
             return true;
@@ -492,7 +492,7 @@ class SugarController
     {
         $function = 'action_'.strtolower($this->do_action);
         if ($this->hasFunction($function)) {
-            $GLOBALS['log']->debug('Performing action: '.$function.' MODULE: '.$this->module);
+            Log::debug('Performing action: '.$function.' MODULE: '.$this->module);
             $this->$function();
 
             return true;
@@ -509,7 +509,7 @@ class SugarController
     {
         $function = 'post_'.$this->action;
         if ($this->hasFunction($function)) {
-            $GLOBALS['log']->debug('Performing post_action');
+            Log::debug('Performing post_action');
             $this->$function();
 
             return true;
@@ -588,7 +588,7 @@ class SugarController
         if (! empty($_POST['assigned_user_id']) && $_POST['assigned_user_id'] != $this->bean->assigned_user_id && $_POST['assigned_user_id'] != $GLOBALS['current_user']->id && empty($GLOBALS['sugar_config']['exclude_notifications'][$this->bean->module_dir])) {
             $this->bean->notify_on_save = true;
         }
-        $GLOBALS['log']->debug("SugarController:: performing pre_save.");
+        Log::debug("SugarController:: performing pre_save.");
         require_once('include/SugarFields/SugarFieldHandler.php');
         $sfh = new SugarFieldHandler();
         foreach ($this->bean->field_defs as $field => $properties) {
@@ -984,7 +984,7 @@ class SugarController
             // A 'classic' module, using the old pre-MVC display files
             // We should now discard the bean we just obtained for tracking as the pre-MVC module will instantiate its own
             unset($GLOBALS['FOCUS']);
-            $GLOBALS['log']->debug('Module:'.$this->module.' using file: '.$file);
+            Log::debug('Module:'.$this->module.' using file: '.$file);
             $this->action_default();
             $this->_processed = true;
         }
@@ -999,11 +999,11 @@ class SugarController
     {
         if (! empty($this->action_file_map[strtolower($this->do_action)])) {
             $this->view = '';
-            $GLOBALS['log']->debug('Using Action File Map:'.$this->action_file_map[strtolower($this->do_action)]);
+            Log::debug('Using Action File Map:'.$this->action_file_map[strtolower($this->do_action)]);
             require_once($this->action_file_map[strtolower($this->do_action)]);
             $this->_processed = true;
         } elseif (! empty($this->action_view_map[strtolower($this->do_action)])) {
-            $GLOBALS['log']->debug('Using Action View Map:'.$this->action_view_map[strtolower($this->do_action)]);
+            Log::debug('Using Action View Map:'.$this->action_view_map[strtolower($this->do_action)]);
             $this->view       = $this->action_view_map[strtolower($this->do_action)];
             $this->_processed = true;
         } else {

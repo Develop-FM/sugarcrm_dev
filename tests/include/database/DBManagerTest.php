@@ -1605,7 +1605,7 @@ class DBManagerTest extends Sugar_PHPUnit_Framework_TestCase
 
     public function vardefProvider()
     {
-        $GLOBALS['log']->info('DBManagerTest.vardefProvider: _db = ' . print_r($this->_db));
+        Log::info('DBManagerTest.vardefProvider: _db = ' . print_r($this->_db));
         $this->setUp(); // Just in case the DB driver is not created yet.
         $emptydate = $this->_db->emptyValue("date");
         $emptytime = $this->_db->emptyValue("time");

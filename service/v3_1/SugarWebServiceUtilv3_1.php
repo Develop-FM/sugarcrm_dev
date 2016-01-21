@@ -40,11 +40,11 @@ class SugarWebServiceUtilv3_1 extends SugarWebServiceUtilv3
 
     function get_return_module_fields($value, $module,$fields, $translate=true)
     {
-		$GLOBALS['log']->info('Begin: SoapHelperWebServices->get_return_module_fields');
+		Log::info('Begin: SoapHelperWebServices->get_return_module_fields');
 		global $module_name;
 		$module_name = $module;
 		$result = $this->get_field_list($value,$fields,  $translate);
-		$GLOBALS['log']->info('End: SoapHelperWebServices->get_return_module_fields');
+		Log::info('End: SoapHelperWebServices->get_return_module_fields');
 
 		$tableName = $value->getTableName();
 
@@ -204,7 +204,7 @@ class SugarWebServiceUtilv3_1 extends SugarWebServiceUtilv3
 
     function get_field_list($value,$fields,  $translate=true) {
 
-	    $GLOBALS['log']->info('Begin: SoapHelperWebServices->get_field_list');
+	    Log::info('Begin: SoapHelperWebServices->get_field_list');
 		$module_fields = array();
 		$link_fields = array();
 		if(!empty($value->field_defs)){
@@ -326,7 +326,7 @@ class SugarWebServiceUtilv3_1 extends SugarWebServiceUtilv3
 			$module_fields['created_by_name']['name'] = 'created_by_name';
 		}
 
-		$GLOBALS['log']->info('End: SoapHelperWebServices->get_field_list');
+		Log::info('End: SoapHelperWebServices->get_field_list');
 		return array('module_fields' => $module_fields, 'link_fields' => $link_fields);
 	}
 
@@ -385,7 +385,7 @@ class SugarWebServiceUtilv3_1 extends SugarWebServiceUtilv3
      */
     function get_data_list($seed, $order_by = "", $where = "", $row_offset = 0, $limit=-1, $max=-1, $show_deleted = 0, $favorites = false, $singleSelect=false)
 	{
-		$GLOBALS['log']->debug("get_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
+		Log::debug("get_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
 		if(isset($_SESSION['show_deleted']))
 		{
 			$show_deleted = 1;

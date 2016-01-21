@@ -330,7 +330,7 @@ class User extends Person
 		// for BC
 		if (func_num_args() > 4) {
 			$user = func_get_arg(4);
-			$GLOBALS['log']->deprecated('User::setPreferences() should not be used statically.');
+			Log::deprecated('User::setPreferences() should not be used statically.');
 		} else {
 			$user = $this;
 		}
@@ -352,7 +352,7 @@ class User extends Person
 		// for BC
 		if (func_num_args() > 1) {
 			$user = func_get_arg(1);
-			$GLOBALS['log']->deprecated('User::resetPreferences() should not be used statically.');
+			Log::deprecated('User::resetPreferences() should not be used statically.');
 		} else {
 			$user = $this;
 		}
@@ -371,7 +371,7 @@ class User extends Person
 		// for BC
 		if (func_num_args() > 0) {
 			$user = func_get_arg(0);
-			$GLOBALS['log']->deprecated('User::savePreferencesToDB() should not be used statically.');
+			Log::deprecated('User::savePreferencesToDB() should not be used statically.');
 		} else {
 			$user = $this;
 		}
@@ -404,7 +404,7 @@ class User extends Person
 		// for BC
 		if (func_num_args() > 0) {
 			$user = func_get_arg(0);
-			$GLOBALS['log']->deprecated('User::getUserDateTimePreferences() should not be used statically.');
+			Log::deprecated('User::getUserDateTimePreferences() should not be used statically.');
 		} else {
 			$user = $this;
 		}
@@ -428,7 +428,7 @@ class User extends Person
 		// for BC
 		if (func_num_args() > 1) {
 			$user = func_get_arg(1);
-			$GLOBALS['log']->deprecated('User::loadPreferences() should not be used statically.');
+			Log::deprecated('User::loadPreferences() should not be used statically.');
 		} else {
 			$user = $this;
 		}
@@ -453,7 +453,7 @@ class User extends Person
 		// for BC
 		if (func_num_args() > 2) {
 			$user = func_get_arg(2);
-			$GLOBALS['log']->deprecated('User::getPreference() should not be used statically.');
+			Log::deprecated('User::getPreference() should not be used statically.');
 		} else {
 			$user = $this;
 		}
@@ -720,12 +720,12 @@ EOQ;
 			$_SESSION['loginattempts'] = 1;
 		}
 		if ($_SESSION['loginattempts'] > 5) {
-			$GLOBALS['log']->fatal('SECURITY: '.$this->user_name.' has attempted to login '.$_SESSION['loginattempts'].' times from IP address: '.$_SERVER['REMOTE_ADDR'].'.');
+			Log::fatal('SECURITY: '.$this->user_name.' has attempted to login '.$_SESSION['loginattempts'].' times from IP address: '.$_SERVER['REMOTE_ADDR'].'.');
 
 			return null;
 		}
 
-		$GLOBALS['log']->debug("Starting user load for $this->user_name");
+		Log::debug("Starting user load for $this->user_name");
 
 		if (! isset ($this->user_name) || $this->user_name == "" || ! isset ($user_password) || $user_password == "") {
 			return null;
@@ -736,7 +736,7 @@ EOQ;
 		}
 		$row = self::findUserPassword($this->user_name, $user_password);
 		if (empty($row) || ! empty ($GLOBALS['login_error'])) {
-			$GLOBALS['log']->fatal('SECURITY: User authentication for '.$this->user_name.' failed - could not Load User from Database');
+			Log::fatal('SECURITY: User authentication for '.$this->user_name.' failed - could not Load User from Database');
 
 			return null;
 		}
@@ -886,7 +886,7 @@ EOQ;
 	{
 		global $mod_strings;
 		global $current_user;
-		$GLOBALS['log']->debug("Starting password change for $this->user_name");
+		Log::debug("Starting password change for $this->user_name");
 
 		if (! isset ($new_password) || $new_password == "") {
 			$this->error_string = $mod_strings['ERR_PASSWORD_CHANGE_FAILED_1'].$current_user->user_name.$mod_strings['ERR_PASSWORD_CHANGE_FAILED_2'];
@@ -899,7 +899,7 @@ EOQ;
 			//check old password first
 			$row = self::findUserPassword($this->user_name, md5($user_password));
 			if (empty($row)) {
-				$GLOBALS['log']->warn("Incorrect old password for ".$this->user_name."");
+				Log::warn("Incorrect old password for ".$this->user_name."");
 				$this->error_string = $mod_strings['ERR_PASSWORD_INCORRECT_OLD_1'].$this->user_name.$mod_strings['ERR_PASSWORD_INCORRECT_OLD_2'];
 
 				return false;
@@ -1011,7 +1011,7 @@ EOQ;
 			$remaining_admins = $this->db->getOne("SELECT COUNT(*) as c from users where is_admin = 1 AND deleted=0");
 
 			if (($remaining_admins <= 1) && ($this->is_admin != '1') && ($this->id == $current_user->id)) {
-				$GLOBALS['log']->debug("Number of remaining administrator accounts: {$remaining_admins}");
+				Log::debug("Number of remaining administrator accounts: {$remaining_admins}");
 				$this->error_string .= $mod_strings['ERR_LAST_ADMIN_1'].$this->user_name.$mod_strings['ERR_LAST_ADMIN_2'];
 				$verified = false;
 			}

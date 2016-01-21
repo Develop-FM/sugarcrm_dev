@@ -48,7 +48,7 @@ $ret     = [];
 $params1 = [];
 $nodes   = [];
 
-$GLOBALS['log']->debug("TreeData:session started");
+Log::debug("TreeData:session started");
 $current_language = $GLOBALS['current_language'];
 
 // process request parameters. consider following parameters.

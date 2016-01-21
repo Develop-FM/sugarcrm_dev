@@ -80,7 +80,7 @@ class SugarWebServiceUtilv4 extends SugarWebServiceUtilv3_1
      */
     function get_data_list($seed, $order_by = "", $where = "", $row_offset = 0, $limit=-1, $max=-1, $show_deleted = 0, $favorites = false)
 	{
-		$GLOBALS['log']->debug("get_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
+		Log::debug("get_list:  order_by = '$order_by' and where = '$where' and limit = '$limit'");
 		if(isset($_SESSION['show_deleted']))
 		{
 			$show_deleted = 1;
@@ -144,7 +144,7 @@ class SugarWebServiceUtilv4 extends SugarWebServiceUtilv3_1
 	 */
     protected function filter_fields_for_query(SugarBean $value, array $fields)
     {
-        $GLOBALS['log']->info('Begin: SoapHelperWebServices->filter_fields_for_query');
+        Log::info('Begin: SoapHelperWebServices->filter_fields_for_query');
         $filterFields = array();
         foreach($fields as $field)
         {
@@ -153,13 +153,13 @@ class SugarWebServiceUtilv4 extends SugarWebServiceUtilv3_1
                 $filterFields[$field] = $value->field_defs[$field];
             }
         }
-        $GLOBALS['log']->info('End: SoapHelperWebServices->filter_fields_for_query');
+        Log::info('End: SoapHelperWebServices->filter_fields_for_query');
         return $filterFields;
     }
 
     function get_field_list($value,$fields,  $translate=true) {
 
-	    $GLOBALS['log']->info('Begin: SoapHelperWebServices->get_field_list(too large a struct, '.print_r($fields, true).", $translate");
+	    Log::info('Begin: SoapHelperWebServices->get_field_list(too large a struct, '.print_r($fields, true).", $translate");
 		$module_fields = array();
 		$link_fields = array();
 		if(!empty($value->field_defs)){
@@ -283,13 +283,13 @@ class SugarWebServiceUtilv4 extends SugarWebServiceUtilv3_1
 			$module_fields['created_by_name']['name'] = 'created_by_name';
 		}
 
-		$GLOBALS['log']->info('End: SoapHelperWebServices->get_field_list');
+		Log::info('End: SoapHelperWebServices->get_field_list');
 		return array('module_fields' => $module_fields, 'link_fields' => $link_fields);
 	}
 
 
 	function new_handle_set_entries($module_name, $name_value_lists, $select_fields = FALSE) {
-		$GLOBALS['log']->info('Begin: SoapHelperWebServices->new_handle_set_entries');
+		Log::info('Begin: SoapHelperWebServices->new_handle_set_entries');
 		global $beanList, $beanFiles, $current_user, $app_list_strings;
 
 		$ret_values = array();
@@ -348,7 +348,7 @@ class SugarWebServiceUtilv4 extends SugarWebServiceUtilv3_1
 
 			//Add the account to a contact
 			if($module_name == 'Contacts'){
-				$GLOBALS['log']->debug('Creating Contact Account');
+				Log::debug('Creating Contact Account');
 				$this->add_create_account($seed);
 				$duplicate_id = $this->check_for_duplicate_contacts($seed);
 				if($duplicate_id == null){
@@ -435,13 +435,13 @@ class SugarWebServiceUtilv4 extends SugarWebServiceUtilv3_1
 
 		// handle returns for set_entries_detail() and set_entries()
 		if ($select_fields !== FALSE) {
-			$GLOBALS['log']->info('End: SoapHelperWebServices->new_handle_set_entries');
+			Log::info('End: SoapHelperWebServices->new_handle_set_entries');
 			return array(
 				'name_value_lists' => $ret_values,
 			);
 		}
 		else {
-			$GLOBALS['log']->info('End: SoapHelperWebServices->new_handle_set_entries');
+			Log::info('End: SoapHelperWebServices->new_handle_set_entries');
 			return array(
 				'ids' => $ids,
 			);
@@ -468,7 +468,7 @@ class SugarWebServiceUtilv4 extends SugarWebServiceUtilv3_1
 	            return false;
 	        }
         } catch(OAuthException $e) {
-            $GLOBALS['log']->debug("OAUTH Exception: $e");
+            Log::debug("OAUTH Exception: $e");
             $errorObject->set_error('invalid_login');
 			$this->setFaultObject($errorObject);
             return false;

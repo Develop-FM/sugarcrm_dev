@@ -522,7 +522,7 @@ function applyPostRules($moduleDir, $panels) {
 
    foreach($rules as $rule) {
    	  if(!file_exists($rule['file'])) {
-   	  	 $GLOBALS['log']->error("Cannot run rule for " . $rule['file']);
+   	  	 Log::error("Cannot run rule for " . $rule['file']);
    	  	 continue;
    	  } //if
    	  require_once($rule['file']);

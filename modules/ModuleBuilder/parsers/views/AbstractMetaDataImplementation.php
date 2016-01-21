@@ -75,7 +75,7 @@ abstract class AbstractMetaDataImplementation
 	 */
 	function getViewdefs ()
 	{
-		$GLOBALS['log']->debug( get_class ( $this ) . '->getViewdefs:'.print_r($this->_viewdefs,true) ) ;
+		Log::debug( get_class ( $this ) . '->getViewdefs:'.print_r($this->_viewdefs,true) ) ;
 		return $this->_viewdefs ;
 	}
 
@@ -111,7 +111,7 @@ abstract class AbstractMetaDataImplementation
 			return null ;
 		}
 		// END ASSERTIONS
-		$GLOBALS['log']->debug(get_class($this)."->_loadFromFile(): reading from ".$filename );
+		Log::debug(get_class($this)."->_loadFromFile(): reading from ".$filename );
 		require $filename ; // loads the viewdef - must be a require not require_once to ensure can reload if called twice in succession
 
 		// Check to see if we have the module name set as a variable rather than embedded in the $viewdef array
@@ -151,7 +151,7 @@ abstract class AbstractMetaDataImplementation
 		reset($defs);
 		$temp = each($defs);
 
-		$GLOBALS['log']->debug( get_class ( $this ) . "->_loadFromFile: returning ".print_r($temp['value'],true)) ;
+		Log::debug( get_class ( $this ) . "->_loadFromFile: returning ".print_r($temp['value'],true)) ;
 		return $temp['value']; // 'value' contains the value part of 'key'=>'value' part
 	}
 
@@ -164,7 +164,7 @@ abstract class AbstractMetaDataImplementation
 			return null ;
 		}
 		// END ASSERTIONS
-		$GLOBALS['log']->debug(get_class($this)."->_loadFromFile(): reading from ".$filename );
+		Log::debug(get_class($this)."->_loadFromFile(): reading from ".$filename );
 		
 		if(!empty($mod)){
 			$oldModStrings = $GLOBALS['mod_strings'];

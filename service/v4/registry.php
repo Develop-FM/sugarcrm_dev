@@ -46,7 +46,7 @@ class registry_v4 extends registry_v3_1 {
 	 */
 	protected function registerFunction()
 	{
-		$GLOBALS['log']->info('Begin: registry->registerFunction');
+		Log::info('Begin: registry->registerFunction');
 		parent::registerFunction();
 
 		$this->serviceClass->registerFunction(

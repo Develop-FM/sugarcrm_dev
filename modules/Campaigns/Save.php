@@ -69,7 +69,7 @@ $preformat_end_date = $focus->end_date;
 $focus->save($check_notify);
 $return_id = $focus->id;
 
-$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+Log::debug("Saved record with id of ".$return_id);
 
 
 //copy compaign targets on duplicate

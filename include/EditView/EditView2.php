@@ -144,7 +144,7 @@ class EditView
                 global $app_strings;
 
                 $error = str_replace("[file]", "modules/$this->module/metadata/editviewdefs.php", $app_strings['ERR_CANNOT_CREATE_METADATA_FILE']);
-                $GLOBALS['log']->fatal($error);
+                Log::fatal($error);
                 echo $error;
                 die();
             }
@@ -193,7 +193,7 @@ class EditView
         }
         else
         {
-           $GLOBALS['log']->debug("Unable to populate bean, no record parameter found");
+           Log::debug("Unable to populate bean, no record parameter found");
         }
     }
 

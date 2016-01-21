@@ -501,7 +501,7 @@ function handleSave($prefix,$redirect=true, $useRequired=false){
 	$focus->save($check_notify);
     $return_id = $focus->id;
     
-	$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+	Log::debug("Saved record with id of ".$return_id);
 
 
     if (!empty($_POST['is_ajax_call']) && $_POST['is_ajax_call'] == '1') {

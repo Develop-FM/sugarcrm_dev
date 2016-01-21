@@ -275,7 +275,7 @@ class TemplateHandler {
            return $this->ss->fetch($file);
         } else {
            global $app_strings;
-           $GLOBALS['log']->fatal($app_strings['ERR_NO_SUCH_FILE'] .": $file");
+           Log::fatal($app_strings['ERR_NO_SUCH_FILE'] .": $file");
            return $app_strings['ERR_NO_SUCH_FILE'] .": $file";
         }
     }

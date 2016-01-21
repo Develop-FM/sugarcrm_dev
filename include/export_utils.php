@@ -456,7 +456,7 @@ function generateSearchWhere($module, $query) {//this function is similar with f
     $searchForm->populateFromArray(unserialize(base64_decode($query)));
     $where_clauses = $searchForm->generateSearchWhere(true, $module);
     if (count($where_clauses) > 0 )$where = '('. implode(' ) AND ( ', $where_clauses) . ')';
-        $GLOBALS['log']->info("Export Where Clause: {$where}");
+        Log::info("Export Where Clause: {$where}");
     $ret_array['where'] = $where;
     $ret_array['searchFields'] = $searchForm->searchFields;
     return $ret_array;

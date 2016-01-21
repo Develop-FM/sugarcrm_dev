@@ -66,9 +66,9 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     */
     function get_entry($session, $module_name, $id,$select_fields, $link_name_to_fields_array,$track_view = FALSE)
     {
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_entry');
+        Log::info('Begin: SugarWebServiceImpl->get_entry');
         return self::get_entries($session, $module_name, array($id), $select_fields, $link_name_to_fields_array, $track_view);
-        $GLOBALS['log']->info('end: SugarWebServiceImpl->get_entry');
+        Log::info('end: SugarWebServiceImpl->get_entry');
     }
 
     /**
@@ -81,7 +81,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
      */
     function get_module_fields_md5($session, $module_name){
 
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_module_fields_md5(v3_1) for module: '. print_r($module_name, true));
+        Log::info('Begin: SugarWebServiceImpl->get_module_fields_md5(v3_1) for module: '. print_r($module_name, true));
 
         $results = array();
         if( is_array($module_name) )
@@ -92,7 +92,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         else
             $results[$module_name] = md5(serialize(self::get_module_fields($session, $module_name)));
 
-        $GLOBALS['log']->info('End: SugarWebServiceImpl->get_module_fields_md5 (v3_1) for module: ' . print_r($module_name, true));
+        Log::info('End: SugarWebServiceImpl->get_module_fields_md5 (v3_1) for module: ' . print_r($module_name, true));
 
         return $results;
     }
@@ -107,10 +107,10 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
      * @exception 'SoapFault' -- The SOAP error, if any
      */
     function get_module_layout_md5($session, $module_name, $type, $view, $acl_check = TRUE){
-    	$GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_module_layout_md5');
+    	Log::info('Begin: SugarWebServiceImpl->get_module_layout_md5');
     	$results = self::get_module_layout($session, $module_name, $type, $view, $acl_check, TRUE);
             return array('md5'=> $results);
-    	$GLOBALS['log']->info('End: SugarWebServiceImpl->get_module_layout_md5');
+    	Log::info('End: SugarWebServiceImpl->get_module_layout_md5');
     }
 
 
@@ -130,7 +130,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     */
     function get_entries($session, $module_name, $ids, $select_fields, $link_name_to_fields_array, $track_view = FALSE)
     {
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_entries');
+        Log::info('Begin: SugarWebServiceImpl->get_entries');
         global  $beanList, $beanFiles;
         $error = new SoapError();
 
@@ -144,7 +144,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         }
         if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', $module_name, 'read', 'no_access', $error))
         {
-            $GLOBALS['log']->info('No Access: SugarWebServiceImpl->get_entries');
+            Log::info('No Access: SugarWebServiceImpl->get_entries');
             return;
         } // if
 
@@ -181,14 +181,14 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
                 $linkoutput_list[] = self::$helperObject->get_return_value_for_link_fields($seed, $module_name, $link_name_to_fields_array);
             }
 
-            $GLOBALS['log']->info('Should we track view: ' . $track_view);
+            Log::info('Should we track view: ' . $track_view);
             if($track_view)
             {
                 self::$helperObject->trackView($seed, 'detailview');
             }
         }
 
-        $GLOBALS['log']->info('End: SugarWebServiceImpl->get_entries');
+        Log::info('End: SugarWebServiceImpl->get_entries');
         return array('entry_list'=>$output_list, 'relationship_list' => $linkoutput_list);
     }
 
@@ -205,13 +205,13 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     function set_entry($session,$module_name, $name_value_list, $track_view = FALSE){
         global  $beanList, $beanFiles, $current_user;
 
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->set_entry');
+        Log::info('Begin: SugarWebServiceImpl->set_entry');
         if (self::$helperObject->isLogLevelDebug()) {
-            $GLOBALS['log']->debug('SoapHelperWebServices->set_entry - input data is ' . var_export($name_value_list, true));
+            Log::debug('SoapHelperWebServices->set_entry - input data is ' . var_export($name_value_list, true));
         } // if
         $error = new SoapError();
         if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', $module_name, 'write', 'no_access', $error)) {
-            $GLOBALS['log']->info('End: SugarWebServiceImpl->set_entry');
+            Log::info('End: SugarWebServiceImpl->set_entry');
             return;
         } // if
         $class_name = $beanList[$module_name];
@@ -245,7 +245,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             }
         }
         if (!self::$helperObject->checkACLAccess($seed, 'Save', $error, 'no_access') || ($seed->deleted == 1  && !self::$helperObject->checkACLAccess($seed, 'Delete', $error, 'no_access'))) {
-            $GLOBALS['log']->info('End: SugarWebServiceImpl->set_entry');
+            Log::info('End: SugarWebServiceImpl->set_entry');
             return;
         } // if
 
@@ -261,7 +261,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             self::$helperObject->trackView($seed, 'editview');
         }
 
-        $GLOBALS['log']->info('End: SugarWebServiceImpl->set_entry');
+        Log::info('End: SugarWebServiceImpl->set_entry');
         return array('id'=>$seed->id, 'entry_list' => $return_entry_list);
     } // fn
 
@@ -281,7 +281,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
      * @exception 'SoapFault' -- The SOAP error, if any
      */
     public function login($user_auth, $application, $name_value_list = array()){
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->login');
+        Log::info('Begin: SugarWebServiceImpl->login');
         global $sugar_config, $system_config;
         $error = new SoapError();
         $user = new User();
@@ -305,7 +305,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             if ($_SESSION['hasExpiredPassword'] =='1')
             {
                 $error->set_error('password_expired');
-                $GLOBALS['log']->fatal('password expired for user ' . $user_auth['user_name']);
+                Log::fatal('password expired for user ' . $user_auth['user_name']);
                 LogicHook::instance()->call_custom_logic('Users', 'login_failed');
                 self::$helperObject->setFaultObject($error);
                 return;
@@ -320,7 +320,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         else if($usr_id && isset($user->user_name) && ($user->getPreference('lockout') == '1'))
         {
             $error->set_error('lockout_reached');
-            $GLOBALS['log']->fatal('Lockout reached for user ' . $user_auth['user_name']);
+            Log::fatal('Lockout reached for user ' . $user_auth['user_name']);
             LogicHook::instance()->call_custom_logic('Users', 'login_failed');
             self::$helperObject->setFaultObject($error);
             return;
@@ -355,7 +355,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             $_SESSION['authenticated_user_id'] = $current_user->id;
             $_SESSION['unique_key'] = $sugar_config['unique_key'];
             $current_user->call_custom_logic('after_login');
-            $GLOBALS['log']->info('End: SugarWebServiceImpl->login - succesful login');
+            Log::info('End: SugarWebServiceImpl->login - succesful login');
             $nameValueArray = array();
             global $current_language;
             $nameValueArray['user_id'] = self::$helperObject->get_name_value('user_id', $current_user->id);
@@ -386,7 +386,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         LogicHook::instance()->call_custom_logic('Users', 'login_failed');
         $error->set_error('invalid_login');
         self::$helperObject->setFaultObject($error);
-        $GLOBALS['log']->info('End: SugarWebServiceImpl->login - failed login');
+        Log::info('End: SugarWebServiceImpl->login - failed login');
     }
 
     /**
@@ -400,12 +400,12 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
      * @exception 'SoapFault' -- The SOAP error, if any
      */
     function get_available_modules($session,$filter='all'){
-    	$GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_available_modules');
+    	Log::info('Begin: SugarWebServiceImpl->get_available_modules');
 
     	$error = new SoapError();
     	if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', '', '', '', $error)) {
     		$error->set_error('invalid_login');
-    		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_available_modules');
+    		Log::info('End: SugarWebServiceImpl->get_available_modules');
     		return;
     	} // if
 
@@ -420,7 +420,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     	        $modules = self::$helperObject->getModulesFromList(array_flip($availModules), $availModules);
     	}
 
-    	$GLOBALS['log']->info('End: SugarWebServiceImpl->get_available_modules');
+    	Log::info('End: SugarWebServiceImpl->get_available_modules');
     	return array('modules'=> $modules);
     } // fn
 
@@ -434,7 +434,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
      */
     function get_language_definition($session, $modules, $MD5 = FALSE)
     {
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_language_file');
+        Log::info('Begin: SugarWebServiceImpl->get_language_file');
         global  $beanList, $beanFiles;
         global $sugar_config,$current_language;
 
@@ -443,7 +443,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', '', '', '', $error))
         {
             $error->set_error('invalid_login');
-            $GLOBALS['log']->info('End: SugarWebServiceImpl->get_report_pdf');
+            Log::info('End: SugarWebServiceImpl->get_report_pdf');
             return;
         }
 
@@ -489,7 +489,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
      * @exception 'SoapFault' -- The SOAP error, if any
      */
     function get_module_layout($session, $a_module_names, $a_type, $a_view,$acl_check = TRUE, $md5 = FALSE){
-    	$GLOBALS['log']->fatal('Begin: SugarWebServiceImpl->get_module_layout');
+    	Log::fatal('Begin: SugarWebServiceImpl->get_module_layout');
 
     	global  $beanList, $beanFiles;
     	$error = new SoapError();
@@ -498,7 +498,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         {
             if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', $module_name, 'read', 'no_access', $error))
             {
-                $GLOBALS['log']->info('End: SugarWebServiceImpl->get_module_layout');
+                Log::info('End: SugarWebServiceImpl->get_module_layout');
                 continue;
             }
 
@@ -523,7 +523,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             }
         }
 
-        $GLOBALS['log']->info('End: SugarWebServiceImpl->get_module_layout');
+        Log::info('End: SugarWebServiceImpl->get_module_layout');
 
         return $results;
     }
@@ -548,7 +548,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     */
     function get_entry_list($session, $module_name, $query, $order_by,$offset, $select_fields, $link_name_to_fields_array, $max_results, $deleted, $favorites = false ){
 
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_entry_list');
+        Log::info('Begin: SugarWebServiceImpl->get_entry_list');
         global  $beanList, $beanFiles;
         $error = new SoapError();
         $using_cp = false;
@@ -557,12 +557,12 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
             $using_cp = true;
         }
         if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', $module_name, 'read', 'no_access', $error)) {
-            $GLOBALS['log']->info('End: SugarWebServiceImpl->get_entry_list');
+            Log::info('End: SugarWebServiceImpl->get_entry_list');
             return;
         } // if
 
         if (!self::$helperObject->checkQuery($error, $query, $order_by)) {
-    		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_entry_list');
+    		Log::info('End: SugarWebServiceImpl->get_entry_list');
         	return;
         } // if
 
@@ -577,12 +577,12 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         $seed = new $class_name();
 
         if (!self::$helperObject->checkACLAccess($seed, 'Export', $error, 'no_access')) {
-            $GLOBALS['log']->info('End: SugarWebServiceImpl->get_entry_list');
+            Log::info('End: SugarWebServiceImpl->get_entry_list');
             return;
         } // if
 
         if (!self::$helperObject->checkACLAccess($seed, 'list', $error, 'no_access')) {
-            $GLOBALS['log']->info('End: SugarWebServiceImpl->get_entry_list');
+            Log::info('End: SugarWebServiceImpl->get_entry_list');
             return;
         } // if
 
@@ -635,7 +635,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         if( !empty($sugar_config['disable_count_query']) )
             $totalRecordCount = -1;
 
-        $GLOBALS['log']->info('End: SugarWebServiceImpl->get_entry_list');
+        Log::info('End: SugarWebServiceImpl->get_entry_list');
         return array('result_count'=>sizeof($output_list), 'total_count' => $totalRecordCount, 'next_offset'=>$next_offset, 'entry_list'=>$output_list, 'relationship_list' => $returnRelationshipList);
     } // fn
 
@@ -657,7 +657,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
      * @exception 'SoapFault' -- The SOAP error, if any
      */
     function search_by_module($session, $search_string, $modules, $offset, $max_results,$assigned_user_id = '', $select_fields = array(), $unified_search_only = TRUE){
-    	$GLOBALS['log']->info('Begin: SugarWebServiceImpl->search_by_module');
+    	Log::info('Begin: SugarWebServiceImpl->search_by_module');
     	global  $beanList, $beanFiles;
     	global $sugar_config,$current_language;
 
@@ -665,7 +665,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     	$output_list = array();
     	if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', '', '', '', $error)) {
     		$error->set_error('invalid_login');
-    		$GLOBALS['log']->info('End: SugarWebServiceImpl->search_by_module');
+    		Log::info('End: SugarWebServiceImpl->search_by_module');
     		return;
     	}
     	global $current_user;
@@ -707,7 +707,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
         	} // if
         } // foreach
 
-        $GLOBALS['log']->info('SugarWebServiceImpl->search_by_module - search string = ' . $search_string);
+        Log::info('SugarWebServiceImpl->search_by_module - search string = ' . $search_string);
 
     	if(!empty($search_string) && isset($search_string)) {
     		$search_string = trim($GLOBALS['db']->quote(securexss(from_html(clean_string($search_string, 'UNIFIED_SEARCH')))));
@@ -816,7 +816,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     				} // if
     			} // else
 
-    			$GLOBALS['log']->info('SugarWebServiceImpl->search_by_module - query = ' . $main_query);
+    			Log::info('SugarWebServiceImpl->search_by_module - query = ' . $main_query);
     	   		if($max_results < -1) {
     				$result = $seed->db->query($main_query);
     			}
@@ -845,7 +845,7 @@ class SugarWebServiceImplv3_1 extends SugarWebServiceImplv3 {
     			$output_list[] = array('name' => $name, 'records' => $rowArray);
         	} // foreach
 
-    	$GLOBALS['log']->info('End: SugarWebServiceImpl->search_by_module');
+    	Log::info('End: SugarWebServiceImpl->search_by_module');
     	return array('entry_list'=>$output_list);
     	} // if
     	return array('entry_list'=>$output_list);

@@ -81,7 +81,7 @@ $upload_max_filesize = ini_get('upload_max_filesize');
 $upload_max_filesize_bytes = return_bytes($upload_max_filesize);
 if($upload_max_filesize_bytes < constant('SUGARCRM_MIN_UPLOAD_MAX_FILESIZE_BYTES'))
 {
-	$GLOBALS['log']->debug("detected upload_max_filesize: $upload_max_filesize");
+	Log::debug("detected upload_max_filesize: $upload_max_filesize");
 	print('<p class="error">' . $mod_strings['MSG_INCREASE_UPLOAD_MAX_FILESIZE'] . ' '
 		. get_cfg_var('cfg_file_path') . "</p>\n");
 }
@@ -346,7 +346,7 @@ print( "</ul>\n" );
 ?>
 */
 
-$GLOBALS['log']->info( "Upgrade Wizard view");
+Log::info( "Upgrade Wizard view");
 ?>
 </td>
 </tr>

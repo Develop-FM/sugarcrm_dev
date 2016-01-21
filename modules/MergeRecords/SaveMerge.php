@@ -147,7 +147,7 @@ if (is_array($_POST['merged_ids'])) {
         $mergesource->mark_deleted($mergesource->id);
     }
 }
-$GLOBALS['log']->debug("Merged record with id of ".$return_id);
+Log::debug("Merged record with id of ".$return_id);
 
 //do not redirect if noRedirect flag is set.  This is mostly used by Unit tests
 if(empty($_REQUEST['noRedirect'])){

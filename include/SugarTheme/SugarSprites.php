@@ -69,7 +69,7 @@ class SugarSprites {
 	private function loadMetaHelper($dir, $file) {
 		if(file_exists("storage/cache/sprites/{$dir}/{$file}.meta.php")) {
 			$sprites = array();
-			$GLOBALS['log']->debug("Sprites: Loading sprites metadata for $dir");
+			Log::debug("Sprites: Loading sprites metadata for $dir");
 			include("storage/cache/sprites/{$dir}/{$file}.meta.php");
 			foreach($sprites as $id => $meta) {
 				$this->sprites[$id] = $meta;

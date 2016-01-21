@@ -394,7 +394,7 @@ class RenameModules
             }
             else
             {
-                $GLOBALS['log']->error("Class $beanName does not exist, unable to rename.");
+                Log::error("Class $beanName does not exist, unable to rename.");
             }
         }
 
@@ -411,14 +411,14 @@ class RenameModules
      */
     private function renameModuleSubpanel($moduleName, $beanName)
     {
-        $GLOBALS['log']->info("About to rename subpanel for module: $moduleName");
+        Log::info("About to rename subpanel for module: $moduleName");
         $bean = new $beanName();
         //Get the subpanel def
         $subpanelDefs = $this->getSubpanelDefs($bean);
 
         if(empty($subpanelDefs))
         {
-            $GLOBALS['log']->debug("Found empty subpanel defs for $moduleName");
+            Log::debug("Found empty subpanel defs for $moduleName");
             return;
         }
 
@@ -428,7 +428,7 @@ class RenameModules
         //Iterate over all subpanel entries and see if we need to make a change.
         foreach($subpanelDefs as $subpanelName => $subpanelMetaData)
         {
-            $GLOBALS['log']->debug("Examining subpanel definition for potential rename: $subpanelName ");
+            Log::debug("Examining subpanel definition for potential rename: $subpanelName ");
             //For each subpanel def, check if they are in our changed modules set.
             foreach($this->changedModules as $changedModuleName => $renameFields)
             {
@@ -438,7 +438,7 @@ class RenameModules
                     $replaceKey = $subpanelMetaData['title_key'];
                     if( !isset($mod_strings[$replaceKey]) )
                     {
-                        $GLOBALS['log']->info("No module string entry defined for: {$mod_strings[$replaceKey]}");
+                        Log::info("No module string entry defined for: {$mod_strings[$replaceKey]}");
                         continue;
                     }
                     $oldStringValue = $mod_strings[$replaceKey];
@@ -458,7 +458,7 @@ class RenameModules
         //Now we can write out the replaced language strings for each module
         if(count($replacementStrings) > 0)
         {
-            $GLOBALS['log']->debug("Writing out labels for subpanel changes for module $moduleName, labels: " . var_export($replacementStrings,true));
+            Log::debug("Writing out labels for subpanel changes for module $moduleName, labels: " . var_export($replacementStrings,true));
             ParserLabel::addLabels($this->selectedLanguage, $replacementStrings, $moduleName);
             $this->renamedModules[$moduleName] = true;
         }
@@ -505,7 +505,7 @@ class RenameModules
             }
             else
             {
-                $GLOBALS['log']->fatal("Class $beanName does not exist, unable to rename.");
+                Log::fatal("Class $beanName does not exist, unable to rename.");
             }
         }
 
@@ -522,10 +522,10 @@ class RenameModules
     private function renameModuleRelatedLinks($moduleName, $moduleClass)
     {
         global $app_strings;
-        $GLOBALS['log']->info("Begining to renameModuleRelatedLinks for $moduleClass\n");
+        Log::info("Begining to renameModuleRelatedLinks for $moduleClass\n");
         $bean = BeanFactory::getBean($moduleName);
         if (!$bean instanceof SugarBean){
-            $GLOBALS['log']->info("Unable to get linked fields for module $moduleClass\n");
+            Log::info("Unable to get linked fields for module $moduleClass\n");
             return;
         }
 
@@ -555,10 +555,10 @@ class RenameModules
 
         foreach($arrayToRename as $link => $linkEntry)
         {
-            $GLOBALS['log']->debug("Begining to rename for link field {$link}");
+            Log::debug("Begining to rename for link field {$link}");
             if( !isset($linkEntry['vname'])
                 || (!isset($mod_strings[$linkEntry['vname']]) && !isset($app_strings[$linkEntry['vname']]))) {
-                $GLOBALS['log']->debug("No label attribute for link $link, continuing.");
+                Log::debug("No label attribute for link $link, continuing.");
                 continue;
             }
 
@@ -578,7 +578,7 @@ class RenameModules
         //Now we can write out the replaced language strings for each module
         if(count($replacementStrings) > 0)
         {
-            $GLOBALS['log']->debug("Writing out labels for link changes for module $moduleName, labels: " . var_export($replacementStrings,true));
+            Log::debug("Writing out labels for link changes for module $moduleName, labels: " . var_export($replacementStrings,true));
             ParserLabel::addLabels($this->selectedLanguage, $replacementStrings, $moduleName);
             $this->renamedModules[$moduleName] = true;
         }
@@ -630,7 +630,7 @@ class RenameModules
      */
     private function changeModuleDashletStrings($moduleName, $replacementLabels, $dashletsFiles)
     {
-        $GLOBALS['log']->debug("Beginning to change module dashlet labels for: $moduleName ");
+        Log::debug("Beginning to change module dashlet labels for: $moduleName ");
         $replacementStrings = array();
 
         foreach($dashletsFiles as $dashletName => $dashletData)
@@ -655,7 +655,7 @@ class RenameModules
         //Now we can write out the replaced language strings for each module
         if(count($replacementStrings) > 0)
         {
-            $GLOBALS['log']->debug("Writing out labels for dashlet changes for module $moduleName, labels: " . var_export($replacementStrings,true));
+            Log::debug("Writing out labels for dashlet changes for module $moduleName, labels: " . var_export($replacementStrings,true));
             ParserLabel::addLabels($this->selectedLanguage, $replacementStrings, $moduleName);
         }
     }
@@ -685,7 +685,7 @@ class RenameModules
       */
      private function renameCertainModuleModStrings($targetModule, $labelKeysToReplace)
      {
-         $GLOBALS['log']->debug("Beginning to rename labels for $targetModule module");
+         Log::debug("Beginning to rename labels for $targetModule module");
          foreach($this->changedModules as $moduleName => $replacementLabels)
          {
              $this->changeCertainModuleModStrings($moduleName, $replacementLabels, $targetModule, $labelKeysToReplace);
@@ -705,7 +705,7 @@ class RenameModules
      */
     private function changeCertainModuleModStrings($moduleName, $replacementLabels, $targetModule, $labelKeysToReplace)
     {
-        $GLOBALS['log']->debug("Beginning to change module labels for : $moduleName");
+        Log::debug("Beginning to change module labels for : $moduleName");
         $currentModuleStrings = return_module_language($this->selectedLanguage, $targetModule);
 
         $replacedLabels = array();
@@ -744,7 +744,7 @@ class RenameModules
      */
     private function changeModuleModStrings($moduleName, $replacementLabels)
     {
-        $GLOBALS['log']->info("Begining to change module labels for: $moduleName");
+        Log::info("Begining to change module labels for: $moduleName");
         $currentModuleStrings = return_module_language($this->selectedLanguage, $moduleName);
         $labelKeysToReplace = array(
             array('name' => 'LNK_NEW_RECORD', 'type' => 'plural'), //Module built modules, Create <moduleName>
@@ -836,7 +836,7 @@ class RenameModules
      */
     private function changeAppStringEntries()
     {
-        $GLOBALS['log']->debug('Begining to save app string entries');
+        Log::debug('Begining to save app string entries');
         //Save changes to the moduleList app string entry
         DropDownHelper::saveDropDown($_REQUEST);
 
@@ -966,7 +966,7 @@ class RenameModules
         $className = isset($GLOBALS['beanList'][$moduleName]) ? $GLOBALS['beanList'][$moduleName] : null;
         if( is_null($className) || ! class_exists($className) )
         {
-            $GLOBALS['log']->error("Unable to get module singular key for class: $className");
+            Log::error("Unable to get module singular key for class: $className");
             return $moduleName;
         }
 

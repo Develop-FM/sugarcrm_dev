@@ -99,7 +99,7 @@ if (! class_exists('Tracker')) {
             if (empty($_SESSION['breadCrumbs'])) {
                 $breadCrumb              = new BreadCrumbStack($user_id, $modules);
                 $_SESSION['breadCrumbs'] = $breadCrumb;
-                $GLOBALS['log']->info(string_format($GLOBALS['app_strings']['LBL_BREADCRUMBSTACK_CREATED'], [$user_id]));
+                Log::info(string_format($GLOBALS['app_strings']['LBL_BREADCRUMBSTACK_CREATED'], [$user_id]));
             } else {
                 $breadCrumb   = $_SESSION['breadCrumbs'];
                 $module_query = '';
@@ -118,7 +118,7 @@ if (! class_exists('Tracker')) {
             }
 
             $list = $breadCrumb->getBreadCrumbList($modules);
-            $GLOBALS['log']->info("Tracker: retrieving ".count($list)." items");
+            Log::info("Tracker: retrieving ".count($list)." items");
 
             return $list;
         }

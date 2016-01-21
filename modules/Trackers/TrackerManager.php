@@ -134,15 +134,15 @@ public function getMonitor($name) {
 	       $this->monitors[$name] = $instance;
 	       return $this->monitors[$name];
        } catch (Exception $ex) {
-       	   $GLOBALS['log']->error($ex->getMessage());
-       	   $GLOBALS['log']->error($ex->getTraceAsString());
+       	   Log::error($ex->getMessage());
+       	   Log::error($ex->getTraceAsString());
        	   require_once('modules/Trackers/monitor/BlankMonitor.php');
        	   $this->monitors[$name] = new BlankMonitor();
        	   return $this->monitors[$name];
        }
 
     } else {
-       $GLOBALS['log']->error($GLOBALS['app_strings']['ERR_MONITOR_NOT_CONFIGURED'] . "($name)");
+       Log::error($GLOBALS['app_strings']['ERR_MONITOR_NOT_CONFIGURED'] . "($name)");
        require_once('modules/Trackers/monitor/BlankMonitor.php');
        $this->monitors[$name] = new BlankMonitor();
        return $this->monitors[$name];    

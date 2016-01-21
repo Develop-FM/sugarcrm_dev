@@ -77,16 +77,16 @@ $selected_datax = array();
 global $current_user;
 $tempx = $current_user->getPreference('lsbo_lead_sources');
 if (!empty($lsbo_lead_sources) && count($lsbo_lead_sources) > 0 && !isset($_REQUEST['lsbo_lead_sources'])) {
-	$GLOBALS['log']->fatal("user->getPreference('lsbo_lead_sources') is:");
-	$GLOBALS['log']->fatal($tempx);
+	Log::fatal("user->getPreference('lsbo_lead_sources') is:");
+	Log::fatal($tempx);
 }
 elseif (isset($_REQUEST['lsbo_lead_sources']) && count($_REQUEST['lsbo_lead_sources']) > 0) {
 	$tempx = $_REQUEST['lsbo_lead_sources'];
 	$current_user->setPreference('lsbo_lead_sources', $_REQUEST['lsbo_lead_sources']);
-	$GLOBALS['log']->fatal("_REQUEST['lsbo_lead_sources'] is:");
-	$GLOBALS['log']->fatal($_REQUEST['lsbo_lead_sources']);
-	$GLOBALS['log']->fatal("user->getPreference('lsbo_lead_sources') is:");
-	$GLOBALS['log']->fatal($current_user->getPreference('lsbo_lead_sources'));
+	Log::fatal("_REQUEST['lsbo_lead_sources'] is:");
+	Log::fatal($_REQUEST['lsbo_lead_sources']);
+	Log::fatal("user->getPreference('lsbo_lead_sources') is:");
+	Log::fatal($current_user->getPreference('lsbo_lead_sources'));
 }
 //set $datax using selected sales stage keys
 if (!empty($tempx) && sizeof($tempx) > 0) {
@@ -103,16 +103,16 @@ else {
 $ids =$current_user->getPreference('lsbo_ids');
 //get list of user ids for which to display data
 if (!empty($ids) && count($ids) != 0 && !isset($_REQUEST['lsbo_ids'])) {
-	$GLOBALS['log']->debug("_SESSION['lsbo_ids'] is:");
-	$GLOBALS['log']->debug($ids);
+	Log::debug("_SESSION['lsbo_ids'] is:");
+	Log::debug($ids);
 }
 elseif (isset($_REQUEST['lsbo_ids']) && count($_REQUEST['lsbo_ids']) > 0) {
 	$ids = $_REQUEST['lsbo_ids'];
 	$current_user->setPreference('lsbo_ids', $_REQUEST['lsbo_ids']);
-	$GLOBALS['log']->debug("_REQUEST['lsbo_ids'] is:");
-	$GLOBALS['log']->debug($_REQUEST['lsbo_ids']);
-	$GLOBALS['log']->debug("user->getPreference('lsbo_ids') is:");
-	$GLOBALS['log']->debug($current_user->getPreference('lsbo_ids'));
+	Log::debug("_REQUEST['lsbo_ids'] is:");
+	Log::debug($_REQUEST['lsbo_ids']);
+	Log::debug("user->getPreference('lsbo_ids') is:");
+	Log::debug($current_user->getPreference('lsbo_ids'));
 }
 else {
 	$ids = get_user_array(false);
@@ -130,8 +130,8 @@ if (isset($ids)) {
 	}
 
 }
-$GLOBALS['log']->debug("ids is:");
-$GLOBALS['log']->debug($ids);
+Log::debug("ids is:");
+Log::debug($ids);
 $id_md5 = substr(md5($current_user->id),0,9);
 
 
@@ -139,7 +139,7 @@ $seps				= array("-", "/");
 $dates				= array(date($GLOBALS['timedate']->dbDayFormat), $GLOBALS['timedate']->dbDayFormat);
 $dateFileNameSafe	= str_replace($seps, "_", $dates);
 $cache_file_name	= sugar_cached("xml/").$current_user->getUserPrivGuid()."_lead_source_by_outcome_".$dateFileNameSafe[0]."_".$dateFileNameSafe[1].".xml";
-$GLOBALS['log']->debug("cache file name is: $cache_file_name");
+Log::debug("cache file name is: $cache_file_name");
 
 
 $tools='<div align="right"><a href="index.php?module='.$currentModule.'&action='. $action .'&lsbo_refresh=true" class="tabFormAdvLink">'.SugarThemeRegistry::current()->getImage('refresh','border="0" align="absmiddle"', null,null,'.gif',$mod_strings['LBL_REFRESH']).'&nbsp;'.$current_module_strings['LBL_REFRESH'].'</a>&nbsp;&nbsp;<a href="javascript: toggleDisplay(\'lsbo_edit\');" class="tabFormAdvLink">'.SugarThemeRegistry::current()->getImage('edit','border="0"  align="absmiddle"',null,null,'.gif',$mod_strings['LBL_EDIT']).'&nbsp;'. $current_module_strings['LBL_EDIT'].'</a>&nbsp;&nbsp;'.$extra_tools.'</div>';
@@ -218,11 +218,11 @@ global  $timedate;
 		$kDelim = $current_user->getPreference('num_grp_sep');
 
 		if (!file_exists($cache_file_name) || $refresh == true) {
-			$GLOBALS['log']->debug("datay is:");
-			$GLOBALS['log']->debug($datay);
-			$GLOBALS['log']->debug("user_id is: ");
-			$GLOBALS['log']->debug($user_id);
-			$GLOBALS['log']->debug("cache_file_name is: $cache_file_name");
+			Log::debug("datay is:");
+			Log::debug($datay);
+			Log::debug("user_id is: ");
+			Log::debug($user_id);
+			Log::debug("cache_file_name is: $cache_file_name");
 			$opp = new Opportunity();
 			$where="";
 			//build the where clause for the query that matches $user
@@ -362,16 +362,16 @@ global  $timedate;
 
 		$tempx = $current_user->getPreference('lsbo_lead_sources');
 		if (!empty($lsbo_lead_sources) && count($lsbo_lead_sources) > 0 && !isset($_REQUEST['lsbo_lead_sources'])) {
-			$GLOBALS['log']->fatal("user->getPreference('lsbo_lead_sources') is:");
-			$GLOBALS['log']->fatal($tempx);
+			Log::fatal("user->getPreference('lsbo_lead_sources') is:");
+			Log::fatal($tempx);
 		}
 		elseif (isset($_REQUEST['lsbo_lead_sources']) && count($_REQUEST['lsbo_lead_sources']) > 0) {
 			$tempx = $_REQUEST['lsbo_lead_sources'];
 			$current_user->setPreference('lsbo_lead_sources', $_REQUEST['lsbo_lead_sources']);
-			$GLOBALS['log']->fatal("_REQUEST['lsbo_lead_sources'] is:");
-			$GLOBALS['log']->fatal($_REQUEST['lsbo_lead_sources']);
-			$GLOBALS['log']->fatal("user->getPreference('lsbo_lead_sources') is:");
-			$GLOBALS['log']->fatal($current_user->getPreference('lsbo_lead_sources'));
+			Log::fatal("_REQUEST['lsbo_lead_sources'] is:");
+			Log::fatal($_REQUEST['lsbo_lead_sources']);
+			Log::fatal("user->getPreference('lsbo_lead_sources') is:");
+			Log::fatal($current_user->getPreference('lsbo_lead_sources'));
 		}
 		//set $datax using selected sales stage keys
 		if (!empty($tempx) && sizeof($tempx) > 0) {
@@ -390,16 +390,16 @@ global  $timedate;
 		$ids =$current_user->getPreference('lsbo_ids');
 		//get list of user ids for which to display data
 		if (!empty($ids) && count($ids) != 0 && !isset($_REQUEST['lsbo_ids'])) {
-			$GLOBALS['log']->debug("_SESSION['lsbo_ids'] is:");
-			$GLOBALS['log']->debug($ids);
+			Log::debug("_SESSION['lsbo_ids'] is:");
+			Log::debug($ids);
 		}
 		elseif (isset($_REQUEST['lsbo_ids']) && count($_REQUEST['lsbo_ids']) > 0) {
 			$ids = $_REQUEST['lsbo_ids'];
 			$current_user->setPreference('lsbo_ids', $_REQUEST['lsbo_ids']);
-			$GLOBALS['log']->debug("_REQUEST['lsbo_ids'] is:");
-			$GLOBALS['log']->debug($_REQUEST['lsbo_ids']);
-			$GLOBALS['log']->debug("user->getPreference('lsbo_ids') is:");
-			$GLOBALS['log']->debug($current_user->getPreference('lsbo_ids'));
+			Log::debug("_REQUEST['lsbo_ids'] is:");
+			Log::debug($_REQUEST['lsbo_ids']);
+			Log::debug("user->getPreference('lsbo_ids') is:");
+			Log::debug($current_user->getPreference('lsbo_ids'));
 		}
 		else {
 			$ids = get_user_array(false);

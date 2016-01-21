@@ -80,25 +80,25 @@ class SugarWebServiceImplv4_1 extends SugarWebServiceImplv4
      */
     function get_relationships($session, $module_name, $module_id, $link_field_name, $related_module_query, $related_fields, $related_module_link_name_to_fields_array, $deleted, $order_by = '', $offset = 0, $limit = false)
     {
-        $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_relationships');
+        Log::info('Begin: SugarWebServiceImpl->get_relationships');
         self::$helperObject = new SugarWebServiceUtilv4_1();
         global  $beanList, $beanFiles;
     	$error = new SoapError();
 
     	if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', $module_name, 'read', 'no_access', $error)) {
-    		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_relationships');
+    		Log::info('End: SugarWebServiceImpl->get_relationships');
     		return;
     	} // if
 
     	$mod = BeanFactory::getBean($module_name, $module_id);
 
         if (!self::$helperObject->checkQuery($error, $related_module_query, $order_by)) {
-    		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_relationships');
+    		Log::info('End: SugarWebServiceImpl->get_relationships');
         	return;
         } // if
 
         if (!self::$helperObject->checkACLAccess($mod, 'DetailView', $error, 'no_access')) {
-    		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_relationships');
+    		Log::info('End: SugarWebServiceImpl->get_relationships');
         	return;
         } // if
 
@@ -109,7 +109,7 @@ class SugarWebServiceImplv4_1 extends SugarWebServiceImplv4
         $result = self::$helperObject->getRelationshipResults($mod, $link_field_name, $related_fields, $related_module_query, $order_by, $offset, $limit);
 
         if (self::$helperObject->isLogLevelDebug()) {
-    		$GLOBALS['log']->debug('SoapHelperWebServices->get_relationships - return data for getRelationshipResults is ' . var_export($result, true));
+    		Log::debug('SoapHelperWebServices->get_relationships - return data for getRelationshipResults is ' . var_export($result, true));
         } // if
     	if ($result) {
 
@@ -140,7 +140,7 @@ class SugarWebServiceImplv4_1 extends SugarWebServiceImplv4
 
     	} // if
 
-    	$GLOBALS['log']->info('End: SugarWebServiceImpl->get_relationships');
+    	Log::info('End: SugarWebServiceImpl->get_relationships');
     	return array('entry_list'=>$output_list, 'relationship_list' => $linkoutput_list);
     }
 
@@ -189,7 +189,7 @@ class SugarWebServiceImplv4_1 extends SugarWebServiceImplv4
         self::$helperObject = new SugarWebServiceUtilv4_1();
         if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', $module_name, 'read', 'no_access', $error))
         {
-       		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_modified_relationships');
+       		Log::info('End: SugarWebServiceImpl->get_modified_relationships');
        		return;
        	} // if
 

@@ -70,10 +70,10 @@ class SugarCache
                     require_once("$location/$file");
                     $cacheClass = basename($file, ".php");
                     if (class_exists($cacheClass) && is_subclass_of($cacheClass, 'SugarCacheAbstract')) {
-                        $GLOBALS['log']->debug("Found cache backend $cacheClass");
+                        Log::debug("Found cache backend $cacheClass");
                         $cacheInstance = new $cacheClass();
                         if ($cacheInstance->useBackend() && $cacheInstance->getPriority() < $lastPriority) {
-                            $GLOBALS['log']->debug("Using cache backend $cacheClass, since ".$cacheInstance->getPriority()." is less than ".$lastPriority);
+                            Log::debug("Using cache backend $cacheClass, since ".$cacheInstance->getPriority()." is less than ".$lastPriority);
                             self::$_cacheInstance = $cacheInstance;
                             $lastPriority         = $cacheInstance->getPriority();
                         }

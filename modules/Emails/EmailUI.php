@@ -1057,7 +1057,7 @@ eoq;
 		// get unread counts
 		$exMbox = explode("::", $nodePath);
 		$unseen = 0;
-		$GLOBALS['log']->debug("$key --- $nodePath::$label");
+		Log::debug("$key --- $nodePath::$label");
 
 		if(count($exMbox) >= 2) {
 			$mailbox = "";
@@ -1876,9 +1876,9 @@ eoq;
                 $out['meta']['email']['description'] = $mod_strings['LBL_EMPTY_EMAIL_BODY'];
 
 		if($noCache) {
-			$GLOBALS['log']->debug("EMAILUI: getSingleMessage() NOT using cache file");
+			Log::debug("EMAILUI: getSingleMessage() NOT using cache file");
 		} else {
-			$GLOBALS['log']->debug("EMAILUI: getSingleMessage() using cache file [ ".$_REQUEST['mbox'].$_REQUEST['uid'].".php ]");
+			Log::debug("EMAILUI: getSingleMessage() using cache file [ ".$_REQUEST['mbox'].$_REQUEST['uid'].".php ]");
 		}
 
 		$this->setReadFlag($_REQUEST['ieId'], $_REQUEST['mbox'], $_REQUEST['uid']);
@@ -1993,7 +1993,7 @@ eoq;
 	 */
 	function handleReplyType($email, $type) {
 		global $mod_strings;
-		 $GLOBALS['log']->debug("****At Handle Reply Type: $type");
+		 Log::debug("****At Handle Reply Type: $type");
 		switch($type) {
 			case "reply":
 			case "replyAll":
@@ -2022,16 +2022,16 @@ eoq;
 			break;
 
 			case "replyCase":
-				$GLOBALS['log']->debug("EMAILUI: At reply case");
+				Log::debug("EMAILUI: At reply case");
 				$header = $email->getReplyHeader();
 
                 $myCase = new aCase();
                 $myCase->retrieve($email->parent_id);
                 $myCaseMacro = $myCase->getEmailSubjectMacro();
                 $email->parent_name = $myCase->name;
-                $GLOBALS['log']->debug("****Case # : {$myCase->case_number} macro: $myCaseMacro");
+                Log::debug("****Case # : {$myCase->case_number} macro: $myCaseMacro");
 				if(!strpos($email->name, str_replace('%1',$myCase->case_number,$myCaseMacro))) {
-		        	$GLOBALS['log']->debug("Replacing");
+		        	Log::debug("Replacing");
 		            $email->name = str_replace('%1',$myCase->case_number,$myCaseMacro) . ' '. $email->name;
 		        }
                 $email->name = "{$mod_strings['LBL_RE']} {$email->name}";
@@ -2257,7 +2257,7 @@ eoq;
 	 */
 	function _cleanUIDList($uids, $returnString=false) {
 		global $app_strings;
-		$GLOBALS['log']->debug("_cleanUIDList: before - [ {$uids} ]");
+		Log::debug("_cleanUIDList: before - [ {$uids} ]");
 
 		if(!is_array($uids)) {
 			$returnString = true;
@@ -2275,7 +2275,7 @@ eoq;
 
 		if($returnString) {
 			$cleanImplode = implode($app_strings['LBL_EMAIL_DELIMITER'], $cleanUids);
-			$GLOBALS['log']->debug("_cleanUIDList: after - [ {$cleanImplode} ]");
+			Log::debug("_cleanUIDList: after - [ {$cleanImplode} ]");
 			return $cleanImplode;
 		}
 
@@ -2513,7 +2513,7 @@ eoq;
 
             if(!$selected)
             {
-                $GLOBALS['log']->debug("Inbound Email {$v->name}, not selected and will not be available for selection within compose UI.");
+                Log::debug("Inbound Email {$v->name}, not selected and will not be available for selection within compose UI.");
                 continue;
             }
 
@@ -2826,7 +2826,7 @@ eoq;
 				return $ret;
 			}
 		} else {
-			$GLOBALS['log']->debug("EMAILUI: cache file not found [ {$cacheFilePath} ] - creating blank cache file");
+			Log::debug("EMAILUI: cache file not found [ {$cacheFilePath} ] - creating blank cache file");
 			$this->writeCacheFile('retArr', array(), $ieId, $type, $file);
 		}
 
@@ -2850,7 +2850,7 @@ eoq;
 			include($cacheFilePath); // provides $cacheFile['timestamp']
 
 			if(isset($cacheFile['timestamp'])) {
-				$GLOBALS['log']->debug("EMAILUI: found timestamp [ {$cacheFile['timestamp']} ]");
+				Log::debug("EMAILUI: found timestamp [ {$cacheFile['timestamp']} ]");
 				return $cacheFile['timestamp'];
 			}
 		}
@@ -2876,7 +2876,7 @@ eoq;
 
 			if(isset($cacheFile['timestamp'])) {
 				$cacheFile['timestamp'] = strtotime('now');
-				$GLOBALS['log']->debug("EMAILUI: setting updated timestamp [ {$cacheFile['timestamp']} ]");
+				Log::debug("EMAILUI: setting updated timestamp [ {$cacheFile['timestamp']} ]");
 				return $this->_writeCacheFile($cacheFile, $cacheFilePath);
 			}
 		}
@@ -2929,7 +2929,7 @@ eoq;
 	        fclose($fh);
 	        return true;
 	    } else {
-	    	$GLOBALS['log']->debug("EMAILUI: Could not write cache file [ {$file} ]");
+	    	Log::debug("EMAILUI: Could not write cache file [ {$file} ]");
 	        return false;
 	    }
 	}

@@ -48,7 +48,7 @@ class FieldViewer{
 		//Only display range search option if in Studio, not ModuleBuilder
 		$this->ss->assign('range_search_option_enabled', empty($_REQUEST['view_package']));
 		
-		$GLOBALS['log']->debug('FieldViewer.php->getLayout() = '.$vardef['type']);
+		Log::debug('FieldViewer.php->getLayout() = '.$vardef['type']);
 		switch($vardef['type']){
 			case 'address':
                 return $this->ss->fetch('modules/DynamicFields/templates/Fields/Forms/address.tpl');

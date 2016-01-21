@@ -178,7 +178,7 @@ EOQ;
 					$id = create_guid();
 					$newFileLocation = "upload://$id";
 					if(!copy($file_location, $newFileLocation)) {
-						$GLOBALS['log']->debug("EMAIL Template could not copy attachment to $newFileLocation");
+						Log::debug("EMAIL Template could not copy attachment to $newFileLocation");
 					} else {
 						$secureLink = "index.php?entryPoint=download&type=Notes&id={$id}";
 					    $emailTemplateBodyHtml = str_replace("storage/cache/images/$match", $secureLink, $emailTemplateBodyHtml);
@@ -236,7 +236,7 @@ EOQ;
 			    $oldId = $preProcessedImages[$file['name']];
 			    $note->id = $oldId;
 			    $note->new_with_id = TRUE;
-			    $GLOBALS['log']->debug("Image {$file['name']} has already been processed.");
+			    Log::debug("Image {$file['name']} has already been processed.");
             }
 
 			$i=preg_replace("/email_attachment(.+)/",'$1',$key);
@@ -293,7 +293,7 @@ EOQ;
 			if($note->new_with_id === FALSE)
     			$note->file->final_move($note->id);
     	    else
-    	       $GLOBALS['log']->debug("Not performing final move for note id {$note->id} as it has already been processed");
+    	       Log::debug("Not performing final move for note id {$note->id} as it has already been processed");
 		}
 
 		////	END NEW ATTACHMENTS
@@ -357,7 +357,7 @@ EOQ;
         clear_register_value('select_array', $focus->object_name);
 
 		if($redirect) {
-		$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+		Log::debug("Saved record with id of ".$return_id);
 			handleRedirect($return_id, "EmailTemplates");
 		}else{
 			return $focus;

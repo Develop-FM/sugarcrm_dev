@@ -59,7 +59,7 @@ abstract class ext_rest extends source
     {
         $data = @file_get_contents($url);
         if (empty($data)) {
-            $GLOBALS['log']->error("Unable to retrieve contents from url:[{$url}]");
+            Log::error("Unable to retrieve contents from url:[{$url}]");
         }
 
         return $data;

@@ -383,7 +383,7 @@ function handleSave($prefix,$redirect=true, $useRequired=false, $do_save=true, $
         ////	END INBOUND EMAIL HANDLING
         ///////////////////////////////////////////////////////////////////////////////
 
-	$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+	Log::debug("Saved record with id of ".$return_id);
 	if($redirect){
 		handleRedirect($return_id, 'Leads');
 	}else{

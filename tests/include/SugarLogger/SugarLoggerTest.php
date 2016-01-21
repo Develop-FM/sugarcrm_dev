@@ -42,7 +42,7 @@ class SugarLoggerTest extends Sugar_PHPUnit_Framework_TestCase
         // reset the logger level
         $level = SugarConfig::getInstance()->get('logger.level');
         if (!empty($level))
-            $GLOBALS['log']->setLevel($level);
+            Log::setLevel($level);
     }
 
     public function providerWriteLogEntries()
@@ -69,8 +69,8 @@ class SugarLoggerTest extends Sugar_PHPUnit_Framework_TestCase
         $messageWritten
         )
     {
-        $GLOBALS['log']->setLevel($currentLevel);
-        $GLOBALS['log']->$logLevel($logMessage);
+        Log::setLevel($currentLevel);
+        Log::$logLevel($logMessage);
 
         $config = SugarConfig::getInstance();
         $ext = $config->get('logger.file.ext');
@@ -96,9 +96,9 @@ class SugarLoggerTest extends Sugar_PHPUnit_Framework_TestCase
 
     public function testAssertLogging()
     {
-        $GLOBALS['log']->setLevel('debug');
-        $GLOBALS['log']->assert('this was asserted true',true);
-        $GLOBALS['log']->assert('this was asserted false',false);
+        Log::setLevel('debug');
+        Log::assert('this was asserted true',true);
+        Log::assert('this was asserted false',false);
 
         $config = SugarConfig::getInstance();
         $ext = $config->get('logger.file.ext');
@@ -216,8 +216,8 @@ class SugarLoggerTest extends Sugar_PHPUnit_Framework_TestCase
         $messageWritten
         )
     {
-        $GLOBALS['log']->setLevel($currentLevel);
-        $this->assertEquals($shouldMessageBeWritten, $GLOBALS['log']->wouldLog($logLevel));
+        Log::setLevel($currentLevel);
+        $this->assertEquals($shouldMessageBeWritten, Log::wouldLog($logLevel));
 
     }
 }

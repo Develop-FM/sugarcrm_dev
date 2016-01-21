@@ -61,9 +61,9 @@ global $current_user;
 $current_user = new User();
 $current_user->getSystemUser();
 
-$GLOBALS['log']->debug('--------------------------------------------> at cron.php <--------------------------------------------');
+Log::debug('--------------------------------------------> at cron.php <--------------------------------------------');
 $cron_driver = ! empty($sugar_config['cron_class']) ? $sugar_config['cron_class'] : 'SugarCronJobs';
-$GLOBALS['log']->debug("Using $cron_driver as CRON driver");
+Log::debug("Using $cron_driver as CRON driver");
 
 if (file_exists("custom/include/SugarQueue/$cron_driver.php")) {
     require_once "custom/include/SugarQueue/$cron_driver.php";

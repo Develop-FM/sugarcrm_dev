@@ -621,7 +621,7 @@ abstract class source
 			$name = $property_name;
 		}
 
-		$GLOBALS['log']->info($name.': '.$log_data);
+		Log::info($name.': '.$log_data);
 	}
 
 	/**

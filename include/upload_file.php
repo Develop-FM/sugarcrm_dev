@@ -134,7 +134,7 @@ class UploadFile
 	    $fullname = "upload://$bean_id.$filename";
 	    if(file_exists($fullname)) {
             if(!rename($fullname,  "upload://$bean_id")) {
-                $GLOBALS['log']->fatal("unable to rename file: $fullname => $bean_id");
+                Log::fatal("unable to rename file: $fullname => $bean_id");
             }
 	        return true;
 	    }
@@ -187,17 +187,17 @@ class UploadFile
 				if(copy($oldStyleSource, $source)) {
 					// delete the old
 					if(!unlink($oldStyleSource)) {
-						$GLOBALS['log']->error("upload_file could not unlink [ {$oldStyleSource} ]");
+						Log::error("upload_file could not unlink [ {$oldStyleSource} ]");
 					}
 				} else {
-					$GLOBALS['log']->error("upload_file could not copy [ {$oldStyleSource} ] to [ {$source} ]");
+					Log::error("upload_file could not copy [ {$oldStyleSource} ] to [ {$source} ]");
 				}
 			}
 		}
 
 		$destination = "upload://$new_id";
 		if(!copy($source, $destination)) {
-			$GLOBALS['log']->error("upload_file could not copy [ {$source} ] to [ {$destination} ]");
+			Log::error("upload_file could not copy [ {$source} ] to [ {$destination} ]");
 		}
 	}
 
@@ -232,12 +232,12 @@ class UploadFile
                     //log the error, the string produced will read something like:
                     //ERROR: There was an error during upload. Error code: 1 - UPLOAD_ERR_INI_SIZE - The uploaded file exceeds the upload_max_filesize directive in php.ini. upload_maxsize is 16
                     $errMess = string_format($GLOBALS['app_strings']['UPLOAD_ERROR_TEXT_SIZEINFO'],array($_FILES['filename_file']['error'], self::$filesError[$_FILES['filename_file']['error']],$sugar_config['upload_maxsize']));
-                    $GLOBALS['log']->fatal($errMess);
+                    Log::fatal($errMess);
                 }else{
                     //log the error, the string produced will read something like:
                     //ERROR: There was an error during upload. Error code: 3 - UPLOAD_ERR_PARTIAL - The uploaded file was only partially uploaded.
                     $errMess = string_format($GLOBALS['app_strings']['UPLOAD_ERROR_TEXT'],array($_FILES['filename_file']['error'], self::$filesError[$_FILES['filename_file']['error']]));
-                    $GLOBALS['log']->fatal($errMess);
+                    Log::fatal($errMess);
                 }
 		    }
 		    return false;
@@ -246,12 +246,12 @@ class UploadFile
 		if(!is_uploaded_file($_FILES[$this->field_name]['tmp_name'])) {
 			return false;
 		} elseif($_FILES[$this->field_name]['size'] > $sugar_config['upload_maxsize']) {
-		    $GLOBALS['log']->fatal("ERROR: uploaded file was too big: max filesize: {$sugar_config['upload_maxsize']}");
+		    Log::fatal("ERROR: uploaded file was too big: max filesize: {$sugar_config['upload_maxsize']}");
 			return false;
 		}
 
 		if(!UploadStream::writable()) {
-		    $GLOBALS['log']->fatal("ERROR: cannot write to upload directory");
+		    Log::fatal("ERROR: cannot write to upload directory");
 			return false;
 		}
 
@@ -412,12 +412,12 @@ class UploadFile
 	    }
         if($this->use_soap) {
         	if(!file_put_contents($destination, $this->file)){
-        	    $GLOBALS['log']->fatal("ERROR: can't save file to $destination");
+        	    Log::fatal("ERROR: can't save file to $destination");
                 return false;
         	}
 		} else {
 			if(!UploadStream::move_uploaded_file($_FILES[$this->field_name]['tmp_name'], $destination)) {
-			    $GLOBALS['log']->fatal("ERROR: can't move_uploaded_file to $destination. You should try making the directory writable by the webserver");
+			    Log::fatal("ERROR: can't move_uploaded_file to $destination. You should try making the directory writable by the webserver");
                 return false;
 			}
 		}
@@ -453,13 +453,13 @@ class UploadFile
                 } else {
                     $result['success'] = FALSE;
                     // FIXME: Translate
-                    $GLOBALS['log']->error("Could not load the requested API (".$doc_type.")");
+                    Log::error("Could not load the requested API (".$doc_type.")");
                     $result['errorMessage'] = 'Could not find a proper API';
                 }
             }catch(Exception $e){
                 $result['success'] = FALSE;
                 $result['errorMessage'] = $e->getMessage();
-                $GLOBALS['log']->error("Caught exception: (".$e->getMessage().") ");
+                Log::error("Caught exception: (".$e->getMessage().") ");
             }
             if ( !$result['success'] ) {
                 sugar_rename($new_destination, str_replace($bean_id.'_'.$file_name, $bean_id, $new_destination));
@@ -594,7 +594,7 @@ class UploadStream
                 }
             }
 
-            $GLOBALS['log']->fatal('Stream ' . UploadStream::STREAM_NAME . ' is not listed in suhosin.executor.include.whitelist and blocked because of it');
+            Log::fatal('Stream ' . UploadStream::STREAM_NAME . ' is not listed in suhosin.executor.include.whitelist and blocked because of it');
             return false;
         }
 
@@ -608,14 +608,14 @@ class UploadStream
                 $stream = explode('://', $stream, 2);
                 if ($stream[0] == UploadStream::STREAM_NAME)
                 {
-                    $GLOBALS['log']->fatal('Stream ' . UploadStream::STREAM_NAME . 'is listed in suhosin.executor.include.blacklist and blocked because of it');
+                    Log::fatal('Stream ' . UploadStream::STREAM_NAME . 'is listed in suhosin.executor.include.blacklist and blocked because of it');
                     return false;
                 }
             }
             return true;
         }
 
-        $GLOBALS['log']->fatal('Suhosin blocks all streams, please define ' . UploadStream::STREAM_NAME . ' stream in suhosin.executor.include.whitelist');
+        Log::fatal('Suhosin blocks all streams, please define ' . UploadStream::STREAM_NAME . ' stream in suhosin.executor.include.whitelist');
         return false;
     }
 

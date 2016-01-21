@@ -49,7 +49,7 @@ class registry_v4_1 extends registry_v4 {
 	 */
 	protected function registerFunction()
 	{
-		$GLOBALS['log']->info('Begin: registry->registerFunction');
+		Log::info('Begin: registry->registerFunction');
 		parent::registerFunction();
 
         //Add get_relationships with "pagination" support

@@ -568,7 +568,7 @@ class UnifiedSearchAdvanced {
 		$cache_search = sugar_cached('modules/unified_search_modules.php');
     	if(file_exists($cache_search))
     	{
-    		$GLOBALS['log']->info("unlink {$cache_search}");
+    		Log::info("unlink {$cache_search}");
     		unlink($cache_search);
     	}
 	}
@@ -654,7 +654,7 @@ class UnifiedSearchAdvanced {
 	    	//Log error message and throw Exception
 	    	global $app_strings;
 	    	$msg = string_format($app_strings['ERR_FILE_WRITE'], array('custom/modules/unified_search_modules_display.php'));
-	    	$GLOBALS['log']->error($msg);
+	    	Log::error($msg);
 	    	throw new Exception($msg);
 	    }
 

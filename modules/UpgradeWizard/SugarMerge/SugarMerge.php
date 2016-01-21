@@ -124,7 +124,7 @@ class SugarMerge {
 					        	$this->merged[$e] = $this->mergeModule($e, TRUE, $save,$logHistory );
 					        else
 					        {
-					            $GLOBALS['log']->debug("SugarMerge is skipping $e module as filter array passed in but module not specified for merge.");
+					            Log::debug("SugarMerge is skipping $e module as filter array passed in but module not specified for merge.");
 					            continue;
 					        }
 					    }
@@ -207,7 +207,7 @@ class SugarMerge {
 	    $historyPath = 'custom/' . MB_HISTORYMETADATALOCATION . "/modules/$module/metadata/$file";
 	    $history = new History($historyPath);
 	    $timeStamp = $history->append($customFile);	    
-	    $GLOBALS['log']->debug("Created history file after merge with new file: " . $historyPath .'_'.$timeStamp);
+	    Log::debug("Created history file after merge with new file: " . $historyPath .'_'.$timeStamp);
 	}
 	
 	/**

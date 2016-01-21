@@ -512,7 +512,7 @@ class PackageManagerDisplay{
         $ss->assign('LICENSE_CONTENTS', $contents);
         $ss->assign('FILE', $file);
         $str = $ss->fetch('ModuleInstall/PackageManagerLicense.tpl');
-        $GLOBALS['log']->debug('LICENSE OUTPUT: '.$str);
+        Log::debug('LICENSE OUTPUT: '.$str);
         return $str;
     }
 

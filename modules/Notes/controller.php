@@ -48,7 +48,7 @@ class NotesController extends SugarController
             $_REQUEST['relate_id'] = false;
         }
 
-        $GLOBALS['log']->debug('PERFORMING NOTES SAVE');
+        Log::debug('PERFORMING NOTES SAVE');
         $upload_file   = new UploadFile('uploadfile');
         $do_final_move = 0;
         if (isset($_FILES['uploadfile']) && $upload_file->confirm_upload()) {

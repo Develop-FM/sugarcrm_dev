@@ -85,7 +85,7 @@ if(!$current_user->is_admin && !$GLOBALS['current_user']->isAdminForModule('User
     || !empty($_POST['is_admin'])
     || (!empty($_POST['UserType']) && $_POST['UserType'] == 'Administrator')
     ) {
-        $GLOBALS['log']->fatal("SECURITY:Non-Admin ". $current_user->id . " attempted to change settings for user:". $focus->id);
+        Log::fatal("SECURITY:Non-Admin ". $current_user->id . " attempted to change settings for user:". $focus->id);
         header("Location: index.php?module=Users&action=Logout");
         exit;
     }
@@ -106,7 +106,7 @@ if(!$current_user->is_admin && !$GLOBALS['current_user']->isAdminForModule('User
             }
             else
             {
-                $GLOBALS['log']->fatal("Field '$fieldName' does not have a SugarField handler");
+                Log::fatal("Field '$fieldName' does not have a SugarField handler");
             }
         }
     }
@@ -157,7 +157,7 @@ if(!$current_user->is_admin && !$GLOBALS['current_user']->isAdminForModule('User
             }
             else
             {
-                $GLOBALS['log']->fatal("Field '$fieldName' does not have a SugarField handler");
+                Log::fatal("Field '$fieldName' does not have a SugarField handler");
             }
         }
         foreach ($focus->additional_column_fields as $fieldName)
@@ -171,7 +171,7 @@ if(!$current_user->is_admin && !$GLOBALS['current_user']->isAdminForModule('User
             }
             else
             {
-                $GLOBALS['log']->fatal("Field '$fieldName' does not have a SugarField handler");
+                Log::fatal("Field '$fieldName' does not have a SugarField handler");
             }
         }
 
@@ -471,7 +471,7 @@ if(isset($_REQUEST['return_action']) && $_REQUEST['return_action'] != "") $retur
 else $return_action = "DetailView";
 if(isset($_REQUEST['return_id']) && $_REQUEST['return_id'] != "") $return_id = $_REQUEST['return_id'];
 
-$GLOBALS['log']->debug("Saved record with id of ".$return_id);
+Log::debug("Saved record with id of ".$return_id);
 
 $redirect = "index.php?action={$return_action}&module={$return_module}&record={$return_id}";
 $redirect .= isset($_REQUEST['type']) ? "&type={$_REQUEST['type']}" : ''; // cn: bug 6897 - detect redirect to Email compose

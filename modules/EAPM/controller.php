@@ -57,7 +57,7 @@ class EAPMController extends SugarController
     protected function failed($error)
     {
         SugarApplication::appendErrorMessage($error);
-        $GLOBALS['log']->error("Login error: $error");
+        Log::error("Login error: $error");
         $url = 'index.php?module=EAPM&action=EditView&record='.$this->bean->id;
 
         if($this->return_module == 'Import'){
